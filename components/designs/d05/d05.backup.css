@@ -1,0 +1,6 @@
+.d05 { --cream: #F3EFE6; --blue: #1D3BFF; --coral: #FF5E3A; --lime: #D7F25C; --ink: #111111; --lilac: #C9B8FF; font-family: "Syne Variable", system-ui, sans-serif; font-weight: 500; }
+.d05-head { font-family: "Syne Variable", sans-serif; font-weight: 800; letter-spacing: -0.035em; }
+.d05-mono { font-family: "Space Mono", ui-monospace, monospace; }
+.d05 ::selection { background: var(--lime); color: var(--ink); }
+.d05-star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.d05-card { box-shadow: 6px 6px 0 var(--ink); }

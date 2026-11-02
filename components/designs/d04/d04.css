@@ -1,0 +1,28 @@
+/* 04 Monolith — v2 tokens (60 white / 30 black rules + fog / 10 signal orange) */
+.d04 {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F1F1EE;
+  --border: #0A0A0A;
+  --accent: #FF4A1C;
+  --accent-ink: #0A0A0A;
+  --text-primary: #0A0A0A;
+  --text-muted: #4D4D48;
+  --font-display: "Archivo Variable", ui-sans-serif, sans-serif;
+  --font-body: "Archivo Variable", ui-sans-serif, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 760;
+  --radius-card: 0px;
+  --radius-cta: 0px;
+  --fog: #F1F1EE;
+  font-variation-settings: "wdth" 100;
+}
+.d04 .sys-h1, .d04 .sys-h2 { font-variation-settings: "wdth" 70; text-transform: uppercase; line-height: 0.95; }
+.d04 .sys-h3 { font-variation-settings: "wdth" 85; }
+.d04-display { font-family: "Archivo Variable", sans-serif; font-weight: 860; letter-spacing: -0.035em; }
+.d04-wide { font-family: "Archivo Variable", sans-serif; font-weight: 760; font-variation-settings: "wdth" 125; letter-spacing: -0.02em; }
+.d04-cond { font-family: "Archivo Variable", sans-serif; font-weight: 700; font-variation-settings: "wdth" 66; letter-spacing: -0.01em; }
+.d04-mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.d04-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.35s; }
+.d04-link:hover { background-size: 100% 1px; }
+.d04-blink { animation: d04-b 1s steps(1) infinite; }
+@keyframes d04-b { 50% { opacity: 0; } }

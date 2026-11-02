@@ -1,0 +1,25 @@
+/* 05 Kiln — v2 tokens (60 cream / 30 ink surfaces + 2px rules / 10 cobalt) */
+.d05 {
+  --bg-primary: #F3EFE6;
+  --bg-secondary: #E8E1D1;
+  --border: #111111;
+  --accent: #1D3BFF;
+  --accent-ink: #FFFFFF;
+  --text-primary: #111111;
+  --text-muted: #4A463E;
+  --font-display: "Syne Variable", ui-sans-serif, sans-serif;
+  --font-body: "Syne Variable", ui-sans-serif, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+  --display-weight: 750;
+  --radius-card: 28px;
+  --cream: #F3EFE6; --blue: #1D3BFF; --coral: #FF5E3A; --lime: #D7F25C; --ink: #111111; --lilac: #C9B8FF;
+  font-weight: 500;
+}
+.d05 .sys-invert { --text-primary: #F3EFE6; --text-muted: #C9C3B5; --bg-secondary: #1E1E1E; --border: rgba(243,239,230,.35); color: var(--text-primary); }
+.d05 .sys-invert .d05-card, .d05 .sys-invert [class*="bg-[var(--cream)]"] { --text-primary: #111111; --text-muted: #4A463E; }
+.d05 .sys-card { border-width: 2px; }
+.d05 .sys-h1 { line-height: 0.98; }
+.d05-head { font-family: "Syne Variable", sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+.d05-mono { font-family: "Space Mono", ui-monospace, monospace; }
+.d05-star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.d05-card { box-shadow: 6px 6px 0 var(--ink); }

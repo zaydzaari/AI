@@ -1,0 +1,13 @@
+/* 10 Live Wire — v2 tokens (60 warm grey / 30 white panels / 10 signal blue) */
+.d10 {
+  --bg-primary: #F2F1EC; --bg-secondary: #FFFFFF; --border: rgba(18,18,18,0.12);
+  --accent: #3048F0; --accent-ink: #FFFFFF; --text-primary: #121212; --text-muted: #55544D;
+  --font-display: "DM Sans Variable", ui-sans-serif, sans-serif; --font-body: "DM Sans Variable", ui-sans-serif, sans-serif; --font-mono: "DM Mono", ui-monospace, monospace;
+  --display-weight: 650; --radius-card: 22px;
+  --bg: #F2F1EC; --ink: #121212; --blue: #3048F0; --green: #007A55;
+}
+.d10-mono { font-family: "DM Mono", ui-monospace, monospace; }
+.d10 ::selection { background: var(--blue); color: #fff; }
+.d10-range { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 99px; background: rgba(0,0,0,.08); }
+.d10-range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 99px; background: #fff; box-shadow: 0 0 0 2px var(--blue), 0 4px 12px rgba(61,90,254,.4); cursor: pointer; }
+.d10-range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 99px; background: #fff; border: 2px solid var(--blue); cursor: pointer; }

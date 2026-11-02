@@ -1,0 +1,15 @@
+/* 06 Lumen — v2 tokens (60 white / 30 fog / 10 blue) */
+.d06 {
+  --bg-primary: #FFFFFF; --bg-secondary: #F5F5F7; --border: rgba(0,0,0,0.09);
+  --accent: #0066CC; --accent-ink: #FFFFFF; --text-primary: #1D1D1F; --text-muted: #5C5C61;
+  --font-display: "Plus Jakarta Sans Variable", ui-sans-serif, sans-serif; --font-body: "Plus Jakarta Sans Variable", ui-sans-serif, sans-serif; --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --display-weight: 700; --radius-card: 28px;
+  --ink: #1D1D1F; --grey: #5C5C61; --fog: #F5F5F7; --blue: #0066CC;
+}
+.d06 ::selection { background: #b3d7ff; }
+.d06-device {
+  background: linear-gradient(180deg, #e9e9ec, #c9c9ce 45%, #dcdce0);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(0,0,0,.15), 0 0 0 1px rgba(0,0,0,.08), 0 40px 80px -30px rgba(0,0,0,.25);
+}
+.d06-chip { background: linear-gradient(145deg, #2b2b2f, #0b0b0c); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 18px 30px -12px rgba(0,0,0,.4); }
+.d06-peek { -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); overflow: hidden; }

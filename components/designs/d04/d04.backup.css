@@ -1,0 +1,12 @@
+.d04 { --accent: #FF4A1C; --fog: #EDEDEA; font-family: "Archivo Variable", system-ui, sans-serif; font-variation-settings: "wdth" 100; }
+.d04-display { font-family: "Archivo Variable", sans-serif; font-weight: 860; letter-spacing: -0.035em; }
+.d04-wide { font-family: "Archivo Variable", sans-serif; font-weight: 760; font-variation-settings: "wdth" 125; letter-spacing: -0.02em; }
+.d04-cond { font-family: "Archivo Variable", sans-serif; font-weight: 700; font-variation-settings: "wdth" 66; letter-spacing: -0.01em; }
+.d04-morph { font-family: "Archivo Variable", sans-serif; font-weight: 760; font-variation-settings: "wdth" 66; letter-spacing: -0.015em; transition: font-variation-settings .7s cubic-bezier(.77,0,.18,1); display: block; }
+.d04-morph[data-on="true"] { font-variation-settings: "wdth" 125; }
+.d04-mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.d04 ::selection { background: var(--accent); color: #fff; }
+.d04-link { background: linear-gradient(currentColor,currentColor) 0 100% / 0 1px no-repeat; transition: background-size .35s; }
+.d04-link:hover { background-size: 100% 1px; }
+.d04-blink { animation: d04-b 1s steps(1) infinite; }
+@keyframes d04-b { 50% { opacity: 0; } }

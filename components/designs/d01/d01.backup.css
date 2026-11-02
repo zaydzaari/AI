@@ -1,0 +1,14 @@
+.d01 {
+  --paper: #F1EBDD; --ink: #16130F; --red: #E0482B; --pine: #2F5D50; --sun: #F0B83A;
+  font-family: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  font-variation-settings: "opsz" 14;
+}
+.d01-display { font-family: "Bricolage Grotesque Variable", sans-serif; font-weight: 760; letter-spacing: -0.035em; font-variation-settings: "opsz" 96, "wdth" 92; }
+.d01-serif { font-family: "Instrument Serif", Georgia, serif; letter-spacing: -0.01em; }
+.d01-mono { font-family: "JetBrains Mono Variable", ui-monospace, monospace; }
+.d01 ::selection { background: var(--sun); color: var(--ink); }
+.d01-marquee { animation: d01-marq 38s linear infinite; }
+@keyframes d01-marq { to { transform: translateX(-50%); } }
+.d01-range { -webkit-appearance: none; appearance: none; height: 2px; background: color-mix(in srgb, var(--ink) 20%, transparent); }
+.d01-range::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 99px; background: var(--red); border: 3px solid #FBF8F1; box-shadow: 0 0 0 1px var(--ink); cursor: pointer; }
+.d01-range::-moz-range-thumb { width: 12px; height: 12px; border-radius: 99px; background: var(--red); border: 3px solid #FBF8F1; box-shadow: 0 0 0 1px var(--ink); cursor: pointer; }

@@ -1,0 +1,2 @@
+.d09 { --paper: #F4F3EF; --grey: #E5E3DC; --red: #FF2A1F; font-family: "Inter Tight Variable", "Helvetica Neue", Helvetica, Arial, sans-serif; font-feature-settings: "tnum" 0, "ss01"; }
+.d09 ::selection { background: #000; color: var(--paper); }
