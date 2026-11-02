@@ -1,0 +1,193 @@
+// The anti-clone fingerprint registry, planned before Site 01 was built.
+// build.mjs writes this to ../fingerprint-registry.json and refuses to build if any two
+// sites share a heading font, accent colour, hero layout or signature scroll mechanic.
+// `blueprint_heading_font` records where the brief's font was replaced, and why.
+export const REGISTRY = [
+  {
+    id: "01", folder: "01-chronos-atelier", name: "Chronos Atelier", industry: "Bespoke Swiss horology lab", mode: "dark",
+    aesthetic_movement: "Midnight atelier mechanicalism",
+    heading_font: "Cormorant Garamond", body_font: "JetBrains Mono",
+    color_system_60_30_10: { primary_60: "#090A0F", secondary_30: "#141722", accent_10: "#D4AF37" },
+    hero_layout_type: "Asymmetric 5/7 split: type column left, live calibre canvas right",
+    signature_scroll_mechanic: "Scroll-exploded calibre: a pinned canvas lifts five movement layers apart with engineering callouts",
+  },
+  {
+    id: "02", folder: "02-kanso-monolith", name: "Kanso Monolith", industry: "Japanese brutalist architecture studio", mode: "light",
+    aesthetic_movement: "Washi-and-concrete brutalism",
+    heading_font: "Syne", body_font: "IBM Plex Mono",
+    color_system_60_30_10: { primary_60: "#F2EFE9", secondary_30: "#E2DDD3", accent_10: "#C83E2B" },
+    hero_layout_type: "Slab stack: full-width headline slab over a blueprint band, CTA cast into a concrete block",
+    signature_scroll_mechanic: "Blueprint-to-structure scrubber: linework draws itself, then solidifies into shaded pavilions with a sun-angle shadow slider",
+  },
+  {
+    id: "03", folder: "03-aether-orbital", name: "Aether Orbital", industry: "Orbital debris and satellite logistics", mode: "dark",
+    aesthetic_movement: "Deep-space mission-control telemetry",
+    heading_font: "Unbounded", body_font: "Space Mono",
+    color_system_60_30_10: { primary_60: "#05070B", secondary_30: "#0F141C", accent_10: "#00F5D4" },
+    hero_layout_type: "HUD corners: full-bleed 3D globe, headline top-left, live readouts pinned to the corners",
+    signature_scroll_mechanic: "Orbital shell lock-on: scroll moves the camera through LEO, MEO and GEO shells while a sticky rail prints avoidance receipts",
+  },
+  {
+    id: "04", folder: "04-veridian-biofoundry", name: "Veridian Biofoundry", industry: "Computational protein and mycelium materials lab", mode: "light",
+    aesthetic_movement: "Botanical scientific editorial",
+    heading_font: "Fraunces", body_font: "Plus Jakarta Sans",
+    color_system_60_30_10: { primary_60: "#F7F6F1", secondary_30: "#E6E4DC", accent_10: "#1B4D3E" },
+    hero_layout_type: "Specimen plate: centred framed plate with mycelium growing past its borders",
+    signature_scroll_mechanic: "Scroll-grown mycelium: a branching network grows down the page through nine lab receipts",
+  },
+  {
+    id: "05", folder: "05-valkyrie-hyperacoustics", name: "Valkyrie Hyperacoustics", industry: "Planar magnetic mastering headphones", mode: "dark",
+    aesthetic_movement: "Anechoic industrial audio",
+    heading_font: "Funnel Display", body_font: "IBM Plex Mono",
+    blueprint_heading_font: "Clash Display (Fontshare is unreachable from the build machine, so it cannot be self-hosted; Funnel Display is the closest open grotesk display)",
+    color_system_60_30_10: { primary_60: "#0B0B0C", secondary_30: "#18181B", accent_10: "#FF5500" },
+    hero_layout_type: "Horizon line: headline above a full-width live waveform that splits the viewport, CTA below the line",
+    signature_scroll_mechanic: "Playable frequency synthesiser: Web Audio tone with bass/mid/treble isolation; scroll drives the waveform phase and sweep",
+  },
+  {
+    id: "06", folder: "06-nocturne-perfumerie", name: "Nocturne Perfumerie", industry: "Rare molecular botanical apothecary", mode: "dark",
+    aesthetic_movement: "Candlelit apothecary noir",
+    heading_font: "Instrument Serif", body_font: "Work Sans",
+    color_system_60_30_10: { primary_60: "#120E0A", secondary_30: "#1F1812", accent_10: "#E5A93C" },
+    hero_layout_type: "Triptych: copy column, particle flacon in the centre column, note ledger on the right",
+    signature_scroll_mechanic: "Pinned horizontal scent pyramid: top, heart and base notes evaporate as particle diffusion",
+  },
+  {
+    id: "07", folder: "07-solaris-tokamak", name: "Solaris Tokamak", industry: "Compact commercial fusion micro-reactors", mode: "dark",
+    aesthetic_movement: "High-energy-physics annual report",
+    heading_font: "Host Grotesk", body_font: "JetBrains Mono",
+    blueprint_heading_font: "Cabinet Grotesk (Fontshare-only, unreachable from the build machine; Host Grotesk shares its quirky grotesk construction)",
+    color_system_60_30_10: { primary_60: "#070913", secondary_30: "#111625", accent_10: "#38BDF8" },
+    hero_layout_type: "Report cover: oversized live temperature readout as the visual with the torus overlaid, headline set bottom-left",
+    signature_scroll_mechanic: "Scroll-ramped confinement torus: plasma heats from 1M to 150M °C, firing net-gain milestones",
+  },
+  {
+    id: "08", folder: "08-terra-vinicola", name: "Terra Vinicola", industry: "High-altitude volcanic biodynamic vineyard", mode: "light",
+    aesthetic_movement: "Mediterranean letterpress heritage",
+    heading_font: "Playfair Display", body_font: "Newsreader",
+    color_system_60_30_10: { primary_60: "#F4F0EA", secondary_30: "#E5DEC9", accent_10: "#7C1D26" },
+    hero_layout_type: "Centred wine label: symmetric crest, headline and terroir line over contour lines",
+    signature_scroll_mechanic: "Elevation altimeter: a sticky gauge descends 1,200 m to 400 m with soil strata, rainfall and tasting notes per band",
+  },
+  {
+    id: "09", folder: "09-kinetix-exoskeleton", name: "Kinetix Exoskeleton", industry: "Bionic rehabilitation and industrial exosuits", mode: "dark",
+    aesthetic_movement: "Biomechanics lab HUD",
+    heading_font: "Chakra Petch", body_font: "IBM Plex Mono",
+    color_system_60_30_10: { primary_60: "#0D0F12", secondary_30: "#1A1E24", accent_10: "#CCFF00" },
+    hero_layout_type: "Telemetry panel: full-bleed kinematic rig with copy locked into a framed bottom-left panel",
+    signature_scroll_mechanic: "Scroll-bent kinematic leg rig with live joint-torque and metabolic-load readouts",
+  },
+  {
+    id: "10", folder: "10-obelisk-zk", name: "Obelisk ZK", industry: "Zero-knowledge cryptographic compute network", mode: "dark",
+    aesthetic_movement: "Neo-brutalist Swiss grid",
+    heading_font: "Bricolage Grotesque", body_font: "JetBrains Mono",
+    color_system_60_30_10: { primary_60: "#080808", secondary_30: "#141414", accent_10: "#A855F7" },
+    hero_layout_type: "Exposed grid cells: headline spanning cells above a proof-tree cell block",
+    signature_scroll_mechanic: "Cipher decode on entry: headings decrypt and a Merkle proof tree verifies leaf by leaf as sections arrive",
+  },
+  {
+    id: "11", folder: "11-nomad-expeditions", name: "Nomad Expeditions", industry: "Private polar and deep-trench voyages", mode: "dark",
+    aesthetic_movement: "Cartographic expedition journal",
+    heading_font: "DM Serif Display", body_font: "Plus Jakarta Sans",
+    color_system_60_30_10: { primary_60: "#06101E", secondary_30: "#0E1E33", accent_10: "#F59E0B" },
+    hero_layout_type: "Depth column: vertical gauge strip on the left edge, copy right, sonar field behind",
+    signature_scroll_mechanic: "Depth-gauge descent from +4,000 m to −10,928 m with live pressure readouts and sonar pings",
+  },
+  {
+    id: "12", folder: "12-forma-modular", name: "Forma Modular", industry: "Precision CNC aluminium kitchen and living systems", mode: "light",
+    aesthetic_movement: "Rams-school industrial functionalism",
+    heading_font: "Space Grotesk", body_font: "IBM Plex Mono",
+    color_system_60_30_10: { primary_60: "#F5F5F3", secondary_30: "#E5E5E0", accent_10: "#D9381E" },
+    hero_layout_type: "Tool-first: copy top-left, a live modular configurator occupying the lower-right grid",
+    signature_scroll_mechanic: "Snap-together configurator: modules spring into a rail as you scroll, plus a before/after room scrubber",
+  },
+  {
+    id: "13", folder: "13-synapse-bci", name: "Synapse BCI", industry: "Non-invasive neural interface for creative workstations", mode: "dark",
+    aesthetic_movement: "Ethereal neuro-editorial",
+    heading_font: "Urbanist", body_font: "JetBrains Mono",
+    blueprint_heading_font: "Satoshi (Fontshare-only, unreachable from the build machine; Urbanist keeps its geometric modernist skeleton)",
+    color_system_60_30_10: { primary_60: "#0A0910", secondary_30: "#161421", accent_10: "#2DD4BF" },
+    hero_layout_type: "Off-centre float: copy in the lower-right third, neural constellation filling the rest",
+    signature_scroll_mechanic: "Focus-seeking constellation: synaptic pulses fire toward whichever card or CTA is focused or scrolled to",
+  },
+  {
+    id: "14", folder: "14-veloce-aero", name: "Veloce Aero", industry: "Wind-tunnel custom carbon track bicycles", mode: "dark",
+    aesthetic_movement: "Italian aero telemetry",
+    heading_font: "Archivo Black", body_font: "Work Sans",
+    color_system_60_30_10: { primary_60: "#0F0F12", secondary_30: "#1C1C22", accent_10: "#E11D48" },
+    hero_layout_type: "Streamline band: stacked headline over a full-bleed CFD band, drag readout docked right",
+    signature_scroll_mechanic: "Scroll-driven CFD streamlines flowing over the frame, with a live CdA comparison slider",
+  },
+  {
+    id: "15", folder: "15-hikari-matcha", name: "Hikari Matcha Guild", industry: "Single-cultivar ceremonial Uji matcha", mode: "light",
+    aesthetic_movement: "Kyoto tea-room quietism",
+    heading_font: "Newsreader", body_font: "Plus Jakarta Sans",
+    color_system_60_30_10: { primary_60: "#F8F6F0", secondary_30: "#EAE6DA", accent_10: "#2E6F40" },
+    hero_layout_type: "Shoji panels: three paper panels that slide apart, copy in the centre panel, vertical tategaki label",
+    signature_scroll_mechanic: "Scroll-paced stone mill: the granite mill turns with scroll and unlocks farmer provenance certificates",
+  },
+  {
+    id: "16", folder: "16-stratosphere-haps", name: "Stratosphere HAPS", industry: "Solar stratospheric telecom gliders", mode: "light",
+    aesthetic_movement: "High-altitude atmospheric editorial",
+    heading_font: "Sora", body_font: "IBM Plex Mono",
+    blueprint_heading_font: "Syne (already the heading font of 02; the uniqueness law forbids a repeat)",
+    color_system_60_30_10: { primary_60: "#F0F4F8", secondary_30: "#DCE5EE", accent_10: "#0284C7" },
+    hero_layout_type: "Sky over instrument band: sky canvas fills the upper field, copy and CTA sit in a band of flight-strip readouts",
+    signature_scroll_mechanic: "Scroll-pinned flight strips advance along the flight path, plus a wingspan solar-flux calculator",
+  },
+  {
+    id: "17", folder: "17-obsidian-roasters", name: "Obsidian Roasters", industry: "Competition-lot anaerobic coffee micro-roastery", mode: "dark",
+    aesthetic_movement: "Copper espresso-bar warmth",
+    heading_font: "Gloock", body_font: "JetBrains Mono",
+    blueprint_heading_font: "Fraunces (already the heading font of 04; the uniqueness law forbids a repeat)",
+    color_system_60_30_10: { primary_60: "#100D0C", secondary_30: "#1E1916", accent_10: "#EA580C" },
+    hero_layout_type: "Chart-as-hero: the live roast curve plotted across the hero, headline set inside the chart area",
+    signature_scroll_mechanic: "Scroll-plotted roast profile: scroll advances roast time through drying, Maillard, first crack and development",
+  },
+  {
+    id: "18", folder: "18-lumina-photonics", name: "Lumina Photonics", industry: "Optical silicon interconnects for AI datacentres", mode: "dark",
+    aesthetic_movement: "Cleanroom laser optics",
+    heading_font: "Syncopate", body_font: "Space Mono",
+    blueprint_heading_font: "Clash Display (already planned for 05 and Fontshare-only; the uniqueness law forbids a repeat)",
+    color_system_60_30_10: { primary_60: "#06070A", secondary_30: "#12151E", accent_10: "#10B981" },
+    hero_layout_type: "Die floorplan: the hero is laid out as chip blocks joined by glowing waveguides",
+    signature_scroll_mechanic: "Photonic packet routing: scroll fires laser packets through logic gates while copper and optical loss are compared live",
+  },
+  {
+    id: "19", folder: "19-atelier-kintsugi", name: "Atelier Kintsugi", industry: "Rare book conservation and manuscript vault", mode: "light",
+    aesthetic_movement: "Museum conservation archive",
+    heading_font: "IM Fell English", body_font: "Work Sans",
+    blueprint_heading_font: "Cormorant Garamond (already the heading font of 01; the uniqueness law forbids a repeat)",
+    color_system_60_30_10: { primary_60: "#F9F6F0", secondary_30: "#EBE5D8", accent_10: "#B45309" },
+    hero_layout_type: "Open-book spread: copy on the left page, manuscript with a live loupe on the right page",
+    signature_scroll_mechanic: "Spectral inspection loupe: a cursor- and scroll-steered loupe reveals UV, infrared and X-ray layers",
+  },
+  {
+    id: "20", folder: "20-zenith-supersonic", name: "Zenith Supersonic", industry: "Mach 2.2 SAF private jet charter", mode: "dark",
+    aesthetic_movement: "Concorde-heritage cockpit HUD",
+    heading_font: "Big Shoulders Display", body_font: "IBM Plex Mono",
+    blueprint_heading_font: "Unbounded (already the heading font of 03; the uniqueness law forbids a repeat)",
+    color_system_60_30_10: { primary_60: "#080B11", secondary_30: "#131924", accent_10: "#F43F5E" },
+    hero_layout_type: "Departure board: headline and CTA set into a split-flap board above a route arc",
+    signature_scroll_mechanic: "Split-flap route board flips city pairs on scroll while a Mach cone sweeps across a route globe",
+  },
+];
+
+export function checkUniqueness(list = REGISTRY) {
+  const fields = [
+    ["heading_font", (r) => r.heading_font.toLowerCase()],
+    ["accent", (r) => r.color_system_60_30_10.accent_10.toLowerCase()],
+    ["hero_layout_type", (r) => r.hero_layout_type.split(":")[0].toLowerCase()],
+    ["signature_scroll_mechanic", (r) => r.signature_scroll_mechanic.split(":")[0].toLowerCase()],
+  ];
+  const errors = [];
+  for (const [name, key] of fields) {
+    const seen = new Map();
+    for (const r of list) {
+      const k = key(r);
+      if (seen.has(k)) errors.push(`${name} "${k}" shared by ${seen.get(k)} and ${r.id}`);
+      else seen.set(k, r.id);
+    }
+  }
+  return errors;
+}
