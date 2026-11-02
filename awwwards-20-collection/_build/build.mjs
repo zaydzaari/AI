@@ -40,9 +40,10 @@ for (const entry of REGISTRY) {
 const registry = {
   collection: "Awwwards 20 Collection",
   generated: new Date().toISOString().slice(0, 10),
+  subject: "Every site is a landing page for Aether (placeholder brand): AI models, low-refusal and abliterated variants, unified chat, coding agents and a developer API sold per token. The 20 blueprints supply visual language only.",
   uniqueness_law: "No two sites share a heading font, accent colour, hero layout structure or signature scroll mechanic. Checked by _build/registry.plan.mjs on every build.",
-  sites: REGISTRY.map(({ id, folder, name, industry, mode, aesthetic_movement, heading_font, body_font, blueprint_heading_font, color_system_60_30_10, signature_scroll_mechanic, hero_layout_type }) => ({
-    id, folder, name, industry, mode, aesthetic_movement, heading_font, body_font,
+  sites: REGISTRY.map(({ id, folder, name, inspiration, mode, aesthetic_movement, heading_font, body_font, blueprint_heading_font, color_system_60_30_10, signature_scroll_mechanic, hero_layout_type }) => ({
+    id, folder, direction: name, inspiration, mode, aesthetic_movement, heading_font, body_font,
     ...(blueprint_heading_font ? { blueprint_heading_font } : {}),
     color_system_60_30_10, signature_scroll_mechanic, hero_layout_type,
     built: built.some((b) => b.id === id),

@@ -223,6 +223,8 @@ const RUNTIME = String.raw`
  * @param {object} site   the site module (tokens, title, description, mode…)
  * @param {{fontCss:string, preload:string[], favicon:string}} assets
  */
+import { CLIENT_DATA } from "./aether.mjs";
+
 export function page(site, { fontCss, preload }) {
   const t = site.tokens;
   const favicon = `data:image/svg+xml,${encodeURIComponent(
@@ -250,6 +252,7 @@ ${site.css}
 <body>
 <a class="k-skip" href="#main">Skip to content</a>
 ${site.body}
+<script>window.AE = ${JSON.stringify(CLIENT_DATA)};</script>
 <script>${RUNTIME}</script>
 <script>
 ${site.js}
