@@ -1,0 +1,39 @@
+@property --d03-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+/* 03 Pearl — v2 tokens (60 pearl / 30 white glass / 10 cobalt) */
+.d03 {
+  --bg-primary: #F7F7F9; --bg-secondary: rgba(255,255,255,0.78); --border: rgba(27,28,34,0.11);
+  --accent: #3253E8; --accent-ink: #FFFFFF; --text-primary: #1B1C22; --text-muted: #51545F;
+  --font-display: "Sora Variable", ui-sans-serif, sans-serif; --font-body: "Sora Variable", ui-sans-serif, sans-serif; --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --display-weight: 400; --radius-card: 28px;
+  --pearl: #F7F7F9; --ink: #1B1C22;
+  --holo: conic-gradient(from var(--d03-a), #ffd6ef, #d6e4ff, #d2fbf0, #fff2c6, #f3d6ff, #ffd6ef);
+  font-family: "Sora Variable", system-ui, sans-serif;
+}
+.d03-head { font-family: "Sora Variable", sans-serif; font-weight: 400; letter-spacing: -0.03em; }
+.d03-serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+.d03-glass {
+  background: linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.28));
+  border: 1px solid rgba(255,255,255,.75);
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 20px 50px -24px rgba(40,44,80,.22);
+  backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5);
+}
+.d03-glass-strong { background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,255,255,.5)); box-shadow: 0 1px 0 #fff inset, 0 30px 80px -30px rgba(40,44,80,.3); }
+.d03-holo { background: var(--holo); animation: d03-spin 8s linear infinite; }
+.d03-holo-text { background: linear-gradient(100deg, #b46be0, #5d8cf0 30%, #3fc1a7 55%, #e4a33c 80%, #d466b0); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: d03-sheen 9s ease-in-out infinite alternate; }
+.d03-holo-ring { background: linear-gradient(#fff,#fff) padding-box, var(--holo) border-box; border: 1.5px solid transparent; animation: d03-spin 8s linear infinite; box-shadow: 0 10px 30px -12px rgba(120,100,200,.4); }
+.d03-holo-border { background: var(--holo); animation: d03-spin 6s linear infinite; }
+.d03-btn { background: var(--ink); color: #fff; box-shadow: 0 0 0 1px rgba(255,255,255,.3) inset, 0 10px 30px -10px rgba(120,90,220,.6); }
+.d03-btn:hover { background: #2a2c36; }
+.d03-aurora { background:
+  radial-gradient(40% 30% at 20% 12%, rgba(255,214,239,.85), transparent 70%),
+  radial-gradient(40% 32% at 80% 10%, rgba(214,228,255,.95), transparent 70%),
+  radial-gradient(36% 30% at 55% 38%, rgba(210,251,240,.75), transparent 70%),
+  radial-gradient(30% 24% at 15% 60%, rgba(255,242,198,.6), transparent 70%); filter: blur(10px); }
+.d03-column { background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.35)); border: 1px solid #fff; box-shadow: 0 1px 0 #fff inset, 0 30px 50px -30px rgba(60,60,120,.35); backdrop-filter: blur(10px); }
+.d03-column::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--holo); opacity: .25; mix-blend-mode: multiply; transition: opacity .5s; animation: d03-spin 8s linear infinite; }
+.d03-column-on::after { opacity: .85; }
+.d03-float { animation: d03-float 7s ease-in-out infinite; }
+@keyframes d03-spin { to { --d03-a: 360deg; } }
+@keyframes d03-sheen { to { background-position: 100% 0; } }
+@keyframes d03-float { 50% { transform: translateY(-10px); } }
+.d03 .sys-card { backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 1px 0 #fff inset, 0 24px 60px -32px rgba(40,44,80,.25); }

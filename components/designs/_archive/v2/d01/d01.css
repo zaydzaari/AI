@@ -1,0 +1,32 @@
+/* 01 Field Notes — v2 tokens (60 paper / 30 parchment + pine / 10 vermilion) */
+.d01 {
+  --bg-primary: #F7F5F0;
+  --bg-secondary: #EDE8DD;
+  --border: rgba(22, 19, 15, 0.14);
+  --accent: #B8361C;
+  --accent-ink: #FFFFFF;
+  --text-primary: #16130F;
+  --text-muted: #57514A;
+  --font-display: "Bricolage Grotesque Variable", ui-serif, serif;
+  --font-body: "Bricolage Grotesque Variable", ui-serif, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --display-weight: 760;
+  --radius-card: 6px;
+  --radius-cta: 999px;
+  /* legacy names used by the kept components (parts.tsx) — neutralised so the accent stays on CTAs */
+  --paper: #F7F5F0; --ink: #16130F; --red: #16130F; --pine: #24483E; --sun: #F7F5F0;
+  font-variation-settings: "opsz" 14;
+}
+.d01 .sys-invert { --text-primary: #F7F5F0; --text-muted: #CBD7D1; --bg-secondary: #2C564A; --border: rgba(247, 245, 240, 0.2); }
+.d01 .d01-display, .d01 .sys-h1, .d01 .sys-h2, .d01 .sys-h3 { font-variation-settings: "opsz" 96, "wdth" 92; }
+.d01-display { font-family: "Bricolage Grotesque Variable", sans-serif; font-weight: 760; letter-spacing: -0.03em; }
+.d01-serif { font-family: "Instrument Serif", Georgia, serif; letter-spacing: -0.01em; }
+.d01-mono { font-family: "JetBrains Mono Variable", ui-monospace, monospace; }
+.d01-marquee { animation: d01-marq 38s linear infinite; }
+@keyframes d01-marq { to { transform: translateX(-50%); } }
+.d01-range { -webkit-appearance: none; appearance: none; height: 2px; background: color-mix(in srgb, var(--ink) 25%, transparent); }
+.d01-range::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 99px; background: var(--accent); border: 3px solid #FBF8F1; box-shadow: 0 0 0 1px var(--ink); cursor: pointer; }
+.d01-range::-moz-range-thumb { width: 16px; height: 16px; border-radius: 99px; background: var(--accent); border: 3px solid #FBF8F1; box-shadow: 0 0 0 1px var(--ink); cursor: pointer; }
+@media (max-width: 1023px) { .d01-peek { -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); } }
+.d01 .sys-invert .d01-light { --text-primary: #16130F; --text-muted: #57514A; --border: rgba(22,19,15,.14); }
+.d01 .d01-light .text-\[var\(--pine\)\] { color: #24483E; }

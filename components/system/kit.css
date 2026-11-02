@@ -1,0 +1,77 @@
+/*
+ * Kit — unified design-rule baseline for the v3 concepts.
+ * The values satisfy every brief at once:
+ *   H1 clamp(3.25rem, 6vw, 5rem), tracking -0.03em  (master system 3–5rem ∩ collection 3.25–6rem)
+ *   body 1.05rem / 1.7, max 65ch · sections 120px (72px mobile) · block gaps 64–80px
+ *   card padding 36–40px (master 32–40 ∩ collection 36–48) · grain 0.035 · 60-30-10 tokens
+ * Each concept sets the tokens on its root: --bg-primary --bg-secondary --accent --on-accent
+ * --text-primary --text-muted --line --font-display --font-body.
+ */
+.kit {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --gutter: clamp(20px, 5vw, 72px);
+  --maxw: 1320px;
+  --gap-block: clamp(64px, 6vw, 80px);
+  --card-pad: clamp(36px, 3vw, 40px);
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.kit *, .kit *::before, .kit *::after { box-sizing: border-box; }
+.kit :where(h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd) { margin: 0; }
+.kit :where(ul, ol) { padding: 0; list-style: none; }
+.kit :where(button, input, select, textarea) { font: inherit; color: inherit; }
+.kit :where(button) { cursor: pointer; }
+.kit :where(a) { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+.kit :where(img, svg, canvas, video) { display: block; max-width: 100%; }
+.kit h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6vw, 5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  font-weight: var(--h1-weight, 500);
+  text-wrap: balance;
+}
+.kit :where(h2, h3) { font-family: var(--font-display); text-wrap: balance; }
+.kit ::selection { background: var(--accent); color: var(--on-accent); }
+.kit :focus-visible { outline: 2px solid var(--focus, var(--text-primary)); outline-offset: 3px; }
+
+.k-wrap { width: min(100% - 2 * var(--gutter), var(--maxw)); margin-inline: auto; }
+.k-body { font-size: 1.05rem; line-height: 1.7; max-width: 65ch; }
+.k-muted { color: var(--text-muted); }
+.k-card { padding: var(--card-pad); }
+.k-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.k-skip { position: absolute; left: 12px; top: -80px; z-index: 100; padding: 10px 16px; background: var(--text-primary); color: var(--bg-primary); text-decoration: none; }
+.k-skip:focus { top: 12px; }
+
+.kit [data-section] { padding-block: 120px; position: relative; }
+@media (max-width: 767px) { .kit [data-section] { padding-block: 72px; } }
+
+/* Physical grain: fractal noise at 3.5% */
+.kit::after {
+  content: ""; position: fixed; inset: 0; z-index: 30; pointer-events: none; opacity: 0.035;
+  background-size: 220px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.kit [data-reveal] { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 0.8s var(--ease) calc(var(--i, 0) * 80ms), transform 0.9s var(--ease) calc(var(--i, 0) * 80ms); }
+.kit [data-reveal].is-in { opacity: 1; transform: none; }
+.kit [data-magnetic] { will-change: transform; touch-action: manipulation; }
+.kit [data-spot] { --mx: 50%; --my: 50%; }
+
+/* Pinned horizontal rail mechanics (cards styled per concept) */
+.kit [data-rail-track] { display: grid; gap: 24px; }
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .kit [data-rail] { height: calc(var(--steps, 3) * 80vh + 20vh); }
+  .kit [data-rail-view] { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+  .kit [data-rail-track] { display: flex; width: max-content; will-change: transform; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kit [data-reveal] { opacity: 1; transform: none; transition: none; }
+}

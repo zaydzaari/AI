@@ -1,0 +1,28 @@
+@property --d12-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+/* 12 Aperture — v2 tokens (60 paper / 30 machine interior + parchment / 10 signal orange) */
+.d12 {
+  --bg-primary: #F7F5F0; --bg-secondary: #ECE6DA; --border: rgba(14,13,12,0.14);
+  --accent: #C23A1C; --accent-ink: #FFFFFF; --text-primary: #0E0D0C; --text-muted: #57524A;
+  --font-display: "Fraunces Variable", ui-serif, serif; --font-body: "Geist Variable", ui-sans-serif, sans-serif; --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --display-weight: 420; --radius-card: 22px;
+  --paper: #F7F5F0; --ink: #0E0D0C; --orange: #C23A1C; --sky: #8FD3FF; --lilac: #E7C6FF;
+  --holo: conic-gradient(from var(--d12-a), #8FD3FF, #E7C6FF, #FFD7A8, #FF5A36, #8FD3FF); }
+.d12-serif { font-family: "Fraunces Variable", Georgia, serif; font-weight: 380; font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; letter-spacing: -0.02em; }
+.d12-wonk { font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1; }
+.d12-mono { font-family: "Geist Mono Variable", ui-monospace, monospace; }
+.d12 ::selection { background: var(--orange); color: #fff; }
+.d12-interior { background:
+  radial-gradient(40% 50% at 30% 30%, rgba(143,211,255,.22), transparent 70%),
+  radial-gradient(40% 50% at 75% 70%, rgba(231,198,255,.18), transparent 70%),
+  radial-gradient(30% 30% at 60% 20%, rgba(255,90,54,.12), transparent 70%),
+  #0E0D0C; }
+.d12-glass { background: linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,.03)); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.08), 0 40px 80px -30px rgba(0,0,0,.8); }
+.d12-holo { background: var(--holo); animation: d12-spin 7s linear infinite; }
+.d12-holo-ring { background: radial-gradient(circle, #0E0D0C 38%, transparent 39%), var(--holo); animation: d12-spin 5s linear infinite; box-shadow: 0 0 80px -10px rgba(143,211,255,.5); }
+.d12-lens { box-shadow: inset 0 2px 1px rgba(255,255,255,.6), inset 0 -10px 30px rgba(0,0,0,.4), 0 30px 50px -20px rgba(0,0,0,.8); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.25); }
+.d12-kinetic { font-family: "Fraunces Variable", Georgia, serif; font-weight: 340; letter-spacing: -0.02em; font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; transition: font-variation-settings .7s cubic-bezier(.22,1,.36,1), color .4s, font-weight .5s; }
+.d12-kinetic[data-on="true"] { font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; font-style: italic; color: var(--sky); }
+@keyframes d12-spin { to { --d12-a: 360deg; } }
+.d12 .sys-invert { --text-primary: #F7F5F0; --text-muted: #B9B3A8; --bg-secondary: rgba(255,255,255,0.05); --border: rgba(247,245,240,0.16); color: var(--text-primary); }
+.d12 .sys-h1, .d12 .sys-h2, .d12 .sys-h3 { font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0; }
+.d12-plate { background: color-mix(in srgb, var(--bg-primary) 90%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 18px; padding: 14px 18px; margin-inline: -18px; }

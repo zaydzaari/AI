@@ -1,0 +1,23 @@
+/* 02 Graphite — v2 tokens (60 graphite / 30 panel + hairlines / 10 signal blue) */
+.d02 {
+  --bg-primary: #121211;
+  --bg-secondary: #1B1B19;
+  --border: rgba(242, 239, 233, 0.13);
+  --accent: #8EA2FF;
+  --accent-ink: #0B0D1A;
+  --text-primary: #F2EFE9;
+  --text-muted: #ABA597;
+  --font-display: "Geist Variable", ui-sans-serif, sans-serif;
+  --font-body: "Geist Variable", ui-sans-serif, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --display-weight: 500;
+  --radius-card: 10px;
+  --radius-cta: 8px;
+  /* legacy names used by kept components */
+  --bg: #121211; --panel: #1B1B19; --paper: #F2EFE9; --sand: #ABA597; --blue: #8EA2FF; --line: rgba(242, 239, 233, 0.13);
+}
+.d02-head { font-family: "Geist Variable", sans-serif; font-weight: 500; letter-spacing: -0.03em; }
+.d02-mono { font-family: "Geist Mono Variable", ui-monospace, monospace; }
+.d02-caret { animation: d02-blink 1.05s steps(1) infinite; }
+@keyframes d02-blink { 50% { opacity: 0; } }
+.d02-outline { color: transparent; -webkit-text-stroke: 1px rgba(242, 239, 233, 0.16); }

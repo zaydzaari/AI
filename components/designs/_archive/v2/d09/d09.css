@@ -1,0 +1,11 @@
+/* 09 Raster — v2 tokens (60 off-white / 30 rule grey + black rules / 10 signal red) */
+.d09 {
+  --bg-primary: #F4F3EF; --bg-secondary: #E8E6DF; --border: #111111;
+  --accent: #D9241B; --accent-ink: #FFFFFF; --text-primary: #111111; --text-muted: #4B4943;
+  --font-display: "Instrument Sans Variable", ui-sans-serif, sans-serif; --font-body: "Instrument Sans Variable", ui-sans-serif, sans-serif; --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --display-weight: 650; --radius-card: 0px; --radius-cta: 0px;
+  --paper: #F4F3EF; --grey: #E8E6DF; --red: #D9241B;
+}
+.d09 .sys-card { background: transparent; border-width: 2px 0 0 0; border-left: 1px solid #111; }
+.d09 .sys-h2 { max-width: 18ch; }
+@media (max-width: 1023px) { .d09-peek { -webkit-mask-image: linear-gradient(#000 65%, transparent); mask-image: linear-gradient(#000 65%, transparent); } }

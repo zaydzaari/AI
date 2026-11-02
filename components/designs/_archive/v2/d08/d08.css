@@ -1,0 +1,17 @@
+/* 08 Observatory — v2 tokens (60 midnight / 30 deep navy / 10 electric blue) */
+.d08 {
+  --bg-primary: #050A1A; --bg-secondary: #0B1530; --border: rgba(232,238,255,0.14);
+  --accent: #5BA8FF; --accent-ink: #04102A; --text-primary: #E8EEFF; --text-muted: #A3AECB;
+  --font-display: "Cormorant Garamond Variable", ui-serif, serif; --font-body: "Hanken Grotesk Variable", ui-sans-serif, sans-serif; --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --display-weight: 500; --radius-card: 20px;
+  --night: #050A1A; --deep: #0D1A3A; --blue: #5BA8FF; --star: #E8EEFF; --brass: #C9A86A; --line: rgba(232,238,255,0.14);
+}
+.d08 .sys-h1 { line-height: 0.98; }
+.d08 .sys-h3 { letter-spacing: -0.01em; }
+.d08-serif { font-family: "Cormorant Garamond Variable", Georgia, serif; }
+.d08-mono { font-family: "JetBrains Mono Variable", ui-monospace, monospace; }
+.d08 ::selection { background: var(--blue); color: var(--night); }
+@property --d08-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.d08-beam { background: conic-gradient(from var(--d08-a), transparent 0 70%, #5BA8FF 85%, #cfe4ff 90%, transparent 95%); animation: d08-rot 6s linear infinite; box-shadow: 0 0 80px -30px rgba(91,168,255,.6); }
+@keyframes d08-rot { to { --d08-a: 360deg; } }
+.d08 [aria-label="Platform facts"] dd { font-family: var(--font-body); font-weight: 600; }

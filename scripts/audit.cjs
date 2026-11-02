@@ -1,4 +1,4 @@
-// Master design system audit — Playwright + axe-core.
+// Unified design-rule audit (v3) — Playwright + axe-core.
 // Usage: node scripts/audit.cjs [ids...] [--shots=dir] [--base=http://localhost:3000]
 // Checks at 1440x900 and 375x667: hero fits above the fold, one primary hero CTA (≥44px),
 // banned fonts, H1 scale/tracking, body copy size/leading/measure, section padding,
@@ -101,10 +101,10 @@ const VIEWS = [
           const cs = getComputedStyle(h);
           const fs = parseFloat(cs.fontSize);
           const ls = parseFloat(cs.letterSpacing) / fs;
-          if (fs < 47.5 || fs > 80.5) out.push(`h1: font-size ${fs}px outside clamp(3rem,6vw,5rem)`);
-          if (!(ls <= -0.025 && ls >= -0.035)) out.push(`h1: tracking ${ls.toFixed(3)}em (want -0.03em)`);
+          if (fs < 51.5 || fs > 80.5) out.push(`h1: font-size ${fs}px outside clamp(3.25rem,6vw,5rem)`);
+          if (!(ls <= -0.0295 && ls >= -0.0355)) out.push(`h1: tracking ${ls.toFixed(3)}em (want -0.03em)`);
         });
-        document.querySelectorAll(".sys-body").forEach((p) => {
+        document.querySelectorAll(".sys-body, .k-body").forEach((p) => {
           const cs = getComputedStyle(p);
           const fs = parseFloat(cs.fontSize);
           const lh = parseFloat(cs.lineHeight) / fs;
@@ -118,6 +118,12 @@ const VIEWS = [
           const cs = getComputedStyle(s);
           if (parseFloat(cs.paddingTop) < min - 0.5 || parseFloat(cs.paddingBottom) < min - 0.5) out.push(`spacing: section #${s.id || "?"} padding ${cs.paddingTop}/${cs.paddingBottom} < ${min}px`);
         });
+        document.querySelectorAll(".k-card").forEach((c) => {
+          const cs = getComputedStyle(c), pads = [cs.paddingTop, cs.paddingRight, cs.paddingBottom, cs.paddingLeft].map(parseFloat);
+          if (pads.some((v) => v < 35.5 || v > 40.5)) out.push(`card: padding ${pads.join("/")} outside 36–40px "${c.textContent.trim().slice(0, 24)}"`);
+        });
+        const kit = document.querySelector(".kit");
+        if (kit && Math.abs(parseFloat(getComputedStyle(kit, "::after").opacity) - 0.035) > 0.002) out.push("grain: overlay missing or not 0.035");
         if (document.documentElement.scrollWidth > window.innerWidth + 1) out.push(`overflow-x: ${document.documentElement.scrollWidth - window.innerWidth}px`);
         document.querySelectorAll("img").forEach((i) => i.complete && i.naturalWidth === 0 && out.push(`img broken ${i.src}`));
         return out;
