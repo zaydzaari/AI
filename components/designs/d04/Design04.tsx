@@ -1,119 +1,183 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { ArrowDownRight } from "lucide-react";
-import { BRAND, MODELS, MOCK_NOTE } from "@/lib/content";
-import { Bento, FinalCTA, Footer, Head, HowItWorks, Plans, PrimaryCTA, ProblemSolution, Proof, Reveal, Trust } from "@/components/system";
-import { Product, Wordmark } from "./parts";
+/**
+ * 04 Monolith (v3) — architectural minimalism.
+ * Typography is the structure. Signature: "Width is context" — a pinned catalogue where
+ * scrolling stretches each model name along Archivo's width axis in proportion to its
+ * context window, with per-token rates set in fixed columns.
+ */
 
-const wipe = { initial: { clipPath: "inset(0 100% 0 0)" }, animate: { clipPath: "inset(0 0% 0 0)" }, transition: { duration: 1.1, ease: [0.77, 0, 0.18, 1] as const } };
+import { useEffect, useRef, useState } from "react";
+import { BENEFITS, BRAND, MODELS, PLANS, PRICE_NOTE, PROBLEM, PROOF, PROOF_NOTE, STEPS, STEP_CODE, MOCK_NOTE } from "@/lib/content";
+import { clamp, onScroll, pointer, progress, reduced, smooth, useKit } from "@/lib/kit";
 
-function ModelColumns() {
-  const [pick, setPick] = useState(3);
-  const m = MODELS[pick];
+function Wordmark() {
+  const ref = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    const el = ref.current!;
+    const letters = [...el.querySelectorAll<HTMLSpanElement>("span")];
+    if (reduced() || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    let raf = 0;
+    const cur = letters.map(() => 100);
+    const tick = () => {
+      letters.forEach((l, i) => {
+        const r = l.getBoundingClientRect();
+        const d = pointer.active ? Math.abs(pointer.x - (r.left + r.width / 2)) / innerWidth : 1;
+        const target = 62 + 63 * Math.max(0, 1 - d * 3.2);
+        cur[i] += (target - cur[i]) * 0.12;
+        l.style.fontVariationSettings = `"wdth" ${cur[i].toFixed(1)}, "wght" 800`;
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  return <p className="m4-word" ref={ref} aria-hidden>{BRAND.name.toUpperCase().split("").map((c, i) => <span key={i}>{c}</span>)}</p>;
+}
+
+function WidthIsContext() {
+  const run = useRef<HTMLDivElement>(null);
+  const [p, setP] = useState(0);
+  useEffect(() => onScroll(() => setP(reduced() ? 1 : clamp((progress(run.current!) - 0.05) / 0.7))), []);
+  const maxLog = Math.log(1000), minLog = Math.log(32);
+  const sorted = [...MODELS].sort((a, b) => a.contextK - b.contextK);
   return (
-    <section id="models" data-section className="sys-section border-t border-[var(--text-primary)]">
-      <div className="sys-container">
-        <Head title="Five families. Read the numbers." lead={`${MOCK_NOTE}. Context sizes are placeholder specs.`} />
-        <div className="grid grid-cols-2 border-l border-t border-[var(--text-primary)] sm:grid-cols-3 lg:grid-cols-5">
-          {MODELS.map((x, i) => (
-            <button
-              key={x.id}
-              onClick={() => setPick(i)}
-              onMouseEnter={() => setPick(i)}
-              aria-pressed={pick === i}
-              className={`flex min-h-[300px] flex-col justify-between border-b border-r border-[var(--text-primary)] p-8 text-left transition-colors duration-300 ${pick === i ? "bg-[var(--text-primary)] text-[var(--bg-primary)]" : "hover:bg-[var(--bg-secondary)]"}`}
-            >
-              <span className="sys-mono text-[0.875rem]">{x.role}</span>
-              <span className="d04-display text-[clamp(3rem,4.4vw,4.5rem)] leading-[0.85]" style={{ fontVariationSettings: `"wdth" ${pick === i ? 62 : 96}, "wght" 860`, transition: "font-variation-settings .6s cubic-bezier(.77,0,.18,1)" }}>
-                {x.context}
-              </span>
-              <span className="d04-wide text-[1.25rem] uppercase">{x.name}</span>
-            </button>
-          ))}
-        </div>
-        <AnimatePresence mode="wait">
-          <motion.div key={pick} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="grid gap-4 border-x border-b border-[var(--text-primary)] p-8 md:grid-cols-[1fr_auto] md:items-center">
-            <p className="sys-body sys-body-strong">{m.blurb}</p>
-            <span className="sys-mono text-[0.9375rem]">
-              ${m.inPrice} in · ${m.cached} cached · ${m.outPrice} out / 1M (sample)
-            </span>
-          </motion.div>
-        </AnimatePresence>
+    <div className="m4-run" ref={run}>
+      <div className="m4-pin">
+        <div className="m4-legend"><span>Width = context window</span><span className="m4-scale"><i style={{ transform: `scaleX(${smooth(p).toFixed(3)})` }} /></span><span>32K → 1M tokens</span></div>
+        <ol className="m4-cat">
+          {sorted.map((m, i) => {
+            const k = (Math.log(m.contextK) - minLog) / (maxLog - minLog);
+            const t = smooth(clamp(p * 1.25 - i * 0.06));
+            const wdth = 62 + (62 + 63 * k - 62) * t;
+            return (
+              <li key={m.id} className={t > 0.98 ? "set" : ""}>
+                <span className="nm" style={{ fontVariationSettings: `"wdth" ${wdth.toFixed(1)}, "wght" 760` }}>{m.name}</span>
+                <span className="ctx">{m.context}</span>
+                <span className="rt"><em>in</em> ${m.inPrice.toFixed(2)}</span>
+                <span className="rt"><em>out</em> ${m.outPrice.toFixed(2)}</span>
+              </li>
+            );
+          })}
+        </ol>
+        <p className="m4-fine">Rates per 1M tokens. {PRICE_NOTE}</p>
       </div>
-    </section>
+    </div>
   );
 }
 
 export default function Design04() {
+  const root = useRef<HTMLDivElement>(null);
+  useKit(root);
   return (
-    <div className="d04 sys min-h-screen">
-      <header className="sticky top-0 z-40 h-[var(--nav-h)] border-b border-[var(--text-primary)] bg-[var(--bg-primary)]">
-        <div className="grid h-full grid-cols-[1fr_auto] items-stretch md:grid-cols-[200px_1fr_auto]">
-          <a href="#" className="d04-wide flex items-center px-5 text-[1.125rem] uppercase md:border-r md:border-[var(--text-primary)]">
-            {BRAND.name}
-          </a>
-          <nav aria-label="Primary" className="sys-mono hidden items-center gap-8 px-8 text-[0.875rem] md:flex">
-            {[
-              ["Why", "#why"],
-              ["Product", "#product"],
-              ["How it works", "#how"],
-              ["Models", "#models"],
-              ["Pricing", "#pricing"],
-            ].map(([l, h]) => (
-              <a key={l} href={h} className="d04-link">
-                {l}
-              </a>
-            ))}
-          </nav>
-          <a href="#" className="sys-mono flex items-center border-l border-[var(--text-primary)] px-6 text-[0.875rem] hover:bg-[var(--bg-secondary)]">
-            Sign in
-          </a>
-        </div>
+    <div ref={root} className="kit d04">
+      <a className="k-skip" href="#main">Skip to content</a>
+      <header className="m4-nav">
+        <a href="#main" className="m4-mark">{BRAND.name}</a>
+        <nav data-spy aria-label="Sections"><a href="#walls">Walls</a><a href="#catalogue">Catalogue</a><a href="#schedule">Schedule</a><a href="#method">Method</a><a href="#rates">Rates</a></nav>
+        <a href="#rates" className="m4-navcta">Key</a>
       </header>
-
-      <main>
-        <section data-hero className="sys-hero !justify-start !py-0">
-          <div data-hero-part="visual" className="px-3 pt-6 md:px-6 md:pt-8">
-            <Wordmark />
-          </div>
-          <div className="mt-4 grid flex-1 border-t border-[var(--text-primary)] md:mt-6 md:grid-cols-[200px_1fr]">
-            <div className="hidden border-r border-[var(--text-primary)] p-6 md:block">
-              <ArrowDownRight size={28} strokeWidth={1.25} aria-hidden />
-            </div>
-            <div className="flex flex-col justify-center gap-5 px-5 py-6 md:gap-7 md:px-10">
-              <motion.h1 data-hero-part="headline" {...wipe} className="sys-h1 !max-w-[18ch]">
-                One account for every AI model you use.
-              </motion.h1>
-              <motion.p data-hero-part="sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="sys-hero-sub">
-                Five model families in one chat, one agent runtime and one API — each with standard, low-refusal and abliterated variants, priced per token in the open.
-              </motion.p>
-              <div className="flex flex-col gap-5 md:flex-row md:items-center md:gap-10">
-                <PrimaryCTA className="!rounded-none">Request access</PrimaryCTA>
-                <Trust />
-              </div>
+      <main id="main">
+        <section className="m4-hero" data-hero aria-labelledby="m4-h">
+          <div className="m4-beam" data-hero-part="visual"><Wordmark /></div>
+          <div className="m4-grid">
+            <h1 id="m4-h" data-hero-part="headline">Every model, one key, billed by the token.</h1>
+            <p className="k-body" data-hero-part="sub">Five model families with standard, low-refusal and abliterated variants, behind a single API. Rates are printed per million tokens — nothing bundled, nothing rounded.</p>
+            <div className="m4-act">
+              <div data-hero-part="cta"><a className="m4-btn" href="#rates" data-cta="primary" data-magnetic="4,0.26,0.58,0.3"><span data-magnetic-label>Get an API key</span></a></div>
+              <p className="m4-trust" data-hero-part="trust"><b>$0.08</b><span>per 1M input tokens is the lowest sample rate, on Swift.</span></p>
             </div>
           </div>
         </section>
 
-        <ProblemSolution variant="ledger" />
-        <Bento layout="offset" title="Features, and what they are for." />
-        <section id="product" data-section className="sys-section border-t border-[var(--text-primary)]">
-          <div className="sys-container">
-            <Head title="Pick a model. Pick a temperament." lead="Choose a prompt, a model and a variant. Responses are simulated." />
-            <Reveal>
-              <Product />
-            </Reveal>
+        <section id="walls" data-section aria-labelledby="m4-w">
+          <div className="k-wrap m4-cols">
+            <h2 id="m4-w" className="m4-h2" data-reveal>Three walls we took down.</h2>
+            <ol className="m4-walls">
+              {PROBLEM.rows.map((r, i) => (
+                <li key={i} data-reveal style={{ ["--i" as string]: i }}>
+                  <span className="wall">{r.problem}</span>
+                  <span className="open">{r.solution}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="k-wrap m4-cols m4-cat-head"><h2 className="m4-h2" id="catalogue" data-reveal>The catalogue, set in one typeface.</h2><p className="k-body k-muted" data-reveal>Scroll and each name stretches to the size of its context window. The narrowest reads fast; the widest reads whole archives.</p></div>
+          <WidthIsContext />
+        </section>
+
+        <section id="schedule" data-section aria-labelledby="m4-s">
+          <div className="k-wrap">
+            <h2 id="m4-s" className="m4-h2" data-reveal>Schedule of features and their returns.</h2>
+            <div className="m4-sched" data-stagger>
+              {BENEFITS.map((b, i) => (
+                <article key={b.key} className={`m4-cell k-card s${i}`} data-spot>
+                  <span className="no">{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{b.benefit}</h3>
+                  <p><b>{b.feature}</b> {b.detail}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
-        <HowItWorks variant="rail" />
-        <ModelColumns />
-        <Proof variant="tabs" />
-        <Plans />
-        <FinalCTA title="Begin with one key." align="left" className="border-t border-[var(--text-primary)]" />
+
+        <section id="method" data-section aria-labelledby="m4-m">
+          <div data-rail>
+            <div data-rail-view>
+              <div className="k-wrap"><h2 id="m4-m" className="m4-h2 m4-rail-h" data-reveal>Method, in three moves.</h2></div>
+              <ol className="m4-steps" data-rail-track>
+                {STEPS.map((s, i) => (
+                  <li key={i} className="m4-step">
+                    <span className="big" aria-hidden>{i + 1}</span>
+                    <div className="k-card txt"><h3>{s.title}</h3><p>{s.body}</p>{i === 1 && <pre><code>{STEP_CODE}</code></pre>}</div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="voices" data-section aria-labelledby="m4-v">
+          <div className="k-wrap m4-cols">
+            <h2 id="m4-v" className="m4-h2" data-reveal>Built for four kinds of work.</h2>
+            <ul className="m4-voices" data-stagger>
+              {PROOF.map((p) => <li key={p.role}><b>{p.role}</b><span>{p.focus}</span><q>{p.quote}</q></li>)}
+            </ul>
+          </div>
+          <p className="k-wrap m4-fine">{PROOF_NOTE}</p>
+        </section>
+
+        <section id="rates" data-section aria-labelledby="m4-r">
+          <div className="k-wrap">
+            <h2 id="m4-r" className="m4-h2" data-reveal>Three ways in. One rate card.</h2>
+            <div className="m4-plans" data-stagger>
+              {PLANS.map((p) => (
+                <article key={p.name} className={`m4-plan k-card ${p.featured ? "feat" : ""}`}>
+                  <h3>{p.name}</h3>
+                  <p className="price">{p.price}</p>
+                  <p className="cad">{p.cadence}</p>
+                  <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                  <p className="fk">{p.name === "API" ? "No minimum. Hard spend caps per key." : p.name === "Pro" ? "Monthly. Cancel any time." : "Free. No card."}</p>
+                </article>
+              ))}
+            </div>
+            <p className="m4-fine">{PRICE_NOTE}</p>
+          </div>
+        </section>
+
+        <section id="final" data-section aria-labelledby="m4-f">
+          <div className="k-wrap m4-final">
+            <h2 id="m4-f" className="m4-h2" data-reveal>Build on one foundation.</h2>
+            <a className="m4-btn" href="#main" data-magnetic="4,0.26,0.58,0.3" data-reveal><span data-magnetic-label>Get an API key</span></a>
+          </div>
+        </section>
       </main>
-      <Footer />
+      <footer className="m4-foot">
+        <p className="m4-foot-word" aria-hidden>{BRAND.name.toUpperCase()}</p>
+        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#catalogue">{m.name}</a>)}</div>
+        <div><h4>API</h4><a href="#method">Quickstart</a><a href="#rates">Rates</a><a href="#schedule">Caching</a></div>
+        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
+      </footer>
     </div>
   );
 }

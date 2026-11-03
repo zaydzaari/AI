@@ -1,6 +1,7 @@
 import "@fontsource-variable/archivo/wdth.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
+import "@/components/system/kit.css";
 import "@/components/designs/d04/d04.css";
 import Design04 from "@/components/designs/d04/Design04";
 
