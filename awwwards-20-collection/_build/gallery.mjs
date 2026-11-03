@@ -75,7 +75,7 @@ export function buildGallery(root, built) {
     css: /* css */ `
 :root{--h1-weight:500;--mono:"DM Mono",monospace}
 .g-ar{width:14px;height:14px;flex:none}
-.g-nav{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--gutter);background:#0B0B0Cf0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+.g-nav{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--gutter);background:#0B0B0C;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
 .g-mark{text-decoration:none;display:flex;gap:12px;align-items:baseline}
 .g-mark b{font-family:var(--font-display);font-size:1.35rem;font-weight:600;letter-spacing:0}
 .g-mark span{color:var(--text-muted)}
@@ -113,7 +113,7 @@ export function buildGallery(root, built) {
 }
 
 /* wall */
-.g-bar{position:sticky;top:60px;z-index:30;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:14px 0;margin-top:clamp(64px,6vw,80px);background:#0B0B0Cf2;border-bottom:1px solid var(--line)}
+.g-bar{position:sticky;top:60px;z-index:30;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:14px 0;margin-top:clamp(64px,6vw,80px);background:#0B0B0C;box-shadow:0 -40px 0 #0B0B0C;border-bottom:1px solid var(--line)}
 .g-chips{display:flex;flex-wrap:wrap;gap:8px}
 .g-chip{min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:transparent;font-family:var(--mono);font-size:.78rem;color:var(--text-muted)}
 .g-chip:hover{color:var(--text-primary);border-color:#ECE9E355}
@@ -183,8 +183,8 @@ export function buildGallery(root, built) {
 .g-dlg[open]{animation:g-in .5s var(--ease)}
 @keyframes g-in{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
 .g-di{display:grid;grid-template-columns:7fr 5fr}
-.g-dv{position:relative;background:#000;min-height:320px}
-.g-dv>img{width:100%;height:100%;object-fit:cover;display:block}
+.g-dv{position:relative;display:grid;align-content:center;background:var(--dv,#000);min-height:320px;padding:0 0 64px}
+.g-dv>img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;display:block}
 .g-dv .g-phone{bottom:24px;width:26%}
 .g-dt{display:grid;gap:16px;align-content:start;padding:clamp(24px,3vw,40px)}
 .g-dt h2{font-size:clamp(2rem,3.4vw,3rem);font-weight:500;line-height:1}
@@ -199,7 +199,7 @@ export function buildGallery(root, built) {
 .g-dl dd{margin:0}
 .g-dbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:8px}
 .g-x{position:absolute;right:14px;top:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid #ECE9E340;background:#0B0B0Ccc;color:var(--text-primary);font-size:1.1rem}
-@media (max-width:900px){.g-di{grid-template-columns:1fr}.g-dv{min-height:0;aspect-ratio:16/10}.g-dv .g-phone{display:none}}
+@media (max-width:900px){.g-di{grid-template-columns:1fr}.g-dv{min-height:0;padding:0}.g-dv .g-phone{display:none}}
 
 /* footer */
 .g-foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.82rem;color:var(--text-muted)}
@@ -314,8 +314,8 @@ export function buildGallery(root, built) {
         const { ctx, w, h } = st;
         if (!over && !RM && performance.now() - lastOver > 2400) target = (Math.sin(t * 0.32) * 0.5 + 0.5) * (G.length - 1);
         if (RM && !over) target = 4;
-        focus = RM ? target : lerp(focus, target, 1 - Math.exp(-dt * 6));
-        const cols = layout(), fi = Math.round(focus);
+        focus = clamp(RM ? target : lerp(focus, target, clamp(1 - Math.exp(-Math.max(0, dt) * 6))), 0, G.length - 1);
+        const cols = layout(), fi = clamp(Math.round(focus), 0, G.length - 1);
         ctx.clearRect(0, 0, w, h);
         cols.forEach(([x, cw], i) => {
           const d = G[i], y1 = h * 0.6, y2 = h * 0.9;
@@ -388,7 +388,7 @@ export function buildGallery(root, built) {
         const d = G[i]; cur = i;
         const rows = [["Inspiration", d.inspiration], ["Movement", d.movement], ["Type", `${d.heading} / ${d.body}`], ...(d.blueprint ? [["Blueprint", `Specified ${d.blueprint}`]] : []), ["Hero", d.hero], ["Signature", d.sig]];
         body.innerHTML = `
-          <div class="g-dv"><img src="${d.folder}/preview.jpg" width="720" height="450" alt="Desktop hero of ${d.id} ${d.name}"><span class="g-phone" aria-hidden="true"><img src="${d.folder}/preview-mobile.jpg" width="300" height="534" alt=""></span></div>
+          <div class="g-dv" style="--dv:${d.p}"><img src="${d.folder}/preview.jpg" width="720" height="450" alt="Desktop hero of ${d.id} ${d.name}"><span class="g-phone" aria-hidden="true"><img src="${d.folder}/preview-mobile.jpg" width="300" height="534" alt=""></span></div>
           <div class="g-dt">
             <p class="g-kick">N° ${d.id} · ${d.mode}</p>
             <h2 id="g-dh" style="font-family:'S${d.id}'">${d.name}</h2>
