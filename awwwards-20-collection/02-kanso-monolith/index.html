@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kanso Monolith — Concrete houses shaped by the sun</title>
-<meta name="description" content="A Tokyo and Kyoto architecture studio that designs board-formed concrete houses around a year of sunlight on your site.">
+<title>Aether — One key. Every model.</title>
+<meta name="description" content="Five model families behind a single API, standard, low-refusal or abliterated, billed per token with prompt caching built in. Kanso design direction.">
 <meta name="theme-color" content="#F2EFE9">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23F2EFE9'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23C83E2B'%2F%3E%3C%2Fsvg%3E">
@@ -24,13 +24,16 @@
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
 ul,ol{padding:0;list-style:none}
 fieldset{border:0;padding:0}
 img,svg,canvas,video{display:block;max-width:100%}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-h1{font-family:var(--font-display);font-size:clamp(3.25rem,6.5vw,6rem);line-height:.98;letter-spacing:-.04em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
 h2,h3{font-family:var(--font-display);text-wrap:balance}
 .k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
 .k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
@@ -58,7 +61,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 
 /* ——— Kanso Monolith ——— */
 
-.k2-nav{position:sticky;top:0;z-index:40;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px var(--gutter);background:#F2EFE9f2;border-bottom:1px solid var(--line);font-size:.8rem}
+.k2-nav{position:sticky;top:0;z-index:40;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px var(--gutter);background:#F2EFE9f2;border-bottom:1px solid var(--line);font-size:.8rem}
 .k2-mark{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;text-decoration:none}
 .k2-seal{display:grid;place-items:center;width:34px;height:34px;background:var(--text-primary);color:var(--bg-primary);font-family:"Kanso Seal",serif;font-size:.78rem;line-height:1;writing-mode:vertical-rl;letter-spacing:.05em}
 .k2-links{display:flex;gap:4px}
@@ -74,8 +77,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .k2-btn.is-near::after{inset:3px}
 
 /* hero: slab stack */
-.k2-hero{min-height:calc(100svh - 67px);display:grid;grid-template-rows:auto 1fr;padding:clamp(28px,5vh,56px) var(--gutter) 28px;gap:clamp(20px,4vh,40px)}
-.k2-hero h1{font-weight:800;font-size:clamp(3.25rem,6.5vw,6rem);letter-spacing:-.05em;line-height:.9;max-width:15ch}
+.k2-hero{min-height:calc(100svh - 64px);display:grid;grid-template-rows:auto 1fr;padding:clamp(28px,5vh,56px) var(--gutter) 28px;gap:clamp(20px,4vh,40px)}
+.k2-hero h1{font-weight:800;letter-spacing:-.03em;line-height:.92;max-width:16ch}
 .k2-band{display:grid;grid-template-columns:4fr 5fr 3fr;border:1px solid var(--text-primary);min-height:0}
 .k2-band-copy{padding:28px;display:grid;align-content:space-between;gap:24px;border-right:1px solid var(--text-primary)}
 .k2-band-copy .k-body{color:var(--text-muted)}
@@ -90,12 +93,15 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .k2-trust{font-size:.78rem;color:var(--text-muted);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
 .k2-trust b{font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--text-primary);letter-spacing:-.03em}
 @media (max-width:980px){
-  .k2-hero{min-height:calc(100svh - 67px);grid-template-rows:auto auto;align-content:start;gap:16px;padding-top:20px;padding-bottom:16px}
+  .k2-hero{min-height:calc(100svh - 64px);grid-template-rows:auto auto;align-content:start;gap:16px;padding-top:20px;padding-bottom:16px}
   .k2-band{grid-template-columns:1fr;border:0}
   .k2-band-copy{border:0;padding:0;gap:14px}
-  .k2-print{min-height:96px;height:96px;border:1px solid var(--text-primary);margin-top:4px}
+  .k2-print{min-height:80px;height:80px;border:1px solid var(--text-primary);margin-top:4px}
   .k2-slab{border:1px solid var(--text-primary);border-top:0;padding:14px;grid-auto-flow:column;align-items:center;justify-content:space-between}
   .k2-slab small{display:none}
+  .k2-trust{gap:8px;font-size:.74rem}
+  .k2-trust b{font-size:1.2rem}
+  .k2-band-copy{gap:10px}
 }
 
 .k2-h2{font-weight:800;font-size:clamp(2.4rem,5vw,4.6rem);letter-spacing:-.045em;line-height:.92}
@@ -109,7 +115,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 
 /* signature: blueprint → structure */
 .k2-build{height:440vh;position:relative;margin-top:80px}
-.k2-build-pin{position:sticky;top:67px;height:calc(100vh - 67px);display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;padding:24px var(--gutter)}
+.k2-build-pin{position:sticky;top:64px;height:calc(100vh - 64px);display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;padding:24px var(--gutter)}
 .k2-sheet{position:relative;border:1px solid var(--text-primary);background:repeating-linear-gradient(0deg,#1C1A170a 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,#1C1A170a 0 1px,transparent 1px 32px),#F2EFE9}
 .k2-sheet svg{position:absolute;inset:0;width:100%;height:100%}
 .k2-side{display:grid;align-content:space-between;gap:24px;padding:8px 0}
@@ -134,7 +140,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 
 /* bento: concrete masonry */
 .k2-bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(220px,auto);gap:0;border-top:1px solid var(--text-primary);border-left:1px solid var(--text-primary);margin-top:72px}
-.k2-cell{border-right:1px solid var(--text-primary);border-bottom:1px solid var(--text-primary);padding:40px;display:grid;align-content:space-between;gap:32px;position:relative;isolation:isolate;overflow:hidden}
+.k2-cell{border-right:1px solid var(--text-primary);border-bottom:1px solid var(--text-primary);display:grid;align-content:space-between;gap:32px;position:relative;isolation:isolate;overflow:hidden}
 .k2-cell::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(360px circle at var(--mx) var(--my),#1C1A170f,transparent 65%);opacity:0;transition:opacity .3s}
 .k2-cell:hover::before{opacity:1}
 .k2-cell h3{font-size:1.65rem;font-weight:700;letter-spacing:-.03em;line-height:1.02;max-width:16ch}
@@ -142,38 +148,38 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .k2-cell.a{grid-column:span 4;grid-row:span 2;background:var(--bg-secondary)}
 .k2-cell.a h3{font-size:clamp(2rem,3.4vw,3.2rem)}
 .k2-cell.b,.k2-cell.c{grid-column:span 2}
-.k2-cell.d{grid-column:span 3}
-.k2-cell.e{grid-column:span 3;background:var(--bg-secondary)}
+.k2-cell.d,.k2-cell.e,.k2-cell.f{grid-column:span 2}
+.k2-cell.f{background:var(--bg-secondary)}
 .k2-cell .glyph{width:120px;height:auto}
-@media (max-width:900px){.k2-bento{grid-template-columns:1fr}.k2-cell{grid-column:auto!important;grid-row:auto!important;padding:36px}}
+@media (max-width:900px){.k2-bento{grid-template-columns:1fr}.k2-cell{grid-column:auto!important;grid-row:auto!important}}
 
 /* rail: drawing sheets */
 .k2-rail-head{padding:0 var(--gutter);margin-bottom:48px}
 .k2-sheets{padding:0 var(--gutter);gap:0}
 .k2-dw{width:min(720px,62vw);border:1px solid var(--text-primary);display:grid;grid-template-rows:1fr auto;background:var(--bg-primary)}
 .k2-dw+.k2-dw{border-left:0}
-.k2-dw .body{padding:44px;display:grid;gap:20px;align-content:start;min-height:300px}
+.k2-dw .body{display:grid;gap:20px;align-content:start;min-height:300px}
 .k2-dw h3{font-size:2.6rem;font-weight:800;letter-spacing:-.045em;line-height:.95}
 .k2-dw p{color:var(--text-muted);max-width:46ch}
 .k2-dw .tb{display:grid;grid-template-columns:auto 1fr auto;border-top:1px solid var(--text-primary);font-size:.75rem}
 .k2-dw .tb span{padding:12px 16px}
 .k2-dw .tb span+span{border-left:1px solid var(--text-primary)}
 .k2-dw.is-active .tb span:first-child{background:var(--accent);color:#fff}
-@media (max-width:899px){.k2-dw{width:auto}.k2-dw+.k2-dw{border-left:1px solid var(--text-primary);border-top:0}.k2-dw .body{padding:32px;min-height:0}}
+@media (max-width:899px){.k2-dw{width:auto}.k2-dw+.k2-dw{border-left:1px solid var(--text-primary);border-top:0}.k2-dw .body{min-height:0}}
 
 /* receipts */
 .k2-receipts{margin-top:72px;display:grid;border-top:1px solid var(--text-primary)}
 .k2-rc{display:grid;grid-template-columns:3fr 2fr 4fr;gap:32px;align-items:baseline;padding:40px 0;border-bottom:1px solid var(--line)}
 .k2-rc b{font-family:var(--font-display);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;display:block}
 .k2-rc span{font-size:.8rem;color:var(--text-muted)}
-.k2-rc .m{font-family:var(--font-display);font-weight:800;font-size:clamp(2.8rem,5vw,4.4rem);letter-spacing:-.05em;line-height:.9}
+.k2-rc .m{font-family:var(--font-display);font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-.04em;line-height:1}
 .k2-rc p{color:var(--text-muted);font-size:.92rem}
 .k2-note{font-size:.76rem;color:var(--text-muted);margin-top:24px}
 @media (max-width:820px){.k2-rc{grid-template-columns:1fr;gap:8px}}
 
 /* fees */
 .k2-fees{margin-top:72px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--text-primary)}
-.k2-fee{padding:44px 40px;display:grid;gap:22px;align-content:start}
+.k2-fee{display:grid;gap:22px;align-content:start}
 .k2-fee+.k2-fee{border-left:1px solid var(--text-primary)}
 .k2-fee:nth-child(2){background:var(--bg-secondary)}
 .k2-fee h3{font-size:2rem;font-weight:800;letter-spacing:-.04em}
@@ -183,7 +189,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .k2-fee a{font-size:.85rem;font-weight:500}
 .k2-fk{margin-top:28px;display:flex;gap:40px;flex-wrap:wrap;font-size:.82rem}
 .k2-fk span::before{content:"";display:inline-block;width:10px;height:10px;background:var(--text-primary);margin-right:10px;vertical-align:-1px}
-@media (max-width:900px){.k2-fees{grid-template-columns:1fr}.k2-fee+.k2-fee{border-left:0;border-top:1px solid var(--text-primary)}.k2-fee{padding:36px}}
+@media (max-width:900px){.k2-fees{grid-template-columns:1fr}.k2-fee+.k2-fee{border-left:0;border-top:1px solid var(--text-primary)}}
 
 /* final + footer */
 .k2-final{display:grid;grid-template-columns:repeat(12,1fr);gap:48px 24px;align-items:end}
@@ -200,6 +206,12 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .k2-foot a:hover{color:#fff;text-decoration:underline}
 .k2-foot .legal{grid-column:1 / -1;border-top:1px solid #F2EFE933;padding-top:24px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 @media (max-width:820px){.k2-foot div{grid-column:span 6}}
+.k2-rates{margin-top:28px;display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--text-primary)}
+.k2-rates p{display:grid;gap:2px;padding:16px;font-size:.78rem;color:var(--text-muted)}
+.k2-rates p+p{border-left:1px solid var(--text-primary)}
+.k2-rates b{font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);letter-spacing:-.03em}
+@media (max-width:900px){.k2-rates{grid-template-columns:1fr 1fr}.k2-rates p+p{border-left:0}.k2-rates p{border-top:1px solid var(--line)}}
+.k2-iso-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:#1C1A17}
 
 </style>
 </head>
@@ -207,40 +219,40 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 <a class="k-skip" href="#main">Skip to content</a>
 
 <header class="k2-nav">
-  <a class="k2-mark" href="#main"><span class="k2-seal" aria-hidden="true">簡素</span>Kanso Monolith</a>
-  <nav class="k2-links" data-spy aria-label="Sections"><a href="#method">Method</a><a href="#build">Drawing</a><a href="#qualities">Qualities</a><a href="#clients">Clients</a><a href="#fees">Fees</a></nav>
-  <span class="loc">Tokyo · Kyoto</span>
+  <a class="k2-mark" href="#main"><span class="k2-seal" aria-hidden="true">簡素</span>Aether</a>
+  <nav class="k2-links" data-spy aria-label="Sections"><a href="#method">Method</a><a href="#build">Structure</a><a href="#qualities">Features</a><a href="#clients">People</a><a href="#fees">Pricing</a></nav>
+  <span class="loc">Per-token API</span>
 </header>
 <main id="main">
   <section class="k2-hero" data-hero aria-labelledby="k2-title">
-    <h1 id="k2-title" data-hero-part="headline">A house that gets quieter every year.</h1>
+    <h1 id="k2-title" data-hero-part="headline">One key. Every model.</h1>
     <div class="k2-band">
       <div class="k2-band-copy">
-        <p class="k-body" data-hero-part="sub">Board-formed concrete homes shaped by a year of sun on your site. Survey to keys in 26 months, on a fixed fee.</p>
-        <p class="k2-trust" data-hero-part="trust"><b>41</b> houses cast since 2009. Not one wall re-poured.</p>
+        <p class="k-body" data-hero-part="sub">Nothing extra: five model families behind one API, billed per token, with prompt caching on every model.</p>
+        <p class="k2-trust" data-hero-part="trust"><b>$0.08</b> per 1M input tokens is the lowest sample rate.</p>
       </div>
-      <div class="k2-print" data-hero-part="visual"><svg id="hero-iso" role="img" aria-label="Isometric drawing of a concrete pavilion; move the pointer to move the sun"></svg><span class="tag">Move the pointer to move the sun</span></div>
+      <div class="k2-print" data-hero-part="visual"><svg id="hero-iso" role="img" aria-label="Isometric drawing of a concrete pavilion; move the pointer to move the light"></svg><span class="tag">Move the pointer to move the light</span></div>
       <div class="k2-slab" data-hero-part="cta">
-        <small>Four days on your plot. ¥1.8M, credited to your fee.</small>
-        <a class="k2-btn" href="#fees" data-cta="primary" data-magnetic="5,0.22,0.6,0.5"><span data-magnetic-label>Book a sun study</span></a>
+        <small>Free to start. Pay per token after that.</small>
+        <a class="k2-btn" href="#fees" data-cta="primary" data-magnetic="5,0.22,0.6,0.5"><span data-magnetic-label>Get your API key</span></a>
       </div>
     </div>
   </section>
 
   <section id="method" data-section aria-labelledby="m-title">
     <div class="k-wrap k2-tension">
-      <h2 id="m-title" class="k2-h2" data-reveal>Most houses are drawn first and lit later.</h2>
-      <p class="k-body" data-reveal>So the kitchen faces north, the bedroom bakes at 6 a.m. and the living room needs lamps at noon. We reverse the order: we learn your light, then we let it cut the plan. Scroll to watch a drawing become a building.</p>
+      <h2 id="m-title" class="k2-h2" data-reveal>Most AI stacks are built first and priced later.</h2>
+      <p class="k-body" data-reveal>Every provider means a new key, a new SDK and a new bill. Cautious models refuse ordinary fiction, research and security work. Credit systems hide what a single request actually costs. We start from the other end: what one request costs. Scroll to watch five model families rise from the drawing, then see what each one charges.</p>
     </div>
     <div class="k2-build" id="build">
       <div class="k2-build-pin">
-        <div class="k2-sheet"><svg id="build-iso" role="img" aria-label="Three pavilions drawn as linework, then cast in concrete, then lit"></svg></div>
+        <div class="k2-sheet"><svg id="build-iso" role="img" aria-label="Five monoliths, one per model family, sized by context window, casting shadows sized by cost"></svg></div>
         <div class="k2-side">
-          <ol class="k2-stages" id="stages"><li class="on"><span>Linework</span><span>01</span></li><li><span>Cast concrete</span><span>02</span></li><li><span>Sun and shadow</span><span>03</span></li></ol>
+          <ol class="k2-stages" id="stages"><li class="on"><span>Linework</span><span>01</span></li><li><span>Five families, cast</span><span>02</span></li><li><span>What each one costs</span><span>03</span></li></ol>
           <div class="k2-sun">
-            <label for="sun">Sun position over the site — drag to change the hour</label>
-            <input id="sun" type="range" min="6" max="18" step="0.25" value="9">
-            <div class="k2-read" aria-live="polite"><div class="live"><span>Local time</span><b id="r-time">09:00</b></div><div><span>Elevation</span><b id="r-el">31°</b></div><div><span>Azimuth</span><b id="r-az">118°</b></div><div><span>Longest shadow</span><b id="r-sh">7.4 m</b></div></div>
+            <label for="sun">Request size — drag to change it. Height is context; shadow is cost.</label>
+            <input id="sun" type="range" min="0" max="1" step="0.01" value="0.35">
+            <div class="k2-read" aria-live="polite"><div class="live"><span>Request</span><b id="r-time">4K</b></div><div><span>Cheapest</span><b id="r-el">Swift</b></div><div><span>Costliest</span><b id="r-az">Atlas</b></div><div><span>Atlas cost</span><b id="r-sh">$0.00</b></div></div>
           </div>
         </div>
       </div>
@@ -249,9 +261,9 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 
   <section id="qualities" data-section aria-labelledby="q-title">
     <div class="k-wrap">
-      <h2 id="q-title" class="k2-h2" data-reveal>Fewer things, each one doing more.</h2>
+      <h2 id="q-title" class="k2-h2" data-reveal>Fewer parts, each one doing more.</h2>
       <div class="k2-bento" data-stagger>
-        <article class="k2-cell a" data-spot><svg class="glyph" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#1C1A17"/><path d="M60 6v108M6 60h108" stroke="#1C1A1733"/><path d="M60 60 L104 30" stroke="#1C1A17" stroke-width="2"/><circle cx="104" cy="30" r="6" fill="#1C1A17"/></svg><h3>Sun study before the first sketch</h3><p>Every room gets direct light at the hour you actually use it — we map 365 days of sun on your plot first.</p></article><article class="k2-cell b" data-spot><h3>Board-formed concrete</h3><p>Walls that patina instead of peel. Nothing to repaint for sixty years.</p></article><article class="k2-cell c" data-spot><h3>One material, inside and out</h3><p>Fewer junctions, fewer leaks, fewer trades on site.</p></article><article class="k2-cell d" data-spot><h3>Thermal mass by design</h3><p>Floors store winter sun and release it at night: heating bills fall by around 40%.</p></article><article class="k2-cell e" data-spot><h3>Cedar formwork from your region</h3><p>Each wall carries the grain of the boards it was cast against — a record of where it was made.</p></article>
+        <article class="k2-cell k-card a" data-spot><svg class="glyph" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#1C1A17"/><path d="M60 6v108M6 60h108" stroke="#1C1A1733"/><path d="M60 60 L104 30" stroke="#1C1A17" stroke-width="2"/><circle cx="104" cy="30" r="6" fill="#1C1A17"/></svg><h3>Switch models mid-conversation without explaining yourself again.</h3><p><b>Unified chat.</b> The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="k2-cell k-card b" data-spot><h3>Get direct answers for fiction, red-teaming and research.</h3><p><b>Three temperaments.</b> Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="k2-cell k-card c" data-spot><h3>Hand off the bug fix and review a tested diff.</h3><p><b>Coding agents.</b> Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="k2-cell k-card d" data-spot><h3>Ask one question across an entire repository or archive.</h3><p><b>Long context.</b> Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="k2-cell k-card e" data-spot><h3>Pay less every time a long prompt repeats.</h3><p><b>Prompt caching.</b> Repeated prefixes are billed at the cached rate automatically.</p></article><article class="k2-cell k-card f" data-spot><h3>Find the right model for your prompt before you commit.</h3><p><b>Side-by-side compare.</b> Run one prompt on several models and compare answers and cost.</p></article>
       </div>
     </div>
   </section>
@@ -259,9 +271,9 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
   <section id="process" data-section aria-labelledby="pr-title">
     <div data-rail>
       <div data-rail-view>
-        <div class="k2-rail-head"><h2 id="pr-title" class="k2-h2" data-reveal>Three sheets. Twenty-six months.</h2></div>
+        <div class="k2-rail-head"><h2 id="pr-title" class="k2-h2" data-reveal>Three sheets to production.</h2></div>
         <ol class="k2-sheets" data-rail-track>
-          <li class="k2-dw"><div class="body"><h3>Survey the light</h3><p>We spend four days on your site with a sun tracker and a drone, then hand you a 365-day light atlas.</p></div><div class="tb"><span>A-01</span><span>Kanso Monolith — standard sheet</span><span>Months 1–2</span></div></li><li class="k2-dw"><div class="body"><h3>Cast a model</h3><p>A 1:50 concrete model, cast from the same mix. You walk it with a lens camera before anything is drawn in CAD.</p></div><div class="tb"><span>A-02</span><span>Kanso Monolith — standard sheet</span><span>Months 3–6</span></div></li><li class="k2-dw"><div class="body"><h3>Pour on site</h3><p>One pour per wall, never patched. You get a weekly photo ledger and an open cost book.</p></div><div class="tb"><span>A-03</span><span>Kanso Monolith — standard sheet</span><span>Months 7–26</span></div></li>
+          <li class="k2-dw"><div class="body k-card"><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></div><div class="tb"><span>A-01</span><span>Aether — standard sheet</span><span>Minute one</span></div></li><li class="k2-dw"><div class="body k-card"><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p></div><div class="tb"><span>A-02</span><span>Aether — standard sheet</span><span>Minute five</span></div></li><li class="k2-dw"><div class="body k-card"><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></div><div class="tb"><span>A-03</span><span>Aether — standard sheet</span><span>Every request</span></div></li>
         </ol>
       </div>
     </div>
@@ -269,40 +281,42 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 
   <section id="clients" data-section aria-labelledby="c-title">
     <div class="k-wrap">
-      <h2 id="c-title" class="k2-h2" data-reveal>Measured after the keys changed hands.</h2>
+      <h2 id="c-title" class="k2-h2" data-reveal>Who it is drawn for.</h2>
       <div class="k2-receipts" data-stagger>
-        <article class="k2-rc"><div><b>Haruka & Ren Ishida</b><span>Ceramicists · studio-house, Naoshima</span></div><p class="m">−42%</p><p>heating cost against their previous timber house, first winter</p></article><article class="k2-rc"><div><b>Dr. Felix Brandt</b><span>Cardiologist · courtyard house, Hamburg</span></div><p class="m">0</p><p>change orders between the cast model and the keys</p></article><article class="k2-rc"><div><b>Mei-Lin Chau</b><span>Publisher · reading pavilion, Taipei</span></div><p class="m">3 weeks</p><p>early on a 19-month programme</p></article>
+        <article class="k2-rc"><div><b>Backend developer</b><span>Placeholder testimonial</span></div><p class="m">One key instead of three</p><p>“Replace with a real quote about consolidating providers behind one base URL.”</p></article><article class="k2-rc"><div><b>Safety researcher</b><span>Placeholder testimonial</span></div><p class="m">Studying refusal behaviour</p><p>“Replace with a real quote about comparing standard and abliterated variants.”</p></article><article class="k2-rc"><div><b>Novelist</b><span>Placeholder testimonial</span></div><p class="m">Dark themes, no lectures</p><p>“Replace with a real quote about writing difficult scenes without refusals.”</p></article><article class="k2-rc"><div><b>Startup CTO</b><span>Placeholder testimonial</span></div><p class="m">Predictable costs</p><p>“Replace with a real quote about per-request cost reporting and caching.”</p></article>
       </div>
-      <p class="k2-note">Illustrative clients and figures. Kanso Monolith is a fictional concept built for the Awwwards 20 design exhibition. People, case studies, figures and prices are illustrative.</p>
+      <p class="k2-note">Placeholder testimonials — swap in real beta quotes before launch.</p>
     </div>
   </section>
 
   <section id="fees" data-section aria-labelledby="f-title">
     <div class="k-wrap">
-      <h2 id="f-title" class="k2-h2" data-reveal>Fixed fees. Never a percentage of cost.</h2>
+      <h2 id="f-title" class="k2-h2" data-reveal>Per token. Never a bundle.</h2>
       <div class="k2-fees" data-stagger>
-        <article class="k2-fee"><h3>Pavilion</h3><span class="area">up to 60 m²</span><p class="p">¥28M</p><p>Design and site supervision for a single-volume room: studio, tea house, reading room.</p><a href="#final">Discuss a pavilion</a></article><article class="k2-fee"><h3>House</h3><span class="area">60–220 m²</span><p class="p">¥88M</p><p>The full Kanso method for a family house, including the light atlas and the 1:50 cast model.</p><a href="#final">Discuss a house</a></article><article class="k2-fee"><h3>Compound</h3><span class="area">220 m² +</span><p class="p">from ¥160M</p><p>Multiple volumes, landscape and courtyards, with a dedicated site architect.</p><a href="#final">Discuss a compound</a></article>
+        <article class="k2-fee k-card"><h3>Explore</h3><span class="area">to start</span><p class="p">$0</p><p>Try every model family in chat with a daily allowance.</p><p class="area">Unified chat · All model families · Daily usage allowance</p><a href="#final">No card needed to look around.</a></article><article class="k2-fee k-card"><h3>Pro</h3><span class="area">per month</span><p class="p">$20</p><p>For people who live in the chat and want the larger models.</p><p class="area">Higher limits · Abliterated variants · Side-by-side compare · Coding agent (preview)</p><a href="#final">Cancel from settings in one click.</a></article><article class="k2-fee k-card"><h3>API</h3><span class="area">per token</span><p class="p">Pay as you go</p><p>Per-token billing with prompt caching on every model.</p><p class="area">One key, every model · Prompt caching · Usage dashboard</p><a href="#final">No minimum spend. Pay only for tokens you use.</a></article>
       </div>
-      <p class="k2-fk"><span>Fee fixed after the sun study</span><span>Stop after the study and pay only ¥1.8M</span><span>Construction billed at cost, open ledger</span></p>
+      <div class="k2-rates" data-reveal><p><b>Core</b><span>128K context</span><span>in $0.60 · out $2.40</span><span>cached $0.15</span></p><p><b>Unbound</b><span>128K context</span><span>in $0.80 · out $3.20</span><span>cached $0.20</span></p><p><b>Forge</b><span>256K context</span><span>in $1.20 · out $4.80</span><span>cached $0.30</span></p><p><b>Atlas</b><span>1M context</span><span>in $1.50 · out $6.00</span><span>cached $0.25</span></p><p><b>Swift</b><span>32K context</span><span>in $0.08 · out $0.32</span><span>cached $0.02</span></p></div>
+      <p class="k2-fk"><span>Per 1M tokens</span><span>Sample rates for layout only. Final pricing not yet set.</span><span>Cached input billed automatically</span></p>
     </div>
   </section>
 
   <section id="final" data-section aria-labelledby="fi-title">
     <div class="k-wrap k2-final">
-      <h2 id="fi-title" class="k2-h2" data-reveal>Start with four days of light on your land.</h2>
-      <div class="act" data-reveal><p class="k-body">We take six sun studies a season. You keep the 365-day atlas whether or not we build.</p><a class="k2-btn" href="#main" data-magnetic="5,0.22,0.6,0.5"><span data-magnetic-label>Book a sun study</span></a></div>
+      <h2 id="fi-title" class="k2-h2" data-reveal>Start with one key. Add nothing else.</h2>
+      <div class="act" data-reveal><p class="k-body">Point the SDK you already use at Aether's base URL. Change one string to change the model.</p><a class="k2-btn" href="#main" data-magnetic="5,0.22,0.6,0.5"><span data-magnetic-label>Get your API key</span></a></div>
     </div>
   </section>
 </main>
 <footer class="k2-foot">
-  <p class="word" aria-hidden="true">Kanso.</p>
-  <div><h4>Tokyo</h4><p>3-14-2 Kiyosumi, Kōtō-ku<br>Studio visits on Thursdays</p></div>
-  <div><h4>Kyoto</h4><p>Model workshop, Higashiyama<br>Concrete cast days monthly</p></div>
-  <div><h4>Studio</h4><ul><li><a href="#method">Method</a></li><li><a href="#clients">Clients</a></li><li><a href="#fees">Fees</a></li></ul></div>
+  <p class="word" aria-hidden="true">Aether.</p>
+  <div><h4>Platform</h4><ul><li><a href="#build">Model families</a></li><li><a href="#qualities">Features</a></li><li><a href="#fees">Token rates</a></li></ul></div>
+  <div><h4>Models</h4><ul><li><a href="#fees">Core</a></li><li><a href="#fees">Unbound</a></li><li><a href="#fees">Forge</a></li></ul></div>
+  <div><h4>More models</h4><ul><li><a href="#fees">Atlas</a></li><li><a href="#fees">Swift</a></li></ul></div>
   <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <p class="legal"><span>Kanso Monolith is a fictional concept built for the Awwwards 20 design exhibition. People, case studies, figures and prices are illustrative.</span><span>Set in Syne and IBM Plex Mono.</span></p>
+  <p class="legal"><span>Aether is a placeholder brand and this page is the "Kanso" design direction. Models, rates and quotes are mock data — nothing here is live.</span><span>Set in Syne and IBM Plex Mono.</span></p>
 </footer>
 
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
 <script>
 (() => {
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -465,9 +479,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
     const { RM, $, $$, clamp, smooth, onScroll, progress, pointer, loop } = K;
     const NS = "http://www.w3.org/2000/svg";
     const C30 = Math.cos(Math.PI / 6);
-    // Concrete texture for the CTA slab.
     document.documentElement.style.setProperty("--concrete", `url("data:image/svg+xml,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='.035 .6' numOctaves='4' seed='4'/><feColorMatrix values='0 0 0 0 .3 0 0 0 0 .29 0 0 0 0 .27 0 0 0 1.1 -.25'/></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>")}")`);
-
     const hull = (pts) => {
       pts = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
       const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
@@ -476,25 +488,18 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
       for (const p of pts.reverse()) { while (up.length > 1 && cross(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
       return lo.slice(0, -1).concat(up.slice(0, -1));
     };
-    const sun = (hour) => {
-      const k = (hour - 6) / 12;
-      return { az: Math.PI * (0.15 + k * 0.95), el: Math.max(0.1, Math.sin(Math.PI * k) * 1.02) };
-    };
-
-    // An isometric scene of boxes rendered into an SVG; returns setters for draw/solid/light/sun.
-    function Scene(svg, boxes, { pad = 0.08, ground = true } = {}) {
+    function Scene(svg, boxes, pad = 0.08) {
       const P = (x, y, z) => [(x - y) * C30, (x + y) * 0.5 - z];
-      let xs = [], ys = [];
+      const xs = [], ys = [];
       boxes.forEach((b) => [[b.x, b.y, 0], [b.x + b.w, b.y, 0], [b.x, b.y + b.d, 0], [b.x + b.w, b.y + b.d, 0], [b.x, b.y, b.h], [b.x + b.w, b.y + b.d, b.h]].forEach((p) => { const q = P(...p); xs.push(q[0]); ys.push(q[1]); }));
-      const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys) - 6, maxY = Math.max(...ys) + 10;
+      const minX = Math.min(...xs) - 40, maxX = Math.max(...xs) + 40, minY = Math.min(...ys) - 10, maxY = Math.max(...ys) + 46;
       const W = maxX - minX, H = maxY - minY;
       svg.setAttribute("viewBox", `${minX - W * pad} ${minY - H * pad} ${W * (1 + 2 * pad)} ${H * (1 + 2 * pad)}`);
-      svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
       const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
       const d = (pts) => "M" + pts.map((p) => P(...p).map((v) => v.toFixed(2)).join(" ")).join("L") + "Z";
       const gShadow = mk("g", { fill: "#1C1A17", "fill-opacity": "0" }, svg);
       const gFaces = mk("g", {}, svg);
-      const lines = [];
+      const lines = [], labels = [];
       const shadows = boxes.map(() => mk("path", {}, gShadow));
       boxes.slice().sort((a, b) => a.x + a.y - (b.x + b.y)).forEach((b) => {
         const { x, y, w, d: dp, h: hh } = b;
@@ -507,62 +512,61 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
           mk("path", { d: d(pts), fill, "fill-opacity": "0", class: "face" }, gFaces);
           lines.push(mk("path", { d: d(pts), fill: "none", stroke: "#1C1A17", "stroke-width": "0.6", "vector-effect": "non-scaling-stroke", "stroke-linejoin": "round", pathLength: "1", "stroke-dasharray": "1 1", "stroke-dashoffset": "1" }, gFaces));
         }
-        if (b.slit) { const s = b.slit; lines.push(mk("path", { d: d([[x + w, y + s[0], s[2]], [x + w, y + s[1], s[2]], [x + w, y + s[1], s[3]], [x + w, y + s[0], s[3]]]), fill: "#1C1A17", "fill-opacity": ".85", stroke: "none", class: "slit" }, gFaces)); }
+        if (b.slit) { const s = b.slit; mk("path", { d: d([[x + w, y + s[0], s[2]], [x + w, y + s[1], s[2]], [x + w, y + s[1], s[3]], [x + w, y + s[0], s[3]]]), fill: "#1C1A17", "fill-opacity": "0", class: "slit" }, gFaces); }
+        if (b.label) { const [lx, ly] = P(x + w, y + dp, 0); const t = mk("text", { x: (lx - 6).toFixed(1), y: (ly + 14).toFixed(1), class: "k2-iso-lbl", "text-anchor": "end", opacity: "0" }, gFaces); t.textContent = b.label; labels.push(t); }
       });
-      const faces = [...gFaces.querySelectorAll(".face")];
-      const slits = [...gFaces.querySelectorAll(".slit")];
-      let longest = 0;
+      const faces = [...gFaces.querySelectorAll(".face")], slits = [...gFaces.querySelectorAll(".slit")];
       return {
         draw(t) { lines.forEach((l, i) => l.setAttribute("stroke-dashoffset", (1 - clamp(t * 1.6 - (i / lines.length) * 0.6)).toFixed(3))); },
-        solid(t) { faces.forEach((f) => f.setAttribute("fill-opacity", t.toFixed(3))); slits.forEach((s) => s.setAttribute("fill-opacity", (0.85 * t).toFixed(3))); },
+        solid(t) { faces.forEach((f) => f.setAttribute("fill-opacity", t.toFixed(3))); slits.forEach((s) => s.setAttribute("fill-opacity", (0.85 * t).toFixed(3))); labels.forEach((l) => l.setAttribute("opacity", t.toFixed(2))); },
         light(t) { gShadow.setAttribute("fill-opacity", (0.2 * t).toFixed(3)); },
-        sun(hour) {
-          const { az, el } = sun(hour);
-          const len = 1 / Math.tan(el), vx = -Math.cos(az) * len, vy = -Math.sin(az) * len;
-          longest = 0;
+        cast(az, lens) {
           boxes.forEach((b, i) => {
+            const L = lens[i], vx = -Math.cos(az) * L, vy = -Math.sin(az) * L;
             const base = [[b.x, b.y], [b.x + b.w, b.y], [b.x + b.w, b.y + b.d], [b.x, b.y + b.d]];
-            const pts = base.concat(base.map(([px, py]) => [px + vx * b.h, py + vy * b.h]));
+            const pts = base.concat(base.map(([px, py]) => [px + vx, py + vy]));
             shadows[i].setAttribute("d", d(hull(pts).map(([px, py]) => [px, py, 0])));
-            longest = Math.max(longest, b.h * len);
           });
-          return { az, el, longest };
         },
       };
     }
 
-    // Hero: one long pavilion, sun follows the pointer.
+    // Hero: one long pavilion; the light follows the pointer.
     const heroSvg = $("#hero-iso");
-    const hero = Scene(heroSvg, [{ x: 0, y: 0, w: 120, d: 34, h: 26, slit: [6, 28, 12, 18] }, { x: 18, y: 34, w: 30, d: 24, h: 14 }, { x: 132, y: 4, w: 22, d: 22, h: 40 }], { pad: 0.06 });
+    const heroBoxes = [{ x: 0, y: 0, w: 120, d: 34, h: 26, slit: [6, 28, 12, 18] }, { x: 18, y: 34, w: 30, d: 24, h: 14 }, { x: 132, y: 4, w: 22, d: 22, h: 40 }];
+    const hero = Scene(heroSvg, heroBoxes, 0.04);
     hero.solid(1); hero.light(1);
-    let hh = 10, t0 = performance.now();
+    let az = 1.2;
+    const t0 = performance.now();
     loop(heroSvg, () => {
       const r = heroSvg.getBoundingClientRect();
-      const target = pointer.active ? 6.5 + clamp((pointer.x - r.left + r.width * 0.2) / (r.width * 1.4)) * 11 : 10 + Math.sin(performance.now() / 4000) * 2.5;
-      hh += (target - hh) * 0.08;
-      hero.sun(hh);
+      const target = pointer.active ? 0.5 + clamp((pointer.x - r.left + r.width * 0.2) / (r.width * 1.4)) * 2.4 : 1.4 + Math.sin(performance.now() / 4000) * 0.4;
+      az += (target - az) * 0.08;
+      hero.cast(az, heroBoxes.map((b) => b.h * 1.3));
       hero.draw(RM ? 1 : clamp((performance.now() - t0) / 1800));
     });
 
-    // Signature: linework → concrete → light, plus a manual sun slider.
+    // Signature: five monoliths — height is context, shadow is the cost of a request.
+    const M = AE.MODELS;
+    const k = (m) => (Math.log(m.contextK) - Math.log(32)) / (Math.log(1000) - Math.log(32));
+    const boxes = M.map((m, i) => ({ x: i * 44, y: -i * 6, w: 26, d: 26, h: 18 + 70 * k(m), label: m.name }));
+    const scene = Scene($("#build-iso"), boxes, 0.06);
     const build = $("#build"), stages = $$("#stages li"), slider = $("#sun");
-    const scene = Scene($("#build-iso"), [
-      { x: 0, y: 0, w: 60, d: 60, h: 34, slit: [10, 50, 26, 30] },
-      { x: 76, y: -10, w: 30, d: 90, h: 18 },
-      { x: 18, y: 76, w: 70, d: 26, h: 52 },
-      { x: 110, y: 90, w: 18, d: 18, h: 70 },
-    ], { pad: 0.1 });
-    const read = { time: $("#r-time"), el: $("#r-el"), az: $("#r-az"), sh: $("#r-sh") };
-    let manual = false;
-    const setSun = (hour) => {
-      const s = scene.sun(hour);
-      const hrs = Math.floor(hour), min = Math.round((hour - hrs) * 60);
-      read.time.textContent = String(hrs).padStart(2, "0") + ":" + String(min).padStart(2, "0");
-      read.el.textContent = Math.round((s.el * 180) / Math.PI) + "°";
-      read.az.textContent = Math.round(((s.az * 180) / Math.PI + 90) % 360) + "°";
-      read.sh.textContent = Math.min(99, s.longest / 10).toFixed(1) + " m";
+    const read = { size: $("#r-time"), lo: $("#r-el"), hi: $("#r-az"), atlas: $("#r-sh") };
+    const reqCost = (m, tok) => ((tok * 0.75) * m.inPrice + (tok * 0.25) * m.outPrice) / 1e6;
+    const setSize = (v) => {
+      const tok = Math.round(Math.pow(10, 3 + v * 2.3));
+      const costs = M.map((m) => reqCost(m, tok)), max = Math.max(...costs);
+      scene.cast(0.9 + v * 0.8, costs.map((c) => 8 + (c / max) * (40 + v * 60)));
+      const lo = M[costs.indexOf(Math.min(...costs))], hi = M[costs.indexOf(max)];
+      read.size.textContent = tok >= 1000 ? Math.round(tok / 1000) + "K" : tok;
+      read.lo.textContent = lo.name; read.hi.textContent = hi.name;
+      const c = costs[M.findIndex((m) => m.id === "atlas")];
+      read.atlas.textContent = "$" + (c < 0.01 ? c.toFixed(4) : c.toFixed(3));
     };
-    slider.addEventListener("input", () => { manual = true; setSun(+slider.value); });
+    let manual = false;
+    slider.addEventListener("input", () => { manual = true; setSize(+slider.value); });
+    setSize(+slider.value);
     onScroll(() => {
       const p = RM ? 1 : progress(build);
       scene.draw(smooth(clamp(p / 0.36)));
@@ -570,7 +574,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
       scene.light(smooth(clamp((p - 0.56) / 0.12)));
       const stage = p < 0.34 ? 0 : p < 0.56 ? 1 : 2;
       stages.forEach((li, i) => li.classList.toggle("on", i === stage));
-      if (!manual) { const hour = 7 + clamp((p - 0.58) / 0.42) * 10; slider.value = hour; setSun(hour); }
+      if (!manual) { const v = clamp((p - 0.58) / 0.42); slider.value = v; setSize(v); }
     });
   })();
 </script>
