@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Look beneath every answer</title>
+<meta name="description" content="Hold any response up to the light: compare it across models, see the tokens it is made of, and read what each line cost. Atelier Kintsugi design direction.">
+<meta name="theme-color" content="#F9F6F0">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23F9F6F0'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23B45309'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/im-fell-english-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"IM Fell English";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/im-fell-english-400-italic.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IM Fell English";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/im-fell-english-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/work-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/work-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/work-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#F9F6F0;--bg-secondary:#EBE5D8;--accent:#B45309;--on-accent:#FFFFFF;--text-primary:#2A231C;--text-muted:#5F554A;--line:rgba(42,35,28,.16);--font-display:"IM Fell English", Georgia, serif;--font-body:"Work Sans", sans-serif}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Atelier Kintsugi ——— */
+
+:root{--h1-weight:400}
+.k19-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#F9F6F0f2;border-bottom:1px solid var(--line);font-size:.86rem}
+.k19-mark{font-family:var(--font-display);font-size:1.5rem;text-decoration:none}
+.k19-mark i{color:var(--accent)}
+.k19-links{display:flex;gap:22px}
+.k19-links a{text-decoration:none;color:var(--text-muted);padding:4px 0;border-bottom:1px solid transparent}
+.k19-links a.is-current{color:var(--text-primary);border-color:var(--accent)}
+.k19-acc{color:var(--text-muted);font-family:var(--font-display);font-style:italic;font-size:1rem}
+@media (max-width:900px){.k19-links{display:none}}
+.k19-btn{display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 28px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;border-radius:2px;position:relative;isolation:isolate}
+.k19-btn::after{content:"";position:absolute;inset:-4px;z-index:-1;border:1px solid var(--accent);opacity:0;transition:opacity .3s,inset .4s var(--ease)}
+.k19-btn.is-near::after{opacity:1;inset:-7px}
+.k19-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.01em;line-height:1.02;max-width:16ch}
+.k19-fine{margin-top:22px;font-size:.82rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+.vellum{background:radial-gradient(120% 90% at 30% 20%,#FFFDF8,#F2ECDF);box-shadow:inset 0 0 60px #C9B99A33}
+
+/* manuscript layers + loupe */
+.k19-ms{position:relative;overflow:hidden}
+.k19-layer{position:absolute;inset:0;padding:clamp(18px,3vw,40px);display:grid;align-content:center;gap:.4em;font-family:var(--font-display);font-size:clamp(1.05rem,1.8vw,1.55rem);line-height:1.5}
+.k19-layer p{max-width:none}
+.k19-layer.vis{position:relative;color:#2A231C}
+.k19-layer.vis p::first-letter{font-size:1.9em;color:#2A231C}
+.k19-layer.uv{background:#1A1336;color:#C9B6FF;clip-path:circle(var(--r,0px) at var(--x,50%) var(--y,50%))}
+.k19-layer.ir{background:#2A0E07;color:#FFC9A6;clip-path:circle(var(--r,0px) at var(--x,50%) var(--y,50%))}
+.k19-layer.ir i{font-style:normal;display:inline-block;margin:0 2px 4px 0;padding:0 4px;border:1px solid #FFC9A666;border-radius:4px;font-family:var(--font-body);font-size:.62em}
+.k19-layer.xr{background:#0E1A1F;color:#BFE6F2;clip-path:circle(var(--r,0px) at var(--x,50%) var(--y,50%));font-family:var(--font-body);font-size:clamp(.8rem,1.1vw,.95rem)}
+.k19-layer.xr p{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #BFE6F244;padding-bottom:.4em}
+.k19-ring{position:absolute;left:var(--x,50%);top:var(--y,50%);width:calc(var(--r,0px) * 2);height:calc(var(--r,0px) * 2);transform:translate(-50%,-50%);border-radius:50%;border:3px solid #B4935A;box-shadow:0 0 0 6px #2A231C14,0 20px 40px -10px #2A231C55;pointer-events:none}
+.k19-ring::after{content:"";position:absolute;right:-30%;bottom:-30%;width:40%;height:12px;background:#6B5636;border-radius:6px;transform:rotate(45deg);transform-origin:left}
+
+/* hero: open book */
+.k19-hero{min-height:calc(100svh - 60px);display:grid;place-items:center;padding:22px var(--gutter)}
+.k19-book{display:grid;grid-template-columns:1fr 1fr;width:min(1240px,100%);min-height:min(78vh,700px);box-shadow:0 40px 80px -50px #2A231C88;border-radius:6px;overflow:hidden}
+.k19-left{display:grid;align-content:center;gap:22px;justify-items:start;padding:clamp(24px,4vw,64px);border-right:1px solid #C9B99A88;position:relative}
+.k19-left::after{content:"";position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(90deg,transparent,#2A231C10)}
+.k19-left .folio{font-family:var(--font-display);font-style:italic;color:var(--text-muted)}
+.k19-left h1{font-weight:400;max-width:11ch}
+.k19-left .k-body{color:var(--text-muted);max-width:42ch}
+.k19-trust{font-size:.86rem;color:var(--text-muted);border-top:1px solid var(--line);padding-top:12px}
+.k19-trust b{color:var(--text-primary)}
+.k19-right{position:relative}
+.k19-right .k19-ms{position:absolute;inset:0}
+.k19-cap{position:absolute;left:16px;bottom:12px;z-index:3;font-size:.72rem;color:var(--text-muted);background:#F9F6F0d9;padding:2px 8px}
+@media (max-width:860px){
+  .k19-hero{padding:10px var(--gutter);place-items:start}
+  .k19-book{grid-template-columns:1fr;grid-template-rows:auto 128px;min-height:0}
+  .k19-left{padding:16px 18px;gap:10px;border-right:0;border-bottom:1px solid #C9B99A88}
+  .k19-trust{padding-top:8px;font-size:.8rem}
+  .k19-left .folio{display:none}
+  .k19-layer{font-size:.92rem;padding:12px 16px}
+}
+
+/* problem */
+.k19-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.k19-cond{display:grid;border-top:1px solid var(--text-primary)}
+.k19-cond li{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
+.k19-cond .was{color:var(--text-muted);font-style:italic}
+.k19-cond .now{font-family:var(--font-display);font-size:1.4rem;line-height:1.2}
+@media (max-width:900px){.k19-cols{grid-template-columns:1fr;gap:40px}.k19-cond li{grid-template-columns:1fr;gap:6px}}
+
+/* signature: spectral inspection */
+.k19-run{height:460vh;position:relative;margin-top:clamp(64px,6vw,80px)}
+.k19-pin{position:sticky;top:60px;height:calc(100vh - 60px);display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);gap:36px;padding:24px var(--gutter)}
+.k19-plate{position:relative;border:1px solid #C9B99A;border-radius:4px}
+.k19-plate .k19-ms{position:absolute;inset:0}
+.k19-modes{display:grid;align-content:center;gap:10px}
+.k19-modes li{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;padding:14px 16px;border:1px solid var(--line);transition:border-color .4s,background .4s}
+.k19-modes li i{grid-row:span 2;width:16px;height:16px;border-radius:50%;margin-top:4px}
+.k19-modes li b{font-family:var(--font-display);font-size:1.35rem;font-weight:400}
+.k19-modes li span{font-size:.82rem;color:var(--text-muted)}
+.k19-modes li.on{border-color:var(--text-primary);background:#FFFDF8}
+.k19-modes li.on b{color:var(--accent)}
+@media (max-width:900px){
+  .k19-run{height:420vh}
+  .k19-pin{grid-template-columns:1fr;grid-template-rows:1fr auto;gap:10px;padding:12px var(--gutter)}
+  .k19-modes{grid-template-columns:1fr 1fr;gap:6px}
+  .k19-modes li{padding:8px 10px}.k19-modes li span{display:none}.k19-modes li b{font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){.k19-run{height:auto}.k19-pin{position:relative;height:100vh}}
+
+/* bento: the vault */
+.k19-vault{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.k19-folio{position:relative;isolation:isolate;overflow:hidden;border:1px solid #C9B99A;display:grid;gap:12px;align-content:start;min-height:260px}
+.k19-folio::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),#B4530914,transparent 65%);opacity:0;transition:opacity .3s}
+.k19-folio:hover::before{opacity:1}
+.k19-folio .no{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-muted)}
+.k19-folio h3{font-family:var(--font-display);font-weight:400;font-size:1.7rem;line-height:1.1}
+.k19-folio p{color:var(--text-muted);font-size:.94rem}
+.k19-folio.f0{grid-column:span 2}.k19-folio.f0 h3{font-size:clamp(2.2rem,3.4vw,3rem)}
+.k19-folio.f5{grid-column:span 2}
+.k19-folio .seam{position:absolute;left:-10%;top:58%;width:120%;height:2px;background:linear-gradient(90deg,transparent,#B4935A,#E9C46A,#B4935A,transparent);transform:rotate(-4deg);opacity:.6}
+@media (max-width:900px){.k19-vault{grid-template-columns:1fr}.k19-folio{grid-column:auto!important}}
+
+/* rail */
+.k19-rail-head{padding:0 var(--gutter);margin-bottom:44px}
+.k19-steps{padding:0 var(--gutter);gap:18px}
+.k19-step{width:min(540px,50vw);border:1px solid #C9B99A;display:grid;gap:12px;align-content:start}
+.k19-step .n{font-family:var(--font-display);font-style:italic;font-size:2.4rem;line-height:1;color:var(--text-muted)}
+.k19-step.is-active .n{color:var(--accent)}
+.k19-step h3{font-family:var(--font-display);font-weight:400;font-size:2rem;line-height:1.08}
+.k19-step p{color:var(--text-muted)}
+.k19-step pre{margin:0;background:var(--text-primary);color:#F9F6F0;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
+.k19-step code{font-family:ui-monospace,monospace}
+@media (max-width:899px){.k19-step{width:auto}}
+
+/* provenance */
+.k19-prov{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.k19-p{display:grid;gap:14px;border-top:1px solid var(--text-primary)}
+.k19-p q{font-family:var(--font-display);font-style:italic;font-size:1.5rem;line-height:1.3;quotes:"“" "”"}
+.k19-p p{font-size:.9rem;color:var(--text-muted)}
+.k19-p b{color:var(--text-primary);font-weight:600}
+@media (max-width:760px){.k19-prov{grid-template-columns:1fr}}
+
+/* pricing */
+.k19-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.k19-plan{border:1px solid #C9B99A;display:grid;gap:12px;align-content:start}
+.k19-plan.feat{border-color:var(--accent)}
+.k19-plan h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem}
+.k19-plan .p{font-family:var(--font-display);font-size:3rem;line-height:1}
+.k19-plan .cad{font-size:.84rem;color:var(--text-muted);font-style:italic}
+.k19-plan ul{display:grid;gap:6px;font-size:.94rem}
+.k19-plan li::before{content:"❦ ";color:var(--accent);font-size:.8em}
+.k19-plan .fk{font-size:.86rem;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:900px){.k19-plans{grid-template-columns:1fr}}
+.k19-table{width:100%;margin-top:40px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.k19-table caption{text-align:left;font-family:var(--font-display);font-size:1.6rem;padding-bottom:12px}
+.k19-table th,.k19-table td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
+.k19-table thead th{font-weight:500;color:var(--text-muted);font-size:.8rem}
+@media (max-width:700px){.k19-table th:nth-child(2),.k19-table td:nth-child(2){display:none}}
+
+/* final + footer */
+.k19-final{display:grid;justify-items:center;text-align:center;gap:28px}
+.k19-final .k19-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
+.k19-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--text-primary);font-size:.86rem;color:var(--text-muted)}
+.k19-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.25rem;color:var(--text-primary);margin-bottom:12px}
+.k19-foot ul{display:grid;gap:8px}
+.k19-foot a{text-decoration:none}
+.k19-foot a:hover{color:var(--accent);text-decoration:underline}
+.k19-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.k19-foot{grid-template-columns:1fr 1fr}.k19-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="k19-nav">
+  <a class="k19-mark" href="#main">Aether <i>atelier</i></a>
+  <nav class="k19-links" data-spy aria-label="Sections"><a href="#condition">Condition</a><a href="#inspect">Inspection</a><a href="#vault">The vault</a><a href="#method">Method</a><a href="#provenance">Provenance</a><a href="#fees">Fees</a></nav>
+  <span class="k19-acc">Accession 019</span>
+</header>
+<main id="main">
+  <section class="k19-hero" data-hero aria-labelledby="k19-h">
+    <div class="k19-book vellum">
+      <div class="k19-left">
+        <p class="folio">Folio i, recto</p>
+        <h1 id="k19-h" data-hero-part="headline">Look beneath every answer.</h1>
+        <p class="k-body" data-hero-part="sub">Hold any response up to the light: compare it across models, see the tokens it is made of, and read what each line cost.</p>
+        <div data-hero-part="cta"><a class="k19-btn" href="#fees" data-cta="primary" data-magnetic="5,0.12,0.84,0.35"><span data-magnetic-label>Get your API key</span></a></div>
+        <p class="k19-trust" data-hero-part="trust">Every response carries its record: <b>tokens</b>, <b>cached tokens</b> and <b>cost</b>.</p>
+      </div>
+      <div class="k19-right" data-hero-part="visual">
+        <div class="k19-ms" id="hero-ms" role="img" aria-label="A manuscript page; the loupe reveals what each line cost">
+          <div class="k19-layer vis"><p>The keeper had not answered the radio in nine days,</p><p>yet every night the lamp still turned above the reef,</p><p>patient as a clock that no one living wound.</p><p>When the visitor rowed out, she found the logbook open</p><p>and one word written over and over: wait.</p></div><div class="k19-layer xr"><p><span>The keeper had…</span><span>12 tokens · out · $0.0000</span></p><p><span>yet every night…</span><span>11 tokens · out · $0.0000</span></p><p><span>patient as a…</span><span>12 tokens · out · $0.0000</span></p><p><span>When the visitor…</span><span>12 tokens · out · $0.0000</span></p><p><span>and one word…</span><span>9 tokens · out · $0.0000</span></p></div>
+          <span class="k19-ring" aria-hidden="true"></span>
+        </div>
+        <span class="k19-cap">X-ray loupe · move the pointer over the page</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="condition" data-section aria-labelledby="k19-c">
+    <div class="k-wrap k19-cols">
+      <h2 id="k19-c" class="k19-h2" data-reveal>Condition report: most AI arrives with its seams hidden.</h2>
+      <ol class="k19-cond" data-stagger><li><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li></ol>
+    </div>
+    <div class="k19-run" id="inspect">
+      <div class="k19-pin">
+        <div class="k19-plate vellum">
+          <div class="k19-ms" id="sig-ms" role="img" aria-label="Spectral inspection of one answer: visible text, another model's reading, its tokens, and its usage record">
+            <div class="k19-layer vis"><p>The keeper had not answered the radio in nine days,</p><p>yet every night the lamp still turned above the reef,</p><p>patient as a clock that no one living wound.</p><p>When the visitor rowed out, she found the logbook open</p><p>and one word written over and over: wait.</p></div><div class="k19-layer uv"><p>Nine days of silence from the keeper's radio,</p><p>and still the lamp swept the reef each night,</p><p>a clock kept by hands no one had seen.</p><p>The visitor rowed out and read the open log:</p><p>one word, again and again, in his hand — wait.</p></div><div class="k19-layer ir"><p><i>The</i><i>keep</i><i>er</i><i>had</i><i>not</i><i>answ</i><i>ered</i><i>the</i><i>radio</i><i>in</i><i>nine</i><i>days,</i></p><p><i>yet</i><i>every</i><i>night</i><i>the</i><i>lamp</i><i>still</i><i>turn</i><i>ed</i><i>above</i><i>the</i><i>reef,</i></p><p><i>pati</i><i>ent</i><i>as</i><i>a</i><i>clock</i><i>that</i><i>no</i><i>one</i><i>livi</i><i>ng</i><i>woun</i><i>d.</i></p><p><i>When</i><i>the</i><i>visi</i><i>tor</i><i>rowed</i><i>out,</i><i>she</i><i>found</i><i>the</i><i>logb</i><i>ook</i><i>open</i></p><p><i>and</i><i>one</i><i>word</i><i>writ</i><i>ten</i><i>over</i><i>and</i><i>over:</i><i>wait.</i></p></div><div class="k19-layer xr"><p><span>The keeper had…</span><span>12 tokens · out · $0.0000</span></p><p><span>yet every night…</span><span>11 tokens · out · $0.0000</span></p><p><span>patient as a…</span><span>12 tokens · out · $0.0000</span></p><p><span>When the visitor…</span><span>12 tokens · out · $0.0000</span></p><p><span>and one word…</span><span>9 tokens · out · $0.0000</span></p></div>
+            <span class="k19-ring" aria-hidden="true"></span>
+          </div>
+        </div>
+        <ol class="k19-modes" aria-live="polite">
+          <li class="on" data-m="vis"><i style="background:#E9DFC9;border:1px solid #2A231C" aria-hidden="true"></i><b>Visible light</b><span>The answer as your user reads it — Core, standard.</span></li>
+          <li data-m="uv"><i style="background:#6E4BD8" aria-hidden="true"></i><b>Ultraviolet</b><span>Another reading: the same prompt answered by Unbound.</span></li>
+          <li data-m="ir"><i style="background:#C2410C" aria-hidden="true"></i><b>Infrared</b><span>The under-drawing: every token the answer is made of.</span></li>
+          <li data-m="xr"><i style="background:#2F7A92" aria-hidden="true"></i><b>X-ray</b><span>The structure: tokens and cost for every line.</span></li>
+        </ol>
+      </div>
+    </div>
+    <p class="k-wrap k19-fine">Token splits are approximate; costs at Core sample output rates. Sample rates for layout only. Final pricing not yet set.</p>
+  </section>
+
+  <section id="vault" data-section aria-labelledby="k19-v">
+    <div class="k-wrap">
+      <h2 id="k19-v" class="k19-h2" data-reveal>From the vault: each piece, restored.</h2>
+      <div class="k19-vault" data-stagger><article class="k19-folio vellum k-card f0" data-spot><span class="seam" aria-hidden="true"></span><p class="no"><span>Unified chat</span><span>MS 001</span></p><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="k19-folio vellum k-card f1" data-spot><span class="seam" aria-hidden="true"></span><p class="no"><span>Three temperaments</span><span>MS 002</span></p><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="k19-folio vellum k-card f2" data-spot><span class="seam" aria-hidden="true"></span><p class="no"><span>Coding agents</span><span>MS 003</span></p><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="k19-folio vellum k-card f3" data-spot><span class="seam" aria-hidden="true"></span><p class="no"><span>Long context</span><span>MS 004</span></p><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="k19-folio vellum k-card f4" data-spot><span class="seam" aria-hidden="true"></span><p class="no"><span>Prompt caching</span><span>MS 005</span></p><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="k19-folio vellum k-card f5" data-spot><span class="seam" aria-hidden="true"></span><p class="no"><span>Side-by-side compare</span><span>MS 006</span></p><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article></div>
+    </div>
+  </section>
+
+  <section id="method" data-section aria-labelledby="k19-m">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="k19-rail-head"><h2 id="k19-m" class="k19-h2" data-reveal>The method, in three treatments.</h2></div>
+        <ol class="k19-steps" data-rail-track><li class="k19-step vellum k-card"><span class="n">Primum</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></li><li class="k19-step vellum k-card"><span class="n">Deinde</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+model:   "core-128k"</code></pre></li><li class="k19-step vellum k-card"><span class="n">Denique</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></li></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="provenance" data-section aria-labelledby="k19-p">
+    <div class="k-wrap">
+      <h2 id="k19-p" class="k19-h2" data-reveal>Provenance, by role.</h2>
+      <div class="k19-prov" data-stagger><figure class="k19-p k-card"><q>Replace with a real quote about consolidating providers behind one base URL.</q><p><b>Backend developer</b> — One key instead of three</p></figure><figure class="k19-p k-card"><q>Replace with a real quote about comparing standard and abliterated variants.</q><p><b>Safety researcher</b> — Studying refusal behaviour</p></figure><figure class="k19-p k-card"><q>Replace with a real quote about writing difficult scenes without refusals.</q><p><b>Novelist</b> — Dark themes, no lectures</p></figure><figure class="k19-p k-card"><q>Replace with a real quote about per-request cost reporting and caching.</q><p><b>Startup CTO</b> — Predictable costs</p></figure></div>
+      <p class="k19-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="fees" data-section aria-labelledby="k19-f">
+    <div class="k-wrap">
+      <h2 id="k19-f" class="k19-h2" data-reveal>Fees, itemised to the token.</h2>
+      <div class="k19-plans" data-stagger><article class="k19-plan vellum k-card"><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="k19-plan vellum k-card feat"><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="k19-plan vellum k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article></div>
+      <table class="k19-table" data-reveal>
+        <caption>Rates per 1M tokens</caption>
+        <thead><tr><th scope="col">Hand</th><th scope="col">Character</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>128K</td><td>$0.60</td><td>$0.15</td><td>$2.40</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>128K</td><td>$0.80</td><td>$0.20</td><td>$3.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>256K</td><td>$1.20</td><td>$0.30</td><td>$4.80</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>1M</td><td>$1.50</td><td>$0.25</td><td>$6.00</td></tr><tr><th scope="row">Swift</th><td>Fast & small</td><td>32K</td><td>$0.08</td><td>$0.02</td><td>$0.32</td></tr></tbody>
+      </table>
+      <p class="k19-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="k19-z">
+    <div class="k-wrap k19-final">
+      <h2 id="k19-z" class="k19-h2" data-reveal>Bring your first answer to the light.</h2>
+      <a class="k19-btn" href="#main" data-magnetic="5,0.12,0.84,0.35" data-reveal><span data-magnetic-label>Get your API key</span></a>
+    </div>
+  </section>
+</main>
+<footer class="k19-foot">
+  <div><p class="k19-mark">Aether <i>atelier</i></p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Atelier Kintsugi" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>The hands</h4><ul><li><a href="#fees">Core</a></li><li><a href="#fees">Unbound</a></li><li><a href="#fees">Forge</a></li><li><a href="#fees">Atlas</a></li><li><a href="#fees">Swift</a></li></ul></div>
+  <div><h4>Platform</h4><ul><li><a href="#inspect">Model comparison</a></li><li><a href="#method">API quickstart</a></li><li><a href="#fees">Token rates</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in IM Fell English and Work Sans.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, FINE, $, $$, clamp, lerp, onScroll, progress, pointer, loop } = K;
+    // move a loupe over a manuscript: --x/--y/--r on the container drive the layer clip-paths
+    function Loupe(ms, { radius = 90 } = {}) {
+      let x = 0.6, y = 0.45, r = radius;
+      return {
+        set(nx, ny, nr = radius) { x = nx; y = ny; r = nr; ms.style.setProperty("--x", (x * 100).toFixed(2) + "%"); ms.style.setProperty("--y", (y * 100).toFixed(2) + "%"); ms.style.setProperty("--r", r.toFixed(1) + "px"); },
+        ease(tx, ty, tr = radius, k = 0.12) { this.set(lerp(x, tx, k), lerp(y, ty, k), lerp(r, tr, k)); },
+      };
+    }
+    // hero: pointer-steered X-ray loupe (auto-drifts on touch screens)
+    const hm = $("#hero-ms"), hl = Loupe(hm, { radius: innerWidth < 860 ? 56 : 110 });
+    hl.set(0.6, 0.45);
+    loop(hm, (t) => {
+      const r = hm.getBoundingClientRect();
+      const inside = FINE && pointer.active && pointer.x > r.left && pointer.x < r.right && pointer.y > r.top && pointer.y < r.bottom;
+      const tx = inside ? (pointer.x - r.left) / r.width : 0.5 + Math.sin(t * 0.5) * 0.28, ty = inside ? (pointer.y - r.top) / r.height : 0.5 + Math.cos(t * 0.4) * 0.22;
+      hl.ease(clamp(tx, 0.08, 0.92), clamp(ty, 0.1, 0.9), innerWidth < 860 ? 56 : 110, RM ? 1 : 0.1);
+    });
+
+    // signature: scroll sweeps the loupe across the page and steps through the spectrum
+    const run = $("#inspect"), sm = $("#sig-ms"), sl = Loupe(sm, { radius: 140 }), modes = $$(".k19-modes li");
+    const layers = { uv: sm.querySelector(".uv"), ir: sm.querySelector(".ir"), xr: sm.querySelector(".xr") };
+    let p = 0, mode = "vis";
+    onScroll(() => {
+      p = RM ? 0.7 : clamp((progress(run) - 0.04) / 0.9);
+      const k = Math.min(3, Math.floor(p * 4)), next = ["vis", "uv", "ir", "xr"][k];
+      if (next !== mode) { mode = next; modes.forEach((li) => li.classList.toggle("on", li.dataset.m === mode)); }
+    });
+    loop(sm, (t) => {
+      const local = (p * 4) % 1;
+      const r = sm.getBoundingClientRect();
+      const inside = FINE && pointer.active && pointer.x > r.left && pointer.x < r.right && pointer.y > r.top && pointer.y < r.bottom;
+      const tx = inside ? (pointer.x - r.left) / r.width : 0.15 + local * 0.7, ty = inside ? (pointer.y - r.top) / r.height : 0.3 + Math.sin(local * Math.PI) * 0.35;
+      const R = mode === "vis" ? 0 : Math.min(r.width, r.height) * (innerWidth < 860 ? 0.32 : 0.26);
+      sl.ease(tx, ty, R, RM ? 1 : 0.14);
+      for (const key in layers) layers[key].style.visibility = key === mode ? "visible" : "hidden";
+    });
+  })();
+</script>
+</body>
+</html>

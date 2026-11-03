@@ -351,7 +351,7 @@
       },
       "signature_scroll_mechanic": "Spectral inspection loupe: a cursor- and scroll-steered loupe reveals UV, infrared and X-ray layers",
       "hero_layout_type": "Open-book spread: copy on the left page, manuscript with a live loupe on the right page",
-      "built": false
+      "built": true
     },
     {
       "id": "20",
