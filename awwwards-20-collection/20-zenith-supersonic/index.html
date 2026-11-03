@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — One gate to every model</title>
+<meta name="description" content="One API key boards every request on five model families, with tokens and cost printed on every response. Zenith Supersonic design direction.">
+<meta name="theme-color" content="#080B11">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23080B11'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23F43F5E'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/big-shoulders-display-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/big-shoulders-display-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/big-shoulders-display-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/big-shoulders-display-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-mono-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#080B11;--bg-secondary:#131924;--accent:#F43F5E;--on-accent:#16040A;--text-primary:#E9EDF4;--text-muted:#96A0B2;--line:rgba(233,237,244,.12);--font-display:"Big Shoulders Display", sans-serif;--font-body:"IBM Plex Mono", ui-monospace, monospace}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Zenith Supersonic ——— */
+
+:root{--h1-weight:800;--pad:clamp(36px,3vw,40px)}
+body{font-size:1.05rem}
+.z20-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#080B11f2;border-bottom:1px solid var(--line);font-size:.74rem}
+.z20-mark{font-family:var(--font-display);font-weight:800;font-size:1.3rem;letter-spacing:.14em;text-decoration:none;display:flex;align-items:baseline;gap:10px}
+.z20-mark small{font-family:var(--font-body);font-weight:400;font-size:.66rem;letter-spacing:.12em;color:var(--text-muted)}
+.z20-links{display:flex;gap:4px}
+.z20-links a{text-decoration:none;color:var(--text-muted);padding:8px 10px;letter-spacing:.06em;text-transform:uppercase}
+.z20-links a:hover{color:var(--text-primary)}
+.z20-links a.is-current{color:var(--text-primary);box-shadow:inset 0 -2px 0 var(--accent)}
+.z20-gate{color:var(--text-muted);letter-spacing:.08em}
+@media (max-width:900px){.z20-links{display:none}}
+.z20-btn{display:inline-flex;align-items:center;gap:14px;min-height:58px;padding:0 26px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%)}
+.z20-btn svg{width:22px;height:22px;fill:currentColor;transition:transform .5s var(--ease)}
+.z20-btn.is-near svg{transform:translateX(5px) rotate(-8deg)}
+.z20-btn span{padding-right:8px}
+.z20-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:800;letter-spacing:-.01em;line-height:.95;text-transform:uppercase;max-width:18ch}
+.z20-kick{font-size:.72rem;letter-spacing:.16em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
+.z20-fine{margin-top:22px;font-size:.74rem;color:var(--text-muted)}
+
+/* split-flap cells (JS-driven) */
+.z20-flap{display:inline-flex;gap:2px;vertical-align:top}
+.fc{position:relative;display:inline-block;width:.72em;height:1.3em;perspective:280px;font-family:var(--font-display);font-weight:700;line-height:1.3em;text-align:center}
+.fc b{position:absolute;inset:0;display:block;font-weight:inherit;background:#1A2130;color:#EEF1F6;border-radius:2px}
+.fc .u,.fc .fu{clip-path:inset(0 0 50% 0)}
+.fc .d,.fc .fd{clip-path:inset(50% 0 0 0);background:#161C29}
+.fc::after{content:"";position:absolute;left:0;right:0;top:calc(50% - .5px);height:1px;background:#080B11;z-index:3;pointer-events:none}
+.z20-tiles{display:inline-flex;gap:2px}
+.z20-tiles .t{position:relative;display:inline-block;width:.72em;height:1.3em;line-height:1.3em;text-align:center;background:linear-gradient(#1A2130 50%,#161C29 50%);border-radius:2px;font-family:var(--font-display);font-weight:700}
+.z20-tiles .t::after{content:"";position:absolute;left:0;right:0;top:calc(50% - .5px);height:1px;background:#080B11}
+
+/* hero: the departure board */
+.z20-hero{min-height:calc(100svh - 60px);display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto 1fr auto;column-gap:16px;row-gap:18px;padding:18px var(--gutter) 22px}
+.z20-strip{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:.72rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
+.z20-strip .z20-tiles{font-size:1.25rem;color:var(--text-primary)}
+.z20-strip .clk{font-variant-numeric:tabular-nums;color:var(--text-primary)}
+.z20-copy{grid-column:1 / span 6;align-self:center;display:grid;gap:22px;justify-items:start}
+.z20-copy h1{position:relative;text-transform:uppercase;max-width:none;perspective:900px}
+.z20-copy h1 .w{display:inline-block;transform-origin:50% 0;animation:z20-flap .9s var(--ease) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
+.z20-copy h1::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0 calc(.49em - 1px),#080B11 calc(.49em - 1px) calc(.49em + 1px),transparent calc(.49em + 1px) .98em)}
+@keyframes z20-flap{0%{transform:rotateX(-92deg);opacity:0}55%{transform:rotateX(14deg);opacity:1}100%{transform:none;opacity:1}}
+.z20-copy .k-body{color:var(--text-muted);max-width:46ch}
+.z20-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.z20-trust{font-size:.8rem;color:var(--text-muted);display:flex;gap:6px 16px;flex-wrap:wrap;letter-spacing:.02em}
+.z20-trust b{color:var(--text-primary);font-weight:500}
+.z20-board{grid-column:7 / -1;align-self:center;justify-self:end;font-size:clamp(12px,1.32vw,21px);display:grid;gap:6px}
+.z20-bh{display:flex;gap:.6em;padding:0 0 4px}
+.z20-bh i{font-style:normal;font-family:var(--font-body);font-size:max(10px,.5em);letter-spacing:.12em;color:var(--text-muted)}
+.z20-bh span,.z20-row>span{flex:none}
+.z20-row{display:flex;gap:.6em;align-items:center;padding:0;border:0;background:none;text-align:left;font-size:inherit;border-radius:3px}
+.z20-row:focus-visible{outline-offset:4px}
+.z20-row.is-sel .c-rmk .fc b{background:var(--accent);color:var(--on-accent)}
+.z20-row.is-sel .c-dst .fc b{color:#FFFFFF}
+.z20-row:not(.is-sel) .c-rmk .fc b{color:var(--text-muted)}
+.z20-route{grid-column:1 / -1;position:relative;height:clamp(160px,25vh,240px);border:1px solid var(--line);background:linear-gradient(180deg,#0B0F17,#0D121B);touch-action:pan-y}
+.z20-route canvas{position:absolute;inset:0;width:100%;height:100%}
+.z20-route::before,.z20-route::after{content:"";position:absolute;width:16px;height:16px;border:1px solid #E9EDF466;pointer-events:none}
+.z20-route::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.z20-route::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.z20-cap{position:absolute;right:14px;top:10px;font-size:.66rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
+@media (max-width:900px){
+  .z20-hero{grid-template-columns:1fr;grid-template-rows:auto;row-gap:12px;padding:12px var(--gutter) 16px;min-height:0;align-content:start}
+  .z20-strip{display:none}
+  .z20-copy,.z20-board,.z20-route{grid-column:1}
+  .z20-copy{gap:10px}
+  .z20-btn{min-height:52px;font-size:1rem}
+  .z20-cta{gap:10px}
+  .z20-trust{font-size:.72rem;gap:2px 10px;line-height:1.5}
+  .z20-board{justify-self:start;font-size:13px;gap:4px}
+  .z20-bh{display:none}
+  .z20-row .c-flt,.z20-row .c-ctx{display:none}
+  .z20-route{height:92px}
+  .z20-cap{display:none}
+}
+
+/* problem: delays */
+.z20-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.z20-delays{display:grid;border-top:1px solid var(--line)}
+.z20-delays li{display:grid;grid-template-columns:92px 1fr 92px 1fr;gap:16px 20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.z20-delays .st{font-family:var(--font-display);font-weight:800;letter-spacing:.08em;font-size:1rem}
+.z20-delays .st.was{color:var(--text-muted);text-decoration:line-through;text-decoration-thickness:2px}
+.z20-delays .was{color:var(--text-muted)}
+.z20-delays .st.now{color:var(--text-primary)}
+@media (max-width:900px){.z20-cols{grid-template-columns:1fr;gap:40px}.z20-delays li{grid-template-columns:80px 1fr;gap:8px 14px}}
+
+/* signature: the itinerary globe */
+.z20-ihead{margin-top:clamp(64px,6vw,80px)}
+.z20-run{height:520vh;position:relative;margin-top:40px}
+.z20-pin{position:sticky;top:60px;height:calc(100vh - 60px);display:grid;grid-template-columns:1.1fr .9fr;gap:24px;padding:18px var(--gutter)}
+.z20-globe{position:relative;min-height:0;border:1px solid var(--line);background:radial-gradient(closest-side,#101726,#080B11)}
+.z20-globe canvas{position:absolute;inset:0;width:100%;height:100%}
+.z20-globe .lab{position:absolute;left:14px;bottom:10px;font-size:.66rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
+.z20-tick{display:grid;align-content:center;gap:16px;min-width:0;font-size:clamp(14px,1.5vw,24px)}
+.z20-pair{display:flex;align-items:center;gap:.5em;font-size:2.2em}
+.z20-pair svg{width:.8em;height:.8em;fill:var(--text-muted)}
+.z20-legno{font-family:var(--font-body);font-size:.5em;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-what{font-size:1em}
+.z20-nums{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.z20-nums div{display:grid;gap:4px}
+.z20-nums .lb{font-family:var(--font-body);font-size:max(10px,.46em);letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
+.z20-total{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-top:14px;border-top:1px solid var(--line)}
+.z20-total span{font-family:var(--font-body);font-size:max(11px,.5em);letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
+.z20-total b{font-family:var(--font-display);font-weight:800;font-size:2.2rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.z20-legs{display:grid;gap:2px;font-family:var(--font-body);font-size:max(11px,.52em);color:var(--text-muted)}
+.z20-legs li{display:grid;grid-template-columns:7.5em 1fr auto;gap:12px;padding:6px 10px;border-left:2px solid transparent}
+.z20-legs li.is-current{color:var(--text-primary);border-left-color:var(--accent);background:#131924}
+.z20-legs b{font-weight:500}
+@media (max-width:900px){
+  .z20-run{height:460vh}
+  .z20-pin{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:12px;padding:10px var(--gutter)}
+  .z20-tick{font-size:13px;gap:10px}
+  .z20-pair{font-size:2em}
+  .z20-total b{font-size:1.6rem}
+  .z20-legs{display:none}
+}
+@media (prefers-reduced-motion:reduce){.z20-run{height:auto}.z20-pin{position:relative;height:auto;min-height:100vh}.z20-globe{min-height:60vh}}
+
+/* bento: boarding passes */
+.z20-cabin{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.z20-pass{position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 96px;gap:24px;background:var(--bg-secondary);border:1px solid var(--line);border-radius:10px;min-height:250px}
+.z20-pass::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),#E9EDF414,transparent 65%);opacity:0;transition:opacity .3s}
+.z20-pass:hover::before{opacity:1}
+.z20-pass .main{display:grid;gap:12px;align-content:start;min-width:0}
+.z20-pass .cls{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-pass h3{font-size:clamp(1.45rem,2vw,1.9rem);font-weight:700;line-height:1.05;text-transform:uppercase;letter-spacing:.01em}
+.z20-pass p{font-size:.84rem;color:var(--text-muted)}
+.z20-pass .stub{position:relative;display:grid;align-content:space-between;gap:10px;padding-left:20px;border-left:2px dashed #E9EDF42e;font-size:.66rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
+.z20-pass .stub::before,.z20-pass .stub::after{content:"";position:absolute;left:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--line)}
+.z20-pass .stub::before{top:calc(-1 * var(--pad) - 12px)}
+.z20-pass .stub::after{bottom:calc(-1 * var(--pad) - 12px)}
+.z20-pass .stub b{display:block;font-family:var(--font-display);font-weight:800;font-size:1.6rem;letter-spacing:.02em;color:var(--text-primary)}
+.z20-bc{width:100%;max-width:200px;height:28px;fill:#E9EDF455;margin-top:auto}
+.z20-pass.d0{grid-column:span 2;grid-row:span 2}
+.z20-pass.d0 h3{font-size:clamp(2rem,3.4vw,3.1rem)}
+.z20-pass.d1,.z20-pass.d4,.z20-pass.d5{grid-column:span 2}
+.z20-pass.d2,.z20-pass.d3{grid-template-columns:1fr}
+.z20-pass.d2 .stub,.z20-pass.d3 .stub{padding:16px 0 0;border-left:0;border-top:2px dashed #E9EDF42e;display:flex;justify-content:space-between}
+.z20-pass.d2 .stub::before,.z20-pass.d2 .stub::after,.z20-pass.d3 .stub::before,.z20-pass.d3 .stub::after{display:none}
+.z20-pass.d2 .stub b,.z20-pass.d3 .stub b{font-size:1.3rem}
+@media (max-width:900px){
+  .z20-cabin{grid-template-columns:1fr}
+  .z20-pass{grid-column:auto!important;grid-row:auto!important;grid-template-columns:1fr;min-height:0}
+  .z20-pass .stub{padding:16px 0 0;border-left:0;border-top:2px dashed #E9EDF42e;display:flex;justify-content:space-between}
+  .z20-pass .stub::before,.z20-pass .stub::after{display:none}
+  .z20-pass .stub b{font-size:1.3rem}
+}
+
+/* rail: boarding */
+.z20-rail-head{padding:0 var(--gutter);margin-bottom:28px;display:grid;gap:22px}
+.z20-path{position:relative;height:24px;margin:0 var(--gutter) 28px;border-bottom:1px dashed #E9EDF433;overflow:clip}
+.z20-path .fill{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform-origin:left;transform:scaleX(var(--rp,0))}
+.z20-path .pw{position:absolute;left:0;top:0;bottom:0;width:calc(100% - 24px);transform:translateX(calc(var(--rp,0) * 100%))}
+.z20-path svg{width:24px;height:24px;fill:var(--text-primary)}
+.z20-steps{padding:0 var(--gutter);gap:16px}
+.z20-step{width:min(560px,52vw);display:grid;gap:14px;align-content:start;background:var(--bg-secondary);border:1px solid var(--line);border-top:3px solid #E9EDF422;border-radius:6px}
+.z20-step.is-active{border-top-color:var(--accent)}
+.z20-step .g{font-family:var(--font-display);font-weight:800;font-size:clamp(3.6rem,6vw,5.4rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px #E9EDF488}
+.z20-step .gl{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-step h3{font-size:1.7rem;font-weight:700;line-height:1.05;text-transform:uppercase}
+.z20-step p{font-size:.86rem;color:var(--text-muted)}
+.z20-step pre{margin:0;background:#080B11;border:1px solid var(--line);padding:14px;font-size:.74rem;overflow-x:auto;white-space:pre}
+@media (max-width:899px){.z20-step{width:auto}.z20-path{display:none}}
+
+/* proof: luggage tags */
+.z20-tags{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.z20-tag{position:relative;display:grid;gap:14px;background:var(--bg-secondary);border:1px solid var(--line);border-radius:8px 8px 8px 28px}
+.z20-tag::before{content:"";position:absolute;right:22px;top:22px;width:14px;height:14px;border-radius:50%;border:2px solid #E9EDF433;background:var(--bg-primary)}
+.z20-tag .hd{display:grid;gap:2px;padding-right:40px}
+.z20-tag b{font-family:var(--font-display);font-weight:800;font-size:1.5rem;text-transform:uppercase;letter-spacing:.02em}
+.z20-tag .hd span{font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
+.z20-tag q{font-size:.9rem;line-height:1.65;quotes:"“" "”"}
+.z20-tag .no{font-size:.66rem;letter-spacing:.14em;color:var(--text-muted)}
+@media (max-width:760px){.z20-tags{grid-template-columns:1fr}}
+
+/* fares */
+.z20-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.z20-plan{display:grid;gap:14px;align-content:start;background:var(--bg-secondary);border:1px solid var(--line);border-top:3px solid #E9EDF422;border-radius:6px}
+.z20-plan.feat{border-top-color:var(--accent)}
+.z20-plan .cl{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-plan h3{font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.z20-plan .p{font-family:var(--font-display);font-weight:800;font-size:3rem;line-height:1}
+.z20-plan .cad{font-size:.74rem;color:var(--text-muted)}
+.z20-plan ul{display:grid;gap:6px;font-size:.84rem}
+.z20-plan li::before{content:"+ ";color:var(--text-muted)}
+.z20-plan .fk{font-size:.76rem;border-top:1px dashed #E9EDF433;padding-top:14px;color:var(--text-muted)}
+@media (max-width:900px){.z20-plans{grid-template-columns:1fr}}
+.z20-table{width:100%;margin-top:40px;border-collapse:separate;border-spacing:0 6px;font-size:.84rem}
+.z20-table caption{text-align:left;font-family:var(--font-display);font-weight:800;font-size:1.4rem;letter-spacing:.08em;padding-bottom:6px;text-transform:uppercase}
+.z20-table th,.z20-table td{text-align:left;padding:12px 14px;background:var(--bg-secondary)}
+.z20-table thead th{background:none;font-weight:400;font-size:.68rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase;padding-block:4px}
+.z20-table tbody th{font-family:var(--font-display);font-weight:800;font-size:1.2rem;letter-spacing:.06em;text-transform:uppercase}
+.z20-table td.n{font-family:var(--font-display);font-weight:700;font-size:1.15rem;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.z20-table tbody tr>*:first-child{border-radius:4px 0 0 4px}
+.z20-table tbody tr>*:last-child{border-radius:0 4px 4px 0}
+@media (max-width:700px){.z20-table .r,.z20-table .c{display:none}.z20-table th,.z20-table td{padding:10px 8px}}
+
+/* final + footer */
+.z20-final{display:grid;justify-items:center;text-align:center;gap:30px}
+.z20-final .z20-tiles{font-size:clamp(1.4rem,3.4vw,2.6rem);color:var(--text-primary)}
+.z20-final .z20-h2{font-size:clamp(2.8rem,6vw,5.4rem);max-width:16ch}
+.z20-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.76rem;color:var(--text-muted)}
+.z20-foot h4{font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:.12em;color:var(--text-primary);margin-bottom:12px;text-transform:uppercase}
+.z20-foot ul{display:grid;gap:8px}
+.z20-foot a{text-decoration:none}
+.z20-foot a:hover{color:var(--text-primary)}
+.z20-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.z20-foot{grid-template-columns:1fr 1fr}.z20-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="z20-nav">
+  <a class="z20-mark" href="#main">AETHER<small>ZENITH</small></a>
+  <nav class="z20-links" data-spy aria-label="Sections"><a href="#delays">Delays</a><a href="#itinerary">Itinerary</a><a href="#cabin">Cabin</a><a href="#boarding">Boarding</a><a href="#flyers">Flyers</a><a href="#fares">Fares</a></nav>
+  <span class="z20-gate">GATE A · ALL FAMILIES</span>
+</header>
+<main id="main">
+  <section class="z20-hero" data-hero aria-labelledby="z20-h">
+    <div class="z20-strip"><span><span class="z20-tiles" aria-hidden="true"><span class="t">D</span><span class="t">E</span><span class="t">P</span><span class="t">A</span><span class="t">R</span><span class="t">T</span><span class="t">U</span><span class="t">R</span><span class="t">E</span><span class="t">S</span></span></span><span>Five model families · one gate</span><span>UTC <span class="clk" id="z20-clock">--:--:--</span></span></div>
+    <div class="z20-copy">
+      <h1 id="z20-h" data-hero-part="headline"><span class="w" style="--i:0">One</span> <span class="w" style="--i:1">gate</span> <span class="w" style="--i:2">to</span> <span class="w" style="--i:3">every</span> <span class="w" style="--i:4">model.</span></h1>
+      <p class="k-body" data-hero-part="sub">One key boards every request on five model families. Every ticket prints its fare.</p>
+      <div class="z20-cta">
+        <div data-hero-part="cta"><a class="z20-btn" href="#fares" data-cta="primary" data-magnetic="5,0.2,0.66,0.35"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 13.5 10 12 6.5 3.5h2.6L15 12l5.5-.6c1.1 0 1.9.5 1.9.9s-.8.9-1.9.9L15 13.8l-5.9 8.7H6.5L10 15l-8 .5z"/></svg></a></div>
+        <p class="z20-trust" data-hero-part="trust"><span><b>5</b> families</span><span><b>3</b> temperaments</span><span>tokens and cost on <b>every response</b></span></p>
+      </div>
+    </div>
+    <div class="z20-board" id="z20-board">
+      <p class="z20-bh" aria-hidden="true"><span style="width:calc(5 * (.72em + 2px))"><i>FLIGHT</i></span><span style="width:calc(7 * (.72em + 2px))"><i>DESTINATION</i></span><span style="width:calc(4 * (.72em + 2px))"><i>CONTEXT</i></span><span style="width:calc(5 * (.72em + 2px))"><i>OUT / 1M</i></span><span><i>REMARKS</i></span></p>
+      <button type="button" class="z20-row" data-i="0" aria-label="Core: General chat & reasoning, 128K context, $2.40 per 1M output tokens"><span class="c-flt" data-flap="5" data-v="AE101"></span><span class="c-dst" data-flap="7" data-v="CORE"></span><span class="c-ctx" data-flap="4" data-v="128K"></span><span class="c-out" data-flap="5" data-v="$2.40"></span><span class="c-rmk" data-flap="12" data-v="STANDARD" data-variants="STANDARD|LOW-REFUSAL"></span></button><button type="button" class="z20-row" data-i="1" aria-label="Unbound: Abliterated variant, 128K context, $3.20 per 1M output tokens"><span class="c-flt" data-flap="5" data-v="AE102"></span><span class="c-dst" data-flap="7" data-v="UNBOUND"></span><span class="c-ctx" data-flap="4" data-v="128K"></span><span class="c-out" data-flap="5" data-v="$3.20"></span><span class="c-rmk" data-flap="12" data-v="ABLITERATED" data-variants="ABLITERATED"></span></button><button type="button" class="z20-row" data-i="2" aria-label="Forge: Coding agents, 256K context, $4.80 per 1M output tokens"><span class="c-flt" data-flap="5" data-v="AE103"></span><span class="c-dst" data-flap="7" data-v="FORGE"></span><span class="c-ctx" data-flap="4" data-v="256K"></span><span class="c-out" data-flap="5" data-v="$4.80"></span><span class="c-rmk" data-flap="12" data-v="STANDARD" data-variants="STANDARD|LOW-REFUSAL"></span></button><button type="button" class="z20-row" data-i="3" aria-label="Atlas: Long context, 1M context, $6.00 per 1M output tokens"><span class="c-flt" data-flap="5" data-v="AE104"></span><span class="c-dst" data-flap="7" data-v="ATLAS"></span><span class="c-ctx" data-flap="4" data-v="1M"></span><span class="c-out" data-flap="5" data-v="$6.00"></span><span class="c-rmk" data-flap="12" data-v="STANDARD" data-variants="STANDARD"></span></button><button type="button" class="z20-row" data-i="4" aria-label="Swift: Fast & small, 32K context, $0.32 per 1M output tokens"><span class="c-flt" data-flap="5" data-v="AE105"></span><span class="c-dst" data-flap="7" data-v="SWIFT"></span><span class="c-ctx" data-flap="4" data-v="32K"></span><span class="c-out" data-flap="5" data-v="$0.32"></span><span class="c-rmk" data-flap="12" data-v="STANDARD" data-variants="STANDARD|LOW-REFUSAL|ABLITERATED"></span></button>
+    </div>
+    <div class="z20-route" data-hero-part="visual"><canvas id="z20-route" role="img" aria-label="Route arcs from your app to each model: distance is the context window, arc height is the output fare. Point at an arc or a board row to board it."></canvas><p class="z20-cap" aria-hidden="true">x = context window · arc height = output fare</p></div>
+  </section>
+
+  <section id="delays" data-section aria-labelledby="z20-d">
+    <div class="k-wrap z20-cols">
+      <div><p class="z20-kick" data-reveal>Delays &amp; cancellations</p><h2 id="z20-d" class="z20-h2" data-reveal>Too many layovers between you and a model.</h2></div>
+      <ul class="z20-delays" data-stagger><li><span class="st was">DELAYED</span><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="st now">ON TIME</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="st was">DELAYED</span><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="st now">ON TIME</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="st was">DELAYED</span><span class="was">Credit systems hide what a single request actually costs.</span><span class="st now">ON TIME</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li></ul>
+    </div>
+    <div class="k-wrap z20-ihead"><p class="z20-kick" data-reveal>The itinerary</p><h2 class="z20-h2" data-reveal style="max-width:22ch">One conversation. Five models. One ticket.</h2></div>
+    <div class="z20-run" id="itinerary">
+      <div class="z20-pin">
+        <div class="z20-globe"><canvas id="z20-globe" role="img" aria-label="A route globe: one conversation flies from your app to Core, Forge, Unbound, Atlas and Swift, with a Mach cone trailing the request"></canvas><p class="lab" aria-hidden="true">Thread carried across every leg · fictional hubs</p></div>
+        <div class="z20-tick">
+          <p class="z20-legno"><span id="z20-legno">Leg 1 of 5</span></p>
+          <div class="z20-pair" aria-hidden="true"><span data-flap="3" id="z20-from"></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 13.5 10 12 6.5 3.5h2.6L15 12l5.5-.6c1.1 0 1.9.5 1.9.9s-.8.9-1.9.9L15 13.8l-5.9 8.7H6.5L10 15l-8 .5z"/></svg><span data-flap="3" id="z20-to"></span></div>
+          <div class="z20-what" aria-hidden="true"><span data-flap="20" id="z20-what"></span></div>
+          <div class="z20-nums" aria-hidden="true">
+            <div><span class="lb">Input tokens</span><span data-flap="7" id="z20-in"></span></div>
+            <div><span class="lb">Cached</span><span data-flap="7" id="z20-ca"></span></div>
+            <div><span class="lb">Output tokens</span><span data-flap="7" id="z20-out"></span></div>
+            <div><span class="lb">Leg fare</span><span data-flap="7" id="z20-fare"></span></div>
+          </div>
+          <p class="k-sr" aria-live="polite" id="z20-live"></p>
+          <div class="z20-total"><span>Fare so far</span><b id="z20-total">$0.0000</b></div>
+          <ol class="z20-legs"><li data-leg='{"from":"APP","to":"COR","m":"core","what":"PLAN THE FEATURE","inT":2400,"cached":0,"outT":600,"lat":42,"lon":6,"fare":0.00288}'><b>APP › COR</b><span>Core · plan the feature</span><span>$0.0029</span></li><li data-leg='{"from":"COR","to":"FRG","m":"forge","what":"WRITE THE CODE","inT":18000,"cached":14000,"outT":2400,"lat":30,"lon":60,"fare":0.02052}'><b>COR › FRG</b><span>Forge · write the code</span><span>$0.0205</span></li><li data-leg='{"from":"FRG","to":"UNB","m":"unbound","what":"RED-TEAM THE PATCH","inT":6000,"cached":4000,"outT":800,"lat":-6,"lon":100,"fare":0.00496}'><b>FRG › UNB</b><span>Unbound · red-team the patch</span><span>$0.0050</span></li><li data-leg='{"from":"UNB","to":"ATL","m":"atlas","what":"CHECK THE WHOLE REPO","inT":420000,"cached":0,"outT":1200,"lat":-28,"lon":152,"fare":0.6372}'><b>UNB › ATL</b><span>Atlas · check the whole repo</span><span>$0.6372</span></li><li data-leg='{"from":"ATL","to":"SWF","m":"swift","what":"WRITE THE CHANGELOG","inT":3000,"cached":0,"outT":150,"lat":12,"lon":205,"fare":0.000288}'><b>ATL › SWF</b><span>Swift · write the changelog</span><span>$0.0003</span></li></ol>
+        </div>
+      </div>
+    </div>
+    <p class="k-wrap z20-fine">Illustrative itinerary at sample rates: total $0.666, most of it the 420K-token Atlas leg. Long context costs more, and the ticket says so before you fly. Sample rates for layout only. Final pricing not yet set.</p>
+  </section>
+
+  <section id="cabin" data-section aria-labelledby="z20-c">
+    <div class="k-wrap">
+      <p class="z20-kick" data-reveal>In the cabin</p>
+      <h2 id="z20-c" class="z20-h2" data-reveal>Six things every ticket includes.</h2>
+      <div class="z20-cabin" data-stagger><article class="z20-pass k-card d0" data-spot><div class="main"><p class="cls">Unified chat</p><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p><svg class="z20-bc" viewBox="0 0 132 30" aria-hidden="true" focusable="false"><path d="M0.00 0h0.50v30h-0.50zM0.99 0h0.50v30h-0.50zM1.74 0h0.25v30h-0.25zM2.49 0h0.25v30h-0.25zM3.23 0h0.50v30h-0.50zM3.98 0h0.25v30h-0.25zM4.47 0h0.50v30h-0.50zM5.47 0h0.75v30h-0.75zM6.71 0h0.50v30h-0.50zM7.46 0h0.25v30h-0.25zM7.95 0h0.25v30h-0.25zM8.70 0h0.75v30h-0.75zM9.69 0h0.75v30h-0.75zM10.94 0h0.75v30h-0.75zM11.93 0h0.75v30h-0.75zM12.93 0h0.50v30h-0.50zM13.67 0h0.50v30h-0.50zM14.42 0h0.75v30h-0.75zM15.66 0h0.25v30h-0.25zM16.16 0h0.25v30h-0.25zM16.66 0h0.75v30h-0.75zM17.65 0h0.75v30h-0.75zM18.64 0h0.25v30h-0.25zM19.39 0h0.50v30h-0.50zM20.14 0h0.75v30h-0.75zM21.13 0h0.50v30h-0.50zM22.12 0h0.25v30h-0.25zM22.87 0h0.50v30h-0.50zM23.86 0h0.50v30h-0.50zM24.61 0h0.25v30h-0.25zM25.11 0h0.25v30h-0.25zM25.85 0h0.50v30h-0.50zM26.60 0h0.50v30h-0.50zM27.34 0h0.75v30h-0.75zM28.59 0h0.25v30h-0.25zM29.08 0h0.25v30h-0.25zM29.58 0h0.75v30h-0.75zM30.58 0h0.50v30h-0.50zM31.32 0h0.75v30h-0.75zM32.56 0h0.25v30h-0.25zM33.06 0h0.50v30h-0.50zM34.06 0h0.25v30h-0.25zM34.80 0h0.75v30h-0.75zM36.05 0h0.75v30h-0.75zM37.04 0h0.25v30h-0.25zM37.79 0h0.75v30h-0.75zM38.78 0h0.50v30h-0.50zM39.77 0h0.25v30h-0.25zM40.27 0h0.75v30h-0.75zM41.27 0h0.50v30h-0.50zM42.26 0h0.75v30h-0.75zM43.25 0h0.50v30h-0.50zM44.00 0h0.75v30h-0.75zM45.24 0h0.25v30h-0.25zM45.74 0h0.50v30h-0.50zM46.49 0h0.25v30h-0.25zM46.98 0h0.75v30h-0.75zM48.23 0h0.75v30h-0.75zM49.22 0h0.25v30h-0.25zM49.97 0h0.75v30h-0.75zM50.96 0h0.50v30h-0.50zM51.71 0h0.75v30h-0.75zM52.95 0h0.50v30h-0.50zM53.94 0h0.25v30h-0.25zM54.69 0h0.25v30h-0.25zM55.44 0h0.25v30h-0.25zM56.18 0h0.75v30h-0.75zM57.42 0h0.50v30h-0.50zM58.42 0h0.25v30h-0.25zM59.16 0h0.75v30h-0.75zM60.16 0h0.50v30h-0.50zM60.90 0h0.50v30h-0.50zM61.90 0h0.75v30h-0.75zM62.89 0h0.50v30h-0.50zM63.89 0h0.75v30h-0.75zM64.88 0h0.75v30h-0.75zM65.88 0h0.25v30h-0.25zM66.62 0h0.50v30h-0.50zM67.37 0h0.50v30h-0.50zM68.11 0h0.25v30h-0.25zM68.61 0h0.50v30h-0.50zM69.60 0h0.25v30h-0.25zM70.35 0h0.25v30h-0.25zM71.10 0h0.25v30h-0.25zM71.84 0h0.75v30h-0.75zM72.84 0h0.50v30h-0.50zM73.58 0h0.25v30h-0.25zM74.33 0h0.50v30h-0.50zM75.32 0h0.50v30h-0.50zM76.07 0h0.25v30h-0.25zM76.56 0h0.25v30h-0.25zM77.31 0h0.50v30h-0.50zM78.06 0h0.25v30h-0.25zM78.55 0h0.25v30h-0.25zM79.05 0h0.50v30h-0.50zM80.05 0h0.25v30h-0.25zM80.79 0h0.50v30h-0.50zM81.79 0h0.50v30h-0.50zM82.53 0h0.25v30h-0.25zM83.28 0h0.50v30h-0.50zM84.02 0h0.75v30h-0.75zM85.02 0h0.50v30h-0.50zM85.76 0h0.25v30h-0.25zM86.51 0h0.75v30h-0.75zM87.50 0h0.50v30h-0.50zM88.25 0h0.75v30h-0.75zM89.24 0h0.75v30h-0.75zM90.24 0h0.50v30h-0.50zM90.98 0h0.50v30h-0.50zM91.98 0h0.25v30h-0.25zM92.47 0h0.75v30h-0.75zM93.47 0h0.75v30h-0.75zM94.46 0h0.50v30h-0.50zM95.21 0h0.25v30h-0.25zM95.71 0h0.25v30h-0.25zM96.45 0h0.25v30h-0.25zM97.20 0h0.50v30h-0.50zM97.94 0h0.25v30h-0.25zM98.44 0h0.25v30h-0.25zM99.19 0h0.25v30h-0.25zM99.93 0h0.75v30h-0.75zM101.18 0h0.75v30h-0.75zM102.42 0h0.75v30h-0.75zM103.41 0h0.50v30h-0.50zM104.16 0h0.75v30h-0.75zM105.15 0h0.75v30h-0.75zM106.15 0h0.50v30h-0.50zM107.14 0h0.25v30h-0.25zM107.89 0h0.50v30h-0.50zM108.88 0h0.50v30h-0.50zM109.63 0h0.50v30h-0.50zM110.37 0h0.50v30h-0.50zM111.37 0h0.75v30h-0.75zM112.36 0h0.50v30h-0.50zM113.36 0h0.25v30h-0.25zM114.10 0h0.75v30h-0.75zM115.10 0h0.50v30h-0.50zM116.09 0h0.25v30h-0.25zM116.59 0h0.50v30h-0.50zM117.58 0h0.75v30h-0.75zM118.82 0h0.75v30h-0.75zM119.82 0h0.50v30h-0.50zM120.56 0h0.75v30h-0.75zM121.56 0h0.75v30h-0.75zM122.55 0h0.75v30h-0.75zM123.80 0h0.75v30h-0.75zM125.04 0h0.75v30h-0.75zM126.03 0h0.75v30h-0.75zM127.03 0h0.50v30h-0.50zM127.77 0h0.25v30h-0.25zM128.27 0h0.25v30h-0.25zM129.02 0h0.25v30h-0.25zM129.76 0h0.50v30h-0.50zM130.76 0h0.75v30h-0.75z"/></svg></div><div class="stub" aria-hidden="true"><span>Seat<b>01A</b></span><span>Gate<b>A</b></span></div></article><article class="z20-pass k-card d1" data-spot><div class="main"><p class="cls">Three temperaments</p><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p><svg class="z20-bc" viewBox="0 0 132 30" aria-hidden="true" focusable="false"><path d="M0.00 0h0.25v30h-0.25zM0.75 0h0.50v30h-0.50zM1.49 0h0.25v30h-0.25zM1.99 0h0.25v30h-0.25zM2.49 0h0.50v30h-0.50zM3.23 0h0.50v30h-0.50zM4.23 0h0.25v30h-0.25zM4.97 0h0.75v30h-0.75zM5.97 0h0.25v30h-0.25zM6.71 0h0.75v30h-0.75zM7.71 0h0.75v30h-0.75zM8.70 0h0.50v30h-0.50zM9.45 0h0.25v30h-0.25zM10.19 0h0.50v30h-0.50zM10.94 0h0.25v30h-0.25zM11.68 0h0.75v30h-0.75zM12.68 0h0.75v30h-0.75zM13.92 0h0.25v30h-0.25zM14.42 0h0.75v30h-0.75zM15.41 0h0.50v30h-0.50zM16.16 0h0.25v30h-0.25zM16.90 0h0.75v30h-0.75zM17.90 0h0.50v30h-0.50zM18.64 0h0.50v30h-0.50zM19.64 0h0.75v30h-0.75zM20.63 0h0.75v30h-0.75zM21.63 0h0.75v30h-0.75zM22.87 0h0.25v30h-0.25zM23.37 0h0.25v30h-0.25zM24.11 0h0.75v30h-0.75zM25.11 0h0.25v30h-0.25zM25.85 0h0.25v30h-0.25zM26.60 0h0.25v30h-0.25zM27.34 0h0.50v30h-0.50zM28.09 0h0.75v30h-0.75zM29.08 0h0.50v30h-0.50zM30.08 0h0.75v30h-0.75zM31.32 0h0.75v30h-0.75zM32.56 0h0.25v30h-0.25zM33.31 0h0.75v30h-0.75zM34.31 0h0.25v30h-0.25zM35.05 0h0.50v30h-0.50zM35.80 0h0.75v30h-0.75zM36.79 0h0.50v30h-0.50zM37.54 0h0.75v30h-0.75zM38.78 0h0.75v30h-0.75zM39.77 0h0.50v30h-0.50zM40.52 0h0.25v30h-0.25zM41.02 0h0.50v30h-0.50zM41.76 0h0.50v30h-0.50zM42.76 0h0.25v30h-0.25zM43.50 0h0.75v30h-0.75zM44.50 0h0.50v30h-0.50zM45.24 0h0.75v30h-0.75zM46.49 0h0.25v30h-0.25zM47.23 0h0.50v30h-0.50zM47.98 0h0.75v30h-0.75zM48.97 0h0.50v30h-0.50zM49.72 0h0.75v30h-0.75zM50.71 0h0.75v30h-0.75zM51.71 0h0.25v30h-0.25zM52.45 0h0.25v30h-0.25zM53.20 0h0.75v30h-0.75zM54.19 0h0.50v30h-0.50zM55.19 0h0.25v30h-0.25zM55.93 0h0.50v30h-0.50zM56.93 0h0.25v30h-0.25zM57.67 0h0.75v30h-0.75zM58.67 0h0.50v30h-0.50zM59.41 0h0.50v30h-0.50zM60.41 0h0.75v30h-0.75zM61.40 0h0.50v30h-0.50zM62.40 0h0.75v30h-0.75zM63.39 0h0.50v30h-0.50zM64.14 0h0.50v30h-0.50zM65.13 0h0.75v30h-0.75zM66.37 0h0.50v30h-0.50zM67.37 0h0.25v30h-0.25zM68.11 0h0.50v30h-0.50zM68.86 0h0.50v30h-0.50zM69.85 0h0.75v30h-0.75zM70.85 0h0.50v30h-0.50zM71.59 0h0.50v30h-0.50zM72.59 0h0.75v30h-0.75zM73.83 0h0.50v30h-0.50zM74.58 0h0.25v30h-0.25zM75.07 0h0.50v30h-0.50zM75.82 0h0.75v30h-0.75zM77.06 0h0.25v30h-0.25zM77.81 0h0.50v30h-0.50zM78.55 0h0.50v30h-0.50zM79.30 0h0.25v30h-0.25zM79.80 0h0.50v30h-0.50zM80.79 0h0.25v30h-0.25zM81.54 0h0.25v30h-0.25zM82.28 0h0.25v30h-0.25zM83.03 0h0.75v30h-0.75zM84.27 0h0.75v30h-0.75zM85.27 0h0.75v30h-0.75zM86.26 0h0.50v30h-0.50zM87.01 0h0.50v30h-0.50zM87.75 0h0.50v30h-0.50zM88.75 0h0.25v30h-0.25zM89.49 0h0.75v30h-0.75zM90.49 0h0.75v30h-0.75zM91.73 0h0.75v30h-0.75zM92.72 0h0.25v30h-0.25zM93.47 0h0.75v30h-0.75zM94.46 0h0.25v30h-0.25zM95.21 0h0.50v30h-0.50zM95.95 0h0.25v30h-0.25zM96.70 0h0.75v30h-0.75zM97.69 0h0.75v30h-0.75zM98.69 0h0.75v30h-0.75zM99.68 0h0.75v30h-0.75zM100.93 0h0.25v30h-0.25zM101.42 0h0.50v30h-0.50zM102.17 0h0.25v30h-0.25zM102.67 0h0.25v30h-0.25zM103.41 0h0.25v30h-0.25zM104.16 0h0.75v30h-0.75zM105.40 0h0.75v30h-0.75zM106.64 0h0.75v30h-0.75zM107.64 0h0.50v30h-0.50zM108.38 0h0.75v30h-0.75zM109.38 0h0.75v30h-0.75zM110.37 0h0.25v30h-0.25zM111.12 0h0.25v30h-0.25zM111.86 0h0.75v30h-0.75zM113.11 0h0.75v30h-0.75zM114.10 0h0.75v30h-0.75zM115.10 0h0.50v30h-0.50zM115.84 0h0.50v30h-0.50zM116.59 0h0.50v30h-0.50zM117.58 0h0.25v30h-0.25zM118.33 0h0.75v30h-0.75zM119.32 0h0.75v30h-0.75zM120.32 0h0.50v30h-0.50zM121.31 0h0.25v30h-0.25zM122.06 0h0.75v30h-0.75zM123.05 0h0.75v30h-0.75zM124.05 0h0.75v30h-0.75zM125.04 0h0.50v30h-0.50zM125.79 0h0.50v30h-0.50zM126.78 0h0.50v30h-0.50zM127.53 0h0.75v30h-0.75zM128.77 0h0.25v30h-0.25zM129.27 0h0.25v30h-0.25zM129.76 0h0.50v30h-0.50zM130.76 0h0.75v30h-0.75z"/></svg></div><div class="stub" aria-hidden="true"><span>Seat<b>02B</b></span><span>Gate<b>A</b></span></div></article><article class="z20-pass k-card d2" data-spot><div class="main"><p class="cls">Coding agents</p><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p><svg class="z20-bc" viewBox="0 0 132 30" aria-hidden="true" focusable="false"><path d="M0.00 0h0.61v30h-0.61zM0.92 0h0.92v30h-0.92zM2.45 0h0.61v30h-0.61zM3.68 0h0.31v30h-0.31zM4.59 0h0.92v30h-0.92zM6.13 0h0.92v30h-0.92zM7.35 0h0.61v30h-0.61zM8.27 0h0.31v30h-0.31zM8.88 0h0.31v30h-0.31zM9.80 0h0.31v30h-0.31zM10.72 0h0.92v30h-0.92zM12.25 0h0.92v30h-0.92zM13.78 0h0.92v30h-0.92zM15.01 0h0.61v30h-0.61zM15.93 0h0.92v30h-0.92zM17.15 0h0.92v30h-0.92zM18.38 0h0.92v30h-0.92zM19.91 0h0.92v30h-0.92zM21.44 0h0.31v30h-0.31zM22.36 0h0.92v30h-0.92zM23.58 0h0.31v30h-0.31zM24.50 0h0.31v30h-0.31zM25.42 0h0.31v30h-0.31zM26.34 0h0.61v30h-0.61zM27.26 0h0.92v30h-0.92zM28.48 0h0.61v30h-0.61zM29.71 0h0.31v30h-0.31zM30.32 0h0.31v30h-0.31zM30.93 0h0.92v30h-0.92zM32.16 0h0.92v30h-0.92zM33.38 0h0.31v30h-0.31zM34.30 0h0.31v30h-0.31zM35.22 0h0.92v30h-0.92zM36.75 0h0.92v30h-0.92zM37.98 0h0.92v30h-0.92zM39.20 0h0.61v30h-0.61zM40.12 0h0.61v30h-0.61zM41.35 0h0.31v30h-0.31zM42.26 0h0.61v30h-0.61zM43.49 0h0.92v30h-0.92zM45.02 0h0.61v30h-0.61zM46.25 0h0.92v30h-0.92zM47.78 0h0.92v30h-0.92zM49.00 0h0.61v30h-0.61zM49.92 0h0.31v30h-0.31zM50.84 0h0.61v30h-0.61zM51.76 0h0.31v30h-0.31zM52.37 0h0.31v30h-0.31zM52.98 0h0.31v30h-0.31zM53.90 0h0.92v30h-0.92zM55.13 0h0.92v30h-0.92zM56.35 0h0.61v30h-0.61zM57.27 0h0.31v30h-0.31zM57.88 0h0.92v30h-0.92zM59.42 0h0.61v30h-0.61zM60.64 0h0.61v30h-0.61zM61.56 0h0.92v30h-0.92zM63.09 0h0.92v30h-0.92zM64.62 0h0.92v30h-0.92zM65.85 0h0.61v30h-0.61zM66.77 0h0.61v30h-0.61zM67.99 0h0.92v30h-0.92zM69.52 0h0.61v30h-0.61zM70.44 0h0.31v30h-0.31zM71.05 0h0.61v30h-0.61zM71.97 0h0.92v30h-0.92zM73.20 0h0.92v30h-0.92zM74.42 0h0.61v30h-0.61zM75.34 0h0.92v30h-0.92zM76.57 0h0.92v30h-0.92zM77.79 0h0.31v30h-0.31zM78.71 0h0.31v30h-0.31zM79.63 0h0.92v30h-0.92zM81.16 0h0.92v30h-0.92zM82.39 0h0.92v30h-0.92zM83.61 0h0.61v30h-0.61zM84.53 0h0.61v30h-0.61zM85.45 0h0.61v30h-0.61zM86.67 0h0.31v30h-0.31zM87.59 0h0.92v30h-0.92zM88.82 0h0.92v30h-0.92zM90.35 0h0.61v30h-0.61zM91.57 0h0.61v30h-0.61zM92.49 0h0.31v30h-0.31zM93.10 0h0.31v30h-0.31zM94.02 0h0.92v30h-0.92zM95.25 0h0.31v30h-0.31zM96.17 0h0.61v30h-0.61zM97.39 0h0.92v30h-0.92zM98.62 0h0.61v30h-0.61zM99.54 0h0.92v30h-0.92zM100.76 0h0.92v30h-0.92zM101.99 0h0.92v30h-0.92zM103.21 0h0.61v30h-0.61zM104.13 0h0.31v30h-0.31zM105.05 0h0.61v30h-0.61zM105.97 0h0.31v30h-0.31zM106.89 0h0.92v30h-0.92zM108.11 0h0.92v30h-0.92zM109.34 0h0.61v30h-0.61zM110.56 0h0.31v30h-0.31zM111.48 0h0.61v30h-0.61zM112.40 0h0.31v30h-0.31zM113.32 0h0.92v30h-0.92zM114.54 0h0.92v30h-0.92zM116.07 0h0.92v30h-0.92zM117.30 0h0.92v30h-0.92zM118.52 0h0.61v30h-0.61zM119.44 0h0.92v30h-0.92zM120.97 0h0.92v30h-0.92zM122.20 0h0.61v30h-0.61zM123.12 0h0.31v30h-0.31zM123.73 0h0.61v30h-0.61zM124.96 0h0.92v30h-0.92zM126.49 0h0.61v30h-0.61zM127.71 0h0.92v30h-0.92zM129.24 0h0.61v30h-0.61zM130.47 0h0.92v30h-0.92z"/></svg></div><div class="stub" aria-hidden="true"><span>Seat<b>03C</b></span><span>Gate<b>A</b></span></div></article><article class="z20-pass k-card d3" data-spot><div class="main"><p class="cls">Long context</p><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p><svg class="z20-bc" viewBox="0 0 132 30" aria-hidden="true" focusable="false"><path d="M0.00 0h0.56v30h-0.56zM1.13 0h0.28v30h-0.28zM1.69 0h0.56v30h-0.56zM2.81 0h0.28v30h-0.28zM3.66 0h0.28v30h-0.28zM4.50 0h0.28v30h-0.28zM5.35 0h0.84v30h-0.84zM6.75 0h0.84v30h-0.84zM8.16 0h0.84v30h-0.84zM9.29 0h0.56v30h-0.56zM10.13 0h0.56v30h-0.56zM10.98 0h0.84v30h-0.84zM12.38 0h0.56v30h-0.56zM13.51 0h0.28v30h-0.28zM14.35 0h0.28v30h-0.28zM15.20 0h0.28v30h-0.28zM16.04 0h0.28v30h-0.28zM16.89 0h0.56v30h-0.56zM17.73 0h0.28v30h-0.28zM18.58 0h0.84v30h-0.84zM19.70 0h0.56v30h-0.56zM20.55 0h0.84v30h-0.84zM21.67 0h0.28v30h-0.28zM22.52 0h0.56v30h-0.56zM23.36 0h0.84v30h-0.84zM24.49 0h0.84v30h-0.84zM25.61 0h0.84v30h-0.84zM26.74 0h0.56v30h-0.56zM27.86 0h0.28v30h-0.28zM28.43 0h0.28v30h-0.28zM29.27 0h0.84v30h-0.84zM30.40 0h0.56v30h-0.56zM31.24 0h0.56v30h-0.56zM32.37 0h0.28v30h-0.28zM33.21 0h0.28v30h-0.28zM34.06 0h0.28v30h-0.28zM34.90 0h0.28v30h-0.28zM35.74 0h0.84v30h-0.84zM36.87 0h0.84v30h-0.84zM38.00 0h0.56v30h-0.56zM38.84 0h0.28v30h-0.28zM39.40 0h0.56v30h-0.56zM40.25 0h0.56v30h-0.56zM41.37 0h0.56v30h-0.56zM42.22 0h0.28v30h-0.28zM43.06 0h0.84v30h-0.84zM44.19 0h0.84v30h-0.84zM45.31 0h0.56v30h-0.56zM46.44 0h0.28v30h-0.28zM47.28 0h0.56v30h-0.56zM48.13 0h0.56v30h-0.56zM48.97 0h0.28v30h-0.28zM49.54 0h0.56v30h-0.56zM50.66 0h0.28v30h-0.28zM51.51 0h0.28v30h-0.28zM52.35 0h0.28v30h-0.28zM53.19 0h0.84v30h-0.84zM54.32 0h0.56v30h-0.56zM55.16 0h0.84v30h-0.84zM56.29 0h0.84v30h-0.84zM57.42 0h0.56v30h-0.56zM58.26 0h0.84v30h-0.84zM59.67 0h0.56v30h-0.56zM60.51 0h0.56v30h-0.56zM61.64 0h0.56v30h-0.56zM62.76 0h0.28v30h-0.28zM63.61 0h0.84v30h-0.84zM64.73 0h0.56v30h-0.56zM65.86 0h0.84v30h-0.84zM66.99 0h0.56v30h-0.56zM68.11 0h0.84v30h-0.84zM69.24 0h0.56v30h-0.56zM70.08 0h0.84v30h-0.84zM71.21 0h0.84v30h-0.84zM72.33 0h0.28v30h-0.28zM73.18 0h0.28v30h-0.28zM74.02 0h0.84v30h-0.84zM75.15 0h0.56v30h-0.56zM75.99 0h0.28v30h-0.28zM76.84 0h0.84v30h-0.84zM77.96 0h0.28v30h-0.28zM78.81 0h0.28v30h-0.28zM79.65 0h0.28v30h-0.28zM80.49 0h0.56v30h-0.56zM81.34 0h0.56v30h-0.56zM82.18 0h0.28v30h-0.28zM82.75 0h0.56v30h-0.56zM83.59 0h0.56v30h-0.56zM84.72 0h0.28v30h-0.28zM85.56 0h0.84v30h-0.84zM86.69 0h0.84v30h-0.84zM87.81 0h0.56v30h-0.56zM88.66 0h0.56v30h-0.56zM89.50 0h0.56v30h-0.56zM90.63 0h0.28v30h-0.28zM91.47 0h0.84v30h-0.84zM92.60 0h0.84v30h-0.84zM93.72 0h0.56v30h-0.56zM94.57 0h0.56v30h-0.56zM95.69 0h0.28v30h-0.28zM96.54 0h0.84v30h-0.84zM97.66 0h0.56v30h-0.56zM98.79 0h0.56v30h-0.56zM99.63 0h0.28v30h-0.28zM100.20 0h0.28v30h-0.28zM101.04 0h0.56v30h-0.56zM101.88 0h0.56v30h-0.56zM103.01 0h0.28v30h-0.28zM103.86 0h0.56v30h-0.56zM104.70 0h0.56v30h-0.56zM105.83 0h0.84v30h-0.84zM106.95 0h0.84v30h-0.84zM108.08 0h0.84v30h-0.84zM109.20 0h0.56v30h-0.56zM110.05 0h0.56v30h-0.56zM111.17 0h0.28v30h-0.28zM112.02 0h0.56v30h-0.56zM112.86 0h0.56v30h-0.56zM113.99 0h0.84v30h-0.84zM115.11 0h0.56v30h-0.56zM115.96 0h0.84v30h-0.84zM117.08 0h0.84v30h-0.84zM118.21 0h0.56v30h-0.56zM119.05 0h0.56v30h-0.56zM120.18 0h0.56v30h-0.56zM121.02 0h0.84v30h-0.84zM122.43 0h0.28v30h-0.28zM122.99 0h0.28v30h-0.28zM123.56 0h0.56v30h-0.56zM124.40 0h0.28v30h-0.28zM124.96 0h0.84v30h-0.84zM126.37 0h0.56v30h-0.56zM127.50 0h0.28v30h-0.28zM128.34 0h0.84v30h-0.84zM129.47 0h0.56v30h-0.56zM130.59 0h0.84v30h-0.84z"/></svg></div><div class="stub" aria-hidden="true"><span>Seat<b>04D</b></span><span>Gate<b>A</b></span></div></article><article class="z20-pass k-card d4" data-spot><div class="main"><p class="cls">Prompt caching</p><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p><svg class="z20-bc" viewBox="0 0 132 30" aria-hidden="true" focusable="false"><path d="M0.00 0h0.99v30h-0.99zM1.33 0h0.66v30h-0.66zM2.32 0h0.66v30h-0.66zM3.32 0h0.66v30h-0.66zM4.64 0h0.66v30h-0.66zM5.97 0h0.33v30h-0.33zM6.96 0h0.99v30h-0.99zM8.62 0h0.33v30h-0.33zM9.29 0h0.99v30h-0.99zM10.61 0h0.66v30h-0.66zM11.61 0h0.33v30h-0.33zM12.60 0h0.66v30h-0.66zM13.60 0h0.99v30h-0.99zM14.92 0h0.66v30h-0.66zM15.92 0h0.66v30h-0.66zM16.91 0h0.99v30h-0.99zM18.57 0h0.99v30h-0.99zM19.90 0h0.99v30h-0.99zM21.23 0h0.66v30h-0.66zM22.22 0h0.99v30h-0.99zM23.88 0h0.33v30h-0.33zM24.54 0h0.33v30h-0.33zM25.21 0h0.66v30h-0.66zM26.20 0h0.33v30h-0.33zM26.86 0h0.33v30h-0.33zM27.86 0h0.33v30h-0.33zM28.85 0h0.99v30h-0.99zM30.51 0h0.99v30h-0.99zM32.17 0h0.99v30h-0.99zM33.50 0h0.66v30h-0.66zM34.49 0h0.99v30h-0.99zM35.82 0h0.99v30h-0.99zM37.15 0h0.99v30h-0.99zM38.47 0h0.99v30h-0.99zM39.80 0h0.99v30h-0.99zM41.13 0h0.66v30h-0.66zM42.12 0h0.66v30h-0.66zM43.45 0h0.33v30h-0.33zM44.11 0h0.33v30h-0.33zM45.11 0h0.99v30h-0.99zM46.43 0h0.99v30h-0.99zM47.76 0h0.66v30h-0.66zM49.09 0h0.99v30h-0.99zM50.41 0h0.66v30h-0.66zM51.74 0h0.99v30h-0.99zM53.07 0h0.66v30h-0.66zM54.06 0h0.33v30h-0.33zM55.06 0h0.99v30h-0.99zM56.38 0h0.99v30h-0.99zM58.04 0h0.66v30h-0.66zM59.37 0h0.33v30h-0.33zM60.36 0h0.99v30h-0.99zM61.69 0h0.66v30h-0.66zM62.68 0h0.66v30h-0.66zM64.01 0h0.99v30h-0.99zM65.34 0h0.99v30h-0.99zM66.66 0h0.99v30h-0.99zM67.99 0h0.66v30h-0.66zM68.98 0h0.33v30h-0.33zM69.98 0h0.66v30h-0.66zM70.97 0h0.66v30h-0.66zM71.97 0h0.33v30h-0.33zM72.63 0h0.99v30h-0.99zM74.29 0h0.33v30h-0.33zM74.95 0h0.33v30h-0.33zM75.95 0h0.99v30h-0.99zM77.28 0h0.99v30h-0.99zM78.60 0h0.66v30h-0.66zM79.60 0h0.99v30h-0.99zM80.92 0h0.99v30h-0.99zM82.25 0h0.99v30h-0.99zM83.58 0h0.66v30h-0.66zM84.57 0h0.66v30h-0.66zM85.90 0h0.33v30h-0.33zM86.56 0h0.66v30h-0.66zM87.89 0h0.33v30h-0.33zM88.88 0h0.33v30h-0.33zM89.88 0h0.33v30h-0.33zM90.87 0h0.99v30h-0.99zM92.53 0h0.99v30h-0.99zM94.19 0h0.99v30h-0.99zM95.52 0h0.66v30h-0.66zM96.51 0h0.99v30h-0.99zM97.84 0h0.66v30h-0.66zM98.83 0h0.66v30h-0.66zM99.83 0h0.66v30h-0.66zM101.16 0h0.66v30h-0.66zM102.48 0h0.33v30h-0.33zM103.48 0h0.99v30h-0.99zM105.14 0h0.33v30h-0.33zM105.80 0h0.99v30h-0.99zM107.13 0h0.66v30h-0.66zM108.12 0h0.33v30h-0.33zM109.12 0h0.66v30h-0.66zM110.11 0h0.99v30h-0.99zM111.44 0h0.66v30h-0.66zM112.43 0h0.66v30h-0.66zM113.43 0h0.66v30h-0.66zM114.75 0h0.33v30h-0.33zM115.75 0h0.99v30h-0.99zM117.08 0h0.99v30h-0.99zM118.40 0h0.66v30h-0.66zM119.40 0h0.33v30h-0.33zM120.39 0h0.99v30h-0.99zM121.72 0h0.99v30h-0.99zM123.05 0h0.99v30h-0.99zM124.37 0h0.33v30h-0.33zM125.37 0h0.66v30h-0.66zM126.36 0h0.99v30h-0.99zM127.69 0h0.66v30h-0.66zM129.02 0h0.66v30h-0.66zM130.34 0h0.99v30h-0.99z"/></svg></div><div class="stub" aria-hidden="true"><span>Seat<b>05E</b></span><span>Gate<b>A</b></span></div></article><article class="z20-pass k-card d5" data-spot><div class="main"><p class="cls">Side-by-side compare</p><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p><svg class="z20-bc" viewBox="0 0 132 30" aria-hidden="true" focusable="false"><path d="M0.00 0h0.75v30h-0.75zM1.00 0h0.50v30h-0.50zM1.99 0h0.50v30h-0.50zM2.74 0h0.25v30h-0.25zM3.24 0h0.75v30h-0.75zM4.48 0h0.75v30h-0.75zM5.48 0h0.25v30h-0.25zM6.23 0h0.75v30h-0.75zM7.22 0h0.25v30h-0.25zM7.97 0h0.75v30h-0.75zM8.97 0h0.25v30h-0.25zM9.46 0h0.75v30h-0.75zM10.71 0h0.75v30h-0.75zM11.71 0h0.75v30h-0.75zM12.70 0h0.25v30h-0.25zM13.45 0h0.75v30h-0.75zM14.45 0h0.75v30h-0.75zM15.44 0h0.50v30h-0.50zM16.44 0h0.50v30h-0.50zM17.18 0h0.25v30h-0.25zM17.68 0h0.75v30h-0.75zM18.93 0h0.75v30h-0.75zM19.92 0h0.25v30h-0.25zM20.67 0h0.75v30h-0.75zM21.67 0h0.75v30h-0.75zM22.66 0h0.50v30h-0.50zM23.41 0h0.50v30h-0.50zM24.16 0h0.75v30h-0.75zM25.40 0h0.50v30h-0.50zM26.40 0h0.25v30h-0.25zM27.15 0h0.75v30h-0.75zM28.39 0h0.25v30h-0.25zM28.89 0h0.75v30h-0.75zM29.89 0h0.50v30h-0.50zM30.63 0h0.75v30h-0.75zM31.63 0h0.75v30h-0.75zM32.63 0h0.50v30h-0.50zM33.37 0h0.50v30h-0.50zM34.37 0h0.25v30h-0.25zM35.12 0h0.75v30h-0.75zM36.11 0h0.50v30h-0.50zM37.11 0h0.75v30h-0.75zM38.35 0h0.50v30h-0.50zM39.10 0h0.25v30h-0.25zM39.60 0h0.25v30h-0.25zM40.35 0h0.25v30h-0.25zM41.09 0h0.75v30h-0.75zM42.34 0h0.75v30h-0.75zM43.34 0h0.75v30h-0.75zM44.33 0h0.50v30h-0.50zM45.08 0h0.25v30h-0.25zM45.83 0h0.50v30h-0.50zM46.57 0h0.25v30h-0.25zM47.07 0h0.25v30h-0.25zM47.57 0h0.25v30h-0.25zM48.32 0h0.75v30h-0.75zM49.31 0h0.75v30h-0.75zM50.31 0h0.50v30h-0.50zM51.06 0h0.50v30h-0.50zM51.80 0h0.50v30h-0.50zM52.80 0h0.50v30h-0.50zM53.55 0h0.25v30h-0.25zM54.05 0h0.75v30h-0.75zM55.29 0h0.75v30h-0.75zM56.54 0h0.25v30h-0.25zM57.03 0h0.25v30h-0.25zM57.53 0h0.25v30h-0.25zM58.28 0h0.50v30h-0.50zM59.03 0h0.75v30h-0.75zM60.02 0h0.50v30h-0.50zM60.77 0h0.75v30h-0.75zM62.02 0h0.25v30h-0.25zM62.51 0h0.50v30h-0.50zM63.51 0h0.25v30h-0.25zM64.26 0h0.75v30h-0.75zM65.50 0h0.75v30h-0.75zM66.50 0h0.25v30h-0.25zM67.25 0h0.75v30h-0.75zM68.24 0h0.50v30h-0.50zM69.24 0h0.25v30h-0.25zM69.74 0h0.75v30h-0.75zM70.73 0h0.50v30h-0.50zM71.48 0h0.50v30h-0.50zM72.48 0h0.75v30h-0.75zM73.72 0h0.50v30h-0.50zM74.72 0h0.25v30h-0.25zM75.46 0h0.50v30h-0.50zM76.21 0h0.50v30h-0.50zM77.21 0h0.75v30h-0.75zM78.20 0h0.50v30h-0.50zM78.95 0h0.75v30h-0.75zM79.95 0h0.75v30h-0.75zM80.94 0h0.50v30h-0.50zM81.94 0h0.25v30h-0.25zM82.69 0h0.50v30h-0.50zM83.68 0h0.50v30h-0.50zM84.43 0h0.50v30h-0.50zM85.18 0h0.50v30h-0.50zM86.17 0h0.75v30h-0.75zM87.17 0h0.50v30h-0.50zM87.92 0h0.75v30h-0.75zM88.91 0h0.50v30h-0.50zM89.66 0h0.50v30h-0.50zM90.41 0h0.50v30h-0.50zM91.40 0h0.50v30h-0.50zM92.40 0h0.25v30h-0.25zM93.15 0h0.75v30h-0.75zM94.39 0h0.25v30h-0.25zM94.89 0h0.75v30h-0.75zM95.89 0h0.50v30h-0.50zM96.63 0h0.25v30h-0.25zM97.38 0h0.50v30h-0.50zM98.13 0h0.75v30h-0.75zM99.12 0h0.50v30h-0.50zM99.87 0h0.25v30h-0.25zM100.37 0h0.75v30h-0.75zM101.62 0h0.25v30h-0.25zM102.36 0h0.75v30h-0.75zM103.36 0h0.50v30h-0.50zM104.35 0h0.75v30h-0.75zM105.60 0h0.50v30h-0.50zM106.60 0h0.25v30h-0.25zM107.34 0h0.50v30h-0.50zM108.09 0h0.50v30h-0.50zM109.09 0h0.25v30h-0.25zM109.83 0h0.75v30h-0.75zM110.83 0h0.75v30h-0.75zM111.83 0h0.50v30h-0.50zM112.57 0h0.75v30h-0.75zM113.57 0h0.75v30h-0.75zM114.57 0h0.50v30h-0.50zM115.56 0h0.25v30h-0.25zM116.31 0h0.50v30h-0.50zM117.31 0h0.50v30h-0.50zM118.05 0h0.75v30h-0.75zM119.05 0h0.50v30h-0.50zM119.80 0h0.50v30h-0.50zM120.54 0h0.75v30h-0.75zM121.79 0h0.50v30h-0.50zM122.78 0h0.25v30h-0.25zM123.53 0h0.75v30h-0.75zM124.78 0h0.25v30h-0.25zM125.28 0h0.75v30h-0.75zM126.52 0h0.25v30h-0.25zM127.02 0h0.50v30h-0.50zM127.77 0h0.25v30h-0.25zM128.26 0h0.25v30h-0.25zM129.01 0h0.50v30h-0.50zM129.76 0h0.50v30h-0.50zM130.75 0h0.75v30h-0.75z"/></svg></div><div class="stub" aria-hidden="true"><span>Seat<b>06F</b></span><span>Gate<b>A</b></span></div></article></div>
+    </div>
+  </section>
+
+  <section id="boarding" data-section aria-labelledby="z20-b">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="z20-rail-head"><p class="z20-kick">Boarding</p><h2 id="z20-b" class="z20-h2" data-reveal>Three gates to your first response.</h2></div>
+        <div class="z20-path" aria-hidden="true"><span class="fill"></span><span class="pw"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 13.5 10 12 6.5 3.5h2.6L15 12l5.5-.6c1.1 0 1.9.5 1.9.9s-.8.9-1.9.9L15 13.8l-5.9 8.7H6.5L10 15l-8 .5z"/></svg></span></div>
+        <ol class="z20-steps" data-rail-track><li class="z20-step k-card"><p class="gl">Gate 1 of 3</p><span class="g" aria-hidden="true">G1</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p><pre><code>model: "core-128k:low-refusal"</code></pre></li><li class="z20-step k-card"><p class="gl">Gate 2 of 3</p><span class="g" aria-hidden="true">G2</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+apiKey:  process.env.AETHER_API_KEY</code></pre></li><li class="z20-step k-card"><p class="gl">Gate 3 of 3</p><span class="g" aria-hidden="true">G3</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p><pre><code>usage: tokens · cached_tokens · cost</code></pre></li></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="flyers" data-section aria-labelledby="z20-f">
+    <div class="k-wrap">
+      <p class="z20-kick" data-reveal>Frequent flyers</p>
+      <h2 id="z20-f" class="z20-h2" data-reveal>Who books which seat.</h2>
+      <div class="z20-tags" data-stagger><article class="z20-tag k-card"><p class="hd"><b>Backend developer</b><span>One key instead of three</span></p><q>Replace with a real quote about consolidating providers behind one base URL.</q><p class="no">TAG AE-0001</p></article><article class="z20-tag k-card"><p class="hd"><b>Safety researcher</b><span>Studying refusal behaviour</span></p><q>Replace with a real quote about comparing standard and abliterated variants.</q><p class="no">TAG AE-0002</p></article><article class="z20-tag k-card"><p class="hd"><b>Novelist</b><span>Dark themes, no lectures</span></p><q>Replace with a real quote about writing difficult scenes without refusals.</q><p class="no">TAG AE-0003</p></article><article class="z20-tag k-card"><p class="hd"><b>Startup CTO</b><span>Predictable costs</span></p><q>Replace with a real quote about per-request cost reporting and caching.</q><p class="no">TAG AE-0004</p></article></div>
+      <p class="z20-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="fares" data-section aria-labelledby="z20-p">
+    <div class="k-wrap">
+      <p class="z20-kick" data-reveal>Fares</p>
+      <h2 id="z20-p" class="z20-h2" data-reveal>Pay per token. The fare is on the ticket.</h2>
+      <div class="z20-plans" data-stagger><article class="z20-plan k-card"><p class="cl">Class E</p><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="z20-plan k-card feat"><p class="cl">Class P</p><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="z20-plan k-card"><p class="cl">Class A</p><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article></div>
+      <table class="z20-table" data-reveal>
+        <caption>Timetable · per 1M tokens</caption>
+        <thead><tr><th scope="col">Model</th><th scope="col" class="r">Role</th><th scope="col" class="c">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td class="r">General chat & reasoning</td><td class="c n">128K</td><td class="n">$0.60</td><td class="n">$0.15</td><td class="n">$2.40</td></tr><tr><th scope="row">Unbound</th><td class="r">Abliterated variant</td><td class="c n">128K</td><td class="n">$0.80</td><td class="n">$0.20</td><td class="n">$3.20</td></tr><tr><th scope="row">Forge</th><td class="r">Coding agents</td><td class="c n">256K</td><td class="n">$1.20</td><td class="n">$0.30</td><td class="n">$4.80</td></tr><tr><th scope="row">Atlas</th><td class="r">Long context</td><td class="c n">1M</td><td class="n">$1.50</td><td class="n">$0.25</td><td class="n">$6.00</td></tr><tr><th scope="row">Swift</th><td class="r">Fast & small</td><td class="c n">32K</td><td class="n">$0.08</td><td class="n">$0.02</td><td class="n">$0.32</td></tr></tbody>
+      </table>
+      <p class="z20-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="z20-z">
+    <div class="k-wrap z20-final">
+      <span class="z20-tiles" aria-hidden="true"><span class="t">N</span><span class="t">O</span><span class="t">W</span><span class="t">&nbsp;</span><span class="t">B</span><span class="t">O</span><span class="t">A</span><span class="t">R</span><span class="t">D</span><span class="t">I</span><span class="t">N</span><span class="t">G</span></span>
+      <h2 id="z20-z" class="z20-h2" data-reveal>Your first request is cleared for departure.</h2>
+      <a class="z20-btn" href="#fares" data-magnetic="5,0.2,0.66,0.35" data-reveal><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 13.5 10 12 6.5 3.5h2.6L15 12l5.5-.6c1.1 0 1.9.5 1.9.9s-.8.9-1.9.9L15 13.8l-5.9 8.7H6.5L10 15l-8 .5z"/></svg></a>
+    </div>
+  </section>
+</main>
+<footer class="z20-foot">
+  <div><p class="z20-mark">AETHER<small>ZENITH</small></p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Zenith Supersonic" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Destinations</h4><ul><li><a href="#fares">Core · COR</a></li><li><a href="#fares">Unbound · UNB</a></li><li><a href="#fares">Forge · FRG</a></li><li><a href="#fares">Atlas · ATL</a></li><li><a href="#fares">Swift · SWF</a></li></ul></div>
+  <div><h4>Platform</h4><ul><li><a href="#itinerary">Unified chat</a></li><li><a href="#boarding">API quickstart</a></li><li><a href="#fares">Token rates</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Big Shoulders Display and IBM Plex Mono.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, lerp, smooth, canvas, loop, onScroll, progress, pointer } = K;
+    const TAU = Math.PI * 2, D2R = Math.PI / 180;
+    const CODES = { core: "COR", unbound: "UNB", forge: "FRG", atlas: "ATL", swift: "SWF" };
+
+    // —— split-flap cells ——
+    const DRUM = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$.,:-/";
+    const HALF = 46;
+    const Flap = (el) => {
+      const len = +el.dataset.flap;
+      el.classList.add("z20-flap"); el.setAttribute("aria-hidden", "true");
+      const cells = Array.from({ length: len }, () => {
+        const c = document.createElement("span"); c.className = "fc";
+        c.innerHTML = "<b class='u'></b><b class='d'></b><b class='fu'></b><b class='fd'></b>";
+        el.appendChild(c);
+        const [u, d, fu, fd] = c.children;
+        return { u, d, fu, fd, cur: " ", target: " ", busy: false, left: 0 };
+      });
+      const show = (cell, ch) => { cell.u.textContent = cell.d.textContent = cell.fu.textContent = cell.fd.textContent = ch; cell.cur = ch; };
+      const step = (cell) => {
+        if (cell.cur === cell.target) { cell.busy = false; return; }
+        cell.busy = true;
+        const nx = cell.left-- > 0 ? DRUM[1 + Math.floor(Math.random() * (DRUM.length - 1))] : cell.target;
+        const old = cell.cur;
+        cell.u.textContent = nx; cell.fd.textContent = nx; cell.fu.textContent = old; cell.d.textContent = old;
+        const a = cell.fu.animate([{ transform: "rotateX(0deg)" }, { transform: "rotateX(-90deg)" }], { duration: HALF, easing: "ease-in", fill: "forwards" });
+        const b = cell.fd.animate([{ transform: "rotateX(90deg)" }, { transform: "rotateX(0deg)" }], { duration: HALF, delay: HALF, easing: "cubic-bezier(.3,1.5,.6,1)", fill: "both" });
+        cell.cur = nx;
+        b.onfinish = () => { a.cancel(); b.cancel(); show(cell, nx); step(cell); };
+      };
+      const set = (str, { delay = 0, spin = 3 } = {}) => {
+        const s = String(str).toUpperCase().padEnd(len).slice(0, len);
+        cells.forEach((cell, i) => {
+          const ch = s[i];
+          if (ch === cell.target && (cell.busy || ch === cell.cur)) return;
+          cell.target = ch;
+          if (RM) return show(cell, ch);
+          cell.left = ch === " " ? 0 : spin + (i % 2);
+          if (!cell.busy) { cell.busy = true; setTimeout(() => step(cell), delay + i * 14); }
+        });
+      };
+      return { set, len };
+    };
+
+    // —— hero: departure board ——
+    const rows = $$(".z20-row").map((row, i) => {
+      const f = Object.fromEntries(["flt", "dst", "ctx", "out", "rmk"].map((k) => { const el = $(".c-" + k, row); return [k, { flap: Flap(el), v: el.dataset.v }]; }));
+      return { row, i, f, variants: $(".c-rmk", row).dataset.variants.split("|"), vi: 0 };
+    });
+    rows.forEach((r) => ["flt", "dst", "ctx", "out"].forEach((k, j) => r.f[k].flap.set(r.f[k].v, { delay: 180 + r.i * 80 + j * 60 })));
+    let sel = 0, userAt = -1e9, clockT = -1, cycleT = 0;
+    const remark = (r, first) => r.f.rmk.flap.set(r.i === sel ? "NOW BOARDING" : r.variants[r.vi % r.variants.length], { delay: first ? 420 + r.i * 80 : 0 });
+    const select = (i, user) => {
+      if (user) userAt = performance.now();
+      if (i === sel) return;
+      sel = i;
+      rows.forEach((r) => { r.row.classList.toggle("is-sel", r.i === sel); r.row.setAttribute("aria-pressed", r.i === sel ? "true" : "false"); remark(r); });
+    };
+    rows.forEach((r) => {
+      r.row.classList.toggle("is-sel", r.i === sel); r.row.setAttribute("aria-pressed", r.i === sel ? "true" : "false"); remark(r, true);
+      r.row.addEventListener("pointerenter", () => select(r.i, true));
+      r.row.addEventListener("focus", () => select(r.i, true));
+      r.row.addEventListener("click", () => select(r.i, true));
+    });
+    const clock = $("#z20-clock");
+    loop($("#z20-board"), (t, dt) => {
+      const now = new Date(), sec = now.getUTCSeconds();
+      if (sec !== clockT) { clockT = sec; clock.textContent = now.toISOString().slice(11, 19); }
+      if (RM) return;
+      cycleT += dt;
+      if (cycleT > 3.6) {
+        cycleT = 0;
+        rows.forEach((r) => { if (r.variants.length > 1 && r.i !== sel) { r.vi++; remark(r); } });
+        if (performance.now() - userAt > 6000) select((sel + 1) % rows.length, false);
+      }
+    });
+
+    // —— hero: route arcs. x = context window (log), arc height = output fare ——
+    const rc = $("#z20-route"), rs = canvas(rc);
+    const hubs = AE.MODELS.map((m, i) => ({ m, i, code: CODES[m.id], u: (Math.log10(m.contextK) - Math.log10(32)) / (3 - Math.log10(32)) }));
+    const geo = () => {
+      const { w, h } = rs, base = h - (w < 600 ? 16 : 30), top = w < 600 ? 10 : 22, ox = Math.max(26, w * 0.045);
+      const x0 = w * (w < 600 ? 0.38 : 0.32), x1 = w - Math.max(34, w * 0.05);
+      return hubs.map((hb) => {
+        const dx = lerp(x0, x1, hb.u) + (hb.m.id === "unbound" ? 14 : 0);
+        const apex = (base - top) * (0.22 + 0.78 * (hb.m.outPrice / 6));
+        return { hb, p0: [ox, base], p1: [(ox + dx) / 2, base - 2 * apex], p2: [dx, base], base };
+      });
+    };
+    const bez = (a, t) => { const u = 1 - t; return [u * u * a.p0[0] + 2 * u * t * a.p1[0] + t * t * a.p2[0], u * u * a.p0[1] + 2 * u * t * a.p1[1] + t * t * a.p2[1]]; };
+    const bezD = (a, t) => [2 * (1 - t) * (a.p1[0] - a.p0[0]) + 2 * t * (a.p2[0] - a.p1[0]), 2 * (1 - t) * (a.p1[1] - a.p0[1]) + 2 * t * (a.p2[1] - a.p1[1])];
+    rc.addEventListener("pointermove", (e) => {
+      const r = rc.getBoundingClientRect(), x = e.clientX - r.left, arcs = geo();
+      let best = 0, bd = 1e9;
+      arcs.forEach((a, i) => { const d = Math.abs(a.p2[0] - x); if (d < bd) { bd = d; best = i; } });
+      select(best, true);
+    });
+
+    // A delta-wing request with a Mach cone (half-angle 30°: Mach 2) and trailing shock arcs.
+    const machCone = (ctx, x, y, dx, dy, L, t, alpha = 1) => {
+      const m = Math.hypot(dx, dy) || 1; dx /= m; dy /= m;
+      const bx = -dx, by = -dy, s = Math.sin(Math.PI / 6), c = Math.cos(Math.PI / 6);
+      const l1 = [x + (bx * c - by * s) * L, y + (by * c + bx * s) * L], l2 = [x + (bx * c + by * s) * L, y + (by * c - bx * s) * L];
+      const g = ctx.createLinearGradient(x, y, x + bx * L, y + by * L);
+      g.addColorStop(0, `rgba(244,63,94,${0.42 * alpha})`); g.addColorStop(1, "rgba(244,63,94,0)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(l1[0], l1[1]); ctx.lineTo(l2[0], l2[1]); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = `rgba(251,113,133,${0.75 * alpha})`; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(l1[0], l1[1]); ctx.lineTo(x, y); ctx.lineTo(l2[0], l2[1]); ctx.stroke();
+      // shock arcs travelling back down the cone
+      const ang = Math.atan2(by, bx);
+      for (let k = 0; k < 3; k++) {
+        const f = ((RM ? 0.5 : t * 1.4) + k / 3) % 1, r = f * L;
+        ctx.strokeStyle = `rgba(251,113,133,${(1 - f) * 0.5 * alpha})`;
+        ctx.beginPath(); ctx.arc(x, y, Math.max(1, r), ang - Math.PI / 6, ang + Math.PI / 6); ctx.stroke();
+      }
+      ctx.fillStyle = "#F43F5E";
+      ctx.beginPath();
+      ctx.moveTo(x + dx * 8, y + dy * 8);
+      ctx.lineTo(x - dx * 5 - dy * 6, y - dy * 5 + dx * 6);
+      ctx.lineTo(x - dx * 2, y - dy * 2);
+      ctx.lineTo(x - dx * 5 + dy * 6, y - dy * 5 - dx * 6);
+      ctx.closePath(); ctx.fill();
+    };
+
+    let fly = 0, flySel = -1;
+    loop(rc, (t, dt) => {
+      const { ctx, w, h } = rs;
+      ctx.clearRect(0, 0, w, h);
+      const arcs = geo(), small = w < 600, base = arcs[0].base, ox = arcs[0].p0[0];
+      // ground: runway line, ticks along the context axis
+      ctx.strokeStyle = "rgba(233,237,244,.22)"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, base + 0.5); ctx.lineTo(w, base + 0.5); ctx.stroke();
+      const ticks = new Path2D();
+      for (let x = ox; x < w; x += small ? 12 : 16) { ticks.moveTo(x, base); ticks.lineTo(x, base + 4); }
+      ctx.strokeStyle = "rgba(233,237,244,.14)"; ctx.stroke(ticks);
+      ctx.font = `500 ${small ? 9 : 10}px "IBM Plex Mono", monospace`; ctx.textBaseline = "top";
+      ctx.fillStyle = "#96A0B2";
+      ctx.fillText("YOUR APP", Math.max(4, ox - 22), base + 7);
+      // all routes
+      const rest = new Path2D();
+      arcs.forEach((a, i) => { if (i === sel) return; rest.moveTo(a.p0[0], a.p0[1]); rest.quadraticCurveTo(a.p1[0], a.p1[1], a.p2[0], a.p2[1]); });
+      ctx.setLineDash([3, 5]); ctx.strokeStyle = "rgba(233,237,244,.26)"; ctx.stroke(rest); ctx.setLineDash([]);
+      arcs.forEach((a, i) => {
+        const on = i === sel;
+        ctx.fillStyle = on ? "#F43F5E" : "rgba(233,237,244,.7)";
+        ctx.fillRect(a.p2[0] - 3, a.p2[1] - 3, 6, 6);
+        if (!small || on) {
+          ctx.fillStyle = on ? "#E9EDF4" : "#96A0B2";
+          const lift = a.hb.m.id === "unbound" ? 13 : 0;
+          ctx.fillText(a.hb.code, a.p2[0] - 9, a.p2[1] - 18 - lift - (small ? 0 : 0));
+          if (!small && a.hb.m.id !== "unbound") ctx.fillText(a.hb.m.context, a.p2[0] - 9, base + 7);
+        }
+      });
+      // selected route: lit up to the request, Mach cone at the head
+      const a = arcs[sel];
+      if (flySel !== sel) { flySel = sel; fly = 0; }
+      fly = RM ? 0.62 : (fly + dt * 0.42) % 1.15;
+      const ft = smooth(clamp(fly));
+      const lit = new Path2D(); lit.moveTo(a.p0[0], a.p0[1]);
+      for (let k = 1; k <= 40; k++) { const p = bez(a, (k / 40) * ft); lit.lineTo(p[0], p[1]); }
+      ctx.strokeStyle = "rgba(244,63,94,.9)"; ctx.lineWidth = 1.6; ctx.stroke(lit);
+      const ahead = new Path2D(); const p0 = bez(a, ft); ahead.moveTo(p0[0], p0[1]);
+      for (let k = 1; k <= 30; k++) { const p = bez(a, ft + (1 - ft) * (k / 30)); ahead.lineTo(p[0], p[1]); }
+      ctx.strokeStyle = "rgba(233,237,244,.55)"; ctx.lineWidth = 1; ctx.stroke(ahead);
+      ctx.lineWidth = 1;
+      if (fly <= 1) { const [x, y] = bez(a, ft), [ddx, ddy] = bezD(a, ft); machCone(ctx, x, y, ddx, ddy, small ? 26 : clamp(w * 0.05, 40, 80), t); }
+      else { const f = (fly - 1) / 0.15; ctx.strokeStyle = `rgba(244,63,94,${1 - f})`; ctx.beginPath(); ctx.arc(a.p2[0], a.p2[1], 4 + f * 26, 0, TAU); ctx.stroke(); }
+      if (!small) {
+        const m = a.hb.m;
+        ctx.fillStyle = "#E9EDF4"; ctx.font = '600 11px "IBM Plex Mono", monospace';
+        ctx.fillText(`${a.hb.code} · ${m.name.toUpperCase()} · ${m.context} · IN $${m.inPrice.toFixed(2)} · OUT $${m.outPrice.toFixed(2)} / 1M`, 14, 12);
+      }
+    });
+
+    // —— signature: one conversation, five legs, a Mach cone across a route globe ——
+    const run = $("#itinerary"), gc = $("#z20-globe");
+    const LEGS = $$(".z20-legs li").map((li) => JSON.parse(li.dataset.leg));
+    const LI = $$(".z20-legs li");
+    const V = (lat, lon) => { const a = lat * D2R, b = lon * D2R; return [Math.cos(a) * Math.sin(b), Math.sin(a), Math.cos(a) * Math.cos(b)]; };
+    const nodes = [{ code: "APP", v: V(18, -42) }, ...LEGS.map((l) => ({ code: l.to, v: V(l.lat, l.lon) }))];
+    const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    const norm = (a) => { const m = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / m, a[1] / m, a[2] / m]; };
+    const slerp = (a, b, t) => { const om = Math.acos(clamp(dot(a, b), -1, 1)), so = Math.sin(om) || 1; const ka = Math.sin((1 - t) * om) / so, kb = Math.sin(t * om) / so; return [a[0] * ka + b[0] * kb, a[1] * ka + b[1] * kb, a[2] * ka + b[2] * kb]; };
+    const legPoint = (k, t) => { const a = nodes[k].v, b = nodes[k + 1].v, om = Math.acos(clamp(dot(a, b), -1, 1)); const p = slerp(a, b, t), r = 1 + (0.05 + 0.18 * om / Math.PI) * Math.sin(Math.PI * t); return [p[0] * r, p[1] * r, p[2] * r]; };
+
+    // Procedural fictional landmasses on a Fibonacci sphere.
+    let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    const blobs = Array.from({ length: 17 }, () => ({ c: norm([rnd() * 2 - 1, (rnd() * 2 - 1) * 0.8, rnd() * 2 - 1]), k: 12 + rnd() * 26, w: 0.6 + rnd() * 0.6 }));
+    const land = [];
+    const N = 5600, GA = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = GA * i, v = [Math.cos(th) * r, y, Math.sin(th) * r];
+      let f = 0; for (const b of blobs) f += b.w * Math.exp(-(1 - dot(v, b.c)) * b.k);
+      f += 0.14 * Math.sin(v[0] * 9 + v[1] * 5) * Math.sin(v[2] * 7 - v[1] * 4);
+      if (f > 0.5) land.push(v);
+    }
+    const gs = canvas(gc);
+    let yaw = 0.6, pitch = 0.3, yawT = yaw, pitchT = pitch;
+    const project = (v, R, cx, cy) => {
+      const cyw = Math.cos(yaw), syw = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+      const x1 = v[0] * cyw + v[2] * syw, z1 = -v[0] * syw + v[2] * cyw;
+      const y2 = v[1] * cp - z1 * sp, z2 = v[1] * sp + z1 * cp;
+      return [cx + x1 * R, cy - y2 * R, z2, x1 * x1 + y2 * y2];
+    };
+    const vis = (q) => q[2] > 0 || q[3] > 1;
+
+    // Ticket board
+    const fl = Object.fromEntries(["from", "to", "what", "in", "ca", "out", "fare"].map((k) => [k, Flap($("#z20-" + k))]));
+    const legNo = $("#z20-legno"), totalEl = $("#z20-total"), live = $("#z20-live");
+    const pad = (s, n) => String(s).padStart(n);
+    let shown = -1;
+    const board = (k) => {
+      if (k === shown) return;
+      shown = k;
+      const l = LEGS[k];
+      fl.from.set(l.from); fl.to.set(l.to, { delay: 80 }); fl.what.set(l.what, { delay: 140 });
+      fl.in.set(pad(l.inT.toLocaleString("en-US"), 7), { delay: 200 }); fl.ca.set(pad(l.cached.toLocaleString("en-US"), 7), { delay: 260 });
+      fl.out.set(pad(l.outT.toLocaleString("en-US"), 7), { delay: 320 }); fl.fare.set(pad("$" + l.fare.toFixed(4), 7), { delay: 380 });
+      legNo.textContent = `Leg ${k + 1} of ${LEGS.length}`;
+      live.textContent = `Leg ${k + 1}: ${l.from} to ${l.to}, ${l.what.toLowerCase()}. ${l.inT} input tokens, ${l.cached} cached, ${l.outT} output, fare $${l.fare.toFixed(4)}.`;
+      LI.forEach((li, i) => li.classList.toggle("is-current", i === k));
+    };
+    let leg = 0, lt = 0, local = 0;
+    onScroll(() => {
+      const p = RM ? 1 : clamp((progress(run) - 0.02) / 0.94);
+      const pp = Math.min(LEGS.length - 1e-6, p * LEGS.length);
+      leg = Math.floor(pp); local = pp - leg;
+      lt = RM ? 1 : smooth(clamp((local - 0.1) / 0.72));
+      board(leg);
+      let tot = 0; for (let i = 0; i < leg; i++) tot += LEGS[i].fare; tot += LEGS[leg].fare * lt;
+      totalEl.textContent = "$" + tot.toFixed(4);
+    });
+
+    loop(gc, (t, dt) => {
+      const { ctx, w, h } = gs;
+      ctx.clearRect(0, 0, w, h);
+      const R = Math.min(w, h) * (w < 600 ? 0.4 : 0.38), cx = w / 2, cy = h / 2;
+      // camera follows the request, leading slightly east
+      const head = norm(legPoint(leg, lt));
+      const lat = Math.asin(clamp(head[1], -1, 1)), lon = Math.atan2(head[0], head[2]);
+      let ty = -(lon + 0.35); while (ty - yaw > Math.PI) ty -= TAU; while (ty - yaw < -Math.PI) ty += TAU;
+      yawT = ty; pitchT = clamp(lat * 0.55 + 0.12, -0.6, 0.7);
+      const k = RM ? 1 : 1 - Math.exp(-dt * 3.2);
+      yaw = lerp(yaw, yawT, k); pitch = lerp(pitch, pitchT, k);
+      // atmosphere + disc
+      const atm = ctx.createRadialGradient(cx, cy, R * 0.96, cx, cy, R * 1.14);
+      atm.addColorStop(0, "rgba(140,170,220,.16)"); atm.addColorStop(1, "rgba(140,170,220,0)");
+      ctx.fillStyle = atm; ctx.beginPath(); ctx.arc(cx, cy, R * 1.14, 0, TAU); ctx.fill();
+      const disc = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
+      disc.addColorStop(0, "#1A2333"); disc.addColorStop(1, "#0A0E16");
+      ctx.fillStyle = disc; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.fill();
+      ctx.strokeStyle = "rgba(233,237,244,.28)"; ctx.lineWidth = 1; ctx.stroke();
+      // graticule
+      const grat = new Path2D();
+      const seg = (f) => { let prev = null; for (let i = 0; i <= 72; i++) { const q = project(f(i / 72), R, cx, cy); if (q[2] > 0) { if (prev) grat.lineTo(q[0], q[1]); else grat.moveTo(q[0], q[1]); prev = q; } else prev = null; } };
+      for (let la = -60; la <= 60; la += 30) seg((u) => V(la, u * 360));
+      for (let lo = 0; lo < 360; lo += 30) seg((u) => V(-90 + u * 180, lo));
+      ctx.strokeStyle = "rgba(233,237,244,.07)"; ctx.stroke(grat);
+      // land dots, two brightness buckets
+      const lit = new Path2D(), dim = new Path2D(), ds = w < 600 ? 1.2 : 1.5;
+      for (const v of land) { const q = project(v, R, cx, cy); if (q[2] <= 0) continue; (q[2] > 0.45 ? lit : dim).rect(q[0] - ds / 2, q[1] - ds / 2, ds, ds); }
+      ctx.fillStyle = "rgba(233,237,244,.5)"; ctx.fill(lit);
+      ctx.fillStyle = "rgba(233,237,244,.22)"; ctx.fill(dim);
+      // routes: flown (solid), current (lit to the head), ahead (dashed)
+      const flown = new Path2D(), ahead = new Path2D(), cur = new Path2D();
+      const trace = (path, kk, t0, t1, n = 48) => { let pen = false; for (let i = 0; i <= n; i++) { const q = project(legPoint(kk, lerp(t0, t1, i / n)), R, cx, cy); if (vis(q)) { pen ? path.lineTo(q[0], q[1]) : path.moveTo(q[0], q[1]); pen = true; } else pen = false; } };
+      for (let i = 0; i < LEGS.length; i++) { if (i < leg) trace(flown, i, 0, 1); else if (i > leg) trace(ahead, i, 0, 1); else { trace(cur, i, 0, Math.max(0.001, lt)); trace(ahead, i, lt, 1); } }
+      ctx.lineWidth = 1.4; ctx.strokeStyle = "rgba(233,237,244,.55)"; ctx.stroke(flown);
+      ctx.setLineDash([3, 6]); ctx.strokeStyle = "rgba(233,237,244,.3)"; ctx.lineWidth = 1; ctx.stroke(ahead); ctx.setLineDash([]);
+      ctx.strokeStyle = "#F43F5E"; ctx.lineWidth = 2; ctx.stroke(cur);
+      // hubs
+      ctx.font = `600 ${w < 600 ? 10 : 12}px "IBM Plex Mono", monospace`; ctx.textBaseline = "middle";
+      nodes.forEach((nd, i) => {
+        const q = project(nd.v, R, cx, cy); if (q[2] <= 0.02) return;
+        const done = i <= leg + (lt >= 1 ? 1 : 0), here = i === leg + 1;
+        ctx.fillStyle = here ? "#F43F5E" : done ? "#E9EDF4" : "rgba(233,237,244,.5)";
+        ctx.beginPath(); ctx.arc(q[0], q[1], here ? 4.5 : 3, 0, TAU); ctx.fill();
+        ctx.fillStyle = done || here ? "#E9EDF4" : "#96A0B2";
+        ctx.fillText(nd.code, q[0] + 9, q[1] - 9);
+      });
+      // arrival boom at the destination hub (scroll-scrubbed)
+      if (local > 0.82) { const q = project(nodes[leg + 1].v, R, cx, cy), f = clamp((local - 0.82) / 0.18); if (q[2] > 0) { ctx.strokeStyle = `rgba(244,63,94,${0.8 * (1 - f)})`; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(q[0], q[1], 6 + f * R * 0.22, 0, TAU); ctx.stroke(); } }
+      // the request + Mach cone
+      if (lt > 0.001 && lt < 0.999) {
+        const a = project(legPoint(leg, lt), R, cx, cy), b = project(legPoint(leg, Math.min(1, lt + 0.01)), R, cx, cy);
+        if (vis(a)) machCone(ctx, a[0], a[1], b[0] - a[0], b[1] - a[1], clamp(R * 0.32, 44, 130), t);
+      }
+    });
+  })();
+</script>
+</body>
+</html>

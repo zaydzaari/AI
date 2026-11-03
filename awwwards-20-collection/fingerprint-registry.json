@@ -370,7 +370,7 @@
       },
       "signature_scroll_mechanic": "Split-flap route board flips city pairs on scroll while a Mach cone sweeps across a route globe",
       "hero_layout_type": "Departure board: headline and CTA set into a split-flap board above a route arc",
-      "built": false
+      "built": true
     }
   ]
 }
