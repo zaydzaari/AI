@@ -1,153 +1,241 @@
 "use client";
 
+/**
+ * 05 Kiln (v3) — experimental creative studio.
+ * Colour blocking, geometric stickers you can drag, and a signature "agent loop"
+ * choreography: as you scroll, shapes stamp Plan → Edit → Test → Ship across the
+ * stage while the run's log and token cost accumulate.
+ */
+
 import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
-import { BRAND, MODELS, MOCK_NOTE } from "@/lib/content";
-import { Bento, FinalCTA, Footer, Head, HowItWorks, Plans, PrimaryCTA, ProblemSolution, Proof, Trust } from "@/components/system";
-import { Cursor, Marquee, REMIX, RemixCol, SHAPES, Stickers } from "./parts";
+import { BENEFITS, BRAND, MODELS, PLANS, PRICE_NOTE, PROBLEM, PROOF, PROOF_NOTE, STEPS, STEP_CODE, MOCK_NOTE, estimateCost, fmtUSD } from "@/lib/content";
+import { clamp, onScroll, progress, reduced, useKit } from "@/lib/kit";
 
-const bouncy = { type: "spring", stiffness: 260, damping: 18 } as const;
-const CREAM = "#F3EFE6";
-const INK = "#111111";
+const FORGE = MODELS.find((m) => m.id === "forge")!;
+const LOOP = [
+  { shape: "circle", stage: "Plan", log: "Read 38 files in src/ and tests/. Plan: add retry with backoff to the API client.", inTok: 31000, outTok: 900, cached: 0 },
+  { shape: "square", stage: "Edit", log: "Edited src/client.ts (+18 −6) and src/retry.ts (new, 41 lines).", inTok: 33000, outTok: 2600, cached: 0.9 },
+  { shape: "triangle", stage: "Test", log: "Ran 214 tests. 1 failed: retry.spec.ts › gives up after 5 attempts. Fixed off-by-one.", inTok: 34000, outTok: 1400, cached: 0.92 },
+  { shape: "star", stage: "Ship", log: "All 214 tests pass. Diff ready for your review — 2 files, +59 −6.", inTok: 34500, outTok: 700, cached: 0.94 },
+];
+const loopCost = (i: number) => LOOP.slice(0, i + 1).reduce((a, s) => a + estimateCost(FORGE, s.inTok, s.outTok, s.cached), 0);
+const loopTok = (i: number) => LOOP.slice(0, i + 1).reduce((a, s) => a + s.inTok + s.outTok, 0);
+const STICKERS = [
+  { id: "core", cls: "circle", bg: "var(--lilac)", fg: "#111", x: 14, y: 18 },
+  { id: "unbound", cls: "moon", bg: "var(--coral)", fg: "#111", x: 58, y: 12 },
+  { id: "forge", cls: "square", bg: "var(--lime)", fg: "#111", x: 30, y: 52 },
+  { id: "atlas", cls: "pill", bg: "var(--cream)", fg: "#111", x: 56, y: 64 },
+  { id: "swift", cls: "star", bg: "#FFFFFF", fg: "#111", x: 6, y: 66 },
+];
 
-function Remix() {
-  const [run, setRun] = useState(0);
+function Stickers() {
+  const box = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState(STICKERS.map((s) => ({ x: s.x, y: s.y })));
+  const [top, setTop] = useState(-1);
+  const drag = (i: number) => (e: React.PointerEvent<HTMLButtonElement>) => {
+    const el = e.currentTarget; el.setPointerCapture(e.pointerId);
+    const r = box.current!.getBoundingClientRect();
+    const start = { px: e.clientX, py: e.clientY, ...pos[i] };
+    setTop(i);
+    const move = (ev: PointerEvent) => setPos((p) => p.map((q, j) => (j === i ? { x: clamp(start.x + ((ev.clientX - start.px) / r.width) * 100, 0, 78), y: clamp(start.y + ((ev.clientY - start.py) / r.height) * 100, 0, 80) } : q)));
+    const up = () => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerup", up); };
+    el.addEventListener("pointermove", move); el.addEventListener("pointerup", up);
+  };
+  const key = (i: number) => (e: React.KeyboardEvent) => {
+    const d = { ArrowLeft: [-4, 0], ArrowRight: [4, 0], ArrowUp: [0, -4], ArrowDown: [0, 4] }[e.key];
+    if (!d) return; e.preventDefault(); setTop(i);
+    setPos((p) => p.map((q, j) => (j === i ? { x: clamp(q.x + d[0], 0, 78), y: clamp(q.y + d[1], 0, 80) } : q)));
+  };
   return (
-    <section id="remix" data-section className="sys-section sys-invert bg-[var(--ink)]">
-      <div className="sys-container">
-        <div className="flex flex-wrap items-end justify-between gap-10">
-          <Head title="One prompt. Three temperaments." lead="The same request — write a villain's opening line — answered by each variant. Simulated output." />
-          <button onClick={() => setRun((r) => r + 1)} className="sys-ghost mb-16 lg:mb-20">
-            Run the remix again
+    <div className="k5-board" ref={box} data-hero-part="visual">
+      <p className="k5-hint" aria-hidden>drag the models around</p>
+      {STICKERS.map((s, i) => {
+        const m = MODELS.find((x) => x.id === s.id)!;
+        return (
+          <button key={s.id} className={`k5-sticker ${s.cls}`} style={{ left: `${pos[i].x}%`, top: `${pos[i].y}%`, background: s.bg, color: s.fg, zIndex: top === i ? 3 : 1 }} onPointerDown={drag(i)} onKeyDown={key(i)} aria-label={`${m.name} sticker — use arrow keys to move`}>
+            <b>{m.name}</b><span>{m.role}</span>
           </button>
-        </div>
-        <div className="grid gap-5 lg:grid-cols-3">
-          {REMIX.map((r, i) => (
-            <RemixCol key={r.v} r={r} i={i} run={run} />
-          ))}
-        </div>
-      </div>
-    </section>
+        );
+      })}
+    </div>
   );
 }
 
-function Deck() {
-  const [fan, setFan] = useState(false);
-  const [md, setMd] = useState(false);
-  useEffect(() => {
-    const q = window.matchMedia("(min-width: 768px)");
-    const f = () => setMd(q.matches);
-    f();
-    q.addEventListener("change", f);
-    return () => q.removeEventListener("change", f);
-  }, []);
+function AgentLoop() {
+  const run = useRef<HTMLDivElement>(null);
+  const [p, setP] = useState(0);
+  useEffect(() => onScroll(() => setP(reduced() ? 1 : clamp((progress(run.current!) - 0.06) / 0.84))), []);
+  const at = Math.min(3, Math.floor(p * 4));
+  const local = p * 4 - at;
   return (
-    <section id="models" data-section className="sys-section overflow-hidden">
-      <div className="sys-container">
-        <Head title="The deck: five model families." lead={`Hover to fan the cards. ${MOCK_NOTE}.`} />
-        <div className="relative flex flex-col gap-5 md:h-[440px] md:flex-row md:items-center md:justify-center" onMouseEnter={() => setFan(true)} onMouseLeave={() => setFan(false)}>
-          {MODELS.map((m, i) => {
-            const off = i - 2;
-            const dark = i % 2 === 1;
-            return (
-              <motion.article
-                key={m.id}
-                animate={md ? { x: fan ? off * 240 : off * 44, rotate: fan ? off * 3 : off * 7, y: Math.abs(off) * (fan ? 14 : 8) } : { x: 0, rotate: 0, y: 0 }}
-                transition={bouncy}
-                className="d05-card relative flex h-[380px] w-full shrink-0 flex-col justify-between rounded-[28px] border-2 border-[var(--ink)] p-8 md:absolute md:w-[250px]"
-                style={{ background: dark ? INK : CREAM, color: dark ? CREAM : INK, zIndex: 5 - Math.abs(off) }}
-              >
-                <div className="flex justify-between text-[0.9375rem]">
-                  <span>{m.role}</span>
-                  <span className="d05-mono">{m.context}</span>
-                </div>
-                <div className="d05-head text-[3.25rem] leading-none">{m.name}</div>
-                <div>
-                  <p className="text-[1rem] leading-snug">{m.blurb}</p>
-                  <p className="mt-3 text-[0.9375rem]">{m.variants.join(" / ")}</p>
-                </div>
-              </motion.article>
-            );
-          })}
+    <div className="k5-run" ref={run}>
+      <div className="k5-pin">
+        <div className="k5-stage" aria-hidden>
+          {LOOP.map((s, i) => (
+            <span key={s.stage} className={`k5-shape ${s.shape} ${i < at || (i === at && local > 0.15) ? "stamped" : ""} ${i === at ? "now" : ""}`} style={{ ["--i" as string]: i }} />
+          ))}
+          <span className="k5-track" style={{ transform: `scaleX(${p.toFixed(3)})` }} />
+        </div>
+        <div className="k5-log" aria-live="polite">
+          <p className="k5-run-head"><span>forge-256k · agent run</span><span>step {at + 1} of 4</span></p>
+          <ol>
+            {LOOP.map((s, i) => (
+              <li key={s.stage} className={i <= at ? "on" : ""}>
+                <b>{s.stage}</b><span>{s.log}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="k5-tally"><span><b className="live">{loopTok(at).toLocaleString("en-US")}</b> tokens</span><span><b className="live">{fmtUSD(loopCost(at))}</b> so far</span><span>cached input billed at ${FORGE.cached.toFixed(2)} / 1M</span></p>
         </div>
       </div>
-    </section>
+    </div>
   );
+}
+
+function Marquee() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (reduced()) return;
+    let x = 0, last = scrollY, v = 0, raf = 0;
+    const tick = () => {
+      const dy = scrollY - last; last = scrollY;
+      v += (Math.abs(dy) * 0.25 - v) * 0.1;
+      x -= 0.6 + v;
+      const w = (ref.current?.scrollWidth || 1) / 2;
+      if (-x > w) x += w;
+      if (ref.current) ref.current.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  const words = ["Make it", "●", "Ship it", "■", "Test it", "▲", "Fire it", "★"];
+  return <div className="k5-marquee" aria-hidden><div ref={ref}>{[...words, ...words, ...words, ...words].map((w, i) => <span key={i}>{w}</span>)}</div></div>;
 }
 
 export default function Design05() {
-  const hero = useRef<HTMLElement>(null);
+  const root = useRef<HTMLDivElement>(null);
+  useKit(root);
+  const total = loopCost(3);
   return (
-    <div className="d05 sys min-h-screen md:cursor-none [&_a]:md:cursor-none [&_button]:md:cursor-none">
-      <Cursor />
-      <header className="sticky top-0 z-40 flex h-[var(--nav-h)] items-center px-3">
-        <div className="flex w-full items-center gap-3 rounded-full border-2 border-[var(--ink)] bg-[var(--cream)] py-1.5 pl-5 pr-1.5">
-          <a href="#" className="d05-head flex items-center gap-2 text-[1.25rem]">
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--ink)] text-[0.75rem] text-[var(--cream)]" aria-hidden>
-              Æ
-            </span>
-            {BRAND.name}
-          </a>
-          <nav aria-label="Primary" className="ml-auto hidden gap-1 text-[0.9375rem] font-semibold md:flex">
-            {[
-              ["Why", "#why"],
-              ["Remix", "#remix"],
-              ["How it works", "#how"],
-              ["Models", "#models"],
-              ["Pricing", "#pricing"],
-            ].map(([l, h]) => (
-              <a key={l} href={h} className="rounded-full px-4 py-2 transition-colors hover:bg-[var(--ink)] hover:text-[var(--cream)]">
-                {l}
-              </a>
-            ))}
-          </nav>
-          <a href="#" className="ml-auto rounded-full border-2 border-[var(--ink)] px-4 py-2 text-[0.875rem] font-semibold md:ml-2">
-            Sign in
-          </a>
-        </div>
+    <div ref={root} className="kit d05">
+      <a className="k-skip" href="#main">Skip to content</a>
+      <header className="k5-nav">
+        <a className="k5-mark" href="#main"><span aria-hidden>●■▲</span>{BRAND.name}</a>
+        <nav data-spy aria-label="Sections"><a href="#swap">Swap</a><a href="#loop">Agent loop</a><a href="#kit">Kit</a><a href="#steps">Steps</a><a href="#price">Price</a></nav>
       </header>
+      <main id="main">
+        <section className="k5-hero" data-hero aria-labelledby="k5-h">
+          <div className="k5-copy">
+            <h1 id="k5-h" data-hero-part="headline">Let the agent do the typing.</h1>
+            <p className="k-body" data-hero-part="sub">Forge reads your repo, plans the change, edits files and runs the tests — billed per token, with the diff waiting for your review.</p>
+            <div data-hero-part="cta"><a className="k5-btn" href="#price" data-cta="primary" data-magnetic="8,0.1,0.82,0.6"><span data-magnetic-label>Start an agent run</span></a></div>
+            <p className="k5-trust" data-hero-part="trust"><span className="pill">sample run</span><span className="long">4 steps · {loopTok(3).toLocaleString("en-US")} tokens · </span><b>{fmtUSD(total)}</b><span> at Forge sample rates</span></p>
+          </div>
+          <Stickers />
+        </section>
 
-      <main>
-        <section ref={hero} data-hero className="sys-hero">
-          <div className="sys-container relative z-10 flex flex-col gap-5 md:gap-7">
-            <h1 data-hero-part="headline" className="sys-h1 !max-w-[11ch]">
-              {["Make what", "other AIs", "refuse."].map((l, i) => (
-                <motion.span key={l} className="block" initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ ...bouncy, delay: 0.05 + i * 0.1 }}>
-                  {l}
-                </motion.span>
-              ))}
-            </h1>
-            <motion.p data-hero-part="sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="sys-hero-sub !max-w-[44ch]">
-              Five model families and three temperaments in one playful studio for writing, chat, agents and code. Drag the models around — they&apos;re yours.
-            </motion.p>
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ ...bouncy, delay: 0.5 }}>
-              <PrimaryCTA>Get early access</PrimaryCTA>
-            </motion.div>
-            <Trust />
-            <div data-hero-part="visual" className="flex flex-wrap gap-2 md:hidden" aria-label="Model families">
-              {SHAPES.map((s) => (
-                <span key={s.id} className="d05-head rounded-full px-3 py-1 text-[0.9375rem]" style={{ background: s.bg, color: s.fg }}>
-                  {s.label}
-                </span>
+        <section id="swap" data-section aria-labelledby="k5-s">
+          <div className="k-wrap">
+            <h2 id="k5-s" className="k5-h2" data-reveal>Swap the chores for the fun part.</h2>
+            <div className="k5-swaps" data-stagger>
+              {PROBLEM.rows.map((r, i) => (
+                <article key={i} className={`k5-swap k-card b${i}`}>
+                  <p className="was">{r.problem}</p>
+                  <p className="now">{r.solution}</p>
+                </article>
               ))}
             </div>
           </div>
-          <div data-hero-part="visual" className="absolute inset-0 hidden md:block">
-            <Stickers bounds={hero} />
+        </section>
+
+        <section id="loop" data-section aria-labelledby="k5-l" className="k5-loop-sec">
+          <div className="k-wrap"><h2 id="k5-l" className="k5-h2" data-reveal>One agent run, as choreography.</h2></div>
+          <AgentLoop />
+        </section>
+
+        <section id="kit" data-section aria-labelledby="k5-k">
+          <div className="k-wrap">
+            <h2 id="k5-k" className="k5-h2" data-reveal>The kit, and what each piece is for.</h2>
+            <div className="k5-bento" data-stagger>
+              {BENEFITS.map((b, i) => (
+                <article key={b.key} className={`k5-card k-card f${i}`} data-spot>
+                  <span className={`glyph g${i % 4}`} aria-hidden />
+                  <h3>{b.benefit}</h3>
+                  <p><b>{b.feature}.</b> {b.detail}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <Marquee items={["Unified chat", "Coding agents", "Abliterated variants", "Prompt caching", "One API"]} bg={INK} fg={CREAM} />
-        <ProblemSolution variant="split" />
-        <Bento layout="mosaic" title="What's in the kiln, and why it matters." />
-        <Remix />
-        <HowItWorks variant="rail" />
-        <Deck />
-        <Proof variant="grid" />
-        <Plans title="Pick a plan. Change it whenever." />
-        <FinalCTA title="Make something unreasonable." className="sys-invert bg-[var(--ink)]" />
+        <section id="steps" data-section aria-labelledby="k5-t">
+          <div data-rail>
+            <div data-rail-view>
+              <div className="k-wrap"><h2 id="k5-t" className="k5-h2 k5-rail-h" data-reveal>Three moves to your first run.</h2></div>
+              <ol className="k5-steps" data-rail-track>
+                {STEPS.map((s, i) => (
+                  <li key={i} className={`k5-step k-card t${i}`}>
+                    <span className="n">{["●", "■", "▲"][i]} {i + 1}</span>
+                    <h3>{s.title}</h3>
+                    <p>{s.body}</p>
+                    {i === 1 && <pre><code>{STEP_CODE}</code></pre>}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="voices" data-section aria-labelledby="k5-v">
+          <div className="k-wrap">
+            <h2 id="k5-v" className="k5-h2" data-reveal>Pinned to the studio wall.</h2>
+            <div className="k5-wall" data-stagger>
+              {PROOF.map((p, i) => (
+                <figure key={p.role} className={`k5-note k-card n${i}`}>
+                  <blockquote>“{p.quote}”</blockquote>
+                  <figcaption><b>{p.role}</b><span>{p.focus}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="k5-fine">{PROOF_NOTE}</p>
+          </div>
+        </section>
+
+        <section id="price" data-section aria-labelledby="k5-p">
+          <div className="k-wrap">
+            <h2 id="k5-p" className="k5-h2" data-reveal>Pick a block. Pay per token.</h2>
+            <div className="k5-plans" data-stagger>
+              {PLANS.map((p, i) => (
+                <article key={p.name} className={`k5-plan k-card p${i}`}>
+                  <h3>{p.name}</h3>
+                  <p className="price">{p.price}<span>{p.cadence}</span></p>
+                  <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                  <p className="fk">{p.name === "API" ? "No minimum spend. Agents stop at the cap you set." : p.name === "Pro" ? "Cancel any time, keep your threads." : "No card. Just start."}</p>
+                </article>
+              ))}
+            </div>
+            <ul className="k5-rates" data-reveal>
+              {MODELS.map((m) => <li key={m.id}><b>{m.name}</b><span>in ${m.inPrice.toFixed(2)}</span><span>cached ${m.cached.toFixed(2)}</span><span>out ${m.outPrice.toFixed(2)}</span></li>)}
+            </ul>
+            <p className="k5-fine">Per 1M tokens. {PRICE_NOTE}</p>
+          </div>
+        </section>
+
+        <section id="final" data-section aria-labelledby="k5-f" className="k5-final-sec">
+          <Marquee />
+          <div className="k-wrap k5-final">
+            <h2 id="k5-f" className="k5-h2" data-reveal>Hand over the next ticket.</h2>
+            <a className="k5-btn" href="#main" data-magnetic="8,0.1,0.82,0.6" data-reveal><span data-magnetic-label>Start an agent run</span></a>
+          </div>
+        </section>
       </main>
-      <Footer />
+      <footer className="k5-foot">
+        <p className="k5-mark big"><span aria-hidden>●■▲</span>{BRAND.name}</p>
+        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#price">{m.name}</a>)}</div>
+        <div><h4>Make</h4><a href="#loop">Coding agents</a><a href="#kit">Unified chat</a><a href="#steps">API</a></div>
+        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
+      </footer>
     </div>
   );
 }
