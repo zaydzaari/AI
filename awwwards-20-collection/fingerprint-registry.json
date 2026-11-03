@@ -257,7 +257,7 @@
       },
       "signature_scroll_mechanic": "Scroll-driven CFD streamlines flowing over the frame, with a live CdA comparison slider",
       "hero_layout_type": "Streamline band: stacked headline over a full-bleed CFD band, drag readout docked right",
-      "built": false
+      "built": true
     },
     {
       "id": "15",
