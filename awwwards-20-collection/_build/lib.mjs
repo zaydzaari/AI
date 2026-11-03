@@ -24,7 +24,7 @@ const BASE_CSS = `
 :root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:calc(1.05rem * var(--tw-body,1));line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
 .k-gap{height:clamp(64px,6vw,80px)}
 ul,ol{padding:0;list-style:none}
@@ -34,22 +34,24 @@ button,input,select{font:inherit;color:inherit}
 code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
 button{cursor:pointer}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1{font-family:var(--font-display);font-size:calc(clamp(3.25rem,6vw,5rem) * var(--tw-h1,1));line-height:.98;letter-spacing:var(--tw-h1ls,-.03em);font-weight:var(--h1-weight,500);text-wrap:balance}
 h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
 .k-card{padding:clamp(36px,3vw,40px)}
 h2,h3{font-family:var(--font-display);text-wrap:balance}
+p,li,dd,blockquote,figcaption{text-wrap:pretty}
 .k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
-.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-body{font-size:calc(1.05rem * var(--tw-body,1));line-height:1.7;max-width:65ch}
 .k-muted{color:var(--text-muted)}
 ::selection{background:var(--accent);color:var(--on-accent)}
+html{scrollbar-color:color-mix(in srgb,var(--text-muted) 55%,transparent) var(--bg-primary);caret-color:var(--accent)}
 :focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
 .k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
 .k-skip:focus{top:12px}
 .k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 [data-section]{padding-block:120px;position:relative}
 @media (max-width:767px){[data-section]{padding-block:72px}}
-body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:${GRAIN};background-size:220px}
-[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:var(--tw-grain,.035);background-image:${GRAIN};background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,var(--tw-rd,26px),0);transition:opacity calc(.8s * var(--tw-dur,1)) var(--tw-ease,var(--ease)) calc(var(--i,0) * var(--tw-stg,80ms)),transform calc(.9s * var(--tw-dur,1)) var(--tw-ease,var(--ease)) calc(var(--i,0) * var(--tw-stg,80ms))}
 [data-reveal].is-in{opacity:1;transform:none}
 [data-magnetic]{will-change:transform;touch-action:manipulation}
 [data-spot]{--mx:50%;--my:50%}
@@ -228,6 +230,10 @@ const RUNTIME = String.raw`
  * @param {{fontCss:string, preload:string[], favicon:string}} assets
  */
 import { CLIENT_DATA } from "./aether.mjs";
+import fs from "node:fs";
+const TW_DIR = new URL("../../lib/", import.meta.url);
+const TW_JS = fs.readFileSync(new URL("tweaks.js", TW_DIR), "utf8");
+const TW_CSS = fs.readFileSync(new URL("tweaks.css", TW_DIR), "utf8");
 
 export function page(site, { fontCss, preload }) {
   const t = site.tokens;
@@ -250,6 +256,7 @@ ${preload.map((f) => `<link rel="preload" href="fonts/${f}" as="font" type="font
 ${fontCss}
 :root{--bg-primary:${t.bgPrimary};--bg-secondary:${t.bgSecondary};--accent:${t.accent};--on-accent:${t.onAccent};--text-primary:${t.textPrimary};--text-muted:${t.textMuted};--line:${t.line};--font-display:${t.display};--font-body:${t.body}}
 ${BASE_CSS}
+${TW_CSS}
 /* ——— ${site.name} ——— */
 ${site.css}
 </style>
@@ -259,6 +266,9 @@ ${site.css}
 ${site.body}
 <script>window.AE = ${JSON.stringify(CLIENT_DATA)};</script>
 <script>${RUNTIME}</script>
+<script>window.AE_FONTS = ${JSON.stringify(site.tweakFonts || [])};</script>
+<script>${TW_JS}
+AetherTweaks.init({ fonts: window.AE_FONTS, key: "aether-tweaks:" + location.pathname });</script>
 <script>
 ${site.js}
 </script>

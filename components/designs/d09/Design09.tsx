@@ -192,9 +192,9 @@ export default function Design09() {
       </main>
       <footer className="r9-foot">
         <p className="big">{BRAND.name}</p>
-        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#prices">{m.name}</a>)}</div>
-        <div><h4>Platform</h4><a href="#estimate">Estimator</a><a href="#index">Features</a><a href="#procedure">API</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
+        <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#prices">{m.name}</a>)}</div>
+        <div><h3>Platform</h3><a href="#estimate">Estimator</a><a href="#index">Features</a><a href="#procedure">API</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
       </footer>
     </div>
   );

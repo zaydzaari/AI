@@ -6,7 +6,7 @@ import { ArrowUpRight, Asterisk, Check, Copy } from "lucide-react";
 import { BRAND, CAPABILITIES, CODE, MODELS, PLANS, PRICE_NOTE, MOCK_NOTE } from "@/lib/content";
 import { useCopy, useStream } from "@/lib/hooks";
 
-const C = { cream: "#F3EFE6", blue: "#1D3BFF", coral: "#FF5E3A", lime: "#D7F25C", ink: "#111111", lilac: "#C9B8FF" };
+const C = { cream: "#EFEEEB", blue: "#1D3BFF", coral: "#FF5E3A", lime: "#D7F25C", ink: "#111111", lilac: "#C9B8FF" };
 const bouncy = { type: "spring", stiffness: 260, damping: 18 } as const;
 
 /* ——— custom magnetic cursor ——— */

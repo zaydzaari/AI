@@ -49,7 +49,7 @@ body{font-size:1.05rem}
 .o3-tr{grid-column:2;grid-row:2;justify-self:end;align-self:start;text-align:right;font-size:.76rem;color:var(--text-muted);display:grid;gap:4px;margin-top:24px}
 .o3-tr b{font-family:var(--font-display);font-size:1.6rem;color:var(--text-primary);font-weight:400}
 .o3-bl{grid-column:1;grid-row:3;align-self:end;display:grid;gap:12px;justify-items:start}
-.o3-br{grid-column:2;grid-row:3;align-self:end;justify-self:end;text-align:right;font-size:.8rem;color:var(--text-muted);max-width:34ch;border-right:2px solid var(--accent);padding-right:14px}
+.o3-br{grid-column:2;grid-row:3;align-self:end;justify-self:end;text-align:right;font-size:.8rem;color:var(--text-muted);max-width:34ch;border-right:1px solid var(--accent);padding-right:14px}
 .o3-br b{color:var(--text-primary)}
 .o3-tick{position:absolute;width:22px;height:22px;border-color:#E6EEF566;border-style:solid;pointer-events:none;z-index:2}
 .o3-tick.a{top:72px;left:16px;border-width:1px 0 0 1px}.o3-tick.b{top:72px;right:16px;border-width:1px 1px 0 0}.o3-tick.c{bottom:16px;left:16px;border-width:0 0 1px 1px}.o3-tick.d{bottom:16px;right:16px;border-width:0 1px 1px 0}
@@ -58,7 +58,7 @@ body{font-size:1.05rem}
   .o3-tl{grid-column:1;gap:12px}
   .o3-tr{display:none}
   .o3-bl{grid-column:1;grid-row:3}
-  .o3-br{grid-column:1;grid-row:4;justify-self:start;text-align:left;border-right:0;border-left:2px solid var(--accent);padding:0 0 0 12px;margin-top:12px;font-size:.74rem}
+  .o3-br{grid-column:1;grid-row:4;justify-self:start;text-align:left;border-right:0;border-left:1px solid var(--accent);padding:0 0 0 12px;margin-top:12px;font-size:.76rem}
   .o3-globe{opacity:.75}
 }
 
@@ -66,7 +66,7 @@ body{font-size:1.05rem}
 .o3-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
 .o3-anom{display:grid;border-top:1px solid var(--line)}
 .o3-anom li{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;padding:22px 0;border-bottom:1px solid var(--line)}
-.o3-anom .code{grid-row:span 2;font-size:.74rem;color:var(--text-muted);padding-top:3px}
+.o3-anom .code{grid-row:span 2;font-size:.76rem;color:var(--text-muted);padding-top:3px}
 .o3-anom .was{color:var(--text-muted);font-size:.92rem}
 .o3-anom .now{font-family:var(--font-display);font-size:1.15rem;line-height:1.3}
 @media (max-width:900px){.o3-cols{grid-template-columns:1fr;gap:40px}}
@@ -75,18 +75,18 @@ body{font-size:1.05rem}
 .o3-run{height:520vh;position:relative;margin-top:clamp(64px,6vw,80px)}
 .o3-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(300px,1fr) minmax(0,1.6fr);gap:32px;padding:76px var(--gutter) 24px}
 .o3-rail{align-self:center;display:grid;gap:14px;max-height:calc(100vh - 120px);overflow:hidden}
-.o3-rail .now{display:grid;gap:4px;border-left:2px solid var(--accent);padding-left:14px}
-.o3-rail .now span{font-size:.74rem;color:var(--text-muted)}
+.o3-rail .now{display:grid;gap:4px;border-left:1px solid var(--accent);padding-left:14px}
+.o3-rail .now span{font-size:.76rem;color:var(--text-muted)}
 .o3-rail .now b{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;letter-spacing:-.02em}
 .o3-rail .now em{font-style:normal;font-size:.86rem;color:var(--text-muted)}
-.o3-log{display:grid;gap:8px;font-size:.74rem}
+.o3-log{display:grid;gap:8px;font-size:.76rem}
 .o3-log li{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;padding:10px 12px;background:var(--bg-secondary);border:1px solid var(--line);opacity:0;transform:translateX(-10px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
 .o3-log li.on{opacity:1;transform:none}
 .o3-log li .id{color:var(--text-muted)}
 .o3-log li .c{grid-column:1 / -1;color:var(--text-muted)}
 .o3-cam{position:relative;min-height:0}
 .o3-cam canvas{width:100%;height:100%}
-.o3-shells{position:absolute;right:0;top:0;display:grid;gap:6px;font-size:.72rem;color:var(--text-muted)}
+.o3-shells{position:absolute;right:0;top:0;display:grid;gap:6px;font-size:.76rem;color:var(--text-muted)}
 .o3-shells li{display:flex;gap:8px;align-items:center;justify-content:flex-end}
 .o3-shells li i{width:18px;height:2px;background:#E6EEF544}
 .o3-shells li.on{color:var(--text-primary)}
@@ -106,7 +106,7 @@ body{font-size:1.05rem}
 .o3-sys{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:14px;align-content:start;min-height:260px}
 .o3-sys::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#00F5D414,transparent 65%);opacity:0;transition:opacity .3s}
 .o3-sys:hover::before{opacity:1}
-.o3-sys .tag{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-muted)}
+.o3-sys .tag{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-muted)}
 .o3-sys h3{font-size:1.15rem;font-weight:600;line-height:1.3;letter-spacing:-.01em}
 .o3-sys p{font-size:.86rem;color:var(--text-muted)}
 .o3-sys.s0{grid-column:span 2;grid-row:span 2}
@@ -124,13 +124,13 @@ body{font-size:1.05rem}
 .o3-step .t{font-size:.76rem;color:var(--text-muted)}
 .o3-step h3{font-size:1.6rem;font-weight:600;line-height:1.15}
 .o3-step p{color:var(--text-muted);font-size:.92rem}
-.o3-step pre{margin:0;background:#05070B;border:1px solid var(--line);padding:14px;font-size:.74rem;line-height:1.6;overflow-x:auto;white-space:pre}
+.o3-step pre{margin:0;background:#05070B;border:1px solid var(--line);padding:14px;font-size:.76rem;line-height:1.6;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.o3-step{width:auto}.o3-count{display:none}}
 
 /* crew notes */
 .o3-crew{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .o3-note{border:1px solid var(--line);display:grid;gap:16px;background:linear-gradient(#0F141C,#0A0E14)}
-.o3-note .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.74rem;color:var(--text-muted)}
+.o3-note .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .o3-note b{font-family:var(--font-display);font-weight:600;font-size:1.05rem}
 .o3-note q{font-size:.98rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.o3-crew{grid-template-columns:1fr}}
@@ -149,14 +149,14 @@ body{font-size:1.05rem}
 .o3-fuel{width:100%;margin-top:32px;border-collapse:collapse;font-size:.84rem;font-variant-numeric:tabular-nums}
 .o3-fuel caption{text-align:left;font-family:var(--font-display);font-size:1rem;padding-bottom:12px}
 .o3-fuel th,.o3-fuel td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
-.o3-fuel thead th{font-weight:400;color:var(--text-muted);font-size:.74rem}
+.o3-fuel thead th{font-weight:400;color:var(--text-muted);font-size:.76rem}
 @media (max-width:700px){.o3-fuel th:nth-child(2),.o3-fuel td:nth-child(2),.o3-fuel th:nth-child(5),.o3-fuel td:nth-child(5){display:none}}
 
 /* final + footer */
 .o3-final{display:grid;justify-items:center;text-align:center;gap:32px}
 .o3-final .o3-h2{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:800}
 .o3-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.8rem;color:var(--text-muted)}
-.o3-foot h4{font-family:var(--font-display);font-weight:600;font-size:.78rem;color:var(--text-primary);margin-bottom:12px}
+.o3-foot h3{font-family:var(--font-display);font-weight:600;font-size:.78rem;color:var(--text-primary);margin-bottom:12px}
 .o3-foot ul{display:grid;gap:8px}
 .o3-foot a{text-decoration:none}
 .o3-foot a:hover{color:var(--text-primary)}
@@ -175,7 +175,7 @@ body{font-size:1.05rem}
     <span class="o3-tick a" aria-hidden="true"></span><span class="o3-tick b" aria-hidden="true"></span><span class="o3-tick c" aria-hidden="true"></span><span class="o3-tick d" aria-hidden="true"></span>
     <div class="o3-corner o3-tl">
       <h1 id="o3-h" data-hero-part="headline">Every model, in orbit.</h1>
-      <p class="k-body" data-hero-part="sub">Five model families circle one API key. Pick the orbit — fast and small, long-range, or unbound — and every request comes back with its own receipt.</p>
+      <p class="k-body" data-hero-part="sub">Five model families circle one API key. Pick the orbit (fast and small, long-range, or unbound) and every request comes back with its own receipt.</p>
     </div>
     <div class="o3-corner o3-tr" aria-hidden="true"><span>Shells in orbit</span><b>05</b><span>One key, one endpoint</span></div>
     <div class="o3-corner o3-bl" data-hero-part="cta"><a class="o3-btn" href="#fuel" data-cta="primary" data-magnetic="6,0.18,0.72,0.4"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></a></div>
@@ -243,7 +243,7 @@ body{font-size:1.05rem}
         ${PLANS.map((p) => h`<article class="o3-plan k-card${p.featured ? " feat" : ""}"><h3>${p.name}</h3><p class="p">${p.price}</p><p class="cad">${p.cadence}</p><ul>${p.features.map((f) => `<li>${f}</li>`)}</ul><p class="fk">${p.fk}</p></article>`)}
       </div>
       <table class="o3-fuel" data-reveal>
-        <caption>Fuel table — per 1M tokens</caption>
+        <caption>Fuel table · per 1M tokens</caption>
         <thead><tr><th scope="col">Shell</th><th scope="col">Role</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
         <tbody>${SHELLS.map((m) => `<tr><th scope="row">${m.name}</th><td>${m.role}</td><td>${m.context}</td><td>${rate(m.inPrice)}</td><td>${rate(m.cached)}</td><td>${rate(m.outPrice)}</td></tr>`)}</tbody>
       </table>
@@ -261,9 +261,9 @@ body{font-size:1.05rem}
 </main>
 <footer class="o3-foot">
   <div><p class="o3-mark">${BRAND.name.toUpperCase()} <span>orbital</span></p><p style="margin-top:14px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Shells</h4><ul>${SHELLS.map((m) => `<li><a href="#shells">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Mission</h4><ul><li><a href="#systems">Systems</a></li><li><a href="#launch">API quickstart</a></li><li><a href="#fuel">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Shells</h3><ul>${SHELLS.map((m) => `<li><a href="#shells">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Mission</h3><ul><li><a href="#systems">Systems</a></li><li><a href="#launch">API quickstart</a></li><li><a href="#fuel">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Unbounded and Space Mono.</span></p>
 </footer>
 `,

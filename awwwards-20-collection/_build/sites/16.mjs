@@ -14,7 +14,7 @@ const LEGS = [
 
 export default {
   title: "Aether — Forecast your token bill before takeoff",
-  description: "Every request flies the same route — key, router, cache, model, stream, invoice — and lands with its cost printed on the strip. Stratosphere design direction.",
+  description: "Every request flies the same route (key, router, cache, model, stream, invoice) and lands with its cost printed on the strip. Stratosphere design direction.",
   fonts: [
     { family: "Sora", axes: "wght@300;400;600;700" },
     { family: "IBM Plex Mono", axes: "wght@400;500;600" },
@@ -32,7 +32,7 @@ export default {
 .st16-links a.is-current{background:var(--text-primary);color:#fff}
 .st16-fl{color:var(--text-muted)}
 @media (max-width:900px){.st16-links{display:none}}
-.st16-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:700;text-decoration:none;box-shadow:0 12px 28px -14px #0284C7}
+.st16-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:700;text-decoration:none;box-shadow:0 12px 28px -14px rgba(0,0,0,.32)}
 .st16-btn svg{width:20px;height:20px;transition:transform .5s var(--ease)}
 .st16-btn.is-near svg{transform:translate(3px,-3px) rotate(-8deg)}
 .st16-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:400;letter-spacing:-.035em;line-height:1;max-width:18ch}
@@ -48,7 +48,7 @@ export default {
 .st16-band{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 40px;align-items:center;padding:22px var(--gutter) 24px;background:var(--bg-primary);border-top:1px solid var(--line)}
 .st16-band .k-body{color:var(--text-muted)}
 .st16-act{display:grid;gap:14px;justify-items:start}
-.st16-strip{display:grid;grid-template-columns:auto 1fr auto auto;gap:0;border:1px solid var(--text-primary);background:#FFFFFF;font-size:.74rem;min-width:0;width:100%}
+.st16-strip{display:grid;grid-template-columns:auto 1fr auto auto;gap:0;border:1px solid var(--text-primary);background:#FFFFFF;font-size:.76rem;min-width:0;width:100%}
 .st16-strip span{padding:8px 10px;border-right:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .st16-strip span:last-child{border-right:0}
 .st16-strip .id{background:var(--text-primary);color:#fff;font-weight:600}
@@ -60,13 +60,14 @@ export default {
   .st16-act{gap:10px}
   .st16-strip{grid-template-columns:auto 1fr auto}
   .st16-strip span:nth-child(3){display:none}
+  .st16-strip span:nth-child(2){white-space:normal;overflow:visible}
 }
 
 /* problem */
 .st16-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
 .st16-turb{display:grid;gap:10px}
 .st16-turb li{display:grid;grid-template-columns:auto 1fr 1fr;gap:20px;align-items:baseline;padding:18px 20px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--text-muted)}
-.st16-turb .c{font-size:.7rem;color:var(--text-muted)}
+.st16-turb .c{font-size:.76rem;color:var(--text-muted)}
 .st16-turb .was{color:var(--text-muted);font-size:.86rem}
 .st16-turb .now{font-family:var(--font-display);font-size:1.05rem}
 @media (max-width:900px){.st16-cols{grid-template-columns:1fr;gap:40px}.st16-turb li{grid-template-columns:1fr;gap:4px}}
@@ -77,7 +78,7 @@ export default {
 .st16-path{position:relative;min-height:0}
 .st16-path canvas{position:absolute;inset:0;width:100%;height:100%}
 .st16-board{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.st16-leg{display:grid;gap:4px;padding:10px 12px;background:#FFFFFF;border:1px solid var(--line);font-size:.72rem;opacity:.5;transform:translateY(10px);transition:opacity .5s,transform .6s var(--ease),border-color .4s}
+.st16-leg{display:grid;gap:4px;padding:10px 12px;background:#FFFFFF;border:1px solid var(--line);font-size:.76rem;opacity:.5;transform:translateY(10px);transition:opacity .5s,transform .6s var(--ease),border-color .4s}
 .st16-leg.on{opacity:1;transform:none}
 .st16-leg.now{border-color:var(--text-primary);box-shadow:0 0 0 1px var(--text-primary)}
 .st16-leg b{font-size:.78rem;font-weight:600}
@@ -102,7 +103,7 @@ export default {
 .st16-out span{font-size:.78rem;color:var(--text-muted)}
 .st16-out .big{font-size:clamp(3rem,6vw,5rem);line-height:1;letter-spacing:-.04em}
 .st16-out dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid var(--line);padding-top:14px}
-.st16-out dt{font-size:.7rem;color:var(--text-muted)}
+.st16-out dt{font-size:.76rem;color:var(--text-muted)}
 .st16-out dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
 @media (max-width:900px){.st16-calc{grid-template-columns:1fr}}
 
@@ -111,7 +112,7 @@ export default {
 .st16-card{position:relative;isolation:isolate;overflow:hidden;border-radius:24px;background:#fff;border:1px solid var(--line);display:grid;gap:12px;align-content:start;min-height:240px}
 .st16-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(280px circle at var(--mx) var(--my),#0284C714,transparent 65%);opacity:0;transition:opacity .3s}
 .st16-card:hover::before{opacity:1}
-.st16-card .tag{font-size:.72rem;color:var(--text-muted)}
+.st16-card .tag{font-size:.76rem;color:var(--text-muted)}
 .st16-card h3{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1.12}
 .st16-card p{font-size:.86rem;color:var(--text-muted)}
 .st16-card.c0{grid-column:span 2;background:linear-gradient(160deg,#D6E6F3,#fff)}.st16-card.c0 h3{font-size:clamp(2rem,3.2vw,2.8rem);font-weight:400}
@@ -126,13 +127,13 @@ export default {
 .st16-step .n{font-size:.76rem;color:var(--text-muted)}
 .st16-step h3{font-family:var(--font-display);font-size:1.7rem;font-weight:400;line-height:1.1}
 .st16-step p{color:var(--text-muted);font-size:.88rem}
-.st16-step pre{margin:0;background:var(--text-primary);color:#F0F4F8;border-radius:14px;padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.st16-step pre{margin:0;background:var(--text-primary);color:#F0F4F8;border-radius:14px;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.st16-step{width:auto}}
 
 /* crew */
 .st16-crew{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .st16-c{background:#fff;border:1px solid var(--line);border-radius:24px;display:grid;gap:12px}
-.st16-c .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--text-muted)}
+.st16-c .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .st16-c b{font-family:var(--font-display);font-size:1.1rem;color:var(--text-primary)}
 .st16-c q{font-size:.92rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.st16-crew{grid-template-columns:1fr}}
@@ -151,14 +152,14 @@ export default {
 .st16-table{width:100%;margin-top:32px;border-collapse:collapse;font-size:.84rem;font-variant-numeric:tabular-nums}
 .st16-table caption{text-align:left;font-family:var(--font-display);font-size:1.3rem;padding-bottom:12px}
 .st16-table th,.st16-table td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
-.st16-table thead th{font-weight:400;color:var(--text-muted);font-size:.74rem}
+.st16-table thead th{font-weight:400;color:var(--text-muted);font-size:.76rem}
 @media (max-width:700px){.st16-table th:nth-child(2),.st16-table td:nth-child(2){display:none}}
 
 /* final + footer */
 .st16-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .st16-final .st16-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
 .st16-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted)}
-.st16-foot h4{font-family:var(--font-display);font-size:.95rem;color:var(--text-primary);margin-bottom:12px}
+.st16-foot h3{font-family:var(--font-display);font-size:.95rem;color:var(--text-primary);margin-bottom:12px}
 .st16-foot ul{display:grid;gap:8px}
 .st16-foot a{text-decoration:none}
 .st16-foot a:hover{color:var(--text-primary)}
@@ -178,7 +179,7 @@ export default {
       <h1 id="st16-h" data-hero-part="headline">Forecast your token bill before takeoff.</h1>
     </div>
     <div class="st16-band">
-      <p class="k-body" data-hero-part="sub">Every request flies the same route — key, router, cache, model, stream, invoice — and lands with its cost printed on the strip.</p>
+      <p class="k-body" data-hero-part="sub">Every request flies the same route (key, router, cache, model, stream, invoice) and lands with its cost printed on the strip.</p>
       <div class="st16-act">
         <div data-hero-part="cta"><a class="st16-btn" href="#fares" data-cta="primary" data-magnetic="6,0.12,0.84,0.4"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12 18 4l-5 14-3-6-8 0z"/></svg></a></div>
         <p class="st16-strip" data-hero-part="trust" aria-label="Sample flight strip: Core request, 3,070 tokens, landed"><span class="id">AE-0001</span><span>core-128k · 3,070 tok</span><span>1,800 cached</span><span class="ok">${LEGS[5][3]} · LANDED</span></p>
@@ -203,7 +204,7 @@ export default {
           <label>Requests per day <b id="c-req-v">5,000</b><input type="range" name="req" min="2" max="6" step="0.01" value="3.7"></label>
           <label>Tokens per request <b id="c-tok-v">2,500</b><input type="range" name="tok" min="2" max="5" step="0.01" value="3.4"></label>
           <label>Share served from cache <b id="c-cache-v">60%</b><input type="range" name="cache" min="0" max="0.95" step="0.05" value="0.6"></label>
-          <label>Model family<select name="m">${MODELS.map((m) => `<option value="${m.id}">${m.name} — ${m.role}</option>`)}</select></label>
+          <label>Model family<select name="m">${MODELS.map((m) => `<option value="${m.id}">${m.name} · ${m.role}</option>`)}</select></label>
         </form>
         <div class="st16-out" aria-live="polite"><span>Monthly forecast, 30 days, 75% input · 25% output</span><b class="big live" id="c-out">$0</b><dl><div><dt>Tokens / month</dt><dd id="c-toks">0</dd></div><div><dt>Per request</dt><dd id="c-per">$0</dd></div></dl><p class="st16-fine">${PRICE_NOTE}</p></div>
       </div>
@@ -256,9 +257,9 @@ export default {
 </main>
 <footer class="st16-foot">
   <div><p class="st16-mark">${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Fleet</h4><ul>${MODELS.map((m) => `<li><a href="#fares">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#forecast">Forecast</a></li><li><a href="#preflight">API quickstart</a></li><li><a href="#fares">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Fleet</h3><ul>${MODELS.map((m) => `<li><a href="#fares">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#forecast">Forecast</a></li><li><a href="#preflight">API quickstart</a></li><li><a href="#fares">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Sora and IBM Plex Mono.</span></p>
 </footer>
 `,

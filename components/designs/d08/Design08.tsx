@@ -221,9 +221,9 @@ export default function Design08() {
       </main>
       <footer className="o8-foot">
         <div><p className="o8-mark big"><span aria-hidden>✦</span> {BRAND.name}</p><p>{MOCK_NOTE}. Brand name is a placeholder.</p></div>
-        <div><h4>Constellations</h4>{MODELS.map((m) => <a key={m.id} href="#sky">{m.name}</a>)}</div>
-        <div><h4>Observatory</h4><a href="#instruments">Instruments</a><a href="#log">API quickstart</a><a href="#ephemeris">Token rates</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+        <div><h3>Constellations</h3>{MODELS.map((m) => <a key={m.id} href="#sky">{m.name}</a>)}</div>
+        <div><h3>Observatory</h3><a href="#instruments">Instruments</a><a href="#log">API quickstart</a><a href="#ephemeris">Token rates</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a></div>
       </footer>
     </div>
   );

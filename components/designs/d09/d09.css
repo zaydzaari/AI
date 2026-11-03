@@ -2,7 +2,7 @@
 .d09 {
   --bg-primary: #F4F3EF; --bg-secondary: #E8E6DF; --accent: #D9241B; --on-accent: #FFFFFF;
   --text-primary: #111111; --text-muted: #4B4943; --line: #111111;
-  --font-display: "Instrument Sans Variable", sans-serif; --font-body: "Instrument Sans Variable", sans-serif;
+  --font-display: "Public Sans", sans-serif; --font-body: "Public Sans", sans-serif;
   --mono: "JetBrains Mono Variable", ui-monospace, monospace; --h1-weight: 650; --focus: #111111;
   --col: calc((min(100vw, 1440px) - 2 * var(--gutter)) / 12);
 }
@@ -21,7 +21,7 @@
 .r9-nav nav a.is-current { border-color: var(--accent); }
 .r9-gridbtn { justify-self: end; display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); background: transparent; font-size: 0.86rem; }
 .r9-gridbtn[aria-pressed="true"] { background: var(--text-primary); color: #fff; }
-.r9-gridbtn kbd { font-size: 0.72rem; border: 1px solid currentColor; padding: 0 5px; }
+.r9-gridbtn kbd { font-size: 0.76rem; border: 1px solid currentColor; padding: 0 5px; }
 @media (max-width: 860px) { .r9-nav { grid-template-columns: 1fr auto; } .r9-nav nav { display: none; } }
 
 .r9-btn { display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 650; font-size: 1rem; transition: background 0.2s; }
@@ -69,7 +69,7 @@
 .r9-costs li { position: relative; display: grid; grid-template-columns: 2fr 4fr 3fr; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); overflow: hidden; }
 .r9-costs .nm { font-weight: 600; font-size: 1.1rem; }
 .r9-costs .num { font-size: clamp(2.4rem, 6.2vh, 4.4rem); font-weight: 700; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; }
-.r9-costs .per { font-family: var(--mono); font-size: 0.74rem; color: var(--text-muted); text-align: right; }
+.r9-costs .per { font-family: var(--mono); font-size: 0.76rem; color: var(--text-muted); text-align: right; }
 .r9-costs .bar { position: absolute; left: 0; bottom: -1px; height: 4px; width: 100%; background: var(--accent); transform-origin: left; transition: transform 0.25s linear; }
 @media (max-width: 900px) {
   .r9-run { height: 340vh; }
@@ -135,7 +135,7 @@
 .r9-final .r9-h2 { font-size: clamp(3rem, 8vw, 7rem); }
 .r9-foot { display: grid; grid-template-columns: 6fr 2fr 2fr 2fr; gap: 24px; padding: 64px var(--gutter) 48px; border-top: 2px solid var(--line); font-size: 0.9rem; }
 .r9-foot > div { display: grid; gap: 8px; align-content: start; }
-.r9-foot h4 { font-size: 0.8rem; font-family: var(--mono); font-weight: 400; color: var(--text-muted); }
+.r9-foot h3 { font-size: 0.8rem; font-family: var(--mono); font-weight: 400; color: var(--text-muted); }
 .r9-foot a { text-decoration: none; } .r9-foot a:hover { text-decoration: underline; }
 .r9-foot span { color: var(--text-muted); font-size: 0.8rem; }
 .r9-foot .big { font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; letter-spacing: -0.05em; line-height: 0.85; }

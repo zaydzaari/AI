@@ -18,6 +18,8 @@ if (errors.length) {
 }
 
 const built = [];
+const fontCss = new Map();
+const FACE = /@font-face\{font-family:"([^"]+)";font-style:(\w+);font-weight:([\d ]+);font-display:swap;src:url\(fonts\/([^)]+)\)/g;
 for (const entry of REGISTRY) {
   const file = path.join(HERE, "sites", `${entry.id}.mjs`);
   if (!fs.existsSync(file)) continue;
@@ -28,13 +30,35 @@ for (const entry of REGISTRY) {
   if (t.bgPrimary.toLowerCase() !== c.primary_60.toLowerCase() || t.bgSecondary.toLowerCase() !== c.secondary_30.toLowerCase() || t.accent.toLowerCase() !== c.accent_10.toLowerCase())
     throw new Error(`${entry.id}: tokens drift from the registry colour system`);
   built.push(site);
-  if (want.length && !want.includes(entry.id)) continue;
   const dir = path.join(ROOT, entry.folder);
-  fs.rmSync(path.join(dir, "fonts"), { recursive: true, force: true });
-  const { css, files } = fontFaces(dir, site.fonts);
+  if (!want.length || want.includes(entry.id)) {
+    fs.rmSync(path.join(dir, "fonts"), { recursive: true, force: true });
+    fontCss.set(entry.id, fontFaces(dir, site.fonts));
+  } else {
+    const html = fs.readFileSync(path.join(dir, "index.html"), "utf8");
+    fontCss.set(entry.id, { css: (html.match(/@font-face\{[^}]+\}/g) || []).join("\n"), files: null });
+  }
+}
+
+// Font library for the Tweaks panel: one upright face per family used anywhere in the
+// collection, served from the site folder that already ships it.
+const library = new Map();
+for (const site of built) {
+  for (const m of fontCss.get(site.id).css.matchAll(FACE)) {
+    const [, name, style, weight, fileName] = m;
+    if (style !== "normal" || fileName.includes("-sub") || library.has(name)) continue;
+    library.set(name, { name, weight: weight.trim(), style, file: `${site.folder}/fonts/${fileName}` });
+  }
+}
+const libFor = (prefix) => [...library.values()].sort((a, b) => a.name.localeCompare(b.name)).map(({ file, weight, ...f }) => ({ ...f, url: prefix + file }));
+
+for (const site of built) {
+  if (want.length && !want.includes(site.id)) continue;
+  const dir = path.join(ROOT, site.folder);
+  const { css, files } = fontCss.get(site.id);
   const preload = site.preload || [files[0]];
-  fs.writeFileSync(path.join(dir, "index.html"), page(site, { fontCss: css, preload }));
-  console.log(`built ${entry.folder}  (${files.length} font files)`);
+  fs.writeFileSync(path.join(dir, "index.html"), page({ ...site, tweakFonts: libFor("../") }, { fontCss: css, preload }));
+  console.log(`built ${site.folder}  (${files.length} font files)`);
 }
 
 const registry = {
@@ -54,7 +78,9 @@ fs.writeFileSync(path.join(ROOT, "fingerprint-registry.json"), JSON.stringify(re
 const galleryFile = path.join(HERE, "gallery.mjs");
 if (!want.length && fs.existsSync(galleryFile)) {
   const { buildGallery } = await import(pathToFileURL(galleryFile).href);
-  buildGallery(ROOT, built);
+  buildGallery(ROOT, built, libFor(""));
   console.log("built index.html (gallery)");
+  const { buildInspiration } = await import(pathToFileURL(path.join(HERE, "inspiration.mjs")).href);
+  console.log(`built inspiration/index.html (${buildInspiration(ROOT, built)} references)`);
 }
 console.log(`registry: ${built.length}/20 sites built, uniqueness law holds`);

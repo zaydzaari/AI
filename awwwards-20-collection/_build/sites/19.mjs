@@ -15,7 +15,7 @@ const UV = [
   "and still the lamp swept the reef each night,",
   "a clock kept by hands no one had seen.",
   "The visitor rowed out and read the open log:",
-  "one word, again and again, in his hand — wait.",
+  "one word, again and again, in his hand, wait.",
 ];
 const split = (w) => (w.length <= 5 ? [w] : w.match(/.{1,4}/g));
 const toks = (line) => line.split(" ").flatMap(split);
@@ -32,13 +32,13 @@ export default {
     { family: "Work Sans", axes: "wght@400;500;600" },
   ],
   tokens: {
-    bgPrimary: "#F9F6F0", bgSecondary: "#EBE5D8", accent: "#B45309", onAccent: "#FFFFFF",
+    bgPrimary: "#EEF0F3", bgSecondary: "#DFE3E9", accent: "#B45309", onAccent: "#FFFFFF",
     textPrimary: "#2A231C", textMuted: "#5F554A", line: "rgba(42,35,28,.16)",
     display: '"IM Fell English", Georgia, serif', body: '"Work Sans", sans-serif',
   },
   css: /* css */ `
 :root{--h1-weight:400}
-.k19-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#F9F6F0f2;border-bottom:1px solid var(--line);font-size:.86rem}
+.k19-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#EEF0F3f2;border-bottom:1px solid var(--line);font-size:.86rem}
 .k19-mark{font-family:var(--font-display);font-size:1.5rem;text-decoration:none}
 .k19-mark i{color:var(--accent)}
 .k19-links{display:flex;gap:22px}
@@ -52,7 +52,7 @@ export default {
 .k19-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.01em;line-height:1.02;max-width:16ch}
 .k19-fine{margin-top:22px;font-size:.82rem;color:var(--text-muted)}
 .live{color:var(--accent);font-variant-numeric:tabular-nums}
-.vellum{background:radial-gradient(120% 90% at 30% 20%,#FFFDF8,#F2ECDF);box-shadow:inset 0 0 60px #C9B99A33}
+.vellum{background:radial-gradient(120% 90% at 30% 20%,#FBFBFC,#E5E8EC);box-shadow:inset 0 0 60px #C9B99A33}
 
 /* manuscript layers + loupe */
 .k19-ms{position:relative;overflow:hidden}
@@ -65,7 +65,7 @@ export default {
 .k19-layer.ir i{font-style:normal;display:inline-block;margin:0 2px 4px 0;padding:0 4px;border:1px solid #FFC9A666;border-radius:4px;font-family:var(--font-body);font-size:.62em}
 .k19-layer.xr{background:#0E1A1F;color:#BFE6F2;clip-path:circle(var(--r,0px) at var(--x,50%) var(--y,50%));font-family:var(--font-body);font-size:clamp(.8rem,1.1vw,.95rem)}
 .k19-layer.xr p{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #BFE6F244;padding-bottom:.4em}
-.k19-ring{position:absolute;left:var(--x,50%);top:var(--y,50%);width:calc(var(--r,0px) * 2);height:calc(var(--r,0px) * 2);transform:translate(-50%,-50%);border-radius:50%;border:3px solid #B4935A;box-shadow:0 0 0 6px #2A231C14,0 20px 40px -10px #2A231C55;pointer-events:none}
+.k19-ring{position:absolute;left:var(--x,50%);top:var(--y,50%);width:calc(var(--r,0px) * 2);height:calc(var(--r,0px) * 2);transform:translate(-50%,-50%);border-radius:50%;border:3px solid #8E8574;box-shadow:0 0 0 6px #2A231C14,0 20px 40px -10px #2A231C55;pointer-events:none}
 .k19-ring::after{content:"";position:absolute;right:-30%;bottom:-30%;width:40%;height:12px;background:#6B5636;border-radius:6px;transform:rotate(45deg);transform-origin:left}
 
 /* hero: open book */
@@ -80,7 +80,7 @@ export default {
 .k19-trust b{color:var(--text-primary)}
 .k19-right{position:relative}
 .k19-right .k19-ms{position:absolute;inset:0}
-.k19-cap{position:absolute;left:16px;bottom:12px;z-index:3;font-size:.72rem;color:var(--text-muted);background:#F9F6F0d9;padding:2px 8px}
+.k19-cap{position:absolute;left:16px;bottom:12px;z-index:3;font-size:.76rem;color:var(--text-muted);background:#EEF0F3d9;padding:2px 8px}
 @media (max-width:860px){
   .k19-hero{padding:10px var(--gutter);place-items:start}
   .k19-book{grid-template-columns:1fr;grid-template-rows:auto 128px;min-height:0}
@@ -108,7 +108,7 @@ export default {
 .k19-modes li i{grid-row:span 2;width:16px;height:16px;border-radius:50%;margin-top:4px}
 .k19-modes li b{font-family:var(--font-display);font-size:1.35rem;font-weight:400}
 .k19-modes li span{font-size:.82rem;color:var(--text-muted)}
-.k19-modes li.on{border-color:var(--text-primary);background:#FFFDF8}
+.k19-modes li.on{border-color:var(--text-primary);background:#FBFBFC}
 .k19-modes li.on b{color:var(--accent)}
 @media (max-width:900px){
   .k19-run{height:420vh}
@@ -139,7 +139,7 @@ export default {
 .k19-step.is-active .n{color:var(--accent)}
 .k19-step h3{font-family:var(--font-display);font-weight:400;font-size:2rem;line-height:1.08}
 .k19-step p{color:var(--text-muted)}
-.k19-step pre{margin:0;background:var(--text-primary);color:#F9F6F0;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
+.k19-step pre{margin:0;background:var(--text-primary);color:#EEF0F3;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 .k19-step code{font-family:ui-monospace,monospace}
 @media (max-width:899px){.k19-step{width:auto}}
 
@@ -172,7 +172,7 @@ export default {
 .k19-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .k19-final .k19-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
 .k19-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--text-primary);font-size:.86rem;color:var(--text-muted)}
-.k19-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.25rem;color:var(--text-primary);margin-bottom:12px}
+.k19-foot h3{font-family:var(--font-display);font-weight:400;font-size:1.25rem;color:var(--text-primary);margin-bottom:12px}
 .k19-foot ul{display:grid;gap:8px}
 .k19-foot a{text-decoration:none}
 .k19-foot a:hover{color:var(--accent);text-decoration:underline}
@@ -219,7 +219,7 @@ export default {
           </div>
         </div>
         <ol class="k19-modes" aria-live="polite">
-          <li class="on" data-m="vis"><i style="background:#E9DFC9;border:1px solid #2A231C" aria-hidden="true"></i><b>Visible light</b><span>The answer as your user reads it — Core, standard.</span></li>
+          <li class="on" data-m="vis"><i style="background:#E9DFC9;border:1px solid #2A231C" aria-hidden="true"></i><b>Visible light</b><span>The answer as your user reads it: Core, standard.</span></li>
           <li data-m="uv"><i style="background:#6E4BD8" aria-hidden="true"></i><b>Ultraviolet</b><span>Another reading: the same prompt answered by Unbound.</span></li>
           <li data-m="ir"><i style="background:#C2410C" aria-hidden="true"></i><b>Infrared</b><span>The under-drawing: every token the answer is made of.</span></li>
           <li data-m="xr"><i style="background:#2F7A92" aria-hidden="true"></i><b>X-ray</b><span>The structure: tokens and cost for every line.</span></li>
@@ -248,7 +248,7 @@ export default {
   <section id="provenance" data-section aria-labelledby="k19-p">
     <div class="k-wrap">
       <h2 id="k19-p" class="k19-h2" data-reveal>Provenance, by role.</h2>
-      <div class="k19-prov" data-stagger>${PROOF.map(([role, focus, q]) => `<figure class="k19-p k-card"><q>${q}</q><p><b>${role}</b> — ${focus}</p></figure>`)}</div>
+      <div class="k19-prov" data-stagger>${PROOF.map(([role, focus, q]) => `<figure class="k19-p k-card"><q>${q}</q><p><b>${role}</b> · ${focus}</p></figure>`)}</div>
       <p class="k19-fine">${PROOF_NOTE}</p>
     </div>
   </section>
@@ -275,9 +275,9 @@ export default {
 </main>
 <footer class="k19-foot">
   <div><p class="k19-mark">${BRAND.name} <i>atelier</i></p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>The hands</h4><ul>${MODELS.map((m) => `<li><a href="#fees">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#inspect">Model comparison</a></li><li><a href="#method">API quickstart</a></li><li><a href="#fees">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>The hands</h3><ul>${MODELS.map((m) => `<li><a href="#fees">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#inspect">Model comparison</a></li><li><a href="#method">API quickstart</a></li><li><a href="#fees">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in IM Fell English and Work Sans.</span></p>
 </footer>
 `,

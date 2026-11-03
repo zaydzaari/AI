@@ -18,20 +18,20 @@ const NUMS = ["壱", "弐", "参"];
 
 export default {
   title: "Aether — See every token your words become",
-  description: "Every request is ground into tokens and priced one by one — input, cached and output — across five model families. Hikari design direction.",
+  description: "Every request is ground into tokens and priced one by one (input, cached and output) across five model families. Hikari design direction.",
   fonts: [
     { family: "Newsreader", axes: "ital,opsz,wght@0,6..72,300..600;1,6..72,300..500" },
-    { family: "Plus Jakarta Sans", axes: "wght@400;500;600" },
+    { family: "Hanken Grotesk", axes: "wght@400;500;600" },
     { family: "Noto Serif JP", axes: "wght@400", text: TATE + NUMS.join(""), as: "Hikari Tate" },
   ],
   tokens: {
-    bgPrimary: "#F8F6F0", bgSecondary: "#EAE6DA", accent: "#2E6F40", onAccent: "#FFFFFF",
+    bgPrimary: "#EEF0E6", bgSecondary: "#E0E4D4", accent: "#2E6F40", onAccent: "#FFFFFF",
     textPrimary: "#26261F", textMuted: "#5B5A50", line: "rgba(38,38,31,.16)",
-    display: '"Newsreader", Georgia, serif', body: '"Plus Jakarta Sans", sans-serif',
+    display: '"Newsreader", Georgia, serif', body: '"Hanken Grotesk", sans-serif',
   },
   css: /* css */ `
 h1,.h15-h2{font-variation-settings:"opsz" 72}
-.h15-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#F8F6F0f0;border-bottom:1px solid var(--line);font-size:.86rem}
+.h15-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#EEF0E6f0;border-bottom:1px solid var(--line);font-size:.86rem}
 .h15-mark{font-family:var(--font-display);font-size:1.4rem;text-decoration:none;font-style:italic}
 .h15-links{display:flex;gap:22px}
 .h15-links a{text-decoration:none;color:var(--text-muted);padding:4px 0;border-bottom:2px solid transparent}
@@ -43,17 +43,17 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
 .h15-btn i{width:14px;height:14px;border-radius:50%;border:2px solid #fff;border-right-color:transparent;transition:transform .6s var(--ease)}
 .h15-btn.is-near i{transform:rotate(180deg)}
 .h15-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.02em;line-height:1;max-width:16ch}
-.h15-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted)}
+.h15-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted);max-width:60ch}
 .live{color:var(--accent);font-variant-numeric:tabular-nums}
-.paper{background:repeating-linear-gradient(0deg,#00000004 0 2px,transparent 2px 5px),#FBFAF5}
+.paper{background:#F9FAF6}
 
 /* hero: shoji panels */
 .h15-hero{position:relative;min-height:calc(100svh - 60px);display:grid;grid-template-columns:1fr minmax(0,1.6fr) 1fr;overflow:clip;border-bottom:1px solid var(--line)}
 .h15-frame{position:absolute;inset:0;pointer-events:none}
-.h15-shoji{position:relative;z-index:1;border-right:6px solid #8A7A5C;background-color:#FBFAF5;background-image:linear-gradient(90deg,#8A7A5C 3px,transparent 3px),linear-gradient(#8A7A5C 3px,transparent 3px);background-size:33.3% 25%;background-position:-2px -2px;transition:transform 1.2s var(--ease)}
+.h15-shoji{position:relative;z-index:1;border-right:6px solid #8A7A5C;background-color:#F9FAF6;background-image:linear-gradient(90deg,#8A7A5C 3px,transparent 3px),linear-gradient(#8A7A5C 3px,transparent 3px);background-size:33.3% 25%;background-position:-2px -2px;transition:transform 1.2s var(--ease)}
 .h15-shoji.r{border-right:0;border-left:6px solid #8A7A5C}
 .h15-shoji::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--lx,50%) 40%,#ffffffaa,transparent 60%)}
-.h15-centre{position:relative;z-index:2;display:grid;align-content:center;justify-items:center;text-align:center;gap:20px;padding:24px clamp(20px,4vw,56px);background:#F8F6F0}
+.h15-centre{position:relative;z-index:2;display:grid;align-content:center;justify-items:center;text-align:center;gap:20px;padding:24px clamp(20px,4vw,56px);background:#EEF0E6}
 .h15-centre h1{font-weight:400;max-width:12ch}
 .h15-centre h1 em{color:var(--accent)}
 .h15-centre .k-body{color:var(--text-muted);max-width:44ch}
@@ -85,20 +85,20 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
 .h15-mill{position:relative;min-height:0}
 .h15-mill canvas{position:absolute;inset:0;width:100%;height:100%}
 .h15-tokens{display:flex;flex-wrap:wrap;gap:4px;min-height:5em;align-content:flex-start}
-.h15-tokens i{font-style:normal;font-size:.74rem;padding:2px 8px;border-radius:999px;background:#DDEBDD;color:#1F4A2B;border:1px solid #2E6F4033;opacity:0;transform:translateY(-8px);transition:opacity .4s,transform .5s var(--ease)}
+.h15-tokens i{font-style:normal;font-size:.76rem;padding:2px 8px;border-radius:999px;background:#DDEBDD;color:#1F4A2B;border:1px solid #2E6F4033;opacity:0;transform:translateY(-8px);transition:opacity .4s,transform .5s var(--ease)}
 .h15-tokens i.on{opacity:1;transform:none}
 .h15-side{display:grid;align-content:center;gap:14px}
 .h15-read{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--text-primary)}
 .h15-read div{padding:12px 10px 12px 0;display:grid;gap:2px}
-.h15-read span{font-size:.72rem;color:var(--text-muted)}
+.h15-read span{font-size:.76rem;color:var(--text-muted)}
 .h15-read b{font-family:var(--font-display);font-size:1.6rem;font-weight:500;font-variant-numeric:tabular-nums}
 .h15-certs{display:grid;gap:8px}
 .h15-cert{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center;padding:12px 14px;border:1px solid var(--line);opacity:.35;transition:opacity .5s,border-color .5s,background .5s}
-.h15-cert.on{opacity:1;border-color:var(--text-primary);background:#FBFAF5}
-.h15-cert .seal{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--text-muted);display:grid;place-items:center;font-size:.66rem;font-weight:600}
+.h15-cert.on{opacity:1;border-color:var(--text-primary);background:#F9FAF6}
+.h15-cert .seal{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--text-muted);display:grid;place-items:center;font-size:.6875rem;font-weight:600}
 .h15-cert.on .seal{border-color:var(--accent);color:var(--accent)}
 .h15-cert b{font-family:var(--font-display);font-size:1.15rem;font-weight:500}
-.h15-cert span{font-size:.74rem;color:var(--text-muted)}
+.h15-cert span{font-size:.76rem;color:var(--text-muted)}
 .h15-cert em{font-style:normal;font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 @media (max-width:900px){
   .h15-run{height:400vh}
@@ -130,7 +130,7 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
 .h15-step.is-active .n{color:var(--accent)}
 .h15-step h3{font-family:var(--font-display);font-size:2rem;font-weight:400;line-height:1.08}
 .h15-step p{color:var(--text-muted)}
-.h15-step pre{margin:0;background:var(--text-primary);color:#F8F6F0;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
+.h15-step pre{margin:0;background:var(--text-primary);color:#EEF0E6;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 .h15-step code{font-family:ui-monospace,monospace}
 @media (max-width:899px){.h15-step{width:auto;border-left:0;border-top:1px solid var(--line)}}
 
@@ -145,7 +145,7 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
 /* pricing */
 .h15-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .h15-plan{border:1px solid var(--line);display:grid;gap:12px;align-content:start}
-.h15-plan.feat{border-color:var(--accent);background:#FBFAF5}
+.h15-plan.feat{border-color:var(--accent);background:#F9FAF6}
 .h15-plan h3{font-family:var(--font-display);font-size:1.7rem;font-weight:400}
 .h15-plan .p{font-family:var(--font-display);font-size:3rem;line-height:1}
 .h15-plan .cad{font-size:.82rem;color:var(--text-muted)}
@@ -163,7 +163,7 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
 .h15-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .h15-final .h15-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
 .h15-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--text-primary);font-size:.86rem;color:var(--text-muted)}
-.h15-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
+.h15-foot h3{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
 .h15-foot ul{display:grid;gap:8px}
 .h15-foot a{text-decoration:none}
 .h15-foot a:hover{color:var(--accent)}
@@ -182,8 +182,8 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
     <div class="h15-shoji l" id="sl" aria-hidden="true"></div>
     <div class="h15-centre">
       <span class="h15-tate" lang="ja" aria-hidden="true">${TATE}</span>
-      <h1 id="h15-h" data-hero-part="headline">See every token your <em>words become.</em></h1>
-      <p class="k-body" data-hero-part="sub">Each request is ground into tokens and priced one by one — input, cached and output — across five model families. Nothing hidden in the bowl.</p>
+      <h1 id="h15-h" data-hero-part="headline">See every token your words become.</h1>
+      <p class="k-body" data-hero-part="sub">Each request is ground into tokens and priced one by one (input, cached and output) across five model families. Nothing hidden in the bowl.</p>
       <div data-hero-part="cta"><a class="h15-btn" href="#prices" data-cta="primary" data-magnetic="5,0.1,0.86,0.35"><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a></div>
       <p class="h15-trust" data-hero-part="trust">A twelve-word sentence is about <b>16 tokens</b>: <b>${usd(cost(MODELS[0], 16, 0))}</b> as Core input, at sample rates.</p>
     </div>
@@ -230,7 +230,7 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
   <section id="guild" data-section aria-labelledby="h15-g">
     <div class="k-wrap">
       <h2 id="h15-g" class="h15-h2" data-reveal>Members of the guild.</h2>
-      <div class="h15-voices" data-stagger>${PROOF.map(([role, focus, q]) => `<figure class="h15-v k-card"><q>${q}</q><p><b>${role}</b> — ${focus}</p></figure>`)}</div>
+      <div class="h15-voices" data-stagger>${PROOF.map(([role, focus, q]) => `<figure class="h15-v k-card"><q>${q}</q><p><b>${role}</b> · ${focus}</p></figure>`)}</div>
       <p class="h15-fine">${PROOF_NOTE}</p>
     </div>
   </section>
@@ -257,10 +257,10 @@ h1,.h15-h2{font-variation-settings:"opsz" 72}
 </main>
 <footer class="h15-foot">
   <div><p class="h15-mark">${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Cultivars</h4><ul>${MODELS.map((m) => `<li><a href="#prices">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#mill">Token pricing</a></li><li><a href="#ceremony">API quickstart</a></li><li><a href="#set">Features</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Newsreader and Plus Jakarta Sans.</span></p>
+  <div><h3>Cultivars</h3><ul>${MODELS.map((m) => `<li><a href="#prices">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#mill">Token pricing</a></li><li><a href="#ceremony">API quickstart</a></li><li><a href="#set">Features</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Newsreader and Hanken Grotesk.</span></p>
 </footer>
 `,
   js: iife(() => {

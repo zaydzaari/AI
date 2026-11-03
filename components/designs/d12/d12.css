@@ -1,18 +1,18 @@
 /* 12 Aperture (v3) — paper outside, ink machine inside, holographic portal, one signal orange. */
 @property --a12-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .d12 {
-  --bg-primary: #F7F5F0; --bg-secondary: #ECE6DA; --accent: #C23A1C; --on-accent: #FFFFFF;
+  --bg-primary: #F1F1EF; --bg-secondary: #E6E5E1; --accent: #C23A1C; --on-accent: #FFFFFF;
   --text-primary: #0E0D0C; --text-muted: #57524A; --line: rgba(14, 13, 12, 0.14);
-  --font-display: "Fraunces Variable", Georgia, serif; --font-body: "Geist Variable", sans-serif; --mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-display: "Literata", Georgia, serif; --font-body: "Hanken Grotesk Variable", sans-serif; --mono: "JetBrains Mono Variable", ui-monospace, monospace;
   --h1-weight: 420; --focus: #0E0D0C;
-  --holo: conic-gradient(from var(--a12-a), #8FD3FF, #E7C6FF, #FFD9A8, #B8F0D8, #8FD3FF);
+  --holo: conic-gradient(from var(--a12-a), #8FD3FF, #FFCAD8, #FFD9A8, #B8F0D8, #8FD3FF);
 }
 .d12 pre, .d12 code { font-family: var(--mono); }
 .d12 h1, .d12 .a12-h2 { font-variation-settings: "opsz" 144, "SOFT" 50; }
 
-.a12-nav { position: sticky; top: 0; z-index: 20; height: 62px; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 0 var(--gutter); background: #F7F5F0e6; backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); font-size: 0.88rem; }
+.a12-nav { position: sticky; top: 0; z-index: 20; height: 62px; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 0 var(--gutter); background: #F1F1EFe6; backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); font-size: 0.88rem; }
 .a12-mark { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.4rem; text-decoration: none; }
-.a12-mark span { width: 18px; height: 18px; border-radius: 50%; background: var(--text-primary); box-shadow: inset 0 0 0 4px var(--bg-primary), inset 0 0 0 5px var(--text-primary); }
+.a12-mark span { width: 18px; height: 18px; border-radius: 50%; background: var(--text-primary); box-shadow:inset 0 0 0 4px var(--bg-primary), inset 0 0 0 5px var(--text-primary); }
 .a12-nav nav { display: flex; gap: 24px; }
 .a12-nav nav a { text-decoration: none; color: var(--text-muted); padding: 4px 0; border-bottom: 2px solid transparent; }
 .a12-nav nav a.is-current { color: var(--text-primary); border-color: var(--accent); }
@@ -29,12 +29,12 @@
 /* portal + iris primitives */
 .a12-portal { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 50% 50%, #26222C 0, #0E0D0C 64%); }
 .a12-portal .ring { position: absolute; inset: 14%; border-radius: 50%; background: var(--holo); -webkit-mask: radial-gradient(closest-side, transparent 88%, #000 89%, #000 99%, transparent 100%); mask: radial-gradient(closest-side, transparent 88%, #000 89%, #000 99%, transparent 100%); animation: a12spin 14s linear infinite; opacity: 0.9; }
-.a12-portal .lens { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; text-align: center; width: 19%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFFFFF40, #FFFFFF08 60%); border: 1px solid #FFFFFF40; color: #F7F5F0; backdrop-filter: blur(6px); transition: left 0.2s linear, top 0.2s linear; }
+.a12-portal .lens { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; text-align: center; width: 19%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFFFFF40, #FFFFFF08 60%); border: 1px solid #FFFFFF40; color: #F1F1EF; backdrop-filter: blur(6px); transition: left 0.2s linear, top 0.2s linear; }
 .a12-portal .lens b { font-family: var(--font-display); font-weight: 400; font-size: clamp(0.7rem, 1.4vw, 1.3rem); line-height: 1; }
 .a12-portal .lens em { font-style: normal; font-family: var(--mono); font-size: clamp(0.5rem, 0.8vw, 0.72rem); opacity: 0.8; }
-.a12-portal .lens i { font-style: normal; font-family: var(--mono); font-size: clamp(0.45rem, 0.7vw, 0.66rem); opacity: 0.7; }
+.a12-portal .lens i { font-style: normal; font-family: var(--mono); font-size: 0.6875rem; opacity: 0.85; }
 .a12-blades { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; }
-.a12-housing { position: absolute; inset: -10px; border-radius: 50%; border: 10px solid var(--text-primary); box-shadow: inset 0 0 0 1px #ffffff22, 0 30px 60px -30px #0E0D0C88; pointer-events: none; }
+.a12-housing { position: absolute; inset: -10px; border-radius: 50%; border: 10px solid var(--text-primary); box-shadow:inset 0 0 0 1px #ffffff22, 0 30px 60px -30px #0E0D0C88; pointer-events: none; }
 
 /* hero */
 .a12-hero { min-height: calc(100svh - 62px); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; padding: 28px var(--gutter); }
@@ -55,7 +55,7 @@
 /* outside notes */
 .a12-outside { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
 .a12-notes { display: grid; gap: 16px; }
-.a12-notes li { background: #FFFDF8; border: 1px solid var(--line); border-radius: 20px; padding: 24px 28px; display: grid; gap: 6px; }
+.a12-notes li { background: #FCFCFB; border: 1px solid var(--line); border-radius: 20px; padding: 24px 28px; display: grid; gap: 6px; }
 .a12-notes .was { color: var(--text-muted); font-size: 0.95rem; }
 .a12-notes .now { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2; }
 @media (max-width: 900px) { .a12-outside { grid-template-columns: 1fr; gap: 40px; } }
@@ -65,22 +65,22 @@
 .a12-pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center; }
 .a12-inside { position: absolute; inset: 0; background: #0E0D0C; }
 .a12-inside .a12-portal { inset: 50% auto auto 50%; width: min(92vmin, 880px); aspect-ratio: 1; transform: translate(-50%, -50%); }
-.a12-in-cap { position: absolute; left: 50%; bottom: 6vh; transform: translateX(-50%); width: min(90%, 640px); text-align: center; color: #F7F5F0; font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 2rem); }
+.a12-in-cap { position: absolute; left: 50%; bottom: 6vh; transform: translateX(-50%); width: min(90%, 640px); text-align: center; color: #F1F1EF; font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 2rem); }
 .a12-big { position: absolute; left: 50%; top: 50%; width: 160vmax; aspect-ratio: 1; transform: translate(-50%, -50%); }
-.a12-out-cap { position: absolute; left: 50%; top: 10vh; transform: translateX(-50%); width: min(90%, 620px); text-align: center; font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; }
+.a12-out-cap { position: absolute; left: 50%; top: 10vh; transform: translateX(-50%); width: min(90%, 620px); text-align: center; font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.32; }
 @media (prefers-reduced-motion: reduce) { .a12-run { height: auto; } .a12-pin { position: relative; } .a12-big { display: none; } }
 
 /* inside the machine */
-.a12-dark { --bg-primary: #0E0D0C; --bg-secondary: #1A1816; --text-primary: #F2EEE6; --text-muted: #ADA79C; --line: rgba(242, 238, 230, 0.12); --focus: #F2EEE6; background: #0E0D0C; color: var(--text-primary); }
+.a12-dark { --bg-primary: #0E0D0C; --bg-secondary: #1A1816; --text-primary: #EDEDEB; --text-muted: #ADA79C; --line: rgba(242, 238, 230, 0.12); --focus: #EDEDEB; background: #0E0D0C; color: var(--text-primary); }
 .a12-glass { position: relative; isolation: isolate; overflow: hidden; border-radius: 26px; background: linear-gradient(160deg, #1F1C21cc, #141211cc); border: 1px solid var(--line); display: grid; gap: 14px; align-content: start; }
 .a12-glass::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1px; background: var(--holo); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.35; transition: opacity 0.4s; }
-.a12-glass::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(340px circle at var(--mx) var(--my), #E7C6FF1a, transparent 65%); opacity: 0; transition: opacity 0.3s; }
+.a12-glass::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(340px circle at var(--mx) var(--my), #FFCAD81a, transparent 65%); opacity: 0; transition: opacity 0.3s; }
 .a12-glass:hover::before { opacity: 0.9; }
 .a12-glass:hover::after { opacity: 1; }
 .a12-glass .tag { font-family: var(--mono); font-size: 0.76rem; color: var(--text-muted); }
 .a12-glass h3 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; line-height: 1.12; }
 .a12-glass p { color: var(--text-muted); font-size: 0.95rem; }
-.a12-glass pre { background: #0E0D0C; border: 1px solid var(--line); border-radius: 14px; padding: 14px; font-size: 0.74rem; line-height: 1.6; overflow-x: auto; color: #D9D3C7; }
+.a12-glass pre { background: #0E0D0C; border: 1px solid var(--line); border-radius: 14px; padding: 14px; font-size: 0.76rem; line-height: 1.6; overflow-x: auto; color: #D9D3C7; }
 .a12-bento { margin-top: var(--gap-block); display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
 .a12-bento .q0 { grid-column: span 4; grid-row: span 2; }
 .a12-bento .q0 h3 { font-size: clamp(2.2rem, 3.4vw, 3.1rem); }
@@ -121,7 +121,7 @@
 @media (max-width: 760px) { .a12-final { grid-template-columns: 1fr; gap: 32px; } .a12-close { width: 60vw; } }
 .a12-foot { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding: 64px var(--gutter) 48px; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--text-muted); }
 .a12-foot > div { display: grid; gap: 8px; align-content: start; }
-.a12-foot h4 { color: var(--text-primary); font-size: 0.86rem; }
+.a12-foot h3 { color: var(--text-primary); font-size: 0.86rem; }
 .a12-foot a { text-decoration: none; } .a12-foot a:hover { color: var(--text-primary); }
 .a12-foot .big { font-size: 2.2rem; color: var(--text-primary); }
 @media (max-width: 860px) { .a12-foot { grid-template-columns: 1fr 1fr; } .a12-foot > div:first-child { grid-column: 1 / -1; } }

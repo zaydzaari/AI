@@ -103,7 +103,7 @@ export default function Design10() {
       <main id="main">
         <section className="w10-hero" data-hero aria-labelledby="w10-h">
           <div className="w10-copy">
-            <h1 id="w10-h" data-hero-part="headline">Type the task. See the model and the price.</h1>
+            <h1 id="w10-h" data-hero-part="headline">Type a task, see the price.</h1>
             <p className="k-body" data-hero-part="sub">The router reads your prompt, suggests a model family and temperament, and estimates tokens and cost before you press enter.</p>
             <div data-hero-part="cta"><a className="w10-btn" href="#pricing" data-cta="primary" data-magnetic="5,0.18,0.7,0.4"><span data-magnetic-label>Create your API key</span></a></div>
             <p className="w10-trust" data-hero-part="trust"><span className="pulse" aria-hidden />The estimate on the right is live — edit the prompt and watch it change.</p>
@@ -195,9 +195,9 @@ export default function Design10() {
       </main>
       <footer className="w10-foot">
         <div><p className="w10-mark"><span aria-hidden />{BRAND.name}</p><p>{MOCK_NOTE}. Brand name is a placeholder.</p></div>
-        <div><h4>Product</h4><a href="#workspace">Workspace</a><a href="#features">Agents</a><a href="#pricing">Pricing</a></div>
-        <div><h4>Developers</h4><a href="#start">Quickstart</a><a href="#pricing">Token rates</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+        <div><h3>Product</h3><a href="#workspace">Workspace</a><a href="#features">Agents</a><a href="#pricing">Pricing</a></div>
+        <div><h3>Developers</h3><a href="#start">Quickstart</a><a href="#pricing">Token rates</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a></div>
       </footer>
     </div>
   );

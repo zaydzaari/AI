@@ -15,12 +15,12 @@ export default {
     { family: "Shippori Mincho", axes: "wght@700", text: "簡素", as: "Kanso Seal" },
   ],
   tokens: {
-    bgPrimary: "#F2EFE9", bgSecondary: "#E2DDD3", accent: "#C83E2B", onAccent: "#FFFFFF",
+    bgPrimary: "#EDEDEB", bgSecondary: "#DEDEDB", accent: "#C83E2B", onAccent: "#FFFFFF",
     textPrimary: "#1C1A17", textMuted: "#57534B", line: "rgba(28,26,23,.16)",
     display: '"Syne", sans-serif', body: '"IBM Plex Mono", ui-monospace, monospace',
   },
   css: /* css */ `
-.k2-nav{position:sticky;top:0;z-index:40;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px var(--gutter);background:#F2EFE9f2;border-bottom:1px solid var(--line);font-size:.8rem}
+.k2-nav{position:sticky;top:0;z-index:40;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px var(--gutter);background:#EDEDEBf2;border-bottom:1px solid var(--line);font-size:.8rem}
 .k2-mark{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;text-decoration:none}
 .k2-seal{display:grid;place-items:center;width:34px;height:34px;background:var(--text-primary);color:var(--bg-primary);font-family:"Kanso Seal",serif;font-size:.78rem;line-height:1;writing-mode:vertical-rl;letter-spacing:.05em}
 .k2-links{display:flex;gap:4px}
@@ -43,7 +43,7 @@ export default {
 .k2-band-copy .k-body{color:var(--text-muted)}
 .k2-print{position:relative;background:repeating-linear-gradient(0deg,#1C1A170d 0 1px,transparent 1px 24px),repeating-linear-gradient(90deg,#1C1A170d 0 1px,transparent 1px 24px);overflow:hidden;min-height:220px}
 .k2-print svg{position:absolute;inset:0;width:100%;height:100%}
-.k2-print .tag{position:absolute;left:14px;bottom:12px;font-size:.72rem;color:var(--text-muted)}
+.k2-print .tag{position:absolute;left:14px;bottom:12px;font-size:.76rem;color:var(--text-muted)}
 .k2-slab{position:relative;display:grid;align-content:center;justify-items:start;gap:18px;padding:28px;border-left:1px solid var(--text-primary);color:var(--text-primary);
   background:radial-gradient(circle at 22% 24%,#0000001a 0 3px,#ffffff40 4px,transparent 6px),radial-gradient(circle at 78% 24%,#0000001a 0 3px,#ffffff40 4px,transparent 6px),radial-gradient(circle at 22% 80%,#0000001a 0 3px,#ffffff40 4px,transparent 6px),radial-gradient(circle at 78% 80%,#0000001a 0 3px,#ffffff40 4px,transparent 6px),repeating-linear-gradient(0deg,transparent 0 46px,#00000010 46px 47px),linear-gradient(#D6D0C4,#CBC4B6)}
 .k2-slab::before{content:"";position:absolute;inset:0;opacity:.22;background-image:var(--concrete);mix-blend-mode:multiply;pointer-events:none}
@@ -58,7 +58,7 @@ export default {
   .k2-print{min-height:80px;height:80px;border:1px solid var(--text-primary);margin-top:4px}
   .k2-slab{border:1px solid var(--text-primary);border-top:0;padding:14px;grid-auto-flow:column;align-items:center;justify-content:space-between}
   .k2-slab small{display:none}
-  .k2-trust{gap:8px;font-size:.74rem}
+  .k2-trust{gap:8px;font-size:.76rem}
   .k2-trust b{font-size:1.2rem}
   .k2-band-copy{gap:10px}
 }
@@ -75,7 +75,7 @@ export default {
 /* signature: blueprint → structure */
 .k2-build{height:440vh;position:relative;margin-top:80px}
 .k2-build-pin{position:sticky;top:64px;height:calc(100vh - 64px);display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;padding:24px var(--gutter)}
-.k2-sheet{position:relative;border:1px solid var(--text-primary);background:repeating-linear-gradient(0deg,#1C1A170a 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,#1C1A170a 0 1px,transparent 1px 32px),#F2EFE9}
+.k2-sheet{position:relative;border:1px solid var(--text-primary);background:repeating-linear-gradient(0deg,#1C1A170a 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,#1C1A170a 0 1px,transparent 1px 32px),#EDEDEB}
 .k2-sheet svg{position:absolute;inset:0;width:100%;height:100%}
 .k2-side{display:grid;align-content:space-between;gap:24px;padding:8px 0}
 .k2-stages{display:grid;border-top:1px solid var(--text-primary)}
@@ -86,7 +86,7 @@ export default {
 .k2-sun label{font-size:.8rem;color:var(--text-muted)}
 .k2-sun input{width:100%;accent-color:var(--accent);height:28px}
 .k2-read{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
-.k2-read div{background:var(--bg-primary);padding:12px;display:grid;gap:2px;font-size:.72rem;color:var(--text-muted)}
+.k2-read div{background:var(--bg-primary);padding:12px;display:grid;gap:2px;font-size:.76rem;color:var(--text-muted)}
 .k2-read b{font-family:var(--font-display);font-size:1.5rem;color:var(--text-primary);letter-spacing:-.03em}
 .k2-read .live b{display:inline-block;justify-self:start;background:var(--accent);color:#fff;padding:0 6px}
 @media (max-width:900px){
@@ -157,20 +157,20 @@ export default {
 .k2-final .act p{color:var(--text-muted)}
 @media (max-width:860px){.k2-final .k2-h2,.k2-final .act{grid-column:1 / -1}}
 .k2-foot{background:var(--text-primary);color:#D9D4CA;padding:96px var(--gutter) 40px;display:grid;grid-template-columns:repeat(12,1fr);gap:48px 24px;font-size:.82rem}
-.k2-foot .word{grid-column:1 / -1;font-family:var(--font-display);font-weight:800;font-size:clamp(3rem,11vw,11rem);letter-spacing:-.06em;line-height:.8;color:#F2EFE9}
+.k2-foot .word{grid-column:1 / -1;font-family:var(--font-display);font-weight:800;font-size:clamp(3rem,11vw,11rem);letter-spacing:-.04em;line-height:.8;color:#EDEDEB}
 .k2-foot div{grid-column:span 3}
-.k2-foot h4{font-family:var(--font-body);font-weight:500;color:#F2EFE9;margin-bottom:14px;font-size:.8rem}
+.k2-foot h3{font-family:var(--font-body);font-weight:500;color:#EDEDEB;margin-bottom:14px;font-size:.8rem}
 .k2-foot ul{display:grid;gap:8px}
 .k2-foot a{text-decoration:none}
 .k2-foot a:hover{color:#fff;text-decoration:underline}
-.k2-foot .legal{grid-column:1 / -1;border-top:1px solid #F2EFE933;padding-top:24px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.k2-foot .legal{grid-column:1 / -1;border-top:1px solid #EDEDEB33;padding-top:24px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 @media (max-width:820px){.k2-foot div{grid-column:span 6}}
 .k2-rates{margin-top:28px;display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--text-primary)}
 .k2-rates p{display:grid;gap:2px;padding:16px;font-size:.78rem;color:var(--text-muted)}
 .k2-rates p+p{border-left:1px solid var(--text-primary)}
 .k2-rates b{font-family:var(--font-display);font-size:1.3rem;color:var(--text-primary);letter-spacing:-.03em}
 @media (max-width:900px){.k2-rates{grid-template-columns:1fr 1fr}.k2-rates p+p{border-left:0}.k2-rates p{border-top:1px solid var(--line)}}
-.k2-iso-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;fill:#1C1A17}
+.k2-iso-lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#1C1A17}
 `,
   body: h`
 <header class="k2-nav">
@@ -205,7 +205,7 @@ export default {
         <div class="k2-side">
           <ol class="k2-stages" id="stages"><li class="on"><span>Linework</span><span>01</span></li><li><span>Five families, cast</span><span>02</span></li><li><span>What each one costs</span><span>03</span></li></ol>
           <div class="k2-sun">
-            <label for="sun">Request size — drag to change it. Height is context; shadow is cost.</label>
+            <label for="sun">Request size: drag to change it. Height is context; shadow is cost.</label>
             <input id="sun" type="range" min="0" max="1" step="0.01" value="0.35">
             <div class="k2-read" aria-live="polite"><div class="live"><span>Request</span><b id="r-time">4K</b></div><div><span>Cheapest</span><b id="r-el">Swift</b></div><div><span>Costliest</span><b id="r-az">Atlas</b></div><div><span>Atlas cost</span><b id="r-sh">$0.00</b></div></div>
           </div>
@@ -228,7 +228,7 @@ export default {
       <div data-rail-view>
         <div class="k2-rail-head"><h2 id="pr-title" class="k2-h2" data-reveal>Three sheets to production.</h2></div>
         <ol class="k2-sheets" data-rail-track>
-          ${STEPS.map(([t, d], i) => `<li class="k2-dw"><div class="body k-card"><h3>${t}</h3><p>${d}</p></div><div class="tb"><span>${SHEETS[i][0]}</span><span>${BRAND.name} — standard sheet</span><span>${SHEETS[i][1]}</span></div></li>`)}
+          ${STEPS.map(([t, d], i) => `<li class="k2-dw"><div class="body k-card"><h3>${t}</h3><p>${d}</p></div><div class="tb"><span>${SHEETS[i][0]}</span><span>${BRAND.name} · standard sheet</span><span>${SHEETS[i][1]}</span></div></li>`)}
         </ol>
       </div>
     </div>
@@ -264,10 +264,10 @@ export default {
 </main>
 <footer class="k2-foot">
   <p class="word" aria-hidden="true">${BRAND.name}.</p>
-  <div><h4>Platform</h4><ul><li><a href="#build">Model families</a></li><li><a href="#qualities">Features</a></li><li><a href="#fees">Token rates</a></li></ul></div>
-  <div><h4>Models</h4><ul>${MODELS.slice(0, 3).map((m) => `<li><a href="#fees">${m.name}</a></li>`)}</ul></div>
-  <div><h4>More models</h4><ul>${MODELS.slice(3).map((m) => `<li><a href="#fees">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#build">Model families</a></li><li><a href="#qualities">Features</a></li><li><a href="#fees">Token rates</a></li></ul></div>
+  <div><h3>Models</h3><ul>${MODELS.slice(0, 3).map((m) => `<li><a href="#fees">${m.name}</a></li>`)}</ul></div>
+  <div><h3>More models</h3><ul>${MODELS.slice(3).map((m) => `<li><a href="#fees">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${conceptNote(STYLE)}</span><span>Set in Syne and IBM Plex Mono.</span></p>
 </footer>
 `,

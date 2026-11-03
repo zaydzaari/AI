@@ -14,7 +14,7 @@ const SAVED = SESSION.reduce((a, r) => a + r.fresh - r.cached, 0);
 const SPENT = SESSION.reduce((a, r) => a + r.cached, 0);
 
 export default {
-  title: "Aether — Pay full price once. Then the cache takes over.",
+  title: "Aether — Full price once, then cached.",
   description: "Prompt caching on every model: repeated prefixes are billed at the cached rate automatically, and the saving grows through the session. Obsidian Roasters design direction.",
   fonts: [
     { family: "Gloock" },
@@ -34,7 +34,7 @@ export default {
 .r17-links a.is-current{color:var(--text-primary);border-color:var(--accent)}
 .r17-lot{color:var(--text-muted)}
 @media (max-width:900px){.r17-links{display:none}}
-.r17-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 28px;border-radius:4px;background:var(--accent);color:var(--on-accent);font-family:var(--font-body);font-weight:500;font-size:.92rem;text-decoration:none;box-shadow:0 0 0 1px #EA580C,0 14px 30px -14px #EA580C;transition:box-shadow .4s}
+.r17-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 28px;border-radius:4px;background:var(--accent);color:var(--on-accent);font-family:var(--font-body);font-weight:500;font-size:.92rem;text-decoration:none;box-shadow:0 0 0 1px #EA580C,0 14px 30px -14px rgba(0,0,0,.32);transition:box-shadow .4s}
 .r17-btn i{width:10px;height:10px;border-radius:50%;background:#140A04;box-shadow:0 0 0 3px #140A0433;transition:transform .5s var(--ease)}
 .r17-btn.is-near i{transform:scale(1.4)}
 .r17-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.02em;line-height:1;max-width:16ch}
@@ -43,18 +43,18 @@ export default {
 
 /* hero: chart-as-hero */
 .r17-hero{position:relative;min-height:calc(100svh - 60px);display:grid;grid-template-columns:64px 1fr;grid-template-rows:1fr 34px;padding:24px var(--gutter) 16px}
-.r17-yaxis{grid-row:1;display:flex;flex-direction:column;justify-content:space-between;font-size:.66rem;color:var(--text-muted);padding:8px 10px 8px 0;text-align:right;border-right:1px solid var(--line)}
+.r17-yaxis{grid-row:1;display:flex;flex-direction:column;justify-content:space-between;font-size:.6875rem;color:var(--text-muted);padding:8px 10px 8px 0;text-align:right;border-right:1px solid var(--line)}
 .r17-plot{position:relative;grid-row:1;grid-column:2;border-bottom:1px solid var(--line);background:repeating-linear-gradient(0deg,#F2E8DF08 0 1px,transparent 1px 25%),repeating-linear-gradient(90deg,#F2E8DF08 0 1px,transparent 1px 10%)}
 .r17-plot canvas{position:absolute;inset:0;width:100%;height:100%}
-.r17-xaxis{grid-row:2;grid-column:2;display:flex;justify-content:space-between;align-items:center;font-size:.66rem;color:var(--text-muted)}
+.r17-xaxis{grid-row:2;grid-column:2;display:flex;justify-content:space-between;align-items:center;font-size:.6875rem;color:var(--text-muted)}
 .r17-in{position:absolute;left:clamp(16px,4vw,56px);top:clamp(16px,5vh,48px);display:grid;gap:18px;justify-items:start;max-width:min(680px,90%);z-index:2}
 .r17-in h1{text-shadow:0 2px 30px #100D0C}
 .r17-in .k-body{color:var(--text-muted);max-width:46ch;background:#100D0Cb3}
-.r17-cross{position:absolute;right:16px;bottom:16px;z-index:2;font-size:.74rem;color:var(--text-muted);background:#1E1916;border:1px solid var(--line);padding:10px 14px;display:grid;gap:4px}
+.r17-cross{position:absolute;right:16px;bottom:16px;z-index:2;font-size:.76rem;color:var(--text-muted);background:#1E1916;border:1px solid var(--line);padding:10px 14px;display:grid;gap:4px}
 .r17-cross b{color:var(--text-primary);font-weight:500}
 @media (max-width:860px){
   .r17-hero{grid-template-columns:34px 1fr;padding:12px var(--gutter) 10px}
-  .r17-yaxis{font-size:.56rem;padding-right:4px}
+  .r17-yaxis{font-size:.6875rem;padding-right:4px}
   .r17-in{left:12px;top:12px;gap:12px}
   .r17-cross{left:12px;right:auto;bottom:10px;padding:8px 10px}
 }
@@ -63,7 +63,7 @@ export default {
 .r17-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
 .r17-defects{display:grid;border-top:1px solid var(--line)}
 .r17-defects li{display:grid;grid-template-columns:110px 1fr;gap:4px 18px;padding:20px 0;border-bottom:1px solid var(--line)}
-.r17-defects .d{grid-row:span 2;font-size:.7rem;color:var(--text-muted)}
+.r17-defects .d{grid-row:span 2;font-size:.76rem;color:var(--text-muted)}
 .r17-defects .was{color:var(--text-muted);font-size:.86rem}
 .r17-defects .now{font-family:var(--font-display);font-size:1.4rem;line-height:1.2}
 @media (max-width:900px){.r17-cols{grid-template-columns:1fr;gap:40px}}
@@ -73,16 +73,16 @@ export default {
 .r17-pin{position:sticky;top:60px;height:calc(100vh - 60px);display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:32px;padding:24px var(--gutter)}
 .r17-chart{position:relative;border:1px solid var(--line);background:#130F0E}
 .r17-chart canvas{position:absolute;inset:0;width:100%;height:100%}
-.r17-legend{position:absolute;left:16px;top:12px;display:flex;gap:16px;font-size:.7rem;color:var(--text-muted)}
+.r17-legend{position:absolute;left:16px;top:12px;display:flex;gap:16px;font-size:.76rem;color:var(--text-muted)}
 .r17-legend i{display:inline-block;width:18px;height:2px;vertical-align:middle;margin-right:6px}
 .r17-notes{display:grid;align-content:center;gap:14px}
-.r17-phase{display:grid;gap:6px;border-left:2px solid var(--accent);padding-left:14px}
-.r17-phase span{font-size:.72rem;color:var(--text-muted)}
+.r17-phase{display:grid;gap:6px;border-left:1px solid var(--accent);padding-left:14px}
+.r17-phase span{font-size:.76rem;color:var(--text-muted)}
 .r17-phase b{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,3.6vw,3rem);line-height:1}
 .r17-phase p{font-size:.86rem;color:var(--text-muted)}
 .r17-nums{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .r17-nums div{background:var(--bg-primary);padding:12px;display:grid;gap:2px}
-.r17-nums span{font-size:.68rem;color:var(--text-muted)}
+.r17-nums span{font-size:.6875rem;color:var(--text-muted)}
 .r17-nums b{font-family:var(--font-display);font-weight:400;font-size:1.6rem;font-variant-numeric:tabular-nums}
 @media (max-width:900px){
   .r17-run{height:400vh}
@@ -96,9 +96,9 @@ export default {
 /* bento: the menu */
 .r17-menu{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .r17-item{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:12px;align-content:start;min-height:240px}
-.r17-item::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),#EA580C1f,transparent 65%);opacity:0;transition:opacity .3s}
+.r17-item::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(123,123,123,0.073),transparent 65%);opacity:0;transition:opacity .3s}
 .r17-item:hover::before{opacity:1}
-.r17-item .tag{display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted)}
+.r17-item .tag{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-muted)}
 .r17-item h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.12}
 .r17-item p{font-size:.84rem;color:var(--text-muted)}
 .r17-item.i0{grid-column:span 2;grid-row:span 2}.r17-item.i0 h3{font-size:clamp(2.2rem,3.6vw,3.2rem)}
@@ -113,13 +113,13 @@ export default {
 .r17-step.is-active .n{color:var(--text-primary)}
 .r17-step h3{font-family:var(--font-display);font-weight:400;font-size:1.7rem;line-height:1.1}
 .r17-step p{color:var(--text-muted);font-size:.86rem}
-.r17-step pre{margin:0;background:#100D0C;border:1px solid var(--line);padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.r17-step pre{margin:0;background:#100D0C;border:1px solid var(--line);padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.r17-step{width:auto}}
 
 /* cupping notes */
 .r17-cup{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .r17-c{border:1px solid var(--line);display:grid;gap:12px;background:linear-gradient(#1E1916,#161210)}
-.r17-c .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.7rem;color:var(--text-muted)}
+.r17-c .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .r17-c b{font-family:var(--font-display);font-weight:400;font-size:1.3rem;color:var(--text-primary)}
 .r17-c q{font-size:.9rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.r17-cup{grid-template-columns:1fr}}
@@ -130,7 +130,7 @@ export default {
 .r17-plan.feat{background:var(--bg-secondary);border-color:#EA580C77}
 .r17-plan h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem}
 .r17-plan .p{font-family:var(--font-display);font-size:3rem;line-height:1}
-.r17-plan .cad{font-size:.74rem;color:var(--text-muted)}
+.r17-plan .cad{font-size:.76rem;color:var(--text-muted)}
 .r17-plan ul{display:grid;gap:6px;font-size:.84rem}
 .r17-plan li::before{content:"· ";color:var(--accent)}
 .r17-plan .fk{font-size:.78rem;border-top:1px dashed var(--line);padding-top:12px}
@@ -144,7 +144,7 @@ export default {
 .r17-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .r17-final .r17-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
 .r17-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted)}
-.r17-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.1rem;color:var(--text-primary);margin-bottom:12px}
+.r17-foot h3{font-family:var(--font-display);font-weight:400;font-size:1.1rem;color:var(--text-primary);margin-bottom:12px}
 .r17-foot ul{display:grid;gap:8px}
 .r17-foot a{text-decoration:none}
 .r17-foot a:hover{color:var(--text-primary)}
@@ -163,7 +163,7 @@ export default {
     <div class="r17-plot" data-hero-part="visual">
       <canvas id="hplot" role="img" aria-label="Cost per request across a 20-request session, with and without caching; hover to read a point"></canvas>
       <div class="r17-in">
-        <h1 id="r17-h" data-hero-part="headline">Pay full price once. Then the cache takes over.</h1>
+        <h1 id="r17-h" data-hero-part="headline">Full price once, then cached.</h1>
         <p class="k-body" data-hero-part="sub">Prompt caching on every model: repeated prefixes are billed at the cached rate automatically, so a long session gets cheaper with every request.</p>
         <div data-hero-part="cta"><a class="r17-btn" href="#board" data-cta="primary" data-magnetic="5,0.16,0.74,0.4"><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a></div>
       </div>
@@ -231,9 +231,9 @@ export default {
 </main>
 <footer class="r17-foot">
   <div><p class="r17-mark">${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Origins</h4><ul>${MODELS.map((m) => `<li><a href="#board">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#profile">Prompt caching</a></li><li><a href="#brew">API quickstart</a></li><li><a href="#board">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Origins</h3><ul>${MODELS.map((m) => `<li><a href="#board">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#profile">Prompt caching</a></li><li><a href="#brew">API quickstart</a></li><li><a href="#board">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Gloock and JetBrains Mono.</span></p>
 </footer>
 `,

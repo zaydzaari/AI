@@ -4,26 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Aether — Configure your stack. See the price first.</title>
+<title>Aether — Build your stack, priced first.</title>
 <meta name="description" content="Pick a model, a temperament and the features you need; the per-token estimate updates as you build. Forma design direction.">
 <meta name="theme-color" content="#F5F5F3">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23F5F5F3'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23D9381E'%2F%3E%3C%2Fsvg%3E">
-<link rel="preload" href="fonts/space-grotesk-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/familjen-grotesk-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/space-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/space-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/space-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/space-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/familjen-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/familjen-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/familjen-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Familjen Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/familjen-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 
-:root{--bg-primary:#F5F5F3;--bg-secondary:#E5E5E0;--accent:#D9381E;--on-accent:#FFFFFF;--text-primary:#1A1A18;--text-muted:#55554F;--line:rgba(26,26,24,.14);--font-display:"Space Grotesk", sans-serif;--font-body:"IBM Plex Mono", ui-monospace, monospace}
+:root{--bg-primary:#F5F5F3;--bg-secondary:#E5E5E0;--accent:#D9381E;--on-accent:#FFFFFF;--text-primary:#1A1A18;--text-muted:#55554F;--line:rgba(26,26,24,.14);--font-display:"Familjen Grotesk", sans-serif;--font-body:"IBM Plex Mono", ui-monospace, monospace}
 
 :root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:calc(1.05rem * var(--tw-body,1));line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
 .k-gap{height:clamp(64px,6vw,80px)}
 ul,ol{padding:0;list-style:none}
@@ -33,22 +33,24 @@ button,input,select{font:inherit;color:inherit}
 code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
 button{cursor:pointer}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1{font-family:var(--font-display);font-size:calc(clamp(3.25rem,6vw,5rem) * var(--tw-h1,1));line-height:.98;letter-spacing:var(--tw-h1ls,-.03em);font-weight:var(--h1-weight,500);text-wrap:balance}
 h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
 .k-card{padding:clamp(36px,3vw,40px)}
 h2,h3{font-family:var(--font-display);text-wrap:balance}
+p,li,dd,blockquote,figcaption{text-wrap:pretty}
 .k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
-.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-body{font-size:calc(1.05rem * var(--tw-body,1));line-height:1.7;max-width:65ch}
 .k-muted{color:var(--text-muted)}
 ::selection{background:var(--accent);color:var(--on-accent)}
+html{scrollbar-color:color-mix(in srgb,var(--text-muted) 55%,transparent) var(--bg-primary);caret-color:var(--accent)}
 :focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
 .k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
 .k-skip:focus{top:12px}
 .k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 [data-section]{padding-block:120px;position:relative}
 @media (max-width:767px){[data-section]{padding-block:72px}}
-body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
-[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:var(--tw-grain,.035);background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,var(--tw-rd,26px),0);transition:opacity calc(.8s * var(--tw-dur,1)) var(--tw-ease,var(--ease)) calc(var(--i,0) * var(--tw-stg,80ms)),transform calc(.9s * var(--tw-dur,1)) var(--tw-ease,var(--ease)) calc(var(--i,0) * var(--tw-stg,80ms))}
 [data-reveal].is-in{opacity:1;transform:none}
 [data-magnetic]{will-change:transform;touch-action:manipulation}
 [data-spot]{--mx:50%;--my:50%}
@@ -61,6 +63,55 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
+/* Aether Tweaks: hero load-in + panel. Shared by the collection (inlined) and the lab (imported). */
+
+/* Hero load-in: parts arrive one by one (visual, headline, sub, CTA, trust) with a heavy ease.
+   Pure CSS so it plays on first paint, before any script. Zero-specificity selectors and
+   fill-mode backwards, so a site's own styles win once the entrance has played. */
+@keyframes tw-in { from { opacity: 0; translate: 0 var(--tw-load-dist, 28px); filter: blur(var(--tw-load-blur, 6px)); } }
+@keyframes tw-in2 { from { opacity: 0; translate: 0 var(--tw-load-dist, 28px); filter: blur(var(--tw-load-blur, 6px)); } }
+@keyframes tw-fade { from { opacity: 0; scale: 0.985; } }
+@keyframes tw-fade2 { from { opacity: 0; scale: 0.985; } }
+:where([data-hero-part="visual"]) { --hp: 0; }
+:where([data-hero-part="headline"]) { --hp: 1; }
+:where([data-hero-part="sub"]) { --hp: 2; }
+:where([data-hero-part="cta"]) { --hp: 3; }
+:where([data-hero-part="trust"]) { --hp: 4; }
+@media (prefers-reduced-motion: no-preference) {
+  :where([data-hero]:not(.tw-noload)) :where([data-hero-part]) {
+    animation: tw-in var(--tw-load-dur, 1s) var(--tw-ease, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    animation-delay: calc(var(--hp, 0) * var(--tw-load-stg, 110ms) + 60ms);
+  }
+  :where([data-hero]:not(.tw-noload)) :where([data-hero-part="visual"]) { animation-name: tw-fade; }
+  :where([data-hero].tw-again:not(.tw-noload)) :where([data-hero-part]) { animation-name: tw-in2; }
+  :where([data-hero].tw-again:not(.tw-noload)) :where([data-hero-part="visual"]) { animation-name: tw-fade2; }
+}
+
+/* Panel */
+.tw-wrap { position: fixed; right: 16px; bottom: 16px; z-index: 9600; display: grid; justify-items: end; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 13px; line-height: 1.4; color: #F2F2F2; }
+.tw-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #FFFFFF33; background: #121214EB; color: #F4F4F4; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 10px 30px -12px #000000AA; }
+.tw-toggle svg { width: 16px; height: 16px; }
+.tw-toggle:focus-visible, .tw-panel :focus-visible { outline: 2px solid #F4F4F4; outline-offset: 2px; }
+.tw-panel { width: min(340px, calc(100vw - 32px)); max-height: min(72vh, 640px); overflow: auto; padding: 16px 16px 12px; border-radius: 16px; border: 1px solid #FFFFFF26; background: #121214F5; box-shadow: 0 24px 60px -20px #000000CC; overscroll-behavior: contain; }
+.tw-panel[hidden] { display: none; }
+.tw-head { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid #FFFFFF1F; }
+.tw-head b { font-size: 15px; }
+.tw-head span, .tw-note { color: #B9B9BE; font-size: 12px; }
+.tw-group { border: 0; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.tw-group legend { padding: 0 0 4px; font-size: 12px; font-weight: 600; color: #D6D6DA; }
+.tw-row { display: grid; grid-template-columns: 112px 1fr 58px; align-items: center; gap: 8px; }
+.tw-row label { color: #E4E4E7; font-size: 12px; }
+.tw-row input[type="range"] { width: 100%; accent-color: #F2F2F2; }
+.tw-row input[type="color"] { width: 100%; height: 28px; padding: 0 2px; border: 1px solid #FFFFFF33; border-radius: 6px; background: transparent; }
+.tw-row input[type="checkbox"] { justify-self: start; width: 18px; height: 18px; accent-color: #F2F2F2; }
+.tw-row select { width: 100%; min-height: 30px; padding: 0 6px; border-radius: 6px; border: 1px solid #FFFFFF33; background: #1C1C20; color: #F2F2F2; font: inherit; font-size: 12px; }
+.tw-row output { font-size: 12px; color: #B9B9BE; text-align: right; font-variant-numeric: tabular-nums; }
+.tw-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tw-actions button { min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #FFFFFF33; background: #1C1C20; color: #F2F2F2; font: inherit; font-size: 12px; cursor: pointer; }
+.tw-actions button:hover { background: #26262B; }
+.tw-note { margin: 8px 0 0; min-height: 1em; white-space: pre-wrap; word-break: break-word; }
+@media print { .tw-wrap { display: none; } }
+
 /* ——— Forma Modular ——— */
 
 .f12-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#F5F5F3f2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font-size:.8rem}
@@ -71,7 +122,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-links a.is-current{background:var(--text-primary);color:#fff}
 .f12-ser{color:var(--text-muted)}
 @media (max-width:900px){.f12-links{display:none}}
-.f12-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 10px 0 26px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:600;font-size:1rem;text-decoration:none;box-shadow:inset 0 1px 0 #ffffff55,0 6px 16px -8px #D9381Eaa}
+.f12-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 10px 0 26px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:600;font-size:1rem;text-decoration:none;box-shadow:inset 0 1px 0 #ffffff55,0 6px 16px -8px rgba(0,0,0,.32)}
 .f12-btn i{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d8d8d2);box-shadow:inset 0 -2px 3px #0002;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
 .f12-btn.is-near i{transform:rotate(90deg) scale(1.06)}
 .f12-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:600;letter-spacing:-.035em;line-height:1;max-width:18ch}
@@ -88,7 +139,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-trust b{color:var(--text-primary)}
 .f12-tool{grid-column:7 / -1;grid-row:1 / span 2;align-self:center;border-radius:26px;padding:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .f12-tool fieldset{display:grid;gap:8px;grid-column:span 2}
-.f12-tool legend{font-size:.72rem;color:var(--text-muted);margin-bottom:6px}
+.f12-tool legend{font-size:.76rem;color:var(--text-muted);margin-bottom:6px}
 .f12-tool .opts{display:flex;flex-wrap:wrap;gap:6px}
 .f12-tool label{position:relative}
 .f12-tool input[type=radio],.f12-tool input[type=checkbox]{position:absolute;opacity:0;inset:0;cursor:pointer}
@@ -102,18 +153,18 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-tool .vol input{width:100%;accent-color:var(--accent)}
 .f12-tool .est{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:end;gap:16px;border-top:1px solid var(--line);padding-top:14px;flex-wrap:wrap}
 .f12-tool .est b{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;letter-spacing:-.04em;line-height:1}
-.f12-tool .est span{font-size:.74rem;color:var(--text-muted)}
+.f12-tool .est span{font-size:.76rem;color:var(--text-muted)}
 @media (max-width:1000px){
   .f12-hero{grid-template-columns:1fr;gap:8px;padding-top:8px;padding-bottom:8px;align-content:start}
   .f12-copy{grid-column:1;grid-row:auto;gap:9px}
   .f12-tool{grid-column:1;grid-row:auto;padding:8px 12px;gap:4px;grid-template-columns:1fr 1fr;border-radius:18px}
   .f12-tool fieldset+fieldset,.f12-tool .vol,.f12-tool legend{display:none}
   .f12-tool .opts{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px}
-  .f12-tool .est span{font-size:.66rem}
+  .f12-tool .est span{font-size:.6875rem}
   .f12-tool .est .long{display:none}
   .f12-trust .long{display:none}
   .f12-tool fieldset{grid-column:1 / -1}
-  .f12-tool .chip{min-height:32px;padding:0 10px;font-size:.74rem}
+  .f12-tool .chip{min-height:32px;padding:0 10px;font-size:.76rem}
   .f12-tool .est{padding-top:8px}
   .f12-tool .est b{font-size:1.7rem}
 }
@@ -128,7 +179,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-ba{position:relative;margin-top:56px;border-radius:26px;overflow:hidden;aspect-ratio:2.4;min-height:260px;cursor:ew-resize;touch-action:none;user-select:none}
 .f12-room{position:absolute;inset:0;display:grid;place-items:center}
 .f12-room svg{width:92%;height:84%}
-.f12-room .tag{position:absolute;top:16px;font-size:.74rem;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.f12-room .tag{position:absolute;top:16px;font-size:.76rem;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
 .f12-room.before{background:#EBEBE6}.f12-room.before .tag{left:16px}
 .f12-room.after{background:#F9F9F7;clip-path:inset(0 0 0 var(--cut,50%))}.f12-room.after .tag{right:16px}
 .f12-handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--text-primary);transform:translateX(-1px)}
@@ -142,11 +193,11 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-slot{position:relative;aspect-ratio:.78;border-radius:16px;background:repeating-linear-gradient(135deg,#0000000a 0 6px,transparent 6px 12px),#CFCFC8;box-shadow:inset 0 2px 4px #0003}
 .f12-mod{position:absolute;inset:0;border-radius:16px;padding:18px 14px;display:grid;align-content:space-between;transform:translate3d(calc(var(--off,1) * 60vw),calc(var(--off,1) * -40px),0) rotate(calc(var(--off,1) * 8deg));opacity:calc(1 - var(--off,1) * .7);transition:transform .9s cubic-bezier(.34,1.56,.64,1),opacity .5s}
 .f12-mod.in{--off:0}
-.f12-mod .code{font-size:.7rem;color:var(--text-muted);display:flex;justify-content:space-between}
+.f12-mod .code{font-size:.76rem;color:var(--text-muted);display:flex;justify-content:space-between}
 .f12-mod .code i{width:8px;height:8px;border-radius:50%;background:#C9C9C2}
 .f12-mod.in .code i{background:var(--accent)}
 .f12-mod b{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1.1}
-.f12-mod p{font-size:.72rem;color:var(--text-muted);line-height:1.5}
+.f12-mod p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
 .f12-sheet{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
 .f12-sheet ol{display:flex;gap:8px;flex-wrap:wrap;font-size:.76rem}
 .f12-sheet li{padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--text-muted)}
@@ -170,7 +221,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-card:hover::after{opacity:1}
 .f12-card .dial{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d6d6d0);box-shadow:inset 0 -2px 3px #0002,0 2px 4px #0001;position:relative}
 .f12-card .dial::after{content:"";position:absolute;left:50%;top:6px;width:2px;height:10px;background:var(--text-primary);transform:translateX(-50%) rotate(var(--rot,0deg));transform-origin:50% 16px}
-.f12-card .tag{font-size:.72rem;color:var(--text-muted)}
+.f12-card .tag{font-size:.76rem;color:var(--text-muted)}
 .f12-card h3{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1.12}
 .f12-card p{font-size:.86rem;color:var(--text-muted)}
 .f12-card.c0{grid-column:span 2;background:var(--text-primary);color:#fff;border:0}
@@ -187,14 +238,14 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-step.is-active .n{background:var(--accent);color:#fff}
 .f12-step h3{font-family:var(--font-display);font-size:1.7rem;font-weight:600;line-height:1.08}
 .f12-step p{color:var(--text-muted);font-size:.88rem}
-.f12-step pre{margin:0;background:var(--text-primary);color:#F5F5F3;border-radius:14px;padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.f12-step pre{margin:0;background:var(--text-primary);color:#F5F5F3;border-radius:14px;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.f12-step{width:auto}}
 
 /* proof */
 .f12-proof{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .f12-q{border-radius:24px;display:grid;gap:14px;align-content:space-between;min-height:260px}
 .f12-q q{font-size:.92rem;line-height:1.6;quotes:"“" "”"}
-.f12-q p{font-size:.74rem;color:var(--text-muted)}
+.f12-q p{font-size:.76rem;color:var(--text-muted)}
 .f12-q b{display:block;font-family:var(--font-display);font-size:1rem;color:var(--text-primary)}
 @media (max-width:1000px){.f12-proof{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.f12-proof{grid-template-columns:1fr}}
@@ -212,14 +263,14 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 .f12-plan .fk{font-size:.8rem;border-top:1px solid currentColor;padding-top:12px;opacity:.9}
 @media (max-width:900px){.f12-plans{grid-template-columns:1fr}}
 .f12-rates{margin-top:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.f12-rates div{border-radius:18px;padding:16px;display:grid;gap:4px;font-size:.74rem;color:var(--text-muted)}
+.f12-rates div{border-radius:18px;padding:16px;display:grid;gap:4px;font-size:.76rem;color:var(--text-muted)}
 .f12-rates b{font-family:var(--font-display);font-size:1.2rem;color:var(--text-primary);font-weight:600}
 @media (max-width:900px){.f12-rates{grid-template-columns:1fr 1fr}}
 
 /* final + footer */
 .f12-final{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
 .f12-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted)}
-.f12-foot h4{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px}
+.f12-foot h3{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px}
 .f12-foot ul{display:grid;gap:8px}
 .f12-foot a{text-decoration:none}
 .f12-foot a:hover{color:var(--text-primary)}
@@ -239,8 +290,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
 <main id="main">
   <section class="f12-hero" data-hero aria-labelledby="f12-h">
     <div class="f12-copy">
-      <h1 id="f12-h" data-hero-part="headline">Configure your stack. See the price first.</h1>
-      <p class="k-body" data-hero-part="sub">Pick a model, a temperament and the features you need. The estimate updates as you build — per token, nothing bundled.</p>
+      <h1 id="f12-h" data-hero-part="headline">Build your stack, priced first.</h1>
+      <p class="k-body" data-hero-part="sub">Pick a model, a temperament and the features you need. The estimate updates as you build: per token, nothing bundled.</p>
       <div data-hero-part="cta"><a class="f12-btn" href="#prices" data-cta="primary" data-magnetic="5,0.16,0.7,0.3"><span data-magnetic-label>Get your API key</span><i aria-hidden="true"></i></a></div>
       <p class="f12-trust" data-hero-part="trust">Lightest module: <b>Swift</b> from <b>$0.08</b> per 1M input tokens.<span class="long"> Sample rates.</span></p>
     </div>
@@ -269,7 +320,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
       <div class="f12-pin">
         <h3 class="f12-h2" style="font-size:clamp(1.8rem,3vw,2.6rem)">The rail: snap your stack together.</h3>
         <div class="f12-rail" aria-label="Six modules snapping into a rail">
-          <div class="f12-slot"><div class="f12-mod alu in" data-i="0"><p class="code"><span>KEY-01</span><i aria-hidden="true"></i></p><div><b>One API key</b><p>Every model family behind a single credential.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="1"><p class="code"><span>MDL-02</span><i aria-hidden="true"></i></p><div><b>Model family</b><p>Core, Unbound, Forge, Atlas or Swift — change one string.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="2"><p class="code"><span>TMP-03</span><i aria-hidden="true"></i></p><div><b>Temperament</b><p>Standard, low-refusal or abliterated per request.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="3"><p class="code"><span>CCH-04</span><i aria-hidden="true"></i></p><div><b>Prompt cache</b><p>Repeated prefixes billed at the cached rate automatically.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="4"><p class="code"><span>STR-05</span><i aria-hidden="true"></i></p><div><b>Streaming + tools</b><p>Token streaming and tool calls in the request shape you know.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="5"><p class="code"><span>AGT-06</span><i aria-hidden="true"></i></p><div><b>Coding agent</b><p>Forge reads, plans, edits and tests; you review the diff.</p></div></div></div>
+          <div class="f12-slot"><div class="f12-mod alu in" data-i="0"><p class="code"><span>KEY-01</span><i aria-hidden="true"></i></p><div><b>One API key</b><p>Every model family behind a single credential.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="1"><p class="code"><span>MDL-02</span><i aria-hidden="true"></i></p><div><b>Model family</b><p>Core, Unbound, Forge, Atlas or Swift: change one string.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="2"><p class="code"><span>TMP-03</span><i aria-hidden="true"></i></p><div><b>Temperament</b><p>Standard, low-refusal or abliterated per request.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="3"><p class="code"><span>CCH-04</span><i aria-hidden="true"></i></p><div><b>Prompt cache</b><p>Repeated prefixes billed at the cached rate automatically.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="4"><p class="code"><span>STR-05</span><i aria-hidden="true"></i></p><div><b>Streaming + tools</b><p>Token streaming and tool calls in the request shape you know.</p></div></div></div><div class="f12-slot"><div class="f12-mod alu" data-i="5"><p class="code"><span>AGT-06</span><i aria-hidden="true"></i></p><div><b>Coding agent</b><p>Forge reads, plans, edits and tests; you review the diff.</p></div></div></div>
         </div>
         <div class="f12-sheet" aria-live="polite"><ol id="spec"><li class="on">One API key</li><li>Model family</li><li>Temperament</li><li>Prompt cache</li><li>Streaming + tools</li><li>Coding agent</li></ol><p>Modules fitted <b id="fit">1</b> / 6</p></div>
       </div>
@@ -287,7 +338,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;o
     <div data-rail>
       <div data-rail-view>
         <div class="f12-rail-head"><h2 id="f12-a" class="f12-h2" data-reveal>Assembly takes three steps.</h2></div>
-        <ol class="f12-steps" data-rail-track><li class="f12-step alu k-card"><span class="n">1</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></li><li class="f12-step alu k-card"><span class="n">2</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+        <ol class="f12-steps" data-rail-track><li class="f12-step alu k-card"><span class="n">1</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals; the request stays the same.</p></li><li class="f12-step alu k-card"><span class="n">2</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
 model:   "core-128k"</code></pre></li><li class="f12-step alu k-card"><span class="n">3</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></li></ol>
       </div>
     </div>
@@ -297,7 +348,7 @@ model:   "core-128k"</code></pre></li><li class="f12-step alu k-card"><span clas
     <div class="k-wrap">
       <h2 id="f12-o" class="f12-h2" data-reveal>Owners, by role.</h2>
       <div class="f12-proof" data-stagger><figure class="f12-q alu k-card"><q>Replace with a real quote about consolidating providers behind one base URL.</q><p><b>Backend developer</b>One key instead of three</p></figure><figure class="f12-q alu k-card"><q>Replace with a real quote about comparing standard and abliterated variants.</q><p><b>Safety researcher</b>Studying refusal behaviour</p></figure><figure class="f12-q alu k-card"><q>Replace with a real quote about writing difficult scenes without refusals.</q><p><b>Novelist</b>Dark themes, no lectures</p></figure><figure class="f12-q alu k-card"><q>Replace with a real quote about per-request cost reporting and caching.</q><p><b>Startup CTO</b>Predictable costs</p></figure></div>
-      <p class="f12-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+      <p class="f12-fine">Placeholder testimonials. Swap in real beta quotes before launch.</p>
     </div>
   </section>
 
@@ -318,11 +369,11 @@ model:   "core-128k"</code></pre></li><li class="f12-step alu k-card"><span clas
   </section>
 </main>
 <footer class="f12-foot">
-  <div><p class="f12-mark"><i aria-hidden="true"></i>Aether</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Forma" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
-  <div><h4>Modules</h4><ul><li><a href="#prices">Core</a></li><li><a href="#prices">Unbound</a></li><li><a href="#prices">Forge</a></li><li><a href="#prices">Atlas</a></li><li><a href="#prices">Swift</a></li></ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#rail">Configurator</a></li><li><a href="#assemble">API quickstart</a></li><li><a href="#prices">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Space Grotesk and IBM Plex Mono.</span></p>
+  <div><p class="f12-mark"><i aria-hidden="true"></i>Aether</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Forma" design direction. Models, rates and quotes are mock data, and nothing here is live.</p></div>
+  <div><h3>Modules</h3><ul><li><a href="#prices">Core</a></li><li><a href="#prices">Unbound</a></li><li><a href="#prices">Forge</a></li><li><a href="#prices">Atlas</a></li><li><a href="#prices">Swift</a></li></ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#rail">Configurator</a></li><li><a href="#assemble">API quickstart</a></li><li><a href="#prices">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Familjen Grotesk and IBM Plex Mono.</span></p>
 </footer>
 
 <script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
@@ -483,6 +534,277 @@ model:   "core-128k"</code></pre></li><li class="f12-step alu k-card"><span clas
   window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
 })();
 </script>
+<script>window.AE_FONTS = [{"name":"Albert Sans","style":"normal","url":"../04-veridian-biofoundry/fonts/albert-sans-400-normal.woff2"},{"name":"Archivo Black","style":"normal","url":"../14-veloce-aero/fonts/archivo-black-400-normal.woff2"},{"name":"Big Shoulders Display","style":"normal","url":"../20-zenith-supersonic/fonts/big-shoulders-display-500-normal.woff2"},{"name":"Bricolage Grotesque","style":"normal","url":"../10-obelisk-zk/fonts/bricolage-grotesque-400-800-normal.woff2"},{"name":"Chakra Petch","style":"normal","url":"../09-kinetix-exoskeleton/fonts/chakra-petch-500-normal.woff2"},{"name":"Cormorant Garamond","style":"normal","url":"../01-chronos-atelier/fonts/cormorant-garamond-400-normal.woff2"},{"name":"DM Serif Display","style":"normal","url":"../11-nomad-expeditions/fonts/dm-serif-display-400-normal.woff2"},{"name":"Familjen Grotesk","style":"normal","url":"../12-forma-modular/fonts/familjen-grotesk-400-normal.woff2"},{"name":"Funnel Display","style":"normal","url":"../05-valkyrie-hyperacoustics/fonts/funnel-display-400-normal.woff2"},{"name":"Gloock","style":"normal","url":"../17-obsidian-roasters/fonts/gloock-400-normal.woff2"},{"name":"Hanken Grotesk","style":"normal","url":"../15-hikari-matcha/fonts/hanken-grotesk-400-normal.woff2"},{"name":"Host Grotesk","style":"normal","url":"../07-solaris-tokamak/fonts/host-grotesk-300-800-normal.woff2"},{"name":"IBM Plex Mono","style":"normal","url":"../02-kanso-monolith/fonts/ibm-plex-mono-400-normal.woff2"},{"name":"IM Fell English","style":"normal","url":"../19-atelier-kintsugi/fonts/im-fell-english-400-normal.woff2"},{"name":"Italiana","style":"normal","url":"../06-nocturne-perfumerie/fonts/italiana-400-normal.woff2"},{"name":"JetBrains Mono","style":"normal","url":"../01-chronos-atelier/fonts/jetbrains-mono-400-normal.woff2"},{"name":"Literata","style":"normal","url":"../04-veridian-biofoundry/fonts/literata-300-700-normal.woff2"},{"name":"Newsreader","style":"normal","url":"../08-terra-vinicola/fonts/newsreader-300-600-normal.woff2"},{"name":"Playfair Display","style":"normal","url":"../08-terra-vinicola/fonts/playfair-display-400-800-normal.woff2"},{"name":"Red Hat Text","style":"normal","url":"../11-nomad-expeditions/fonts/red-hat-text-400-normal.woff2"},{"name":"Sora","style":"normal","url":"../16-stratosphere-haps/fonts/sora-300-normal.woff2"},{"name":"Space Mono","style":"normal","url":"../03-aether-orbital/fonts/space-mono-400-normal.woff2"},{"name":"Syncopate","style":"normal","url":"../18-lumina-photonics/fonts/syncopate-400-normal.woff2"},{"name":"Syne","style":"normal","url":"../02-kanso-monolith/fonts/syne-500-normal.woff2"},{"name":"Unbounded","style":"normal","url":"../03-aether-orbital/fonts/unbounded-400-normal.woff2"},{"name":"Urbanist","style":"normal","url":"../13-synapse-bci/fonts/urbanist-200-700-normal.woff2"},{"name":"Work Sans","style":"normal","url":"../06-nocturne-perfumerie/fonts/work-sans-300-normal.woff2"}];</script>
+<script>/*
+ * Aether Tweaks: a live design panel plus the "weighted" hero motion, shared by the
+ * 20-site collection (inlined by awwwards-20-collection/_build/lib.mjs) and the Next.js
+ * lab (imported by components/lab/Tweaks.tsx).
+ *
+ *   AetherTweaks.init({ root, fonts, key, defaults })
+ *     root      element that owns the design tokens (documentElement, or the lab's .kit root)
+ *     fonts     [{ name, url, weight, style }] extra faces the font menus can load on demand
+ *     key       localStorage key for this page's tweaks
+ *
+ * It does three things, following the iterate-don't-one-shot workflow:
+ *   1. Hero load-in: the hero's parts arrive one by one with a heavy ease (pure CSS in tweaks.css).
+ *   2. Hero exit: as the hero scrolls away its copy fades and lifts (--hx), so the move into
+ *      the body is gradual instead of a hard cut.
+ *   3. Tweaks: a panel that rewrites the design tokens live (type, colour, motion, texture),
+ *      remembers them per page and copies them as JSON to paste back into a prompt.
+ * Reduced motion disables 1 and 2. Every storage access is wrapped: the page works without it.
+ */
+(function () {
+  if (typeof window === "undefined" || window.AetherTweaks) return;
+
+  var EASES = {
+    Heavy: "cubic-bezier(0.16, 1, 0.3, 1)",
+    Expo: "cubic-bezier(0.19, 1, 0.22, 1)",
+    Soft: "cubic-bezier(0.33, 1, 0.68, 1)",
+    Snappy: "cubic-bezier(0.5, 0, 0.1, 1)",
+  };
+
+  // Control schema. type: range | color | select | toggle. css: the custom property it drives.
+  var GROUPS = [
+    ["Type", [
+      { id: "fontDisplay", label: "Heading font", type: "select", css: "--font-display", font: true },
+      { id: "fontBody", label: "Body font", type: "select", css: "--font-body", font: true },
+      { id: "h1", label: "Headline size", type: "range", css: "--tw-h1", min: 0.7, max: 1.3, step: 0.01, def: 1, fmt: "x" },
+      { id: "h1ls", label: "Headline tracking", type: "range", css: "--tw-h1ls", min: -0.06, max: 0.04, step: 0.005, def: -0.03, unit: "em" },
+      { id: "h1w", label: "Headline weight", type: "range", css: "--h1-weight", min: 200, max: 900, step: 50, def: null },
+      { id: "body", label: "Body size", type: "range", css: "--tw-body", min: 0.85, max: 1.25, step: 0.01, def: 1, fmt: "x" },
+    ]],
+    ["Colour", [
+      { id: "accent", label: "Accent (10)", type: "color", css: "--accent" },
+      { id: "bg", label: "Background (60)", type: "color", css: "--bg-primary" },
+      { id: "bg2", label: "Surface (30)", type: "color", css: "--bg-secondary" },
+      { id: "text", label: "Text", type: "color", css: "--text-primary" },
+      { id: "muted", label: "Muted text", type: "color", css: "--text-muted" },
+    ]],
+    ["Motion", [
+      { id: "load", label: "Hero load-in", type: "toggle", def: true },
+      { id: "ldur", label: "Load duration", type: "range", css: "--tw-load-dur", min: 0.3, max: 2.4, step: 0.05, def: 1, unit: "s" },
+      { id: "lstg", label: "Load stagger", type: "range", css: "--tw-load-stg", min: 0, max: 400, step: 10, def: 110, unit: "ms" },
+      { id: "ldist", label: "Load distance", type: "range", css: "--tw-load-dist", min: 0, max: 120, step: 2, def: 28, unit: "px" },
+      { id: "lblur", label: "Load blur", type: "range", css: "--tw-load-blur", min: 0, max: 20, step: 1, def: 6, unit: "px" },
+      { id: "ease", label: "Weight", type: "select", css: "--tw-ease", options: Object.keys(EASES), def: "Heavy" },
+      { id: "rdist", label: "Reveal distance", type: "range", css: "--tw-rd", min: 0, max: 100, step: 2, def: 26, unit: "px" },
+      { id: "rdur", label: "Reveal duration", type: "range", css: "--tw-dur", min: 0.3, max: 2.5, step: 0.05, def: 1, fmt: "x" },
+      { id: "rstg", label: "Reveal stagger", type: "range", css: "--tw-stg", min: 0, max: 240, step: 10, def: 80, unit: "ms" },
+      { id: "exit", label: "Hero exit fade", type: "range", min: 0, max: 1, step: 0.05, def: 0.85 },
+    ]],
+    ["Texture", [
+      { id: "grain", label: "Grain", type: "range", css: "--tw-grain", min: 0, max: 0.12, step: 0.005, def: 0.035 },
+    ]],
+  ];
+
+  var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var store = {
+    get: function (k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} },
+  };
+
+  function toHex(c) {
+    var m = /rgba?\(([^)]+)\)/.exec(c || "");
+    if (!m) return /^#[0-9a-f]{6}/i.test(c || "") ? c.slice(0, 7) : "#888888";
+    return "#" + m[1].split(/[ ,/]+/).slice(0, 3).map(function (v) { return ("0" + Math.round(+v).toString(16)).slice(-2); }).join("");
+  }
+
+  function heroMotion(scope, getExit) {
+    var hero = scope.querySelector("[data-hero]");
+    var noop = { replay: function () {}, stop: function () {} };
+    if (!hero) return noop;
+    var parts = [].slice.call(hero.querySelectorAll("[data-hero-part]"));
+    var q = false, on = false;
+    // Exit: inline opacity/translate only while the hero is leaving, so at rest the
+    // page's own styles (and stacking) are untouched.
+    var exit = function () {
+      q = false;
+      var r = hero.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height * 0.85))) * getExit();
+      // Off screen (or back at rest) the hero keeps its own styles: the fade is a transition, not a state.
+      if (p <= 0.001 || r.bottom <= 0) {
+        if (on) { parts.forEach(function (el) { el.style.removeProperty("opacity"); el.style.removeProperty("translate"); }); on = false; }
+        return;
+      }
+      on = true;
+      parts.forEach(function (el) {
+        var vis = el.getAttribute("data-hero-part") === "visual";
+        el.style.opacity = String(1 - p * (vis ? 0.5 : 1));
+        if (!vis) el.style.translate = "0 " + (-48 * p).toFixed(1) + "px";
+      });
+    };
+    var onScrollFn = function () { if (!q) { q = true; requestAnimationFrame(exit); } };
+    if (!RM) { addEventListener("scroll", onScrollFn, { passive: true }); exit(); }
+    return {
+      // Switching between two identical keyframe names restarts the CSS entrance.
+      replay: function () { hero.classList.toggle("tw-again"); },
+      stop: function () { removeEventListener("scroll", onScrollFn); },
+    };
+  }
+
+  function init(opts) {
+    opts = opts || {};
+    var root = opts.root || document.documentElement;
+    var scope = opts.scope || document;
+    var key = opts.key || "aether-tweaks:" + location.pathname;
+    var fonts = opts.fonts || [];
+    var state;
+    var motion = heroMotion(scope, function () { return state ? +state.exit : 0.85; });
+    var hero = scope.querySelector("[data-hero]");
+
+    // Defaults come from the page's own tokens, so Reset returns to the design as built.
+    var cs = getComputedStyle(root);
+    var base = {};
+    GROUPS.forEach(function (g) { g[1].forEach(function (c) {
+      if (c.type === "color") base[c.id] = toHex(cs.getPropertyValue(c.css).trim());
+      else if (c.font) base[c.id] = cs.getPropertyValue(c.css).trim();
+      else if (c.id === "h1w") base[c.id] = parseFloat(cs.getPropertyValue("--h1-weight")) || 500;
+      else base[c.id] = c.def;
+    }); });
+    state = Object.assign({}, base, store.get(key) || {});
+    var loaded = {};
+
+    function loadFont(name) {
+      var f = fonts.filter(function (x) { return x.name === name; })[0];
+      if (!f || loaded[name] || !window.FontFace) return Promise.resolve();
+      loaded[name] = true;
+      var face = new FontFace(f.name, "url(" + f.url + ")", { weight: f.weight || "100 900", style: f.style || "normal" });
+      return face.load().then(function (ff) { document.fonts.add(ff); }).catch(function () {});
+    }
+
+    function apply() {
+      GROUPS.forEach(function (g) { g[1].forEach(function (c) {
+        var v = state[c.id];
+        if (!c.css) return;
+        var changed = v !== base[c.id];
+        if (!changed) { root.style.removeProperty(c.css); return; }
+        if (c.font) { var fam = /["',]/.test(v) ? v : '"' + v + '", ' + base[c.id]; root.style.setProperty(c.css, fam); loadFont(String(v).replace(/["']/g, "").split(",")[0].trim()); return; }
+        if (c.id === "ease") { root.style.setProperty(c.css, EASES[v] || v); return; }
+        root.style.setProperty(c.css, c.unit ? v + c.unit : String(v));
+      }); });
+      if (hero) hero.classList.toggle("tw-noload", state.load === false);
+      store.set(key, diff());
+    }
+    function diff() {
+      var d = {};
+      Object.keys(state).forEach(function (k) { if (state[k] !== base[k]) d[k] = state[k]; });
+      return d;
+    }
+
+    // —— panel UI ——
+    var wrap = document.createElement("div");
+    wrap.setAttribute("data-tweaks", "");
+    wrap.className = "tw-wrap";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "tw-toggle";
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", "tw-panel");
+    btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h8M13 4h1M2 12h3M8 12h6" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="11.5" cy="4" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="12" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Tweaks</span>';
+    var panel = document.createElement("div");
+    panel.className = "tw-panel";
+    panel.id = "tw-panel";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-label", "Design tweaks");
+    panel.hidden = true;
+
+    var fontNames = fonts.map(function (f) { return f.name; }).filter(function (n, i, a) { return a.indexOf(n) === i; });
+    var html = '<div class="tw-head"><b>Tweaks</b><span>Changes apply live and stay on this page.</span></div>';
+    GROUPS.forEach(function (g) {
+      html += '<fieldset class="tw-group"><legend>' + g[0] + "</legend>";
+      g[1].forEach(function (c) {
+        var id = "tw-" + c.id, v = state[c.id];
+        html += '<div class="tw-row"><label for="' + id + '">' + c.label + "</label>";
+        if (c.type === "range") html += '<input id="' + id + '" data-k="' + c.id + '" type="range" min="' + c.min + '" max="' + c.max + '" step="' + c.step + '" value="' + v + '"><output for="' + id + '"></output>';
+        else if (c.type === "color") html += '<input id="' + id + '" data-k="' + c.id + '" type="color" value="' + v + '"><output for="' + id + '"></output>';
+        else if (c.type === "toggle") html += '<input id="' + id + '" data-k="' + c.id + '" type="checkbox"' + (v !== false ? " checked" : "") + "><output></output>";
+        else {
+          var opts2 = c.font ? ["Site default"].concat(fontNames) : c.options;
+          html += '<select id="' + id + '" data-k="' + c.id + '">' + opts2.map(function (o) {
+            var val = o === "Site default" ? base[c.id] : o;
+            return '<option value="' + String(val).replace(/"/g, "&quot;") + '"' + (val === v ? " selected" : "") + ">" + o + "</option>";
+          }).join("") + "</select><output></output>";
+        }
+        html += "</div>";
+      });
+      html += "</fieldset>";
+    });
+    html += '<div class="tw-actions"><button type="button" data-act="replay">Replay load-in</button><button type="button" data-act="copy">Copy settings</button><button type="button" data-act="reset">Reset</button></div><p class="tw-note" aria-live="polite"></p>';
+    panel.innerHTML = html;
+    wrap.appendChild(panel);
+    wrap.appendChild(btn);
+    // The panel lives on <body>, outside a scoped token root, so it takes the page's font explicitly.
+    wrap.style.fontFamily = cs.getPropertyValue("--font-body").trim() || getComputedStyle(document.body).fontFamily;
+    document.body.appendChild(wrap);
+
+    var note = panel.querySelector(".tw-note");
+    function show(c, input) {
+      var out = input.parentElement.querySelector("output");
+      if (!out) return;
+      var v = state[c.id];
+      out.textContent = c.type === "range" ? (c.fmt === "x" ? (+v).toFixed(2) + "×" : (+v).toFixed(c.step < 0.01 ? 3 : c.step < 1 ? 2 : 0) + (c.unit || "")) : c.type === "color" ? String(v).toUpperCase() : "";
+    }
+    var all = {};
+    GROUPS.forEach(function (g) { g[1].forEach(function (c) { all[c.id] = c; }); });
+    panel.querySelectorAll("[data-k]").forEach(function (input) {
+      var c = all[input.getAttribute("data-k")];
+      show(c, input);
+      input.addEventListener("input", function () {
+        state[c.id] = c.type === "range" ? +input.value : c.type === "toggle" ? input.checked : input.value;
+        show(c, input);
+        apply();
+      });
+    });
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("[data-act]");
+      if (!a) return;
+      var act = a.getAttribute("data-act");
+      if (act === "replay") { motion.replay(); scrollTo({ top: 0, behavior: RM ? "auto" : "smooth" }); }
+      if (act === "reset") {
+        state = Object.assign({}, base); store.del(key); apply();
+        panel.querySelectorAll("[data-k]").forEach(function (input) {
+          var c = all[input.getAttribute("data-k")], v = state[c.id];
+          if (c.type === "toggle") input.checked = v !== false; else input.value = v;
+          show(c, input);
+        });
+        note.textContent = "Back to the design as built.";
+      }
+      if (act === "copy") {
+        var text = JSON.stringify({ page: location.pathname, tweaks: diff() }, null, 2);
+        var done = function () { note.textContent = "Copied. Paste it into your next prompt to bake these in."; };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { note.textContent = text; });
+        else note.textContent = text;
+      }
+    });
+    function toggle(open) {
+      panel.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) { var f = panel.querySelector("input,select"); f && f.focus(); }
+    }
+    btn.addEventListener("click", function () { toggle(panel.hidden); });
+    var onKey = function (e) {
+      if (e.key === "Escape" && !panel.hidden) { toggle(false); btn.focus(); }
+      if (e.key === "T" && e.shiftKey && !/input|select|textarea/i.test((e.target && e.target.tagName) || "")) toggle(panel.hidden);
+    };
+    addEventListener("keydown", onKey);
+    apply();
+    return {
+      state: state,
+      replay: motion.replay,
+      destroy: function () {
+        removeEventListener("keydown", onKey);
+        motion.stop();
+        wrap.remove();
+        GROUPS.forEach(function (g) { g[1].forEach(function (c) { if (c.css) root.style.removeProperty(c.css); }); });
+      },
+    };
+  }
+
+  window.AetherTweaks = { init: init, EASES: EASES };
+})();
+
+AetherTweaks.init({ fonts: window.AE_FONTS, key: "aether-tweaks:" + location.pathname });</script>
 <script>
 (() => {
     const { RM, $, $$, clamp, onScroll, progress } = K;

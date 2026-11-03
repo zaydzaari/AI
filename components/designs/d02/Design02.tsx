@@ -242,9 +242,9 @@ export default function Design02() {
       </main>
       <footer className="g2-foot">
         <p className="g2-word" aria-hidden>{BRAND.name.toLowerCase()}</p>
-        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#rates">{m.name} · {m.context}</a>)}</div>
-        <div><h4>Developers</h4><a href="#quickstart">Quickstart</a><a href="#rates">Rates API</a><a href="#projection">Temperaments</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
+        <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#rates">{m.name} · {m.context}</a>)}</div>
+        <div><h3>Developers</h3><a href="#quickstart">Quickstart</a><a href="#rates">Rates API</a><a href="#projection">Temperaments</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
       </footer>
     </div>
   );

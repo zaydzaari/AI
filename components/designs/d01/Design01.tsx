@@ -135,7 +135,7 @@ export default function Design01() {
         <section className="d1-hero" data-hero aria-labelledby="d1-h">
           <div className="d1-hero-copy">
             <p className="d1-folio">A working journal of {BRAND.name}, the AI platform sold by the token</p>
-            <h1 id="d1-h" data-hero-part="headline">One thread. Every model. Priced to the token.</h1>
+            <h1 id="d1-h" data-hero-part="headline">Every model, priced to the token.</h1>
             <p className="k-body d1-sub" data-hero-part="sub">Chat or call the API across five model families — standard, low-refusal or abliterated — and read exactly what each answer cost.</p>
             <div data-hero-part="cta"><a className="d1-btn" href="#rates" data-cta="primary" data-magnetic="6,0.15,0.76,0.4"><span data-magnetic-label>Start your first thread</span></a></div>
             <HeroReceipt />
@@ -244,9 +244,9 @@ export default function Design01() {
 
       <footer className="d1-foot">
         <div className="col wide"><p className="mark">{BRAND.name} <i>Field Notes</i></p><p className="k-muted">{MOCK_NOTE}. Brand name is a placeholder.</p></div>
-        <div className="col"><h4>Product</h4><a href="#edit">Unified chat</a><a href="#features">Coding agents</a><a href="#rates">Model compare</a></div>
-        <div className="col"><h4>Developers</h4><a href="#how">API quickstart</a><a href="#rates">Token rates</a><a href="#features">Prompt caching</a></div>
-        <div className="col"><h4>Colophon</h4><span>Set in Instrument Serif, Bricolage Grotesque and JetBrains Mono.</span><a href="/designs">Back to the gallery</a></div>
+        <div className="col"><h3>Product</h3><a href="#edit">Unified chat</a><a href="#features">Coding agents</a><a href="#rates">Model compare</a></div>
+        <div className="col"><h3>Developers</h3><a href="#how">API quickstart</a><a href="#rates">Token rates</a><a href="#features">Prompt caching</a></div>
+        <div className="col"><h3>Colophon</h3><span>Set in Newsreader, Bricolage Grotesque and JetBrains Mono.</span><a href="/designs">Back to the gallery</a></div>
       </footer>
     </div>
   );

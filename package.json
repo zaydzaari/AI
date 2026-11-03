@@ -11,7 +11,9 @@
     "audit": "node scripts/audit.cjs",
     "collection": "node awwwards-20-collection/serve.mjs",
     "collection:build": "node awwwards-20-collection/_build/build.mjs",
-    "collection:verify": "node awwwards-20-collection/_build/verify.cjs"
+    "collection:verify": "node awwwards-20-collection/_build/verify.cjs",
+    "slop": "node scripts/slop-audit.cjs",
+    "lab:fonts": "node scripts/lab-fonts.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

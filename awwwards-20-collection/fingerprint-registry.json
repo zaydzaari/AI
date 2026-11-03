@@ -32,8 +32,8 @@
       "heading_font": "Syne",
       "body_font": "IBM Plex Mono",
       "color_system_60_30_10": {
-        "primary_60": "#F2EFE9",
-        "secondary_30": "#E2DDD3",
+        "primary_60": "#EDEDEB",
+        "secondary_30": "#DEDEDB",
         "accent_10": "#C83E2B"
       },
       "signature_scroll_mechanic": "Blueprint-to-structure scrubber: linework draws itself, then solidifies into shaded pavilions with a sun-angle shadow slider",
@@ -65,11 +65,11 @@
       "inspiration": "Computational protein and mycelium materials lab",
       "mode": "light",
       "aesthetic_movement": "Botanical scientific editorial",
-      "heading_font": "Fraunces",
-      "body_font": "Plus Jakarta Sans",
+      "heading_font": "Literata",
+      "body_font": "Albert Sans",
       "color_system_60_30_10": {
-        "primary_60": "#F7F6F1",
-        "secondary_30": "#E6E4DC",
+        "primary_60": "#ECF1EF",
+        "secondary_30": "#DCE5E1",
         "accent_10": "#1B4D3E"
       },
       "signature_scroll_mechanic": "Scroll-grown mycelium: a branching network grows down the page through nine lab receipts",
@@ -102,7 +102,7 @@
       "inspiration": "Rare molecular botanical apothecary",
       "mode": "dark",
       "aesthetic_movement": "Candlelit apothecary noir",
-      "heading_font": "Instrument Serif",
+      "heading_font": "Italiana",
       "body_font": "Work Sans",
       "color_system_60_30_10": {
         "primary_60": "#120E0A",
@@ -142,8 +142,8 @@
       "heading_font": "Playfair Display",
       "body_font": "Newsreader",
       "color_system_60_30_10": {
-        "primary_60": "#F4F0EA",
-        "secondary_30": "#E5DEC9",
+        "primary_60": "#F2EDEE",
+        "secondary_30": "#E6DDDF",
         "accent_10": "#7C1D26"
       },
       "signature_scroll_mechanic": "Elevation altimeter: a sticky gauge descends 1,200 m to 400 m with soil strata, rainfall and tasting notes per band",
@@ -194,7 +194,7 @@
       "mode": "dark",
       "aesthetic_movement": "Cartographic expedition journal",
       "heading_font": "DM Serif Display",
-      "body_font": "Plus Jakarta Sans",
+      "body_font": "Red Hat Text",
       "color_system_60_30_10": {
         "primary_60": "#06101E",
         "secondary_30": "#0E1E33",
@@ -211,7 +211,7 @@
       "inspiration": "Precision CNC aluminium kitchen and living systems",
       "mode": "light",
       "aesthetic_movement": "Rams-school industrial functionalism",
-      "heading_font": "Space Grotesk",
+      "heading_font": "Familjen Grotesk",
       "body_font": "IBM Plex Mono",
       "color_system_60_30_10": {
         "primary_60": "#F5F5F3",
@@ -267,10 +267,10 @@
       "mode": "light",
       "aesthetic_movement": "Kyoto tea-room quietism",
       "heading_font": "Newsreader",
-      "body_font": "Plus Jakarta Sans",
+      "body_font": "Hanken Grotesk",
       "color_system_60_30_10": {
-        "primary_60": "#F8F6F0",
-        "secondary_30": "#EAE6DA",
+        "primary_60": "#EEF0E6",
+        "secondary_30": "#E0E4D4",
         "accent_10": "#2E6F40"
       },
       "signature_scroll_mechanic": "Scroll-paced stone mill: the granite mill turns with scroll and unlocks farmer provenance certificates",
@@ -345,8 +345,8 @@
       "body_font": "Work Sans",
       "blueprint_heading_font": "Cormorant Garamond (already the heading font of 01; the uniqueness law forbids a repeat)",
       "color_system_60_30_10": {
-        "primary_60": "#F9F6F0",
-        "secondary_30": "#EBE5D8",
+        "primary_60": "#EEF0F3",
+        "secondary_30": "#DFE3E9",
         "accent_10": "#B45309"
       },
       "signature_scroll_mechanic": "Spectral inspection loupe: a cursor- and scroll-steered loupe reveals UV, infrared and X-ray layers",

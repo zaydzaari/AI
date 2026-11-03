@@ -4,7 +4,7 @@ import { BRAND, MODELS, BENEFITS, STEPS, PROOF, PLANS, PROBLEM, PRICE_NOTE, PROO
 const STYLE = "Forma";
 const RAIL = [
   ["KEY", "One API key", "Every model family behind a single credential."],
-  ["MDL", "Model family", "Core, Unbound, Forge, Atlas or Swift — change one string."],
+  ["MDL", "Model family", "Core, Unbound, Forge, Atlas or Swift: change one string."],
   ["TMP", "Temperament", "Standard, low-refusal or abliterated per request."],
   ["CCH", "Prompt cache", "Repeated prefixes billed at the cached rate automatically."],
   ["STR", "Streaming + tools", "Token streaming and tool calls in the request shape you know."],
@@ -12,16 +12,16 @@ const RAIL = [
 ];
 
 export default {
-  title: "Aether — Configure your stack. See the price first.",
+  title: "Aether — Build your stack, priced first.",
   description: "Pick a model, a temperament and the features you need; the per-token estimate updates as you build. Forma design direction.",
   fonts: [
-    { family: "Space Grotesk", axes: "wght@400;500;600;700" },
+    { family: "Familjen Grotesk", axes: "wght@400;500;600;700" },
     { family: "IBM Plex Mono", axes: "wght@400;500" },
   ],
   tokens: {
     bgPrimary: "#F5F5F3", bgSecondary: "#E5E5E0", accent: "#D9381E", onAccent: "#FFFFFF",
     textPrimary: "#1A1A18", textMuted: "#55554F", line: "rgba(26,26,24,.14)",
-    display: '"Space Grotesk", sans-serif', body: '"IBM Plex Mono", ui-monospace, monospace',
+    display: '"Familjen Grotesk", sans-serif', body: '"IBM Plex Mono", ui-monospace, monospace',
   },
   css: /* css */ `
 .f12-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#F5F5F3f2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font-size:.8rem}
@@ -32,7 +32,7 @@ export default {
 .f12-links a.is-current{background:var(--text-primary);color:#fff}
 .f12-ser{color:var(--text-muted)}
 @media (max-width:900px){.f12-links{display:none}}
-.f12-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 10px 0 26px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:600;font-size:1rem;text-decoration:none;box-shadow:inset 0 1px 0 #ffffff55,0 6px 16px -8px #D9381Eaa}
+.f12-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 10px 0 26px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:600;font-size:1rem;text-decoration:none;box-shadow:inset 0 1px 0 #ffffff55,0 6px 16px -8px rgba(0,0,0,.32)}
 .f12-btn i{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d8d8d2);box-shadow:inset 0 -2px 3px #0002;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
 .f12-btn.is-near i{transform:rotate(90deg) scale(1.06)}
 .f12-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:600;letter-spacing:-.035em;line-height:1;max-width:18ch}
@@ -49,7 +49,7 @@ export default {
 .f12-trust b{color:var(--text-primary)}
 .f12-tool{grid-column:7 / -1;grid-row:1 / span 2;align-self:center;border-radius:26px;padding:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .f12-tool fieldset{display:grid;gap:8px;grid-column:span 2}
-.f12-tool legend{font-size:.72rem;color:var(--text-muted);margin-bottom:6px}
+.f12-tool legend{font-size:.76rem;color:var(--text-muted);margin-bottom:6px}
 .f12-tool .opts{display:flex;flex-wrap:wrap;gap:6px}
 .f12-tool label{position:relative}
 .f12-tool input[type=radio],.f12-tool input[type=checkbox]{position:absolute;opacity:0;inset:0;cursor:pointer}
@@ -63,18 +63,18 @@ export default {
 .f12-tool .vol input{width:100%;accent-color:var(--accent)}
 .f12-tool .est{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:end;gap:16px;border-top:1px solid var(--line);padding-top:14px;flex-wrap:wrap}
 .f12-tool .est b{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;letter-spacing:-.04em;line-height:1}
-.f12-tool .est span{font-size:.74rem;color:var(--text-muted)}
+.f12-tool .est span{font-size:.76rem;color:var(--text-muted)}
 @media (max-width:1000px){
   .f12-hero{grid-template-columns:1fr;gap:8px;padding-top:8px;padding-bottom:8px;align-content:start}
   .f12-copy{grid-column:1;grid-row:auto;gap:9px}
   .f12-tool{grid-column:1;grid-row:auto;padding:8px 12px;gap:4px;grid-template-columns:1fr 1fr;border-radius:18px}
   .f12-tool fieldset+fieldset,.f12-tool .vol,.f12-tool legend{display:none}
   .f12-tool .opts{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px}
-  .f12-tool .est span{font-size:.66rem}
+  .f12-tool .est span{font-size:.6875rem}
   .f12-tool .est .long{display:none}
   .f12-trust .long{display:none}
   .f12-tool fieldset{grid-column:1 / -1}
-  .f12-tool .chip{min-height:32px;padding:0 10px;font-size:.74rem}
+  .f12-tool .chip{min-height:32px;padding:0 10px;font-size:.76rem}
   .f12-tool .est{padding-top:8px}
   .f12-tool .est b{font-size:1.7rem}
 }
@@ -89,7 +89,7 @@ export default {
 .f12-ba{position:relative;margin-top:56px;border-radius:26px;overflow:hidden;aspect-ratio:2.4;min-height:260px;cursor:ew-resize;touch-action:none;user-select:none}
 .f12-room{position:absolute;inset:0;display:grid;place-items:center}
 .f12-room svg{width:92%;height:84%}
-.f12-room .tag{position:absolute;top:16px;font-size:.74rem;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.f12-room .tag{position:absolute;top:16px;font-size:.76rem;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
 .f12-room.before{background:#EBEBE6}.f12-room.before .tag{left:16px}
 .f12-room.after{background:#F9F9F7;clip-path:inset(0 0 0 var(--cut,50%))}.f12-room.after .tag{right:16px}
 .f12-handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--text-primary);transform:translateX(-1px)}
@@ -103,11 +103,11 @@ export default {
 .f12-slot{position:relative;aspect-ratio:.78;border-radius:16px;background:repeating-linear-gradient(135deg,#0000000a 0 6px,transparent 6px 12px),#CFCFC8;box-shadow:inset 0 2px 4px #0003}
 .f12-mod{position:absolute;inset:0;border-radius:16px;padding:18px 14px;display:grid;align-content:space-between;transform:translate3d(calc(var(--off,1) * 60vw),calc(var(--off,1) * -40px),0) rotate(calc(var(--off,1) * 8deg));opacity:calc(1 - var(--off,1) * .7);transition:transform .9s cubic-bezier(.34,1.56,.64,1),opacity .5s}
 .f12-mod.in{--off:0}
-.f12-mod .code{font-size:.7rem;color:var(--text-muted);display:flex;justify-content:space-between}
+.f12-mod .code{font-size:.76rem;color:var(--text-muted);display:flex;justify-content:space-between}
 .f12-mod .code i{width:8px;height:8px;border-radius:50%;background:#C9C9C2}
 .f12-mod.in .code i{background:var(--accent)}
 .f12-mod b{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1.1}
-.f12-mod p{font-size:.72rem;color:var(--text-muted);line-height:1.5}
+.f12-mod p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
 .f12-sheet{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
 .f12-sheet ol{display:flex;gap:8px;flex-wrap:wrap;font-size:.76rem}
 .f12-sheet li{padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--text-muted)}
@@ -131,7 +131,7 @@ export default {
 .f12-card:hover::after{opacity:1}
 .f12-card .dial{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#d6d6d0);box-shadow:inset 0 -2px 3px #0002,0 2px 4px #0001;position:relative}
 .f12-card .dial::after{content:"";position:absolute;left:50%;top:6px;width:2px;height:10px;background:var(--text-primary);transform:translateX(-50%) rotate(var(--rot,0deg));transform-origin:50% 16px}
-.f12-card .tag{font-size:.72rem;color:var(--text-muted)}
+.f12-card .tag{font-size:.76rem;color:var(--text-muted)}
 .f12-card h3{font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1.12}
 .f12-card p{font-size:.86rem;color:var(--text-muted)}
 .f12-card.c0{grid-column:span 2;background:var(--text-primary);color:#fff;border:0}
@@ -148,14 +148,14 @@ export default {
 .f12-step.is-active .n{background:var(--accent);color:#fff}
 .f12-step h3{font-family:var(--font-display);font-size:1.7rem;font-weight:600;line-height:1.08}
 .f12-step p{color:var(--text-muted);font-size:.88rem}
-.f12-step pre{margin:0;background:var(--text-primary);color:#F5F5F3;border-radius:14px;padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.f12-step pre{margin:0;background:var(--text-primary);color:#F5F5F3;border-radius:14px;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.f12-step{width:auto}}
 
 /* proof */
 .f12-proof{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .f12-q{border-radius:24px;display:grid;gap:14px;align-content:space-between;min-height:260px}
 .f12-q q{font-size:.92rem;line-height:1.6;quotes:"“" "”"}
-.f12-q p{font-size:.74rem;color:var(--text-muted)}
+.f12-q p{font-size:.76rem;color:var(--text-muted)}
 .f12-q b{display:block;font-family:var(--font-display);font-size:1rem;color:var(--text-primary)}
 @media (max-width:1000px){.f12-proof{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.f12-proof{grid-template-columns:1fr}}
@@ -173,14 +173,14 @@ export default {
 .f12-plan .fk{font-size:.8rem;border-top:1px solid currentColor;padding-top:12px;opacity:.9}
 @media (max-width:900px){.f12-plans{grid-template-columns:1fr}}
 .f12-rates{margin-top:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.f12-rates div{border-radius:18px;padding:16px;display:grid;gap:4px;font-size:.74rem;color:var(--text-muted)}
+.f12-rates div{border-radius:18px;padding:16px;display:grid;gap:4px;font-size:.76rem;color:var(--text-muted)}
 .f12-rates b{font-family:var(--font-display);font-size:1.2rem;color:var(--text-primary);font-weight:600}
 @media (max-width:900px){.f12-rates{grid-template-columns:1fr 1fr}}
 
 /* final + footer */
 .f12-final{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
 .f12-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted)}
-.f12-foot h4{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px}
+.f12-foot h3{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px}
 .f12-foot ul{display:grid;gap:8px}
 .f12-foot a{text-decoration:none}
 .f12-foot a:hover{color:var(--text-primary)}
@@ -196,8 +196,8 @@ export default {
 <main id="main">
   <section class="f12-hero" data-hero aria-labelledby="f12-h">
     <div class="f12-copy">
-      <h1 id="f12-h" data-hero-part="headline">Configure your stack. See the price first.</h1>
-      <p class="k-body" data-hero-part="sub">Pick a model, a temperament and the features you need. The estimate updates as you build — per token, nothing bundled.</p>
+      <h1 id="f12-h" data-hero-part="headline">Build your stack, priced first.</h1>
+      <p class="k-body" data-hero-part="sub">Pick a model, a temperament and the features you need. The estimate updates as you build: per token, nothing bundled.</p>
       <div data-hero-part="cta"><a class="f12-btn" href="#prices" data-cta="primary" data-magnetic="5,0.16,0.7,0.3"><span data-magnetic-label>Get your API key</span><i aria-hidden="true"></i></a></div>
       <p class="f12-trust" data-hero-part="trust">Lightest module: <b>Swift</b> from <b>${rate(MODELS.find((m) => m.id === "swift").inPrice)}</b> per 1M input tokens.<span class="long"> Sample rates.</span></p>
     </div>
@@ -275,10 +275,10 @@ export default {
 </main>
 <footer class="f12-foot">
   <div><p class="f12-mark"><i aria-hidden="true"></i>${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Modules</h4><ul>${MODELS.map((m) => `<li><a href="#prices">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#rail">Configurator</a></li><li><a href="#assemble">API quickstart</a></li><li><a href="#prices">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Space Grotesk and IBM Plex Mono.</span></p>
+  <div><h3>Modules</h3><ul>${MODELS.map((m) => `<li><a href="#prices">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#rail">Configurator</a></li><li><a href="#assemble">API quickstart</a></li><li><a href="#prices">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Familjen Grotesk and IBM Plex Mono.</span></p>
 </footer>
 `,
   js: iife(() => {

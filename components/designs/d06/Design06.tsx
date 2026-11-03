@@ -93,7 +93,7 @@ export default function Design06() {
       </header>
       <main id="main">
         <section className="l6-hero" data-hero aria-labelledby="l6-h">
-          <h1 id="l6-h" data-hero-part="headline">All your AI models. One calm app.</h1>
+          <h1 id="l6-h" data-hero-part="headline">All your models, one calm app.</h1>
           <p className="k-body" data-hero-part="sub">Chat with five model families, switch any time, and see the price of every reply before you send it.</p>
           <div className="l6-act">
             <div data-hero-part="cta"><a className="l6-btn" href="#pricing" data-cta="primary" data-magnetic="4,0.12,0.84,0.3"><span data-magnetic-label>Start free</span></a></div>
@@ -203,10 +203,10 @@ export default function Design06() {
       <footer className="l6-foot">
         <p>{MOCK_NOTE}. {BRAND.name} is a placeholder brand name.</p>
         <div className="cols">
-          <div><h4>Explore</h4><a href="#calm">Overview</a><a href="#highlights">Highlights</a></div>
-          <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#pricing">{m.name}</a>)}</div>
-          <div><h4>Developers</h4><a href="#setup">API</a><a href="#pricing">Token pricing</a></div>
-          <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+          <div><h3>Explore</h3><a href="#calm">Overview</a><a href="#highlights">Highlights</a></div>
+          <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#pricing">{m.name}</a>)}</div>
+          <div><h3>Developers</h3><a href="#setup">API</a><a href="#pricing">Token pricing</a></div>
+          <div><h3>Lab</h3><a href="/designs">Back to the gallery</a></div>
         </div>
       </footer>
     </div>

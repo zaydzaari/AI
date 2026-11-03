@@ -17,19 +17,19 @@ export default {
   },
   css: /* css */ `
 :root{--h1-weight:700}
-.l18-nav{position:sticky;top:0;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#06070Af2;border-bottom:1px solid var(--line);font-size:.74rem}
+.l18-nav{position:sticky;top:0;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#06070Af2;border-bottom:1px solid var(--line);font-size:.76rem}
 .l18-mark{font-family:var(--font-display);font-weight:700;font-size:.95rem;letter-spacing:.2em;text-decoration:none}
 .l18-links{display:flex;gap:2px}
 .l18-links a{text-decoration:none;color:var(--text-muted);padding:6px 10px;border:1px solid transparent}
-.l18-links a.is-current{color:var(--text-primary);border-color:var(--accent);box-shadow:0 0 12px #10B98155}
+.l18-links a.is-current{color:var(--text-primary);border-color:var(--accent);box-shadow:none}
 .l18-nm{color:var(--text-muted)}
 @media (max-width:900px){.l18-links{display:none}}
-.l18-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 24px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-decoration:none;box-shadow:0 0 30px -4px #10B98199}
+.l18-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 24px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-decoration:none;box-shadow:none}
 .l18-btn i{width:28px;height:2px;background:var(--on-accent);position:relative;transition:width .4s var(--ease)}
 .l18-btn i::after{content:"";position:absolute;right:-1px;top:-3px;width:8px;height:8px;border-right:2px solid var(--on-accent);border-top:2px solid var(--on-accent);transform:rotate(45deg)}
 .l18-btn.is-near i{width:38px}
 .l18-h2{font-size:clamp(1.8rem,3.6vw,3.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;max-width:20ch}
-.l18-fine{margin-top:22px;font-size:.74rem;color:var(--text-muted)}
+.l18-fine{margin-top:22px;font-size:.76rem;color:var(--text-muted)}
 .live{color:var(--accent);font-variant-numeric:tabular-nums}
 
 /* hero: die floorplan */
@@ -37,7 +37,7 @@ export default {
 .l18-wg{position:absolute;inset:0;pointer-events:none}
 .l18-wg canvas{width:100%;height:100%}
 .l18-blk{position:relative;z-index:1;border:1px solid var(--line);background:#0B0D13e6;padding:22px;display:grid;gap:14px;align-content:start}
-.l18-blk::before{content:attr(data-id);position:absolute;right:8px;top:6px;font-size:.6rem;color:#96A0AE99}
+.l18-blk::before{content:attr(data-id);position:absolute;right:8px;top:6px;font-size:.6875rem;color:#96A0AE99}
 .l18-b1{grid-column:1 / span 8;grid-row:1}
 .l18-b1 h1{font-weight:700;line-height:1;max-width:none}
 .l18-b2{grid-column:1 / span 5;grid-row:2;align-content:center}
@@ -45,7 +45,7 @@ export default {
 .l18-b3{grid-column:9 / -1;grid-row:1 / span 2;display:grid;grid-template-rows:1fr auto;padding:0}
 .l18-b3 .core{position:relative;min-height:180px}
 .l18-b3 .core canvas{position:absolute;inset:0;width:100%;height:100%}
-.l18-b3 .io{padding:16px;border-top:1px solid var(--line);font-size:.72rem;color:var(--text-muted)}
+.l18-b3 .io{padding:16px;border-top:1px solid var(--line);font-size:.76rem;color:var(--text-muted)}
 .l18-b4{grid-column:6 / span 3;grid-row:2;align-content:center}
 .l18-b5{grid-column:1 / span 5;grid-row:3;align-content:center}
 .l18-b6{grid-column:6 / -1;grid-row:3;align-content:center}
@@ -53,7 +53,7 @@ export default {
 .l18-trust b{color:var(--text-primary);font-weight:400}
 @media (max-width:900px){
   .l18-hero{grid-template-columns:1fr 1fr;grid-template-rows:auto;grid-auto-flow:dense;gap:8px;padding:10px var(--gutter);align-content:start}
-  .l18-btn{padding:0 14px;font-size:.7rem;gap:8px;white-space:nowrap}
+  .l18-btn{padding:0 14px;font-size:.76rem;gap:8px;white-space:nowrap}
   .l18-btn i{width:18px}
   .l18-blk{padding:12px;gap:8px}
   .l18-b1,.l18-b2,.l18-b5,.l18-b6{grid-column:1 / -1;grid-row:auto}
@@ -77,10 +77,10 @@ export default {
 .l18-pin{position:sticky;top:58px;height:calc(100vh - 58px);display:grid;grid-template-rows:1fr auto;gap:18px;padding:22px var(--gutter)}
 .l18-bench{position:relative;border:1px solid var(--line);background:radial-gradient(800px 300px at 50% 50%,#10B9810d,transparent 70%),#08090D}
 .l18-bench canvas{position:absolute;inset:0;width:100%;height:100%}
-.l18-lab{position:absolute;left:16px;font-size:.7rem;color:var(--text-muted)}
+.l18-lab{position:absolute;left:16px;font-size:.76rem;color:var(--text-muted)}
 .l18-meters{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .l18-meters div{background:var(--bg-primary);padding:14px 16px;display:grid;gap:4px}
-.l18-meters span{font-size:.68rem;color:var(--text-muted)}
+.l18-meters span{font-size:.6875rem;color:var(--text-muted)}
 .l18-meters b{font-family:var(--font-display);font-size:1.4rem;font-weight:700;font-variant-numeric:tabular-nums}
 @media (max-width:900px){.l18-run{height:380vh}.l18-pin{padding:12px var(--gutter);gap:10px}.l18-meters{grid-template-columns:1fr 1fr}.l18-meters b{font-size:1.05rem}}
 @media (prefers-reduced-motion:reduce){.l18-run{height:auto}.l18-pin{position:relative;height:100vh}}
@@ -88,9 +88,9 @@ export default {
 /* bento: the wafer */
 .l18-wafer{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .l18-die{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--line);background:var(--bg-secondary);display:grid;gap:12px;align-content:start;min-height:230px}
-.l18-die::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),#10B9811f,transparent 65%);opacity:0;transition:opacity .3s}
+.l18-die::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),rgba(100,100,100,0.073),transparent 65%);opacity:0;transition:opacity .3s}
 .l18-die:hover::before{opacity:1}
-.l18-die .tag{display:flex;justify-content:space-between;font-size:.66rem;color:var(--text-muted)}
+.l18-die .tag{display:flex;justify-content:space-between;font-size:.6875rem;color:var(--text-muted)}
 .l18-die h3{font-family:var(--font-display);font-size:1rem;font-weight:700;line-height:1.35;letter-spacing:.02em}
 .l18-die p{font-size:.8rem;color:var(--text-muted)}
 .l18-die.d0{grid-column:span 2;grid-row:span 2}.l18-die.d0 h3{font-size:clamp(1.4rem,2.2vw,2rem)}
@@ -101,17 +101,17 @@ export default {
 .l18-rail-head{padding:0 var(--gutter);margin-bottom:44px}
 .l18-steps{padding:0 var(--gutter);gap:8px}
 .l18-step{width:min(540px,50vw);border:1px solid var(--line);background:var(--bg-secondary);display:grid;gap:12px;align-content:start}
-.l18-step.is-active{border-color:var(--accent);box-shadow:0 0 24px -8px #10B98166}
+.l18-step.is-active{border-color:var(--accent);box-shadow:none}
 .l18-step .n{font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--text-muted);letter-spacing:.2em}
 .l18-step h3{font-family:var(--font-display);font-size:1.15rem;font-weight:700;line-height:1.3}
 .l18-step p{color:var(--text-muted);font-size:.84rem}
-.l18-step pre{margin:0;background:#06070A;border:1px solid var(--line);padding:12px;font-size:.72rem;overflow-x:auto;white-space:pre}
+.l18-step pre{margin:0;background:#06070A;border:1px solid var(--line);padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.l18-step{width:auto}}
 
 /* logs */
 .l18-logs{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .l18-log{border:1px solid var(--line);display:grid;gap:12px;background:var(--bg-secondary)}
-.l18-log .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.68rem;color:var(--text-muted)}
+.l18-log .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.6875rem;color:var(--text-muted)}
 .l18-log b{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--text-primary);letter-spacing:.04em}
 .l18-log q{font-size:.86rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.l18-logs{grid-template-columns:1fr}}
@@ -122,7 +122,7 @@ export default {
 .l18-plan.feat{border-color:var(--accent);background:#0C1712}
 .l18-plan h3{font-family:var(--font-display);font-size:.9rem;font-weight:700;letter-spacing:.16em}
 .l18-plan .p{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1.1}
-.l18-plan .cad{font-size:.72rem;color:var(--text-muted)}
+.l18-plan .cad{font-size:.76rem;color:var(--text-muted)}
 .l18-plan ul{display:grid;gap:6px;font-size:.8rem}
 .l18-plan li::before{content:"> ";color:var(--accent)}
 .l18-plan .fk{font-size:.76rem;border-top:1px solid var(--line);padding-top:12px}
@@ -130,14 +130,14 @@ export default {
 .l18-table{width:100%;margin-top:32px;border-collapse:collapse;font-size:.8rem;font-variant-numeric:tabular-nums}
 .l18-table caption{text-align:left;font-family:var(--font-display);font-weight:700;font-size:.9rem;letter-spacing:.12em;padding-bottom:12px}
 .l18-table th,.l18-table td{text-align:left;padding:12px;border:1px solid var(--line)}
-.l18-table thead th{font-weight:400;color:var(--text-muted);font-size:.7rem}
+.l18-table thead th{font-weight:400;color:var(--text-muted);font-size:.76rem}
 @media (max-width:700px){.l18-table th:nth-child(2),.l18-table td:nth-child(2){display:none}}
 
 /* final + footer */
 .l18-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .l18-final .l18-h2{font-size:clamp(2.2rem,5vw,4.4rem)}
-.l18-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.74rem;color:var(--text-muted)}
-.l18-foot h4{font-family:var(--font-display);font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--text-primary);margin-bottom:12px}
+.l18-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.76rem;color:var(--text-muted)}
+.l18-foot h3{font-family:var(--font-display);font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--text-primary);margin-bottom:12px}
 .l18-foot ul{display:grid;gap:8px}
 .l18-foot a{text-decoration:none}
 .l18-foot a:hover{color:var(--text-primary)}
@@ -154,7 +154,7 @@ export default {
   <section class="l18-hero" data-hero aria-labelledby="l18-h">
     <div class="l18-wg" aria-hidden="true"><canvas id="wg"></canvas></div>
     <div class="l18-blk l18-b1" data-id="BLK-A · TITLE"><h1 id="l18-h" data-hero-part="headline">Stream every token.</h1></div>
-    <div class="l18-blk l18-b2" data-id="BLK-B · SPEC"><p class="k-body" data-hero-part="sub">Your users see each token the moment it is generated — streaming and tool calls on every model family, every token metered.</p></div>
+    <div class="l18-blk l18-b2" data-id="BLK-B · SPEC"><p class="k-body" data-hero-part="sub">Your users see each token the moment it is generated: streaming and tool calls on every model family, every token metered.</p></div>
     <div class="l18-blk l18-b3" data-id="BLK-C · CORE"><div class="core" data-hero-part="visual"><canvas id="core" role="img" aria-label="A photonic core: light packets travel through waveguides; the pointer bends the beam"></canvas></div><p class="io">5 model families · one OpenAI-style request shape</p></div>
     <div class="l18-blk l18-b4" data-id="BLK-D · IO" data-hero-part="cta"><a class="l18-btn" href="#rates" data-cta="primary" data-magnetic="4,0.24,0.6,0.4"><span data-magnetic-label>GET A KEY</span><i aria-hidden="true"></i></a></div>
     <div class="l18-blk l18-b5" data-id="BLK-E · METER"><p class="l18-trust" data-hero-part="trust"><span>Streaming</span><b>on every model</b><span>Swift output from</span><b>${rate(MODELS.find((m) => m.id === "swift").outPrice)} / 1M</b></p></div>
@@ -168,7 +168,7 @@ export default {
     </div>
     <div class="l18-run" id="bench">
       <div class="l18-pin">
-        <div class="l18-bench"><canvas id="lanes" role="img" aria-label="Two lanes: buffered tokens arrive all at once at the end; streamed tokens arrive as they are generated"></canvas><span class="l18-lab" style="top:12px">LANE A · buffered (copper) — the user waits for the whole answer</span><span class="l18-lab" style="top:52%">LANE B · streamed (optical) — each token reaches the user as it is generated</span></div>
+        <div class="l18-bench"><canvas id="lanes" role="img" aria-label="Two lanes: buffered tokens arrive all at once at the end; streamed tokens arrive as they are generated"></canvas><span class="l18-lab" style="top:12px">LANE A · buffered (copper): the user waits for the whole answer</span><span class="l18-lab" style="top:52%">LANE B · streamed (optical): each token reaches the user as it is generated</span></div>
         <div class="l18-meters" aria-live="polite">
           <div><span>Tokens generated</span><b id="m-gen">0</b></div>
           <div><span>Seen by user · buffered</span><b id="m-a">0</b></div>
@@ -226,9 +226,9 @@ export default {
 </main>
 <footer class="l18-foot">
   <div><p class="l18-mark">${BRAND.name.toUpperCase()}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>MODELS</h4><ul>${MODELS.map((m) => `<li><a href="#rates">${m.name}</a></li>`)}</ul></div>
-  <div><h4>PLATFORM</h4><ul><li><a href="#bench">Streaming</a></li><li><a href="#fab">API quickstart</a></li><li><a href="#rates">Token rates</a></li></ul></div>
-  <div><h4>EXHIBITION</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>MODELS</h3><ul>${MODELS.map((m) => `<li><a href="#rates">${m.name}</a></li>`)}</ul></div>
+  <div><h3>PLATFORM</h3><ul><li><a href="#bench">Streaming</a></li><li><a href="#fab">API quickstart</a></li><li><a href="#rates">Token rates</a></li></ul></div>
+  <div><h3>EXHIBITION</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Syncopate and Space Mono.</span></p>
 </footer>
 `,

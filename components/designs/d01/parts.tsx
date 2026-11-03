@@ -78,7 +78,7 @@ export function HeroTranscript() {
         initial={{ opacity: 0, y: 40, rotate: 0.6 }}
         animate={{ opacity: 1, y: 0, rotate: 0 }}
         transition={{ duration: 1.1, delay: 0.35, ease }}
-        className="relative rounded-[6px] bg-[#FBF8F1] shadow-[0_1px_0_rgba(22,19,15,.08),0_40px_80px_-40px_rgba(22,19,15,.35)] ring-1 ring-[var(--ink)]/10"
+        className="relative rounded-[6px] bg-[#F4F6F8] shadow-[0_1px_0_rgba(22,19,15,.08),0_40px_80px_-40px_rgba(22,19,15,.35)] ring-1 ring-[var(--ink)]/10"
       >
         <div className="flex items-center justify-between border-b border-[var(--ink)]/10 px-5 py-3">
           <div className="d01-mono flex items-center gap-2 text-[11px] text-[var(--text-muted)]">
@@ -158,7 +158,7 @@ export function Index() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="rounded-[4px] border border-[var(--ink)]/15 bg-[#FBF8F1] p-6"
+              className="rounded-[4px] border border-[var(--ink)]/15 bg-[#F4F6F8] p-6"
             >
               <div className="d01-mono text-[11px] text-[var(--red)]">Note {String(active + 1).padStart(2, "0")}</div>
               <p className="d01-serif mt-3 text-[26px] leading-[1.1]">{c.body}</p>
@@ -289,7 +289,7 @@ export function Story() {
               ))}
               <span className="d01-mono ml-auto text-[10.5px] text-[var(--text-muted)]">context preserved</span>
             </div>
-            <div className="min-h-[300px] space-y-2 rounded-[4px] bg-[#FBF8F1] p-4">
+            <div className="min-h-[300px] space-y-2 rounded-[4px] bg-[#F4F6F8] p-4">
               {STEPS.slice(0, step + 1).flatMap((st, si) =>
                 st.lines.map(([who, text], li) => (
                   <motion.div
@@ -345,7 +345,7 @@ export function Specimens() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.6 }}
-            className={`group relative bg-[var(--paper)] p-6 transition-colors hover:bg-[#FBF8F1] ${
+            className={`group relative bg-[var(--paper)] p-6 transition-colors hover:bg-[#F4F6F8] ${
               i < 2 ? "lg:col-span-3" : "lg:col-span-2"
             }`}
           >
@@ -413,7 +413,7 @@ export function Api() {
   const lines = CODE[tab].split("\n");
   const notes = NOTES[tab];
   return (
-    <section data-section id="api" className="border-y border-[var(--ink)]/15 bg-[#FBF8F1]">
+    <section data-section id="api" className="border-y border-[var(--ink)]/15 bg-[#F4F6F8]">
       <div className="mx-auto grid max-w-[1320px] gap-12 px-5 py-24 sm:px-8 md:py-32 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Eyebrow n="§4">For developers</Eyebrow>
@@ -511,7 +511,7 @@ export function Ledger() {
           </div>
         </div>
         <div className="lg:col-span-6 lg:col-start-7">
-          <div className="rounded-[6px] border border-[var(--ink)]/15 bg-[#FBF8F1] p-6">
+          <div className="rounded-[6px] border border-[var(--ink)]/15 bg-[#F4F6F8] p-6">
             <div className="d01-mono text-[11px] uppercase tracking-[0.14em] text-[var(--text-muted)]">Estimate one request</div>
             {[
               ["Input tokens", inTok, setIn, 1000, 200000, 1000],

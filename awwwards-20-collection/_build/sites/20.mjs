@@ -50,9 +50,9 @@ export default {
   css: /* css */ `
 :root{--h1-weight:800;--pad:clamp(36px,3vw,40px)}
 body{font-size:1.05rem}
-.z20-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#080B11f2;border-bottom:1px solid var(--line);font-size:.74rem}
+.z20-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#080B11f2;border-bottom:1px solid var(--line);font-size:.76rem}
 .z20-mark{font-family:var(--font-display);font-weight:800;font-size:1.3rem;letter-spacing:.14em;text-decoration:none;display:flex;align-items:baseline;gap:10px}
-.z20-mark small{font-family:var(--font-body);font-weight:400;font-size:.66rem;letter-spacing:.12em;color:var(--text-muted)}
+.z20-mark small{font-family:var(--font-body);font-weight:400;font-size:.6875rem;letter-spacing:.12em;color:var(--text-muted)}
 .z20-links{display:flex;gap:4px}
 .z20-links a{text-decoration:none;color:var(--text-muted);padding:8px 10px;letter-spacing:.06em;text-transform:uppercase}
 .z20-links a:hover{color:var(--text-primary)}
@@ -64,8 +64,8 @@ body{font-size:1.05rem}
 .z20-btn.is-near svg{transform:translateX(5px) rotate(-8deg)}
 .z20-btn span{padding-right:8px}
 .z20-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:800;letter-spacing:-.01em;line-height:.95;text-transform:uppercase;max-width:18ch}
-.z20-kick{font-size:.72rem;letter-spacing:.16em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
-.z20-fine{margin-top:22px;font-size:.74rem;color:var(--text-muted)}
+.z20-kick{font-size:.76rem;letter-spacing:.16em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px}
+.z20-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted);max-width:72ch}
 
 /* split-flap cells (JS-driven) */
 .z20-flap{display:inline-flex;gap:2px;vertical-align:top}
@@ -80,7 +80,7 @@ body{font-size:1.05rem}
 
 /* hero: the departure board */
 .z20-hero{min-height:calc(100svh - 60px);display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto 1fr auto;column-gap:16px;row-gap:18px;padding:18px var(--gutter) 22px}
-.z20-strip{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:.72rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
+.z20-strip{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:.76rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
 .z20-strip .z20-tiles{font-size:1.25rem;color:var(--text-primary)}
 .z20-strip .clk{font-variant-numeric:tabular-nums;color:var(--text-primary)}
 .z20-copy{grid-column:1 / span 6;align-self:center;display:grid;gap:22px;justify-items:start}
@@ -94,7 +94,7 @@ body{font-size:1.05rem}
 .z20-trust b{color:var(--text-primary);font-weight:500}
 .z20-board{grid-column:7 / -1;align-self:center;justify-self:end;font-size:clamp(12px,1.32vw,21px);display:grid;gap:6px}
 .z20-bh{display:flex;gap:.6em;padding:0 0 4px}
-.z20-bh i{font-style:normal;font-family:var(--font-body);font-size:max(10px,.5em);letter-spacing:.12em;color:var(--text-muted)}
+.z20-bh i{font-style:normal;font-family:var(--font-body);font-size:max(11px,.5em);letter-spacing:.12em;color:var(--text-muted)}
 .z20-bh span,.z20-row>span{flex:none}
 .z20-row{display:flex;gap:.6em;align-items:center;padding:0;border:0;background:none;text-align:left;font-size:inherit;border-radius:3px}
 .z20-row:focus-visible{outline-offset:4px}
@@ -106,7 +106,7 @@ body{font-size:1.05rem}
 .z20-route::before,.z20-route::after{content:"";position:absolute;width:16px;height:16px;border:1px solid #E9EDF466;pointer-events:none}
 .z20-route::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
 .z20-route::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
-.z20-cap{position:absolute;right:14px;top:10px;font-size:.66rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
+.z20-cap{position:absolute;right:14px;top:10px;font-size:.6875rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
 @media (max-width:900px){
   .z20-hero{grid-template-columns:1fr;grid-template-rows:auto;row-gap:12px;padding:12px var(--gutter) 16px;min-height:0;align-content:start}
   .z20-strip{display:none}
@@ -114,7 +114,7 @@ body{font-size:1.05rem}
   .z20-copy{gap:10px}
   .z20-btn{min-height:52px;font-size:1rem}
   .z20-cta{gap:10px}
-  .z20-trust{font-size:.72rem;gap:2px 10px;line-height:1.5}
+  .z20-trust{font-size:.76rem;gap:2px 10px;line-height:1.5}
   .z20-board{justify-self:start;font-size:13px;gap:4px}
   .z20-bh{display:none}
   .z20-row .c-flt,.z20-row .c-ctx{display:none}
@@ -138,20 +138,20 @@ body{font-size:1.05rem}
 .z20-pin{position:sticky;top:60px;height:calc(100vh - 60px);display:grid;grid-template-columns:1.1fr .9fr;gap:24px;padding:18px var(--gutter)}
 .z20-globe{position:relative;min-height:0;border:1px solid var(--line);background:radial-gradient(closest-side,#101726,#080B11)}
 .z20-globe canvas{position:absolute;inset:0;width:100%;height:100%}
-.z20-globe .lab{position:absolute;left:14px;bottom:10px;font-size:.66rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
+.z20-globe .lab{position:absolute;left:14px;bottom:10px;font-size:.6875rem;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase}
 .z20-tick{display:grid;align-content:center;gap:16px;min-width:0;font-size:clamp(14px,1.5vw,24px)}
 .z20-pair{display:flex;align-items:center;gap:.5em;font-size:2.2em}
 .z20-pair svg{width:.8em;height:.8em;fill:var(--text-muted)}
-.z20-legno{font-family:var(--font-body);font-size:.5em;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-legno{font-family:var(--font-body);font-size:max(11px,.56em);letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
 .z20-what{font-size:1em}
 .z20-nums{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
 .z20-nums div{display:grid;gap:4px}
-.z20-nums .lb{font-family:var(--font-body);font-size:max(10px,.46em);letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
+.z20-nums .lb{font-family:var(--font-body);font-size:max(11px,.46em);letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
 .z20-total{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-top:14px;border-top:1px solid var(--line)}
 .z20-total span{font-family:var(--font-body);font-size:max(11px,.5em);letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase}
 .z20-total b{font-family:var(--font-display);font-weight:800;font-size:2.2rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .z20-legs{display:grid;gap:2px;font-family:var(--font-body);font-size:max(11px,.52em);color:var(--text-muted)}
-.z20-legs li{display:grid;grid-template-columns:7.5em 1fr auto;gap:12px;padding:6px 10px;border-left:2px solid transparent}
+.z20-legs li{display:grid;grid-template-columns:7.5em 1fr auto;gap:12px;padding:6px 10px;border-left:1px solid transparent}
 .z20-legs li.is-current{color:var(--text-primary);border-left-color:var(--accent);background:#131924}
 .z20-legs b{font-weight:500}
 @media (max-width:900px){
@@ -170,10 +170,10 @@ body{font-size:1.05rem}
 .z20-pass::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),#E9EDF414,transparent 65%);opacity:0;transition:opacity .3s}
 .z20-pass:hover::before{opacity:1}
 .z20-pass .main{display:grid;gap:12px;align-content:start;min-width:0}
-.z20-pass .cls{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-pass .cls{font-size:.82rem;color:var(--text-muted)}
 .z20-pass h3{font-size:clamp(1.45rem,2vw,1.9rem);font-weight:700;line-height:1.05;text-transform:uppercase;letter-spacing:.01em}
 .z20-pass p{font-size:.84rem;color:var(--text-muted)}
-.z20-pass .stub{position:relative;display:grid;align-content:space-between;gap:10px;padding-left:20px;border-left:2px dashed #E9EDF42e;font-size:.66rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
+.z20-pass .stub{position:relative;display:grid;align-content:space-between;gap:10px;padding-left:20px;border-left:2px dashed #E9EDF42e;font-size:.6875rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
 .z20-pass .stub::before,.z20-pass .stub::after{content:"";position:absolute;left:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--line)}
 .z20-pass .stub::before{top:calc(-1 * var(--pad) - 12px)}
 .z20-pass .stub::after{bottom:calc(-1 * var(--pad) - 12px)}
@@ -201,13 +201,13 @@ body{font-size:1.05rem}
 .z20-path .pw{position:absolute;left:0;top:0;bottom:0;width:calc(100% - 24px);transform:translateX(calc(var(--rp,0) * 100%))}
 .z20-path svg{width:24px;height:24px;fill:var(--text-primary)}
 .z20-steps{padding:0 var(--gutter);gap:16px}
-.z20-step{width:min(560px,52vw);display:grid;gap:14px;align-content:start;background:var(--bg-secondary);border:1px solid var(--line);border-top:3px solid #E9EDF422;border-radius:6px}
-.z20-step.is-active{border-top-color:var(--accent)}
+.z20-step{width:min(560px,52vw);display:grid;gap:14px;align-content:start;background:var(--bg-secondary);border:1px solid var(--line);border-radius:6px}
+.z20-step.is-active{border-color:#E9EDF488;background:#171E2B}
 .z20-step .g{font-family:var(--font-display);font-weight:800;font-size:clamp(3.6rem,6vw,5.4rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px #E9EDF488}
-.z20-step .gl{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-step .gl{font-size:.6875rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
 .z20-step h3{font-size:1.7rem;font-weight:700;line-height:1.05;text-transform:uppercase}
 .z20-step p{font-size:.86rem;color:var(--text-muted)}
-.z20-step pre{margin:0;background:#080B11;border:1px solid var(--line);padding:14px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.z20-step pre{margin:0;background:#080B11;border:1px solid var(--line);padding:14px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.z20-step{width:auto}.z20-path{display:none}}
 
 /* proof: luggage tags */
@@ -216,19 +216,19 @@ body{font-size:1.05rem}
 .z20-tag::before{content:"";position:absolute;right:22px;top:22px;width:14px;height:14px;border-radius:50%;border:2px solid #E9EDF433;background:var(--bg-primary)}
 .z20-tag .hd{display:grid;gap:2px;padding-right:40px}
 .z20-tag b{font-family:var(--font-display);font-weight:800;font-size:1.5rem;text-transform:uppercase;letter-spacing:.02em}
-.z20-tag .hd span{font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
+.z20-tag .hd span{font-size:.76rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase}
 .z20-tag q{font-size:.9rem;line-height:1.65;quotes:"“" "”"}
-.z20-tag .no{font-size:.66rem;letter-spacing:.14em;color:var(--text-muted)}
+.z20-tag .no{font-size:.6875rem;letter-spacing:.14em;color:var(--text-muted)}
 @media (max-width:760px){.z20-tags{grid-template-columns:1fr}}
 
 /* fares */
 .z20-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.z20-plan{display:grid;gap:14px;align-content:start;background:var(--bg-secondary);border:1px solid var(--line);border-top:3px solid #E9EDF422;border-radius:6px}
-.z20-plan.feat{border-top-color:var(--accent)}
-.z20-plan .cl{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);text-transform:uppercase}
+.z20-plan{display:grid;gap:14px;align-content:start;background:var(--bg-secondary);border:1px solid var(--line);border-radius:6px}
+.z20-plan.feat{border-color:#E9EDF466;background:#171E2B}
+.z20-plan .cl{font-size:.82rem;color:var(--text-muted)}
 .z20-plan h3{font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
 .z20-plan .p{font-family:var(--font-display);font-weight:800;font-size:3rem;line-height:1}
-.z20-plan .cad{font-size:.74rem;color:var(--text-muted)}
+.z20-plan .cad{font-size:.76rem;color:var(--text-muted)}
 .z20-plan ul{display:grid;gap:6px;font-size:.84rem}
 .z20-plan li::before{content:"+ ";color:var(--text-muted)}
 .z20-plan .fk{font-size:.76rem;border-top:1px dashed #E9EDF433;padding-top:14px;color:var(--text-muted)}
@@ -236,7 +236,7 @@ body{font-size:1.05rem}
 .z20-table{width:100%;margin-top:40px;border-collapse:separate;border-spacing:0 6px;font-size:.84rem}
 .z20-table caption{text-align:left;font-family:var(--font-display);font-weight:800;font-size:1.4rem;letter-spacing:.08em;padding-bottom:6px;text-transform:uppercase}
 .z20-table th,.z20-table td{text-align:left;padding:12px 14px;background:var(--bg-secondary)}
-.z20-table thead th{background:none;font-weight:400;font-size:.68rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase;padding-block:4px}
+.z20-table thead th{background:none;font-weight:400;font-size:.6875rem;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase;padding-block:4px}
 .z20-table tbody th{font-family:var(--font-display);font-weight:800;font-size:1.2rem;letter-spacing:.06em;text-transform:uppercase}
 .z20-table td.n{font-family:var(--font-display);font-weight:700;font-size:1.15rem;font-variant-numeric:tabular-nums;letter-spacing:.02em}
 .z20-table tbody tr>*:first-child{border-radius:4px 0 0 4px}
@@ -248,7 +248,7 @@ body{font-size:1.05rem}
 .z20-final .z20-tiles{font-size:clamp(1.4rem,3.4vw,2.6rem);color:var(--text-primary)}
 .z20-final .z20-h2{font-size:clamp(2.8rem,6vw,5.4rem);max-width:16ch}
 .z20-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.76rem;color:var(--text-muted)}
-.z20-foot h4{font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:.12em;color:var(--text-primary);margin-bottom:12px;text-transform:uppercase}
+.z20-foot h3{font-family:var(--font-display);font-size:1rem;font-weight:800;letter-spacing:.12em;color:var(--text-primary);margin-bottom:12px;text-transform:uppercase}
 .z20-foot ul{display:grid;gap:8px}
 .z20-foot a{text-decoration:none}
 .z20-foot a:hover{color:var(--text-primary)}
@@ -281,10 +281,10 @@ body{font-size:1.05rem}
 
   <section id="delays" data-section aria-labelledby="z20-d">
     <div class="k-wrap z20-cols">
-      <div><p class="z20-kick" data-reveal>Delays &amp; cancellations</p><h2 id="z20-d" class="z20-h2" data-reveal>Too many layovers between you and a model.</h2></div>
+      <div><h2 id="z20-d" class="z20-h2" data-reveal>Too many layovers between you and a model.</h2></div>
       <ul class="z20-delays" data-stagger>${PROBLEM.rows.map(([was, now]) => `<li><span class="st was">DELAYED</span><span class="was">${was}</span><span class="st now">ON TIME</span><span class="now">${now}</span></li>`)}</ul>
     </div>
-    <div class="k-wrap z20-ihead"><p class="z20-kick" data-reveal>The itinerary</p><h2 class="z20-h2" data-reveal style="max-width:22ch">One conversation. Five models. One ticket.</h2></div>
+    <div class="k-wrap z20-ihead"><h2 class="z20-h2" data-reveal style="max-width:22ch">One conversation. Five models. One ticket.</h2></div>
     <div class="z20-run" id="itinerary">
       <div class="z20-pin">
         <div class="z20-globe"><canvas id="z20-globe" role="img" aria-label="A route globe: one conversation flies from your app to Core, Forge, Unbound, Atlas and Swift, with a Mach cone trailing the request"></canvas><p class="lab" aria-hidden="true">Thread carried across every leg · fictional hubs</p></div>
@@ -309,7 +309,7 @@ body{font-size:1.05rem}
 
   <section id="cabin" data-section aria-labelledby="z20-c">
     <div class="k-wrap">
-      <p class="z20-kick" data-reveal>In the cabin</p>
+      
       <h2 id="z20-c" class="z20-h2" data-reveal>Six things every ticket includes.</h2>
       <div class="z20-cabin" data-stagger>${BENEFITS.map(([f, b, d], i) => `<article class="z20-pass k-card d${i}" data-spot><div class="main"><p class="cls">${f}</p><h3>${b}</h3><p>${d}</p>${barcode(f + b)}</div><div class="stub" aria-hidden="true"><span>Seat<b>0${i + 1}${"ABCDEF"[i]}</b></span><span>Gate<b>A</b></span></div></article>`)}</div>
     </div>
@@ -318,7 +318,7 @@ body{font-size:1.05rem}
   <section id="boarding" data-section aria-labelledby="z20-b">
     <div data-rail>
       <div data-rail-view>
-        <div class="z20-rail-head"><p class="z20-kick">Boarding</p><h2 id="z20-b" class="z20-h2" data-reveal>Three gates to your first response.</h2></div>
+        <div class="z20-rail-head"><h2 id="z20-b" class="z20-h2" data-reveal>Three gates to your first response.</h2></div>
         <div class="z20-path" aria-hidden="true"><span class="fill"></span><span class="pw">${PLANE}</span></div>
         <ol class="z20-steps" data-rail-track>${STEPS.map(([t, d], i) => `<li class="z20-step k-card"><p class="gl">Gate ${i + 1} of 3</p><span class="g" aria-hidden="true">G${i + 1}</span><h3>${t}</h3><p>${d}</p><pre><code>${['model: "core-128k:low-refusal"', `baseURL: "${BRAND.apiBase}"\napiKey:  process.env.${BRAND.envKey}`, "usage: tokens · cached_tokens · cost"][i]}</code></pre></li>`)}</ol>
       </div>
@@ -327,7 +327,7 @@ body{font-size:1.05rem}
 
   <section id="flyers" data-section aria-labelledby="z20-f">
     <div class="k-wrap">
-      <p class="z20-kick" data-reveal>Frequent flyers</p>
+      
       <h2 id="z20-f" class="z20-h2" data-reveal>Who books which seat.</h2>
       <div class="z20-tags" data-stagger>${PROOF.map(([role, focus, q], i) => `<article class="z20-tag k-card"><p class="hd"><b>${role}</b><span>${focus}</span></p><q>${q}</q><p class="no">TAG AE-${String(i + 1).padStart(4, "0")}</p></article>`)}</div>
       <p class="z20-fine">${PROOF_NOTE}</p>
@@ -336,7 +336,7 @@ body{font-size:1.05rem}
 
   <section id="fares" data-section aria-labelledby="z20-p">
     <div class="k-wrap">
-      <p class="z20-kick" data-reveal>Fares</p>
+      
       <h2 id="z20-p" class="z20-h2" data-reveal>Pay per token. The fare is on the ticket.</h2>
       <div class="z20-plans" data-stagger>${PLANS.map((p, i) => h`<article class="z20-plan k-card${p.featured ? " feat" : ""}"><p class="cl">Class ${"EPA"[i]}</p><h3>${p.name}</h3><p class="p">${p.price}</p><p class="cad">${p.cadence}</p><ul>${p.features.map((f) => `<li>${f}</li>`)}</ul><p class="fk">${p.fk}</p></article>`)}</div>
       <table class="z20-table" data-reveal>
@@ -358,9 +358,9 @@ body{font-size:1.05rem}
 </main>
 <footer class="z20-foot">
   <div><p class="z20-mark">${BRAND.name.toUpperCase()}<small>ZENITH</small></p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Destinations</h4><ul>${MODELS.map((m) => `<li><a href="#fares">${m.name} · ${CODE[m.id]}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#itinerary">Unified chat</a></li><li><a href="#boarding">API quickstart</a></li><li><a href="#fares">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Destinations</h3><ul>${MODELS.map((m) => `<li><a href="#fares">${m.name} · ${CODE[m.id]}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#itinerary">Unified chat</a></li><li><a href="#boarding">API quickstart</a></li><li><a href="#fares">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Big Shoulders Display and IBM Plex Mono.</span></p>
 </footer>
 `,

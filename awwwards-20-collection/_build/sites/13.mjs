@@ -34,7 +34,7 @@ main,footer,.s13-nav{position:relative;z-index:1}
 .s13-sig{color:var(--text-muted)}
 @media (max-width:900px){.s13-links{display:none}}
 .s13-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 30px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:600;font-size:1.05rem;text-decoration:none;box-shadow:0 0 0 0 #2DD4BF55;transition:box-shadow .5s var(--ease)}
-.s13-btn.is-near{box-shadow:0 0 0 10px #2DD4BF1a,0 0 40px #2DD4BF66}
+.s13-btn.is-near{box-shadow:0 0 0 10px #2DD4BF1a}
 .s13-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:300;letter-spacing:-.035em;line-height:1;max-width:16ch}
 .s13-fine{margin-top:22px;font-size:.76rem;color:var(--text-muted)}
 .live{color:var(--accent);font-variant-numeric:tabular-nums}
@@ -71,12 +71,12 @@ main,footer,.s13-nav{position:relative;z-index:1}
 .s13-turn:nth-child(even){justify-self:end}
 .s13-turn .you,.s13-turn .ans{border-radius:24px;display:grid;gap:10px;transition:border-color .5s,box-shadow .5s}
 .s13-turn .you{font-size:.9rem;color:var(--text-muted)}
-.s13-turn .ans .who{display:flex;justify-content:space-between;gap:12px;font-size:.72rem;color:var(--text-muted)}
+.s13-turn .ans .who{display:flex;justify-content:space-between;gap:12px;font-size:.76rem;color:var(--text-muted)}
 .s13-turn .ans p{font-family:var(--font-display);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:300;line-height:1.35}
-.s13-turn .ans.lit{border-color:#2DD4BF88;box-shadow:0 0 0 1px #2DD4BF33,0 30px 60px -30px #2DD4BF55}
+.s13-turn .ans.lit{border-color:#2DD4BF88;box-shadow:0 0 0 1px #2DD4BF33,0 30px 60px -30px rgba(0,0,0,.32)}
 .s13-turn .ans.lit .who b{color:var(--accent)}
 .s13-ctx{position:sticky;top:76px;z-index:3;margin:0 var(--gutter) 0 auto;width:max-content;display:flex;gap:18px;padding:10px 18px;border-radius:999px;font-size:.76rem}
-@media (max-width:860px){.s13-turn{grid-template-columns:1fr}.s13-ctx{top:68px;gap:10px;font-size:.68rem}}
+@media (max-width:860px){.s13-turn{grid-template-columns:1fr}.s13-ctx{top:68px;gap:10px;font-size:.6875rem}}
 
 /* bento */
 .s13-bento{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -84,7 +84,7 @@ main,footer,.s13-nav{position:relative;z-index:1}
 .s13-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(280px circle at var(--mx) var(--my),#2DD4BF1a,transparent 65%);opacity:0;transition:opacity .3s}
 .s13-card:hover::before,.s13-card.lit::before{opacity:1}
 .s13-card.lit{border-color:#2DD4BF66}
-.s13-card .tag{font-size:.72rem;color:var(--text-muted)}
+.s13-card .tag{font-size:.76rem;color:var(--text-muted)}
 .s13-card h3{font-family:var(--font-display);font-size:1.7rem;font-weight:400;letter-spacing:-.02em;line-height:1.12}
 .s13-card p{font-size:.86rem;color:var(--text-muted)}
 .s13-card.c0{grid-column:span 2;grid-row:span 2}.s13-card.c0 h3{font-size:clamp(2.2rem,3.6vw,3.2rem);font-weight:300}
@@ -99,13 +99,13 @@ main,footer,.s13-nav{position:relative;z-index:1}
 .s13-step.is-active .n{color:var(--accent)}
 .s13-step h3{font-family:var(--font-display);font-size:1.8rem;font-weight:400;line-height:1.1}
 .s13-step p{color:var(--text-muted);font-size:.88rem}
-.s13-step pre{margin:0;background:#0A0910;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.s13-step pre{margin:0;background:#0A0910;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.s13-step{width:auto}}
 
 /* voices */
 .s13-voices{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .s13-v{border-radius:24px;display:grid;gap:14px}
-.s13-v .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--text-muted)}
+.s13-v .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .s13-v b{font-family:var(--font-display);font-size:1.2rem;font-weight:500;color:var(--text-primary)}
 .s13-v q{font-family:var(--font-display);font-size:1.25rem;font-weight:300;line-height:1.45;quotes:"“" "”"}
 @media (max-width:760px){.s13-voices{grid-template-columns:1fr}}
@@ -122,7 +122,7 @@ main,footer,.s13-nav{position:relative;z-index:1}
 .s13-plan .fk{font-size:.8rem;border-top:1px solid var(--line);padding-top:12px}
 @media (max-width:900px){.s13-plans{grid-template-columns:1fr}}
 .s13-rates{margin-top:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.s13-rates div{border-radius:18px;padding:16px;display:grid;gap:4px;font-size:.74rem;color:var(--text-muted)}
+.s13-rates div{border-radius:18px;padding:16px;display:grid;gap:4px;font-size:.76rem;color:var(--text-muted)}
 .s13-rates b{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--text-primary)}
 @media (max-width:900px){.s13-rates{grid-template-columns:1fr 1fr}}
 
@@ -130,7 +130,7 @@ main,footer,.s13-nav{position:relative;z-index:1}
 .s13-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .s13-final .s13-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
 .s13-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted);background:#0A0910cc}
-.s13-foot h4{font-family:var(--font-display);font-size:1rem;font-weight:500;color:var(--text-primary);margin-bottom:12px}
+.s13-foot h3{font-family:var(--font-display);font-size:1rem;font-weight:500;color:var(--text-primary);margin-bottom:12px}
 .s13-foot ul{display:grid;gap:8px}
 .s13-foot a{text-decoration:none}
 .s13-foot a:hover{color:var(--text-primary)}
@@ -149,7 +149,7 @@ main,footer,.s13-nav{position:relative;z-index:1}
     <p class="anchor" data-hero-part="visual" aria-label="The neural constellation behind the page follows your pointer and focus"><span>Live constellation · move the pointer</span><b>5</b><span>model families listening</span></p>
     <div class="s13-copy">
       <h1 id="s13-h" data-hero-part="headline">One conversation. Every model listening.</h1>
-      <p class="k-body" data-hero-part="sub">Unified chat keeps the whole thread — files included — as you move between five model families. You pay per token for whichever model answers.</p>
+      <p class="k-body" data-hero-part="sub">Unified chat keeps the whole thread, files included, as you move between five model families. You pay per token for whichever model answers.</p>
       <div data-hero-part="cta"><a class="s13-btn" href="#pricing" data-cta="primary" data-focus data-magnetic="6,0.1,0.86,0.4"><span data-magnetic-label>Start a thread free</span></a></div>
       <p class="s13-trust" data-hero-part="trust"><i aria-hidden="true"></i>Switch models mid-thread; the context comes with you.</p>
     </div>
@@ -211,9 +211,9 @@ main,footer,.s13-nav{position:relative;z-index:1}
 </main>
 <footer class="s13-foot">
   <div><p class="s13-mark">${BRAND.name.toLowerCase()}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Listening</h4><ul>${MODELS.map((m) => `<li><a href="#thread">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#nodes">Unified chat</a></li><li><a href="#connect">API quickstart</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Listening</h3><ul>${MODELS.map((m) => `<li><a href="#thread">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#nodes">Unified chat</a></li><li><a href="#connect">API quickstart</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Urbanist and JetBrains Mono.</span></p>
 </footer>
 `,

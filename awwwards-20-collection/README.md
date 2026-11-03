@@ -123,3 +123,20 @@ Some blueprint fonts are not on Google Fonts, or would have repeated another sit
 | 20 | Big Shoulders Display | The blueprint font repeated an earlier heading font |
 
 `fingerprint-registry.json` records the original blueprint font for each substitution.
+
+Five more fonts changed in the anti-slop pass, because Impeccable lists the originals as overused:
+
+| Site | Font now | Replaced |
+| --- | --- | --- |
+| 04 | Literata and Albert Sans | Fraunces and Plus Jakarta Sans |
+| 06 | Italiana | Instrument Serif |
+| 11 | Red Hat Text (body) | Plus Jakarta Sans |
+| 12 | Familjen Grotesk | Space Grotesk |
+| 15 | Hanken Grotesk (body) | Plus Jakarta Sans |
+
+The five cream backgrounds (sites 02, 04, 08, 15 and 19) also moved to deliberate palettes: stone, lab glass, blush chalk, matcha and porcelain.
+
+## Taste library and Tweaks
+
+- **Taste library:** `inspiration/index.html` groups all 32 directions (20 here and 12 in the lab) into six design families. Each card has "Copy image prompt" and "Copy brief" (aesthetic, reference, intent, guardrails). There's also a drop zone for your own screenshots.
+- **Tweaks:** every page has a Tweaks pill in the bottom-right corner (Shift+T). It changes fonts, sizes, colours, motion and grain live, and **Copy settings** exports what you changed. The code is in `../lib/tweaks.js` and `../lib/tweaks.css`, inlined at build time.

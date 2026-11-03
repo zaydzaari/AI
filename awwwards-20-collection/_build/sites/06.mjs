@@ -12,16 +12,16 @@ const NOTES = [
 const TOTAL = NOTES.reduce((a, n) => a + n.cost, 0);
 
 export default {
-  title: "Aether — Know exactly what every answer is made of",
+  title: "Aether — Every answer, note by note",
   description: "Every response is a blend of output, fresh input and cached tokens; Aether lists each note and its price for every model family. Nocturne design direction.",
   fonts: [
-    { family: "Instrument Serif", axes: "ital@0;1" },
+    { family: "Italiana" },
     { family: "Work Sans", axes: "wght@300;400;500;600" },
   ],
   tokens: {
     bgPrimary: "#120E0A", bgSecondary: "#1F1812", accent: "#E5A93C", onAccent: "#120E0A",
     textPrimary: "#F3E9DA", textMuted: "#B3A28C", line: "rgba(243,233,218,.13)",
-    display: '"Instrument Serif", Georgia, serif', body: '"Work Sans", sans-serif',
+    display: '"Italiana", Georgia, serif', body: '"Work Sans", sans-serif',
   },
   css: /* css */ `
 body{font-weight:300}
@@ -34,14 +34,14 @@ body{font-weight:300}
 .n6-links a.is-current::after{transform:translateX(-50%) scale(1)}
 .n6-ed{justify-self:end;color:var(--text-muted);font-style:italic;font-family:var(--font-display);font-size:1.05rem}
 @media (max-width:860px){.n6-links{display:none}.n6-nav{grid-template-columns:1fr auto}}
-.n6-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 30px;border-radius:2px;background:var(--accent);color:var(--on-accent);font-weight:500;letter-spacing:.02em;text-decoration:none;box-shadow:0 0 50px -10px #E5A93C99;transition:box-shadow .4s}
-.n6-btn.is-near{box-shadow:0 0 70px -6px #E5A93Ccc}
+.n6-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 30px;border-radius:2px;background:var(--accent);color:var(--on-accent);font-weight:500;letter-spacing:.02em;text-decoration:none;box-shadow:none;transition:box-shadow .4s}
+.n6-btn.is-near{box-shadow:none}
 .n6-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.02em;line-height:1;max-width:16ch}
 .n6-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted)}
 .live{color:var(--accent);font-variant-numeric:tabular-nums}
 
 /* hero: triptych */
-.n6-hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.8fr);gap:clamp(24px,3vw,48px);align-items:center;padding:88px var(--gutter) 32px;background:radial-gradient(600px 500px at 50% 60%,#3A2A1544,transparent 70%)}
+.n6-hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.8fr);gap:clamp(24px,3vw,48px);align-items:center;padding:88px var(--gutter) 32px;background:radial-gradient(600px 500px at 50% 60%,rgba(40,40,40,0.16),transparent 70%)}
 .n6-copy{display:grid;gap:22px;justify-items:start}
 .n6-copy h1{font-weight:400;line-height:.96}
 .n6-copy h1 em{color:var(--text-muted)}
@@ -53,7 +53,7 @@ body{font-weight:300}
 .n6-ledger li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.86rem}
 .n6-ledger li span{color:var(--text-muted)}
 .n6-ledger li b{font-weight:500;font-variant-numeric:tabular-nums}
-.n6-ledger .note{grid-column:1 / -1;font-size:.74rem;color:var(--text-muted)}
+.n6-ledger .note{grid-column:1 / -1;font-size:.76rem;color:var(--text-muted)}
 @media (max-width:980px){
   .n6-hero{grid-template-columns:1fr 120px;grid-template-rows:auto auto;gap:14px;padding:76px var(--gutter) 16px;align-content:start}
   .n6-copy{grid-column:1 / -1;gap:12px}
@@ -83,7 +83,7 @@ body{font-weight:300}
 .n6-panel .what{font-size:1.05rem}
 .n6-panel p{color:var(--text-muted);max-width:40ch}
 .n6-panel dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:4px 28px;border-top:1px solid var(--line);padding-top:14px}
-.n6-panel dt{font-size:.72rem;color:var(--text-muted)}
+.n6-panel dt{font-size:.76rem;color:var(--text-muted)}
 .n6-panel dd{margin:0;font-family:var(--font-display);font-size:1.6rem}
 .n6-panel.intro h3{font-size:clamp(2.6rem,4.6vw,4rem)}
 .n6-panel.sum{border-left:1px solid var(--accent)}
@@ -107,7 +107,7 @@ body{font-weight:300}
 /* bento: the cabinet */
 .n6-cab{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .n6-drawer{position:relative;isolation:isolate;background:var(--bg-primary);display:grid;gap:14px;align-content:start;min-height:280px}
-.n6-drawer::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),#E5A93C1f,transparent 65%);opacity:0;transition:opacity .35s}
+.n6-drawer::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(144,144,144,0.073),transparent 65%);opacity:0;transition:opacity .35s}
 .n6-drawer:hover::before{opacity:1}
 .n6-drawer .lbl{font-size:.76rem;color:var(--text-muted);display:flex;justify-content:space-between}
 .n6-drawer h3{font-family:var(--font-display);font-weight:400;font-size:1.9rem;line-height:1.05}
@@ -148,7 +148,7 @@ body{font-weight:300}
 .n6-final{display:grid;justify-items:center;text-align:center;gap:30px}
 .n6-final .n6-h2{font-size:clamp(3rem,6.4vw,5.6rem);max-width:14ch}
 .n6-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.84rem;color:var(--text-muted)}
-.n6-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
+.n6-foot h3{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
 .n6-foot ul{display:grid;gap:8px}
 .n6-foot a{text-decoration:none}
 .n6-foot a:hover{color:var(--text-primary)}
@@ -164,7 +164,7 @@ body{font-weight:300}
 <main id="main">
   <section class="n6-hero" data-hero aria-labelledby="n6-h">
     <div class="n6-copy">
-      <h1 id="n6-h" data-hero-part="headline">Know exactly what every answer is <em>made of.</em></h1>
+      <h1 id="n6-h" data-hero-part="headline">Every answer, note by note.</h1>
       <p class="k-body" data-hero-part="sub">Every response is a blend of output, fresh input and cached tokens. ${BRAND.name} prices each note separately, for every model family.</p>
       <div data-hero-part="cta"><a class="n6-btn" href="#prices" data-cta="primary" data-magnetic="6,0.1,0.85,0.35"><span data-magnetic-label>Get your API key</span></a></div>
     </div>
@@ -245,10 +245,10 @@ body{font-weight:300}
 </main>
 <footer class="n6-foot">
   <div><p class="n6-mark">${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Families</h4><ul>${MODELS.map((m) => `<li><a href="#prices">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#pyramid">Token pricing</a></li><li><a href="#method">API quickstart</a></li><li><a href="#cabinet">Features</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Instrument Serif and Work Sans.</span></p>
+  <div><h3>Families</h3><ul>${MODELS.map((m) => `<li><a href="#prices">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#pyramid">Token pricing</a></li><li><a href="#method">API quickstart</a></li><li><a href="#cabinet">Features</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Italiana and Work Sans.</span></p>
 </footer>
 `,
   js: iife(() => {

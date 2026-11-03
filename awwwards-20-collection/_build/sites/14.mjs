@@ -7,7 +7,7 @@ const per1k = (m) => cost(m, 2000, 200) * 1000;
 const ATLAS_1K = per1k(M.atlas), SWIFT_1K = per1k(M.swift);
 
 export default {
-  title: "Aether — Route every task to the lightest model",
+  title: "Aether — Each task to the lightest model",
   description: "Send extraction to Swift, chat to Core, code to Forge: one API, five families, billed per token. Veloce design direction.",
   fonts: [
     { family: "Archivo Black" },
@@ -43,8 +43,8 @@ export default {
 .v14-copy{position:relative;z-index:2;grid-row:1 / span 2;align-self:center;display:grid;gap:20px;justify-items:start}
 .v14-copy h1{line-height:.92;max-width:12ch;text-shadow:0 2px 24px #0F0F12}
 .v14-copy .k-body{color:var(--text-muted);max-width:46ch;background:#0F0F12cc;padding:6px 0}
-.v14-dock{position:relative;z-index:2;grid-column:2;grid-row:2;align-self:end;display:grid;gap:6px;padding:20px;background:#1C1C22ee;border-left:3px solid var(--accent)}
-.v14-dock span{font-size:.74rem;color:var(--text-muted)}
+.v14-dock{position:relative;z-index:2;grid-column:2;grid-row:2;align-self:end;display:grid;gap:6px;padding:20px;background:#1C1C22ee;border:1px solid #F4F4F51f}
+.v14-dock span{font-size:.76rem;color:var(--text-muted)}
 .v14-dock b{font-family:var(--font-display);font-size:2.2rem;line-height:1}
 @media (max-width:900px){
   .v14-hero{grid-template-columns:1fr;grid-template-rows:auto auto;padding:72px var(--gutter) 16px;gap:14px;align-content:end}
@@ -68,10 +68,10 @@ export default {
 .v14-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-rows:1fr auto;padding:76px var(--gutter) 24px;gap:18px}
 .v14-tunnel{position:relative;border:1px solid var(--line);background:linear-gradient(90deg,#15151A,#0F0F12)}
 .v14-tunnel canvas{position:absolute;inset:0;width:100%;height:100%}
-.v14-tunnel .lbl{position:absolute;left:16px;top:12px;font-size:.74rem;color:var(--text-muted)}
+.v14-tunnel .lbl{position:absolute;left:16px;top:12px;font-size:.76rem;color:var(--text-muted)}
 .v14-panel{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
 .v14-panel>div{background:var(--bg-primary);padding:16px 18px;display:grid;gap:6px;align-content:start}
-.v14-panel span{font-size:.72rem;color:var(--text-muted)}
+.v14-panel span{font-size:.76rem;color:var(--text-muted)}
 .v14-panel b{font-family:var(--font-display);font-size:1.8rem;line-height:1;font-variant-numeric:tabular-nums}
 .v14-panel input{width:100%;accent-color:var(--accent);height:26px}
 @media (max-width:900px){
@@ -87,9 +87,9 @@ export default {
 /* components bento */
 .v14-comp{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .v14-c{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);display:grid;gap:14px;align-content:start;min-height:250px;clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%)}
-.v14-c::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),#E11D4826,transparent 65%);opacity:0;transition:opacity .3s}
+.v14-c::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(127,127,127,0.089),transparent 65%);opacity:0;transition:opacity .3s}
 .v14-c:hover::before{opacity:1}
-.v14-c .tag{font-size:.74rem;color:var(--text-muted);font-weight:500}
+.v14-c .tag{font-size:.76rem;color:var(--text-muted);font-weight:500}
 .v14-c h3{font-family:var(--font-display);font-size:1.4rem;line-height:1.1;letter-spacing:-.02em}
 .v14-c p{font-size:.92rem;color:var(--text-muted)}
 .v14-c.c0{grid-column:span 2}.v14-c.c0 h3{font-size:clamp(1.9rem,3vw,2.6rem)}
@@ -99,7 +99,7 @@ export default {
 /* rail: fitting */
 .v14-rail-head{padding:0 var(--gutter);margin-bottom:44px}
 .v14-steps{padding:0 var(--gutter);gap:12px}
-.v14-step{width:min(560px,52vw);background:var(--bg-secondary);display:grid;gap:14px;align-content:start;border-top:3px solid var(--line)}
+.v14-step{width:min(560px,52vw);background:var(--bg-secondary);display:grid;gap:14px;align-content:start;border-top:1px solid var(--line)}
 .v14-step.is-active{border-color:var(--accent)}
 .v14-step .n{font-family:var(--font-display);font-size:3.6rem;line-height:.9;color:var(--text-muted);font-style:italic}
 .v14-step.is-active .n{color:var(--text-primary)}
@@ -111,7 +111,7 @@ export default {
 
 /* riders */
 .v14-riders{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.v14-r{background:var(--bg-secondary);display:grid;gap:14px;align-content:space-between;min-height:260px;border-left:3px solid var(--accent)}
+.v14-r{background:var(--bg-secondary);display:grid;gap:14px;align-content:space-between;min-height:260px;border-top:1px solid var(--line)}
 .v14-r q{font-size:.95rem;line-height:1.6;quotes:"“" "”"}
 .v14-r p{font-size:.78rem;color:var(--text-muted)}
 .v14-r b{display:block;font-family:var(--font-display);font-size:1rem;color:var(--text-primary);font-weight:400}
@@ -139,7 +139,7 @@ export default {
 .v14-final{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
 .v14-final .v14-h2{font-size:clamp(2.8rem,6vw,5.4rem);font-style:italic}
 .v14-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.86rem;color:var(--text-muted)}
-.v14-foot h4{font-family:var(--font-display);font-size:.95rem;font-weight:400;color:var(--text-primary);margin-bottom:12px}
+.v14-foot h3{font-family:var(--font-display);font-size:.95rem;font-weight:400;color:var(--text-primary);margin-bottom:12px}
 .v14-foot ul{display:grid;gap:8px}
 .v14-foot a{text-decoration:none}
 .v14-foot a:hover{color:var(--text-primary)}
@@ -156,8 +156,8 @@ export default {
   <section class="v14-hero" data-hero aria-labelledby="v14-h">
     <div class="v14-band" data-hero-part="visual"><canvas id="band" role="img" aria-label="Streamlines flowing over a request profile; the pointer disturbs the flow"></canvas></div>
     <div class="v14-copy">
-      <h1 id="v14-h" data-hero-part="headline">Route every task to the lightest model.</h1>
-      <p class="k-body" data-hero-part="sub">Extraction to Swift, chat to Core, code to Forge — one API, five families, billed per token. Less drag on every request.</p>
+      <h1 id="v14-h" data-hero-part="headline">Each task to the lightest model.</h1>
+      <p class="k-body" data-hero-part="sub">Extraction to Swift, chat to Core, code to Forge: one API, five families, billed per token. Less drag on every request.</p>
       <div data-hero-part="cta"><a class="v14-btn" href="#build" data-cta="primary" data-magnetic="6,0.24,0.6,0.5"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5"/></svg></a></div>
     </div>
     <p class="v14-dock" data-hero-part="trust"><span>Drag readout · 2K in / 200 out</span><b>${Math.round((SWIFT_1K / ATLAS_1K) * 100)}%</b><span>Swift's cost per request versus Atlas, at sample rates.</span></p>
@@ -172,7 +172,7 @@ export default {
       <div class="v14-pin">
         <div class="v14-tunnel"><canvas id="cfd" role="img" aria-label="Wind tunnel: a smaller wake means less wasted spend"></canvas><span class="lbl">Wind tunnel · 1,000 extraction requests · wake = spend on an oversized model</span></div>
         <div class="v14-panel" aria-live="polite">
-          <div><span>Share routed to Swift — scroll, or drag</span><input id="route" type="range" min="0" max="95" step="1" value="0" aria-label="Share of requests routed to Swift"><span id="route-v">0% routed</span></div>
+          <div><span>Share routed to Swift: scroll, or drag</span><input id="route" type="range" min="0" max="95" step="1" value="0" aria-label="Share of requests routed to Swift"><span id="route-v">0% routed</span></div>
           <div><span>All on Atlas</span><b>$${ATLAS_1K.toFixed(2)}</b><span>per 1K requests</span></div>
           <div><span>Routed mix</span><b class="live" id="mix">$${ATLAS_1K.toFixed(2)}</b><span>per 1K requests</span></div>
           <div><span>Drag saved</span><b id="saved">0%</b><span>sample rates</span></div>
@@ -228,9 +228,9 @@ export default {
 </main>
 <footer class="v14-foot">
   <div><p class="v14-mark">${BRAND.name}<span>/</span>veloce</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Models</h4><ul>${MODELS.map((m) => `<li><a href="#build">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#tunnel">Model routing</a></li><li><a href="#fitting">API quickstart</a></li><li><a href="#build">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Models</h3><ul>${MODELS.map((m) => `<li><a href="#build">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#tunnel">Model routing</a></li><li><a href="#fitting">API quickstart</a></li><li><a href="#build">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Archivo Black and Work Sans.</span></p>
 </footer>
 `,

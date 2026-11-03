@@ -33,6 +33,33 @@ npm run build
 npm start
 ```
 
+## v4: the "design genius" workflow pass
+
+Every page in both sets (12 lab concepts, 20 collection sites and the gallery) went through the three steps from Chase AI's video "Turn Claude Into A Design GENIUS In 3 Simple Steps".
+
+**Step 1: a taste library.** `awwwards-20-collection/inspiration/` holds all 32 directions, grouped into six design families. Each family has its vocabulary. Each card has a **Copy image prompt** button and a **Copy brief** button. The brief follows the video's four parts: aesthetic, reference, intent and guardrails. You can also drop in your own Dribbble, Pinterest or X screenshots; they stay in your browser.
+
+**Step 2: tools.**
+- **Impeccable** is installed for Claude Code in `.claude/skills/impeccable` (Apache-2.0), with its agents in `.claude/agents/`. Its auto-running design hook is *not* installed: it downloads and runs a binary on every edit, so turn it on yourself if you want it.
+- `PRODUCT.md` holds the product context that Impeccable reads.
+- `npm run slop` (`scripts/slop-audit.cjs`) is our own Playwright check against Impeccable's rule catalogue, and every page was fixed against it. Impeccable's own CLI couldn't run in the build sandbox.
+- The fixes:
+  - **Fonts:** replaced every overused face (Fraunces, Geist, Plus Jakarta Sans, Space Grotesk, Instrument Sans and Serif).
+  - **Colour:** moved nine cream backgrounds onto deliberate palettes, and removed coloured glows, radial halos, purple gradients and gradient text.
+  - **Layout:** deleted the small uppercase labels above headings, and thinned or removed thick coloured side borders.
+  - **Type:** shortened 17 headlines to six words or fewer, set an 11px floor for UI text, and fixed skipped heading levels.
+  - **Polish:** cut em-dash runs, and themed scrollbars, text selection and the text caret.
+- **Higgsfield** (hero images and video) needs your own account. Connect it and the briefs' image prompts are ready to use.
+
+**Step 3: build and iterate.** Every page now has:
+- a weighted hero load-in, with parts arriving one by one;
+- a soft fade from the hero into the body;
+- a **Tweaks** panel. Click the pill in the bottom-right corner, or press Shift+T.
+
+The Tweaks panel changes the heading and body fonts, headline size, tracking and weight, body size, the 60-30-10 colours, load-in and reveal motion, and grain, all live. Tweaks are saved per page. **Copy settings** gives you JSON to paste into a prompt so the changes can be made permanent. The shared code is in `lib/tweaks.js` and `lib/tweaks.css`.
+
+The next step in the video's workflow is yours: **pick one direction**, then ask for three body variations of it.
+
 ## v3 — Unified rules, every concept rebuilt
 
 All 12 concepts were rebuilt from scratch (v2 is archived in `components/designs/_archive/v2/`). Each one now has its own composition, its own copy and one signature scroll mechanic tied to the token/API business — no shared body sections.

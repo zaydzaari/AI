@@ -5,12 +5,12 @@ const STYLE = "Valkyrie";
 const CHANNELS = [
   { id: "std", name: "Standard", band: "Low · 150 Hz", note: TEMPERAMENTS[0][1], answer: "I can write the interrogation scene, but I'll keep the threats implied and add a short note about real-world coercion." },
   { id: "low", name: "Low-refusal", band: "Mid · 1 kHz", note: TEMPERAMENTS[1][1], answer: "The detective sets the photo face-down. “You've got until the coffee goes cold,” she says, “and I take mine black.”" },
-  { id: "abl", name: "Abliterated", band: "High · 5 kHz", note: TEMPERAMENTS[2][1], answer: "The full scene, in the voice you asked for, with nothing softened and no disclaimer — what you publish stays your policy." },
+  { id: "abl", name: "Abliterated", band: "High · 5 kHz", note: TEMPERAMENTS[2][1], answer: "The full scene, in the voice you asked for, with nothing softened and no disclaimer. What you publish stays your policy." },
 ];
 
 export default {
-  title: "Aether — Zero noise between you and the model",
-  description: "Standard, low-refusal or abliterated on every request — same API, same per-token price list. Valkyrie design direction.",
+  title: "Aether — Nothing between you and the model",
+  description: "Standard, low-refusal or abliterated on every request, with the same API and per-token price list. Valkyrie design direction.",
   fonts: [
     { family: "Funnel Display", axes: "wght@400;600;800" },
     { family: "IBM Plex Mono", axes: "wght@400;500" },
@@ -45,7 +45,7 @@ export default {
 .v5-wave{position:relative;min-height:140px;border-block:1px solid var(--line)}
 .v5-wave canvas{position:absolute;inset:0;width:100%;height:100%}
 .v5-wave .axis{position:absolute;left:0;right:0;top:50%;height:1px;background:#F1EFEA1f}
-.v5-wave .scale{position:absolute;right:0;top:8px;font-size:.7rem;color:var(--text-muted)}
+.v5-wave .scale{position:absolute;right:0;top:8px;font-size:.76rem;color:var(--text-muted)}
 .v5-bot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .v5-trust{font-size:.84rem;color:var(--text-muted);display:flex;gap:18px;align-items:center}
 .v5-trust b{color:var(--text-primary);font-family:var(--font-display);font-size:1.5rem;font-weight:600}
@@ -73,10 +73,10 @@ export default {
 .v5-ch{background:var(--bg-secondary);border:1px solid var(--line);border-radius:18px;padding:18px 14px;display:grid;gap:12px;justify-items:center;text-align:center;transition:border-color .3s}
 .v5-ch.solo{border-color:var(--accent)}
 .v5-ch b{font-family:var(--font-display);font-size:1.05rem;font-weight:600}
-.v5-ch .band{font-size:.7rem;color:var(--text-muted)}
+.v5-ch .band{font-size:.76rem;color:var(--text-muted)}
 .v5-ch input[type=range]{writing-mode:vertical-lr;direction:rtl;width:30px;height:min(28vh,220px);accent-color:var(--accent)}
 .v5-ch .val{font-size:.8rem;font-variant-numeric:tabular-nums}
-.v5-ch button{min-height:36px;width:100%;border-radius:10px;border:1px solid var(--line);background:transparent;font-size:.74rem;color:var(--text-muted)}
+.v5-ch button{min-height:36px;width:100%;border-radius:10px;border:1px solid var(--line);background:transparent;font-size:.76rem;color:var(--text-muted)}
 .v5-ch button[aria-pressed=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .v5-monitor{display:grid;grid-template-rows:auto 1fr auto;gap:14px;min-height:0}
 .v5-play{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--text-muted)}
@@ -85,7 +85,7 @@ export default {
 .v5-scope{position:relative;border:1px solid var(--line);border-radius:18px;background:#070708;min-height:0}
 .v5-scope canvas{position:absolute;inset:0;width:100%;height:100%}
 .v5-out{border:1px solid var(--line);border-radius:18px;padding:20px 22px;display:grid;gap:8px}
-.v5-out .lbl{font-size:.74rem;color:var(--text-muted)}
+.v5-out .lbl{font-size:.76rem;color:var(--text-muted)}
 .v5-out p{font-family:var(--font-display);font-size:clamp(1.1rem,1.6vw,1.4rem);line-height:1.4}
 @media (max-width:900px){
   .v5-run{height:380vh}
@@ -106,7 +106,7 @@ export default {
 .v5-spec{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line);border-radius:22px;display:grid;gap:14px;align-content:start}
 .v5-spec::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#FF550014,transparent 65%);opacity:0;transition:opacity .3s}
 .v5-spec:hover::before{opacity:1}
-.v5-spec .tag{font-size:.72rem;color:var(--text-muted)}
+.v5-spec .tag{font-size:.76rem;color:var(--text-muted)}
 .v5-spec h3{font-size:1.5rem;font-weight:600;letter-spacing:-.025em;line-height:1.1}
 .v5-spec p{font-size:.86rem;color:var(--text-muted)}
 .v5-spec svg{width:100%;height:60px}
@@ -118,7 +118,7 @@ export default {
 
 /* rail: signal chain */
 .v5-rail-head{padding:0 var(--gutter);margin-bottom:44px;display:flex;justify-content:space-between;align-items:end;gap:24px}
-.v5-chain{display:flex;gap:6px;align-items:center;font-size:.74rem;color:var(--text-muted)}
+.v5-chain{display:flex;gap:6px;align-items:center;font-size:.76rem;color:var(--text-muted)}
 .v5-chain i{width:40px;height:2px;background:var(--line);position:relative;overflow:hidden}
 .v5-chain i::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--rp,0));transform-origin:left}
 .v5-steps{padding:0 var(--gutter);gap:16px}
@@ -128,13 +128,13 @@ export default {
 .v5-step.is-active .n{color:var(--text-primary)}
 .v5-step h3{font-size:1.7rem;font-weight:600;line-height:1.1}
 .v5-step p{color:var(--text-muted);font-size:.92rem}
-.v5-step pre{margin:0;background:#070708;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.v5-step pre{margin:0;background:#070708;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.v5-step{width:auto}.v5-chain{display:none}}
 
 /* listening notes */
 .v5-notes{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .v5-note{border:1px solid var(--line);border-radius:22px;display:grid;gap:14px}
-.v5-note .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.74rem;color:var(--text-muted)}
+.v5-note .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .v5-note b{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--text-primary)}
 .v5-note q{font-size:.98rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.v5-notes{grid-template-columns:1fr}}
@@ -159,7 +159,7 @@ export default {
 .v5-final{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
 .v5-final .v5-h2{font-size:clamp(2.8rem,6vw,5.4rem)}
 .v5-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.8rem;color:var(--text-muted)}
-.v5-foot h4{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px}
+.v5-foot h3{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px}
 .v5-foot ul{display:grid;gap:8px}
 .v5-foot a{text-decoration:none}
 .v5-foot a:hover{color:var(--text-primary)}
@@ -175,8 +175,8 @@ export default {
 <main id="main">
   <section class="v5-hero" data-hero aria-labelledby="v5-h">
     <div class="v5-top">
-      <h1 id="v5-h" data-hero-part="headline">Zero noise between you and the model.</h1>
-      <p class="k-body" data-hero-part="sub">Choose standard, low-refusal or abliterated on every request. Same API, same per-token price list — only the hedging changes.</p>
+      <h1 id="v5-h" data-hero-part="headline">Nothing between you and the model.</h1>
+      <p class="k-body" data-hero-part="sub">Choose standard, low-refusal or abliterated on every request. Same API, same per-token price list. Only the hedging changes.</p>
     </div>
     <div class="v5-wave" data-hero-part="visual"><canvas id="horizon" role="img" aria-label="A live waveform across the page; move the pointer to change its amplitude and pitch"></canvas><span class="axis" aria-hidden="true"></span><span class="scale" aria-hidden="true">signal · pointer modulates</span></div>
     <div class="v5-bot">
@@ -256,9 +256,9 @@ export default {
 </main>
 <footer class="v5-foot">
   <div><p class="v5-mark"><i aria-hidden="true"></i>${BRAND.name}</p><p style="margin-top:14px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Temperaments</h4><ul>${CHANNELS.map((c) => `<li><a href="#desk">${c.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#specs">Features</a></li><li><a href="#chain">API quickstart</a></li><li><a href="#price">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Temperaments</h3><ul>${CHANNELS.map((c) => `<li><a href="#desk">${c.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#specs">Features</a></li><li><a href="#chain">API quickstart</a></li><li><a href="#price">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Funnel Display and IBM Plex Mono.</span></p>
 </footer>
 `,
@@ -268,7 +268,7 @@ export default {
     const ANSWERS = [
       "I can write the interrogation scene, but I'll keep the threats implied and add a short note about real-world coercion.",
       "The detective sets the photo face-down. “You've got until the coffee goes cold,” she says, “and I take mine black.”",
-      "The full scene, in the voice you asked for, with nothing softened and no disclaimer — what you publish stays your policy.",
+      "The full scene, in the voice you asked for, with nothing softened and no disclaimer. What you publish stays your policy.",
     ];
     const NAMES = ["Standard", "Low-refusal", "Abliterated"];
 

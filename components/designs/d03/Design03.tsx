@@ -228,9 +228,9 @@ export default function Design03() {
       </main>
       <footer className="p3-foot">
         <div className="wide"><p className="p3-mark"><span aria-hidden className="orb" />{BRAND.name}</p><p>{MOCK_NOTE}. Brand name is a placeholder.</p></div>
-        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#refraction">{m.name}</a>)}</div>
-        <div><h4>Platform</h4><a href="#features">Unified chat</a><a href="#how">Developer API</a><a href="#pricing">Token pricing</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+        <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#refraction">{m.name}</a>)}</div>
+        <div><h3>Platform</h3><a href="#features">Unified chat</a><a href="#how">Developer API</a><a href="#pricing">Token pricing</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a></div>
       </footer>
     </div>
   );

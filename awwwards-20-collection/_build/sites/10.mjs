@@ -10,8 +10,8 @@ const LEAVES = [
 const TOTAL = LEAVES.reduce((a, l) => a + l.c, 0);
 
 export default {
-  title: "Aether — Every token traced to its request",
-  description: "Usage itemised per request — tokens, cached tokens, model and cost — summed into one invoice you can audit line by line. Obelisk design direction.",
+  title: "Aether — Every token, traced to its request",
+  description: "Usage itemised per request (tokens, cached tokens, model and cost), summed into one invoice you can audit line by line. Obelisk design direction.",
   fonts: [
     { family: "Bricolage Grotesque", axes: "opsz,wght@12..96,400..800" },
     { family: "JetBrains Mono", axes: "wght@400;500" },
@@ -35,7 +35,7 @@ export default {
 .z10-btn span:last-child{font-family:var(--font-body);font-size:.8rem;transition:transform .35s var(--ease)}
 .z10-btn.is-near span:last-child{transform:translateX(4px)}
 .z10-h2{font-size:clamp(2.4rem,4.8vw,4.4rem);font-weight:700;letter-spacing:-.04em;line-height:.95;max-width:18ch}
-.z10-fine{margin-top:22px;font-size:.74rem;color:var(--text-muted)}
+.z10-fine{margin-top:22px;font-size:.76rem;color:var(--text-muted)}
 .live{color:var(--accent);font-variant-numeric:tabular-nums}
 .cph{white-space:pre-wrap}
 
@@ -50,7 +50,7 @@ export default {
 .z10-act{grid-column:1 / span 5;grid-row:3;display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:20px var(--gutter)!important;border-top:1px solid var(--line);border-right:1px solid var(--line)}
 .z10-trust{font-size:.78rem;color:var(--text-muted)}
 .z10-trust b{color:var(--text-primary);font-weight:500}
-.z10-tag{grid-column:10 / -1;grid-row:1;align-self:end;padding:24px var(--gutter)!important;font-size:.74rem;color:var(--text-muted);border-bottom:1px solid var(--line);text-align:right}
+.z10-tag{grid-column:10 / -1;grid-row:1;align-self:end;padding:24px var(--gutter)!important;font-size:.76rem;color:var(--text-muted);border-bottom:1px solid var(--line);text-align:right}
 @media (max-width:900px){
   .z10-hero{grid-template-columns:1fr;grid-template-rows:auto auto 120px auto;background-image:none}
   .z10-hero h1{grid-column:1;padding:18px var(--gutter) 14px}
@@ -77,11 +77,11 @@ export default {
 .z10-board{position:relative;border-right:1px solid var(--line)}
 .z10-board svg{position:absolute;inset:24px;width:calc(100% - 48px);height:calc(100% - 48px)}
 .z10-root{display:grid;align-content:center;gap:16px;padding:32px}
-.z10-root .lbl{font-size:.74rem;color:var(--text-muted)}
+.z10-root .lbl{font-size:.76rem;color:var(--text-muted)}
 .z10-root b{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.4rem);font-weight:700;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
 .z10-root dl{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .z10-root dl div{padding:12px 0;border-bottom:1px solid var(--line);display:grid;gap:2px}
-.z10-root dt{font-size:.68rem;color:var(--text-muted)}
+.z10-root dt{font-size:.6875rem;color:var(--text-muted)}
 .z10-root dd{margin:0;font-size:1.05rem;font-variant-numeric:tabular-nums}
 .z10-node rect{fill:#0E0E0E;stroke:#2A2A2A;transition:fill .4s,stroke .4s}
 .z10-node text{font-family:"JetBrains Mono",monospace;font-size:11px;fill:#A3A3A0}
@@ -104,9 +104,9 @@ export default {
 /* spec bento */
 .z10-spec{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .z10-sc{position:relative;isolation:isolate;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:14px;align-content:start;min-height:260px;transition:background .3s}
-.z10-sc::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),#A855F71f,transparent 65%);opacity:0;transition:opacity .3s}
+.z10-sc::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),rgba(166,166,166,0.073),transparent 65%);opacity:0;transition:opacity .3s}
 .z10-sc:hover::before{opacity:1}
-.z10-sc .id{display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted)}
+.z10-sc .id{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-muted)}
 .z10-sc h3{font-family:var(--font-display);font-size:1.45rem;font-weight:700;letter-spacing:-.025em;line-height:1.08}
 .z10-sc p{font-size:.84rem;color:var(--text-muted)}
 .z10-sc.s0{grid-column:span 2;grid-row:span 2;background:var(--bg-secondary)}.z10-sc.s0 h3{font-size:clamp(2rem,3.2vw,2.8rem)}
@@ -122,13 +122,13 @@ export default {
 .z10-step.is-active .n{color:var(--accent)}
 .z10-step h3{font-family:var(--font-display);font-size:1.7rem;font-weight:700;line-height:1.05}
 .z10-step p{color:var(--text-muted);font-size:.86rem}
-.z10-step pre{margin:0;background:#0E0E0E;border:1px solid var(--line);padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.z10-step pre{margin:0;background:#0E0E0E;border:1px solid var(--line);padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.z10-step{width:auto;margin-right:0;margin-bottom:-1px}}
 
 /* attestations */
 .z10-att{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .z10-a{border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:14px}
-.z10-a .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--text-muted)}
+.z10-a .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .z10-a b{font-family:var(--font-display);font-size:1.1rem;color:var(--text-primary)}
 .z10-a q{font-size:.92rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.z10-att{grid-template-columns:1fr}}
@@ -147,7 +147,7 @@ export default {
 .z10-table{width:100%;margin-top:32px;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums}
 .z10-table caption{text-align:left;font-family:var(--font-display);font-size:1.2rem;font-weight:700;padding-bottom:12px}
 .z10-table th,.z10-table td{text-align:left;padding:12px;border:1px solid var(--line)}
-.z10-table thead th{font-weight:400;color:var(--text-muted);font-size:.72rem}
+.z10-table thead th{font-weight:400;color:var(--text-muted);font-size:.76rem}
 @media (max-width:700px){.z10-table th:nth-child(2),.z10-table td:nth-child(2){display:none}}
 
 /* final + footer */
@@ -157,7 +157,7 @@ export default {
 @media (max-width:900px){.z10-final h2,.z10-final div{grid-column:1 / -1;justify-self:start}}
 .z10-foot{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);font-size:.76rem;color:var(--text-muted)}
 .z10-foot>div{padding:40px var(--gutter);border-right:1px solid var(--line);display:grid;gap:8px;align-content:start}
-.z10-foot h4{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary)}
+.z10-foot h3{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary)}
 .z10-foot a{text-decoration:none}
 .z10-foot a:hover{color:var(--text-primary)}
 .z10-foot .legal{grid-column:1 / -1;padding:20px var(--gutter);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -171,9 +171,9 @@ export default {
 </header>
 <main id="main">
   <section class="z10-hero" data-hero aria-labelledby="z10-h">
-    <h1 id="z10-h" data-hero-part="headline" data-cipher>Every token traced to its request.</h1>
+    <h1 id="z10-h" data-hero-part="headline" data-cipher>Every token, traced.</h1>
     <p class="z10-tag" aria-hidden="true">Ledger view · sample data</p>
-    <div class="z10-cell z10-sub"><p class="k-body" data-hero-part="sub">Usage is itemised per request — tokens, cached tokens, model and cost — then summed into one invoice you can audit line by line.</p></div>
+    <div class="z10-cell z10-sub"><p class="k-body" data-hero-part="sub">Usage is itemised per request (tokens, cached tokens, model and cost), then summed into one invoice you can audit line by line.</p></div>
     <div class="z10-tree" data-hero-part="visual"><svg id="mini" role="img" aria-label="A small ledger tree whose leaves verify one by one; hover a leaf to trace it to the root"></svg></div>
     <div class="z10-cell z10-act">
       <div data-hero-part="cta"><a class="z10-btn" href="#tariff" data-cta="primary" data-magnetic="4,0.28,0.56,0.3"><span data-magnetic-label>Get your API key</span><span aria-hidden="true">[K]</span></a></div>
@@ -193,7 +193,7 @@ export default {
           <span class="lbl">Invoice root</span>
           <b class="live" id="root">$0.0000</b>
           <dl><div><dt>Leaves verified</dt><dd id="r-n">0 / 8</dd></div><div><dt>Tokens</dt><dd id="r-tok">0</dd></div><div><dt>Models</dt><dd id="r-m">0</dd></div><div><dt>Depth</dt><dd>3</dd></div></dl>
-          <p class="z10-fine">A sum tree with request IDs — an audit view, not a cryptographic proof. ${PRICE_NOTE}</p>
+          <p class="z10-fine">A sum tree with request IDs: an audit view, not a cryptographic proof. ${PRICE_NOTE}</p>
         </aside>
       </div>
     </div>
@@ -244,10 +244,10 @@ export default {
   </section>
 </main>
 <footer class="z10-foot">
-  <div><h4>${BRAND.name}</h4><span>${conceptNote(STYLE)}</span></div>
-  <div><h4>Models</h4>${MODELS.map((m) => `<a href="#tariff">${m.name}</a>`)}</div>
-  <div><h4>Platform</h4><a href="#ledger">Usage ledger</a><a href="#protocol">API quickstart</a><a href="#tariff">Token rates</a></div>
-  <div><h4>Exhibition</h4><a href="../index.html">Back to the collection</a><a href="../fingerprint-registry.json">Fingerprint registry</a></div>
+  <div><h3>${BRAND.name}</h3><span>${conceptNote(STYLE)}</span></div>
+  <div><h3>Models</h3>${MODELS.map((m) => `<a href="#tariff">${m.name}</a>`)}</div>
+  <div><h3>Platform</h3><a href="#ledger">Usage ledger</a><a href="#protocol">API quickstart</a><a href="#tariff">Token rates</a></div>
+  <div><h3>Exhibition</h3><a href="../index.html">Back to the collection</a><a href="../fingerprint-registry.json">Fingerprint registry</a></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Bricolage Grotesque and JetBrains Mono.</span></p>
 </footer>
 `,

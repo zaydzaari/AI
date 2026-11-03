@@ -232,9 +232,9 @@ export default function Design05() {
       </main>
       <footer className="k5-foot">
         <p className="k5-mark big"><span aria-hidden>●■▲</span>{BRAND.name}</p>
-        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#price">{m.name}</a>)}</div>
-        <div><h4>Make</h4><a href="#loop">Coding agents</a><a href="#kit">Unified chat</a><a href="#steps">API</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
+        <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#price">{m.name}</a>)}</div>
+        <div><h3>Make</h3><a href="#loop">Coding agents</a><a href="#kit">Unified chat</a><a href="#steps">API</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
       </footer>
     </div>
   );

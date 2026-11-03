@@ -12,20 +12,20 @@ const NOTES = {
 };
 
 export default {
-  title: "Aether — Five models, each with its own character",
+  title: "Aether — Five models, five characters",
   description: "A wine-list approach to AI models: every family lists its context, temperaments and per-token price. Terra Vinicola design direction.",
   fonts: [
     { family: "Playfair Display", axes: "ital,wght@0,400..800;1,400..600" },
     { family: "Newsreader", axes: "ital,opsz,wght@0,6..72,300..600;1,6..72,300..600" },
   ],
   tokens: {
-    bgPrimary: "#F4F0EA", bgSecondary: "#E5DEC9", accent: "#7C1D26", onAccent: "#FFF8F0",
+    bgPrimary: "#F2EDEE", bgSecondary: "#E6DDDF", accent: "#7C1D26", onAccent: "#F9F6F7",
     textPrimary: "#26201B", textMuted: "#5E5348", line: "rgba(38,32,27,.18)",
     display: '"Playfair Display", Georgia, serif', body: '"Newsreader", Georgia, serif',
   },
   css: /* css */ `
 body{font-size:1.1rem}
-.t8-nav{position:sticky;top:0;z-index:40;height:62px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gutter);background:#F4F0EAee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font-size:.95rem}
+.t8-nav{position:sticky;top:0;z-index:40;height:62px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gutter);background:#F2EDEEee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font-size:.95rem}
 .t8-mark{font-family:var(--font-display);font-weight:700;font-size:1.3rem;letter-spacing:.12em;text-decoration:none;text-transform:uppercase}
 .t8-links{display:flex;gap:24px;font-style:italic}
 .t8-links a{text-decoration:none;color:var(--text-muted);padding:4px 0;border-bottom:1px solid transparent}
@@ -41,18 +41,18 @@ body{font-size:1.1rem}
 /* hero: centred label */
 .t8-hero{position:relative;min-height:calc(100svh - 62px);display:grid;place-items:center;padding:24px var(--gutter);overflow:clip}
 .t8-hero canvas{position:absolute;inset:0;width:100%;height:100%}
-.t8-label{position:relative;z-index:2;display:grid;justify-items:center;text-align:center;gap:18px;max-width:780px;padding:clamp(24px,4vh,44px) clamp(20px,4vw,56px);background:#F4F0EAe8;border:1px solid var(--text-primary);box-shadow:inset 0 0 0 6px #F4F0EA,inset 0 0 0 7px var(--text-primary)}
+.t8-label{position:relative;z-index:2;display:grid;justify-items:center;text-align:center;gap:18px;max-width:780px;padding:clamp(24px,4vh,44px) clamp(20px,4vw,56px);background:#F2EDEEe8;border:1px solid var(--text-primary);box-shadow:inset 0 0 0 6px #F2EDEE,inset 0 0 0 7px var(--text-primary)}
 .t8-crest{width:64px;height:64px}
 .t8-label .est{font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text-muted)}
 .t8-label h1{font-weight:500;max-width:15ch}
 .t8-label h1 em{font-weight:400}
 .t8-label .k-body{color:var(--text-muted);max-width:50ch}
 .t8-rule{width:120px;height:1px;background:var(--text-primary);position:relative}
-.t8-rule::before,.t8-rule::after{content:"";position:absolute;top:-3px;width:7px;height:7px;border:1px solid var(--text-primary);transform:rotate(45deg);background:#F4F0EA}
+.t8-rule::before,.t8-rule::after{content:"";position:absolute;top:-3px;width:7px;height:7px;border:1px solid var(--text-primary);transform:rotate(45deg);background:#F2EDEE}
 .t8-rule::before{left:-10px}.t8-rule::after{right:-10px}
 .t8-trust{font-style:italic;font-size:.98rem;color:var(--text-muted)}
 .t8-trust b{font-style:normal;color:var(--text-primary);font-weight:600}
-@media (max-width:760px){.t8-hero{padding:14px var(--gutter)}.t8-label{gap:10px;padding:18px 16px}.t8-crest{width:40px;height:40px}.t8-rule{display:none}.t8-label .est{font-size:.68rem}}
+@media (max-width:760px){.t8-hero{padding:14px var(--gutter)}.t8-label{gap:10px;padding:18px 16px}.t8-crest{width:40px;height:40px}.t8-rule{display:none}.t8-label .est{font-size:.6875rem}}
 
 /* problem */
 .t8-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
@@ -76,7 +76,7 @@ body{font-size:1.1rem}
 .t8-bands{display:grid}
 .t8-band{min-height:86vh;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-content:center;border-top:1px solid var(--line);padding:56px 0;position:relative}
 .t8-band::before{content:"";position:absolute;inset:0 calc(-1*var(--gutter)) 0 -28px;z-index:-1;background:var(--strata);opacity:.5}
-.t8-band .alt{grid-column:1 / -1;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+.t8-band .alt{grid-column:1 / -1;font-size:.92rem;font-style:italic;color:var(--text-muted)}
 .t8-band h3{font-family:var(--font-display);font-weight:500;font-size:clamp(3.4rem,7vw,6rem);line-height:.9;letter-spacing:-.02em}
 .t8-band .nose{font-family:var(--font-display);font-style:italic;font-size:1.6rem;line-height:1.25;margin-top:16px}
 .t8-band .pal{color:var(--text-muted);margin-top:12px;max-width:44ch}
@@ -86,7 +86,7 @@ body{font-size:1.1rem}
 .t8-band dd{margin:0;font-family:var(--font-display);font-size:1.5rem;font-variant-numeric:tabular-nums}
 @media (max-width:900px){
   .t8-cellar{grid-template-columns:1fr;gap:0}
-  .t8-gauge{top:62px;height:auto;z-index:5;grid-template-rows:auto;grid-auto-flow:column;align-items:center;justify-content:space-between;background:#F4F0EAf2;border-bottom:1px solid var(--line);padding:10px 0}
+  .t8-gauge{top:62px;height:auto;z-index:5;grid-template-rows:auto;grid-auto-flow:column;align-items:center;justify-content:space-between;background:#F2EDEEf2;border-bottom:1px solid var(--line);padding:10px 0}
   .t8-tube,.t8-gauge .hd{display:none}
   .t8-gauge .read b{font-size:1.5rem}
   .t8-band{grid-template-columns:1fr;min-height:0;padding:44px 0;gap:18px}
@@ -97,7 +97,7 @@ body{font-size:1.1rem}
 .t8-note{position:relative;isolation:isolate;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:12px;align-content:start;min-height:260px}
 .t8-note::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#7C1D2610,transparent 65%);opacity:0;transition:opacity .3s}
 .t8-note:hover::before{opacity:1}
-.t8-note .f{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+.t8-note .f{font-size:.9rem;font-style:italic;color:var(--text-muted)}
 .t8-note h3{font-family:var(--font-display);font-weight:500;font-size:1.7rem;line-height:1.12}
 .t8-note p{color:var(--text-muted);font-size:1rem}
 .t8-note.n0{grid-column:span 2;background:var(--bg-secondary)}.t8-note.n0 h3{font-size:clamp(2.2rem,3.4vw,3rem)}
@@ -107,12 +107,12 @@ body{font-size:1.1rem}
 /* rail */
 .t8-rail-head{padding:0 var(--gutter);margin-bottom:48px}
 .t8-steps{padding:0 var(--gutter);gap:24px}
-.t8-step{width:min(560px,52vw);border:1px solid var(--text-primary);background:#F8F5F0;display:grid;gap:14px;align-content:start}
+.t8-step{width:min(560px,52vw);border:1px solid var(--text-primary);background:#F6F2F3;display:grid;gap:14px;align-content:start}
 .t8-step .n{font-family:var(--font-display);font-style:italic;font-size:2.6rem;line-height:1;color:var(--text-muted)}
 .t8-step.is-active .n{color:var(--accent)}
 .t8-step h3{font-family:var(--font-display);font-weight:500;font-size:2rem;line-height:1.08}
 .t8-step p{color:var(--text-muted)}
-.t8-step pre{margin:0;background:var(--text-primary);color:#F4F0EA;padding:14px;font-size:.76rem;overflow-x:auto;white-space:pre}
+.t8-step pre{margin:0;background:var(--text-primary);color:#F2EDEE;padding:14px;font-size:.76rem;overflow-x:auto;white-space:pre}
 .t8-step code{font-family:ui-monospace,monospace}
 @media (max-width:899px){.t8-step{width:auto}}
 
@@ -126,7 +126,7 @@ body{font-size:1.1rem}
 
 /* the list */
 .t8-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.t8-plan{border:1px solid var(--text-primary);display:grid;gap:12px;align-content:start;text-align:center;justify-items:center;background:#F8F5F0}
+.t8-plan{border:1px solid var(--text-primary);display:grid;gap:12px;align-content:start;text-align:center;justify-items:center;background:#F6F2F3}
 .t8-plan.feat{background:var(--bg-secondary)}
 .t8-plan h3{font-family:var(--font-display);font-size:1.8rem;font-weight:500}
 .t8-plan .p{font-family:var(--font-display);font-size:3rem;line-height:1}
@@ -145,7 +145,7 @@ body{font-size:1.1rem}
 .t8-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .t8-final .t8-h2{font-size:clamp(3rem,6vw,5.4rem);font-style:italic;font-weight:400}
 .t8-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--text-primary);font-size:.95rem;color:var(--text-muted)}
-.t8-foot h4{font-family:var(--font-display);font-weight:500;font-size:1.1rem;color:var(--text-primary);margin-bottom:12px}
+.t8-foot h3{font-family:var(--font-display);font-weight:500;font-size:1.1rem;color:var(--text-primary);margin-bottom:12px}
 .t8-foot ul{display:grid;gap:8px}
 .t8-foot a{text-decoration:none}
 .t8-foot a:hover{color:var(--accent);text-decoration:underline}
@@ -163,10 +163,9 @@ body{font-size:1.1rem}
     <canvas id="contour" data-hero-part="visual" role="img" aria-label="Topographic contour lines; the pointer raises the terrain beneath it"></canvas>
     <div class="t8-label">
       <svg class="t8-crest" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="none" stroke="#26201B"/><path d="M32 12 C 22 24, 22 36, 32 52 C 42 36, 42 24, 32 12Z" fill="none" stroke="#26201B"/><circle cx="32" cy="34" r="3" fill="#7C1D26"/></svg>
-      <p class="est">Five families · One estate</p>
-      <h1 id="t8-h" data-hero-part="headline">Five models, each with its <em>own character.</em></h1>
+      <h1 id="t8-h" data-hero-part="headline">Five models, five characters.</h1>
       <span class="t8-rule" aria-hidden="true"></span>
-      <p class="k-body" data-hero-part="sub">Choose by taste, not guesswork. Every family lists its context, its temperaments and its per-token price — like a proper wine list.</p>
+      <p class="k-body" data-hero-part="sub">Choose by taste, not guesswork. Every family lists its context, its temperaments and its per-token price, like a proper wine list.</p>
       <div data-hero-part="cta"><a class="t8-btn" href="#list" data-cta="primary" data-magnetic="5,0.12,0.84,0.35"><span data-magnetic-label>Get your API key</span></a></div>
       <p class="t8-trust" data-hero-part="trust">Rates from <b>${rate(Math.min(...MODELS.map((m) => m.inPrice)))}</b> to <b>${rate(Math.max(...MODELS.map((m) => m.outPrice)))}</b> per million tokens, printed on the label. Sample rates.</p>
     </div>
@@ -212,7 +211,7 @@ body{font-size:1.1rem}
   <section id="panel" data-section aria-labelledby="t8-p">
     <div class="k-wrap">
       <h2 id="t8-p" class="t8-h2" data-reveal>The tasting panel.</h2>
-      <div class="t8-panel" data-stagger>${PROOF.map(([role, focus, q]) => `<figure class="t8-taster k-card"><q>${q}</q><p><b>${role}</b> — ${focus}</p></figure>`)}</div>
+      <div class="t8-panel" data-stagger>${PROOF.map(([role, focus, q]) => `<figure class="t8-taster k-card"><q>${q}</q><p><b>${role}</b> · ${focus}</p></figure>`)}</div>
       <p class="t8-fine">${PROOF_NOTE}</p>
     </div>
   </section>
@@ -221,7 +220,7 @@ body{font-size:1.1rem}
     <div class="k-wrap">
       <h2 id="t8-l" class="t8-h2" data-reveal>The list. By the glass, or by the bottle.</h2>
       <div class="t8-plans" data-stagger>${PLANS.map((p) => h`<article class="t8-plan k-card${p.featured ? " feat" : ""}"><h3>${p.name}</h3><p class="p">${p.price}</p><p class="cad">${p.cadence}</p><ul>${p.features.map((f) => `<li>${f}</li>`)}</ul><p class="fk">${p.fk}</p></article>`)}</div>
-      <div class="t8-list" data-reveal><h3>Per 1M tokens — input / output</h3>${CELLAR.map((m) => `<p><b>${m.name}</b><i aria-hidden="true"></i><span>${rate(m.inPrice)} / ${rate(m.outPrice)}</span></p>`)}</div>
+      <div class="t8-list" data-reveal><h3>Per 1M tokens · input / output</h3>${CELLAR.map((m) => `<p><b>${m.name}</b><i aria-hidden="true"></i><span>${rate(m.inPrice)} / ${rate(m.outPrice)}</span></p>`)}</div>
       <p class="t8-fine" style="text-align:center">${PRICE_NOTE}</p>
     </div>
   </section>
@@ -235,9 +234,9 @@ body{font-size:1.1rem}
 </main>
 <footer class="t8-foot">
   <div><p class="t8-mark">${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>The families</h4><ul>${CELLAR.map((m) => `<li><a href="#cellar">${m.name}</a></li>`)}</ul></div>
-  <div><h4>The estate</h4><ul><li><a href="#notes">Features</a></li><li><a href="#vine">API quickstart</a></li><li><a href="#list">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>The families</h3><ul>${CELLAR.map((m) => `<li><a href="#cellar">${m.name}</a></li>`)}</ul></div>
+  <div><h3>The estate</h3><ul><li><a href="#notes">Features</a></li><li><a href="#vine">API quickstart</a></li><li><a href="#list">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Playfair Display and Newsreader.</span></p>
 </footer>
 `,

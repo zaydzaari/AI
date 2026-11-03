@@ -9,14 +9,14 @@ const RUN = [
   ["Edit", "src/client.ts +18 −6, src/retry.ts new", 3000, 2600, 0.9, 2, 0],
   ["Test", "214 tests run, 1 failing", 3400, 400, 0.92, 2, 214],
   ["Fix", "Off-by-one in the attempt counter", 2000, 700, 0.9, 2, 214],
-  ["Diff", "All tests pass — one diff ready for review", 500, 300, 0.9, 2, 214],
+  ["Diff", "All tests pass: one diff ready for review", 500, 300, 0.9, 2, 214],
 ].map(([phase, log, inTok, outTok, cached, files, tests]) => ({ phase, log, inTok, outTok, cached, files, tests, c: cost(FORGE, inTok, outTok, cached) }));
 const TOTAL_TOK = RUN.reduce((a, r) => a + r.inTok + r.outTok, 0);
 const TOTAL = RUN.reduce((a, r) => a + r.c, 0);
 
 export default {
-  title: "Aether — Let the agent carry the heavy lifting",
-  description: "Forge reads your repository, plans, edits and tests, and hands you one diff — billed per token with the cost of every step logged. Kinetix design direction.",
+  title: "Aether — The agent does the heavy lifting",
+  description: "Forge reads your repository, plans, edits and tests, and hands you one diff, billed per token with the cost of every step logged. Kinetix design direction.",
   fonts: [
     { family: "Chakra Petch", axes: "wght@500;600;700" },
     { family: "IBM Plex Mono", axes: "wght@400;500" },
@@ -49,12 +49,12 @@ export default {
 .x9-rig{position:absolute;inset:0}
 .x9-rig canvas{width:100%;height:100%}
 .x9-panel{position:relative;z-index:2;display:grid;gap:18px;justify-items:start;padding:32px;background:#0D0F12eb;border:1px solid var(--line)}
-.x9-panel::before{content:"";position:absolute;left:-1px;top:-1px;width:28px;height:28px;border-left:2px solid var(--accent);border-top:2px solid var(--accent)}
+.x9-panel::before{content:"";position:absolute;left:-1px;top:-1px;width:28px;height:28px;border-left:1px solid var(--accent);border-top:2px solid var(--accent)}
 .x9-panel h1{font-weight:700;text-transform:uppercase;line-height:.95}
 .x9-panel .k-body{color:var(--text-muted)}
 .x9-trust{font-size:.78rem;color:var(--text-muted);display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;width:100%}
 .x9-trust b{color:var(--text-primary);font-weight:500}
-.x9-hud{position:absolute;right:var(--gutter);top:84px;z-index:2;display:grid;gap:10px;text-align:right;font-size:.72rem;color:var(--text-muted)}
+.x9-hud{position:absolute;right:var(--gutter);top:84px;z-index:2;display:grid;gap:10px;text-align:right;font-size:.76rem;color:var(--text-muted)}
 .x9-hud b{display:block;font-family:var(--font-display);font-size:1.6rem;color:var(--text-primary);font-weight:600}
 @media (max-width:860px){
   .x9-hero{grid-template-columns:1fr;padding:62px var(--gutter) 10px}
@@ -83,13 +83,13 @@ export default {
 .x9-phase{display:flex;gap:4px}
 .x9-phase li{flex:1;height:6px;background:var(--bg-secondary);position:relative}
 .x9-phase li.on{background:var(--accent)}
-.x9-now{display:grid;gap:4px;border-left:2px solid var(--accent);padding-left:14px}
-.x9-now span{font-size:.72rem;color:var(--text-muted)}
+.x9-now{display:grid;gap:4px;border-left:1px solid var(--accent);padding-left:14px}
+.x9-now span{font-size:.76rem;color:var(--text-muted)}
 .x9-now b{font-family:var(--font-display);font-size:clamp(2rem,3.6vw,3rem);font-weight:700;text-transform:uppercase;line-height:1}
 .x9-now em{font-style:normal;font-size:.86rem;color:var(--text-muted)}
 .x9-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .x9-grid div{background:var(--bg-primary);padding:12px;display:grid;gap:2px}
-.x9-grid span{font-size:.68rem;color:var(--text-muted)}
+.x9-grid span{font-size:.6875rem;color:var(--text-muted)}
 .x9-grid b{font-family:var(--font-display);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
 @media (max-width:900px){
   .x9-run{height:400vh}
@@ -105,7 +105,7 @@ export default {
 .x9-mod{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:14px;align-content:start;min-height:250px}
 .x9-mod::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),#CCFF0014,transparent 65%);opacity:0;transition:opacity .3s}
 .x9-mod:hover::before{opacity:1}
-.x9-mod .id{display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted)}
+.x9-mod .id{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-muted)}
 .x9-mod h3{font-family:var(--font-display);font-size:1.45rem;font-weight:600;line-height:1.12}
 .x9-mod p{font-size:.84rem;color:var(--text-muted)}
 .x9-mod.m0{grid-column:span 2;grid-row:span 2}.x9-mod.m0 h3{font-size:clamp(1.9rem,3vw,2.6rem)}
@@ -120,13 +120,13 @@ export default {
 .x9-step.is-active .n{color:var(--accent)}
 .x9-step h3{font-family:var(--font-display);font-size:1.7rem;font-weight:600;text-transform:uppercase;line-height:1.05}
 .x9-step p{color:var(--text-muted);font-size:.88rem}
-.x9-step pre{margin:0;background:#0D0F12;border:1px solid var(--line);padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+.x9-step pre{margin:0;background:#0D0F12;border:1px solid var(--line);padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
 @media (max-width:899px){.x9-step{width:auto}}
 
 /* field tests */
 .x9-tests{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .x9-test{border:1px solid var(--line);display:grid;gap:14px;background:linear-gradient(135deg,#1A1E24,#12151A)}
-.x9-test .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--text-muted)}
+.x9-test .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
 .x9-test b{font-family:var(--font-display);font-size:1.1rem;color:var(--text-primary)}
 .x9-test q{font-size:.92rem;line-height:1.6;quotes:"“" "”"}
 @media (max-width:760px){.x9-tests{grid-template-columns:1fr}}
@@ -145,14 +145,14 @@ export default {
 .x9-table{width:100%;margin-top:32px;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums}
 .x9-table caption{text-align:left;font-family:var(--font-display);font-size:1.1rem;padding-bottom:12px;text-transform:uppercase}
 .x9-table th,.x9-table td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
-.x9-table thead th{font-weight:400;color:var(--text-muted);font-size:.72rem}
+.x9-table thead th{font-weight:400;color:var(--text-muted);font-size:.76rem}
 @media (max-width:700px){.x9-table th:nth-child(2),.x9-table td:nth-child(2){display:none}}
 
 /* final + footer */
 .x9-final{display:grid;gap:28px;justify-items:start}
 .x9-final .x9-h2{font-size:clamp(2.8rem,6vw,5.4rem)}
 .x9-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted)}
-.x9-foot h4{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px;text-transform:uppercase}
+.x9-foot h3{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px;text-transform:uppercase}
 .x9-foot ul{display:grid;gap:8px}
 .x9-foot a{text-decoration:none}
 .x9-foot a:hover{color:var(--text-primary)}
@@ -170,8 +170,8 @@ export default {
     <div class="x9-rig" data-hero-part="visual"><canvas id="rig" role="img" aria-label="A vector exoskeleton leg; the pointer bends the knee"></canvas></div>
     <div class="x9-hud" aria-hidden="true"><span>Knee<b id="h-knee">32°</b></span><span>Hip<b id="h-hip">18°</b></span><span>Model<b>forge-256k</b></span></div>
     <div class="x9-panel">
-      <h1 id="x9-h" data-hero-part="headline">Let the agent carry the heavy lifting.</h1>
-      <p class="k-body" data-hero-part="sub">Forge reads the repository, plans the change, edits files and runs the tests. You review one diff — billed per token, with every step on the log.</p>
+      <h1 id="x9-h" data-hero-part="headline">The agent does the heavy lifting.</h1>
+      <p class="k-body" data-hero-part="sub">Forge reads the repository, plans the change, edits files and runs the tests. You review one diff, billed per token, with every step on the log.</p>
       <div data-hero-part="cta"><a class="x9-btn" href="#classes" data-cta="primary" data-magnetic="5,0.22,0.64,0.4"><span data-magnetic-label>Get your API key</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></a></div>
       <p class="x9-trust" data-hero-part="trust"><span>Sample run</span><b>${RUN.length} steps</b><b>${TOTAL_TOK.toLocaleString("en-US")} tokens</b><b>${usd(TOTAL)}</b><span>at Forge sample rates</span></p>
     </div>
@@ -244,9 +244,9 @@ export default {
 </main>
 <footer class="x9-foot">
   <div><p class="x9-mark"><i aria-hidden="true"></i>${BRAND.name.toUpperCase()}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Models</h4><ul>${MODELS.map((m) => `<li><a href="#classes">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#rig-run">Coding agents</a></li><li><a href="#calibrate">API quickstart</a></li><li><a href="#classes">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Models</h3><ul>${MODELS.map((m) => `<li><a href="#classes">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#rig-run">Coding agents</a></li><li><a href="#calibrate">API quickstart</a></li><li><a href="#classes">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <p class="legal"><span>${PRICE_NOTE}</span><span>Set in Chakra Petch and IBM Plex Mono.</span></p>
 </footer>
 `,
@@ -307,7 +307,7 @@ export default {
     const RUN = [
       ["Read", "Loaded 38 files from src/ and tests/", 31000, 900, 0, 0, 0], ["Plan", "Retry with exponential backoff in the API client", 2000, 600, 0.6, 0, 0],
       ["Edit", "src/client.ts +18 −6, src/retry.ts new", 3000, 2600, 0.9, 2, 0], ["Test", "214 tests run, 1 failing", 3400, 400, 0.92, 2, 214],
-      ["Fix", "Off-by-one in the attempt counter", 2000, 700, 0.9, 2, 214], ["Diff", "All tests pass — one diff ready for review", 500, 300, 0.9, 2, 214],
+      ["Fix", "Off-by-one in the attempt counter", 2000, 700, 0.9, 2, 214], ["Diff", "All tests pass: one diff ready for review", 500, 300, 0.9, 2, 214],
     ];
     const F = AE.MODELS.find((m) => m.id === "forge");
     const POSE = [[10, 15, 5], [35, 60, 12], [55, 95, 20], [25, 45, 8], [40, 75, 15], [5, 8, 2], [5, 8, 2]];

@@ -94,7 +94,7 @@ export default function Design12() {
       <main id="main">
         <section className="a12-hero" data-hero aria-labelledby="a12-h">
           <div className="a12-copy">
-            <h1 id="a12-h" data-hero-part="headline">Open every model with a single key.</h1>
+            <h1 id="a12-h" data-hero-part="headline">Open every model with one key.</h1>
             <p className="k-body" data-hero-part="sub">Start in a friendly chat. Step inside to the API, the coding agents and the per-token rates — it's all one platform, standard, low-refusal or abliterated.</p>
             <div data-hero-part="cta"><a className="a12-btn" href="#rates" data-cta="primary" data-magnetic="6,0.13,0.8,0.45"><span data-magnetic-label>Get your key</span></a></div>
             <p className="a12-trust" data-hero-part="trust">Sample input rates run from <b>$0.08</b> on Swift to <b>$1.50</b> on Atlas, per million tokens.</p>
@@ -198,9 +198,9 @@ export default function Design12() {
       </main>
       <footer className="a12-foot">
         <div><p className="a12-mark big"><span aria-hidden />{BRAND.name}</p><p>{MOCK_NOTE}. Brand name is a placeholder.</p></div>
-        <div><h4>Lenses</h4>{MODELS.map((m) => <a key={m.id} href="#rates">{m.name}</a>)}</div>
-        <div><h4>Inside</h4><a href="#inside">Features</a><a href="#build">API quickstart</a><a href="#rates">Token rates</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+        <div><h3>Lenses</h3>{MODELS.map((m) => <a key={m.id} href="#rates">{m.name}</a>)}</div>
+        <div><h3>Inside</h3><a href="#inside">Features</a><a href="#build">API quickstart</a><a href="#rates">Token rates</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a></div>
       </footer>
     </div>
   );

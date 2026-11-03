@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Taste library — Aether design references</title>
+<meta name="description" content="Thirty-two Aether design directions grouped by design family, with vocabulary, image prompts and 4-part briefs, plus a drop zone for your own references.">
+<meta name="theme-color" content="#0F0E0D">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230F0E0D'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23E8E3D8'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/bodoni-moda-400-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/bodoni-moda-400-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/schibsted-grotesk-400-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dm-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/dm-mono-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#0F0E0D;--bg-secondary:#1A1917;--accent:#E8E3D8;--on-accent:#0F0E0D;--text-primary:#EEEBE5;--text-muted:#A9A49A;--line:rgba(238,235,229,.13);--font-display:"Bodoni Moda", serif;--font-body:"Schibsted Grotesk", sans-serif}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:calc(1.05rem * var(--tw-body,1));line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:calc(clamp(3.25rem,6vw,5rem) * var(--tw-h1,1));line-height:.98;letter-spacing:var(--tw-h1ls,-.03em);font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+p,li,dd,blockquote,figcaption{text-wrap:pretty}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:calc(1.05rem * var(--tw-body,1));line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+html{scrollbar-color:color-mix(in srgb,var(--text-muted) 55%,transparent) var(--bg-primary);caret-color:var(--accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:var(--tw-grain,.035);background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,var(--tw-rd,26px),0);transition:opacity calc(.8s * var(--tw-dur,1)) var(--tw-ease,var(--ease)) calc(var(--i,0) * var(--tw-stg,80ms)),transform calc(.9s * var(--tw-dur,1)) var(--tw-ease,var(--ease)) calc(var(--i,0) * var(--tw-stg,80ms))}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Aether Tweaks: hero load-in + panel. Shared by the collection (inlined) and the lab (imported). */
+
+/* Hero load-in: parts arrive one by one (visual, headline, sub, CTA, trust) with a heavy ease.
+   Pure CSS so it plays on first paint, before any script. Zero-specificity selectors and
+   fill-mode backwards, so a site's own styles win once the entrance has played. */
+@keyframes tw-in { from { opacity: 0; translate: 0 var(--tw-load-dist, 28px); filter: blur(var(--tw-load-blur, 6px)); } }
+@keyframes tw-in2 { from { opacity: 0; translate: 0 var(--tw-load-dist, 28px); filter: blur(var(--tw-load-blur, 6px)); } }
+@keyframes tw-fade { from { opacity: 0; scale: 0.985; } }
+@keyframes tw-fade2 { from { opacity: 0; scale: 0.985; } }
+:where([data-hero-part="visual"]) { --hp: 0; }
+:where([data-hero-part="headline"]) { --hp: 1; }
+:where([data-hero-part="sub"]) { --hp: 2; }
+:where([data-hero-part="cta"]) { --hp: 3; }
+:where([data-hero-part="trust"]) { --hp: 4; }
+@media (prefers-reduced-motion: no-preference) {
+  :where([data-hero]:not(.tw-noload)) :where([data-hero-part]) {
+    animation: tw-in var(--tw-load-dur, 1s) var(--tw-ease, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    animation-delay: calc(var(--hp, 0) * var(--tw-load-stg, 110ms) + 60ms);
+  }
+  :where([data-hero]:not(.tw-noload)) :where([data-hero-part="visual"]) { animation-name: tw-fade; }
+  :where([data-hero].tw-again:not(.tw-noload)) :where([data-hero-part]) { animation-name: tw-in2; }
+  :where([data-hero].tw-again:not(.tw-noload)) :where([data-hero-part="visual"]) { animation-name: tw-fade2; }
+}
+
+/* Panel */
+.tw-wrap { position: fixed; right: 16px; bottom: 16px; z-index: 9600; display: grid; justify-items: end; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 13px; line-height: 1.4; color: #F2F2F2; }
+.tw-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #FFFFFF33; background: #121214EB; color: #F4F4F4; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 10px 30px -12px #000000AA; }
+.tw-toggle svg { width: 16px; height: 16px; }
+.tw-toggle:focus-visible, .tw-panel :focus-visible { outline: 2px solid #F4F4F4; outline-offset: 2px; }
+.tw-panel { width: min(340px, calc(100vw - 32px)); max-height: min(72vh, 640px); overflow: auto; padding: 16px 16px 12px; border-radius: 16px; border: 1px solid #FFFFFF26; background: #121214F5; box-shadow: 0 24px 60px -20px #000000CC; overscroll-behavior: contain; }
+.tw-panel[hidden] { display: none; }
+.tw-head { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid #FFFFFF1F; }
+.tw-head b { font-size: 15px; }
+.tw-head span, .tw-note { color: #B9B9BE; font-size: 12px; }
+.tw-group { border: 0; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.tw-group legend { padding: 0 0 4px; font-size: 12px; font-weight: 600; color: #D6D6DA; }
+.tw-row { display: grid; grid-template-columns: 112px 1fr 58px; align-items: center; gap: 8px; }
+.tw-row label { color: #E4E4E7; font-size: 12px; }
+.tw-row input[type="range"] { width: 100%; accent-color: #F2F2F2; }
+.tw-row input[type="color"] { width: 100%; height: 28px; padding: 0 2px; border: 1px solid #FFFFFF33; border-radius: 6px; background: transparent; }
+.tw-row input[type="checkbox"] { justify-self: start; width: 18px; height: 18px; accent-color: #F2F2F2; }
+.tw-row select { width: 100%; min-height: 30px; padding: 0 6px; border-radius: 6px; border: 1px solid #FFFFFF33; background: #1C1C20; color: #F2F2F2; font: inherit; font-size: 12px; }
+.tw-row output { font-size: 12px; color: #B9B9BE; text-align: right; font-variant-numeric: tabular-nums; }
+.tw-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tw-actions button { min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #FFFFFF33; background: #1C1C20; color: #F2F2F2; font: inherit; font-size: 12px; cursor: pointer; }
+.tw-actions button:hover { background: #26262B; }
+.tw-note { margin: 8px 0 0; min-height: 1em; white-space: pre-wrap; word-break: break-word; }
+@media print { .tw-wrap { display: none; } }
+
+/* ——— Taste library ——— */
+
+:root{--h1-weight:500;--mono:"DM Mono",monospace}
+.i-nav{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--gutter);background:#0F0E0D;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.8rem}
+.i-nav a{text-decoration:none;color:var(--text-muted)}
+.i-nav a:hover{color:var(--text-primary)}
+.i-nav b{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--text-primary)}
+.i-links{display:flex;gap:18px}
+@media (max-width:760px){.i-links{display:none}}
+.i-hero{min-height:calc(100svh - 60px);display:grid;grid-template-columns:5fr 7fr;gap:clamp(28px,4vw,64px);align-items:center;padding:24px var(--gutter)}
+.i-copy{display:grid;gap:24px;justify-items:start}
+.i-copy .k-body{color:var(--text-muted);max-width:46ch}
+.i-cta{display:inline-flex;align-items:center;min-height:56px;padding:0 28px;border-radius:99px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none}
+.i-trust{font-family:var(--mono);font-size:.8rem;color:var(--text-muted)}
+.i-trust b{color:var(--text-primary);font-weight:500}
+.i-mosaic{position:relative;height:min(74vh,680px);display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:8px;overflow:hidden;border-radius:14px}
+.i-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:8px;transition:transform .9s var(--ease),filter .6s var(--ease);filter:saturate(.9)}
+.i-mosaic img:hover{transform:scale(1.04);filter:none}
+@media (max-width:900px){.i-hero{grid-template-columns:1fr;min-height:0;padding:16px var(--gutter);gap:14px}.i-copy{gap:12px}.i-mosaic{height:170px;grid-template-columns:repeat(4,1fr)}.i-mosaic img:nth-child(n+9){display:none}}
+.i-h2{font-size:clamp(2.2rem,4.2vw,3.8rem);font-weight:500;letter-spacing:-.02em;line-height:1.02;max-width:20ch}
+.i-steps{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.i-step{display:grid;gap:12px;align-content:start;border:1px solid var(--line);border-radius:14px;background:var(--bg-secondary)}
+.i-step h3{font-size:1.6rem;font-weight:500}
+.i-step p,.i-step li{font-size:.92rem;color:var(--text-muted)}
+.i-step ul{display:grid;gap:6px}
+.i-step a{color:var(--text-primary)}
+@media (max-width:900px){.i-steps{grid-template-columns:1fr}}
+.i-bar{position:sticky;top:60px;z-index:30;display:flex;flex-wrap:wrap;gap:8px;padding:14px 0;margin-top:40px;background:#0F0E0D;border-bottom:1px solid var(--line)}
+.i-chip{min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--text-muted);font-family:var(--mono);font-size:.8rem}
+.i-chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.i-fam{margin-top:clamp(64px,6vw,80px)}
+.i-fam[hidden]{display:none}
+.i-famhead{display:grid;grid-template-columns:5fr 7fr;gap:40px;align-items:end;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.i-famhead h2{font-size:clamp(1.9rem,3vw,2.8rem);font-weight:500;line-height:1.05}
+.i-famhead p{color:var(--text-muted);font-size:.96rem;max-width:60ch}
+.i-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.i-kw span{padding:4px 10px;border-radius:99px;border:1px solid var(--line);font-family:var(--mono);font-size:.76rem;color:var(--text-primary)}
+@media (max-width:900px){.i-famhead{grid-template-columns:1fr;gap:12px}}
+.i-grid{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:1100px){.i-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){.i-grid{grid-template-columns:1fr}}
+.i-card{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg-secondary)}
+.i-shot{margin:0;aspect-ratio:16/10;overflow:hidden;background:#000}
+.i-shot img{width:100%;height:100%;object-fit:cover}
+.i-meta{display:grid;gap:10px;align-content:start;padding:20px 22px 22px}
+.i-src{font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
+.i-meta h3{font-size:1.6rem;font-weight:500;line-height:1.1}
+.i-line{font-size:.92rem;color:var(--text-muted)}
+.i-sw{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
+.i-sw i{width:16px;height:16px;border-radius:4px;border:1px solid #EEEBE540}
+.i-sw span{margin-left:6px}
+.i-act{display:flex;flex-wrap:wrap;gap:8px;padding-top:6px}
+.i-btn{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:99px;border:1px solid #EEEBE540;background:transparent;color:var(--text-primary);font-size:.84rem;font-weight:600;text-decoration:none}
+.i-btn:hover{border-color:var(--text-primary)}
+.i-off{font-family:var(--mono);font-size:.76rem;color:var(--text-muted);align-self:center}
+.i-drop{margin-top:clamp(64px,6vw,80px);display:grid;place-items:center;gap:12px;min-height:220px;padding:36px;border:1px dashed #EEEBE555;border-radius:16px;text-align:center;background:var(--bg-secondary)}
+.i-drop.is-over{border-color:var(--text-primary);background:#22201D}
+.i-drop p{color:var(--text-muted);max-width:56ch}
+.i-mine{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.i-mine{grid-template-columns:1fr}}
+.i-mine .i-meta select,.i-mine .i-meta textarea{width:100%;border-radius:8px;border:1px solid var(--line);background:#121110;color:var(--text-primary);font:inherit;font-size:.9rem;padding:8px 10px}
+.i-mine .i-meta textarea{min-height:72px;resize:vertical}
+.i-toast{position:fixed;left:50%;bottom:24px;translate:-50% 0;z-index:9700;padding:10px 16px;border-radius:99px;background:#EEEBE5;color:#0F0E0D;font-size:.88rem;font-weight:600;opacity:0;transition:opacity .3s}
+.i-toast.is-on{opacity:1}
+.i-foot{padding:56px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.86rem;color:var(--text-muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+.i-foot a{color:var(--text-primary)}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="i-nav"><a href="../index.html"><b>Aether</b></a><nav class="i-links" aria-label="Sections"><a href="#workflow">Workflow</a><a href="#families">Families</a><a href="#yours">Your references</a><a href="../index.html">Gallery</a></nav><span>32 references</span></header>
+<main id="main">
+  <section class="i-hero" data-hero aria-labelledby="i-h">
+    <div class="i-copy">
+      <h1 id="i-h" data-hero-part="headline">Taste, collected first.</h1>
+      <p class="k-body" data-hero-part="sub">Every direction in this project, grouped by design family, with the words to ask for it, an image prompt and a ready brief. Add your own finds from Dribbble, Pinterest and X.</p>
+      <div data-hero-part="cta"><a class="i-cta" href="#families" data-cta="primary">Browse the families</a></div>
+      <p class="i-trust" data-hero-part="trust"><b>32</b> references · <b>6</b> families · briefs in <b>4 parts</b></p>
+    </div>
+    <div class="i-mosaic" data-hero-part="visual" aria-hidden="true"><img src="../01-chronos-atelier/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../02-kanso-monolith/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../03-aether-orbital/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../04-veridian-biofoundry/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../05-valkyrie-hyperacoustics/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../06-nocturne-perfumerie/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../07-solaris-tokamak/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../08-terra-vinicola/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../09-kinetix-exoskeleton/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../10-obelisk-zk/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../11-nomad-expeditions/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../12-forma-modular/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../13-synapse-bci/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../14-veloce-aero/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../15-hikari-matcha/preview.jpg" alt="" width="360" height="225" decoding="async"><img src="../16-stratosphere-haps/preview.jpg" alt="" width="360" height="225" decoding="async"></div>
+  </section>
+
+  <section id="workflow" data-section aria-labelledby="i-w">
+    <div class="k-wrap">
+      <h2 id="i-w" class="i-h2" data-reveal>Collect, equip, then iterate. Never one-shot.</h2>
+      <div class="i-steps" data-stagger>
+        <article class="i-step k-card"><h3>Collect</h3><p>Save what you like and group it by family. The vocabulary under each family is how you ask for it.</p><ul><li><a href="https://dribbble.com/search/web-design">Dribbble</a>, <a href="https://www.pinterest.com/search/pins/?q=web%20design">Pinterest</a> and <a href="https://x.com/search?q=web%20design">X</a> for whole pages</li><li><a href="https://21st.dev">21st.dev</a> for single components: buttons, pricing, cards</li></ul></article>
+        <article class="i-step k-card"><h3>Equip</h3><p>Impeccable is installed in this repo (<code>.claude/skills/impeccable</code>) and its 62 anti-slop rules were checked on every page. Hero imagery needs an image model such as Higgsfield, connected to your own account.</p></article>
+        <article class="i-step k-card"><h3>Iterate</h3><p>Cast a wide net (done: 32 directions), pick one, ask for three body variations, choose, then tune the hero image and the details with the Tweaks panel on every page. Copy the tweaks back into a prompt to bake them in.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="families" data-section aria-labelledby="i-f">
+    <div class="k-wrap">
+      <h2 id="i-f" class="i-h2" data-reveal>Six families, thirty-two references.</h2>
+      <div class="i-bar" role="group" aria-label="Filter by family"><button type="button" class="i-chip" data-f="all" aria-pressed="true">All</button><button type="button" class="i-chip" data-f="atelier" aria-pressed="false">Atelier and material luxury</button><button type="button" class="i-chip" data-f="quiet" aria-pressed="false">Quiet paper and specimen</button><button type="button" class="i-chip" data-f="instrument" aria-pressed="false">Instrument and telemetry</button><button type="button" class="i-chip" data-f="swiss" aria-pressed="false">Swiss systems and engineering</button><button type="button" class="i-chip" data-f="cinematic" aria-pressed="false">Cinematic depth and journeys</button><button type="button" class="i-chip" data-f="tactile" aria-pressed="false">Tactile, product first</button></div>
+      <div class="i-fam" data-fam="atelier"><div class="i-famhead"><h2>Atelier and material luxury</h2><div><p>Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals.</p><p class="i-kw" aria-label="Vocabulary"><span>macro material</span><span>engraved detail</span><span>serif display</span><span>deep ground</span><span>one precious accent</span><span>slow reveal</span></p></div></div><div class="i-grid">
+<article class="i-card" data-family="atelier" data-src="Collection">
+  <figure class="i-shot"><img src="../01-chronos-atelier/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 01 Chronos Atelier, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 01 · dark</p>
+    <h3>Chronos Atelier</h3>
+    <p class="i-line">Every token, metered like a chronometer</p>
+    <p class="i-sw" aria-label="Palette #090A0F, #141722, #D4AF37"><i style="background:#090A0F"></i><i style="background:#141722"></i><i style="background:#D4AF37"></i><span>Cormorant Garamond · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="0">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="0">Copy brief</button>
+      <a class="i-btn" href="../01-chronos-atelier/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="atelier" data-src="Collection">
+  <figure class="i-shot"><img src="../06-nocturne-perfumerie/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 06 Nocturne Perfumerie, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 06 · dark</p>
+    <h3>Nocturne Perfumerie</h3>
+    <p class="i-line">Every answer, note by note</p>
+    <p class="i-sw" aria-label="Palette #120E0A, #1F1812, #E5A93C"><i style="background:#120E0A"></i><i style="background:#1F1812"></i><i style="background:#E5A93C"></i><span>Italiana · Work Sans</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="5">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="5">Copy brief</button>
+      <a class="i-btn" href="../06-nocturne-perfumerie/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="atelier" data-src="Collection">
+  <figure class="i-shot"><img src="../08-terra-vinicola/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 08 Terra Vinicola, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 08 · light</p>
+    <h3>Terra Vinicola</h3>
+    <p class="i-line">Five models, five characters</p>
+    <p class="i-sw" aria-label="Palette #F2EDEE, #E6DDDF, #7C1D26"><i style="background:#F2EDEE"></i><i style="background:#E6DDDF"></i><i style="background:#7C1D26"></i><span>Playfair Display · Newsreader</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="7">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="7">Copy brief</button>
+      <a class="i-btn" href="../08-terra-vinicola/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="atelier" data-src="Collection">
+  <figure class="i-shot"><img src="../17-obsidian-roasters/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 17 Obsidian Roasters, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 17 · dark</p>
+    <h3>Obsidian Roasters</h3>
+    <p class="i-line">Full price once, then cached.</p>
+    <p class="i-sw" aria-label="Palette #100D0C, #1E1916, #EA580C"><i style="background:#100D0C"></i><i style="background:#1E1916"></i><i style="background:#EA580C"></i><span>Gloock · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="16">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="16">Copy brief</button>
+      <a class="i-btn" href="../17-obsidian-roasters/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="atelier" data-src="Collection">
+  <figure class="i-shot"><img src="../19-atelier-kintsugi/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 19 Atelier Kintsugi, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 19 · light</p>
+    <h3>Atelier Kintsugi</h3>
+    <p class="i-line">Look beneath every answer</p>
+    <p class="i-sw" aria-label="Palette #EEF0F3, #DFE3E9, #B45309"><i style="background:#EEF0F3"></i><i style="background:#DFE3E9"></i><i style="background:#B45309"></i><span>IM Fell English · Work Sans</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="18">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="18">Copy brief</button>
+      <a class="i-btn" href="../19-atelier-kintsugi/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="atelier" data-src="Lab">
+  <figure class="i-shot"><img src="lab/11-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 11 Obsidian, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 11 · dark</p>
+    <h3>Obsidian</h3>
+    <p class="i-line">Luxury dark glass and precise metering</p>
+    <p class="i-sw" aria-label="Palette #0A0A0C, #141418, #B7A6FF"><i style="background:#0A0A0C"></i><i style="background:#141418"></i><i style="background:#B7A6FF"></i><span>Manrope · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="30">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="30">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/11</span>
+    </div>
+  </div>
+</article></div></div><div class="i-fam" data-fam="quiet"><div class="i-famhead"><h2>Quiet paper and specimen</h2><div><p>Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is.</p><p class="i-kw" aria-label="Vocabulary"><span>negative space</span><span>specimen plate</span><span>hairline rules</span><span>roman serif</span><span>caption-led</span><span>ink accent</span></p></div></div><div class="i-grid">
+<article class="i-card" data-family="quiet" data-src="Collection">
+  <figure class="i-shot"><img src="../02-kanso-monolith/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 02 Kanso Monolith, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 02 · light</p>
+    <h3>Kanso Monolith</h3>
+    <p class="i-line">One key. Every model.</p>
+    <p class="i-sw" aria-label="Palette #EDEDEB, #DEDEDB, #C83E2B"><i style="background:#EDEDEB"></i><i style="background:#DEDEDB"></i><i style="background:#C83E2B"></i><span>Syne · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="1">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="1">Copy brief</button>
+      <a class="i-btn" href="../02-kanso-monolith/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="quiet" data-src="Collection">
+  <figure class="i-shot"><img src="../04-veridian-biofoundry/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 04 Veridian Biofoundry, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 04 · light</p>
+    <h3>Veridian Biofoundry</h3>
+    <p class="i-line">One request grows a whole product</p>
+    <p class="i-sw" aria-label="Palette #ECF1EF, #DCE5E1, #1B4D3E"><i style="background:#ECF1EF"></i><i style="background:#DCE5E1"></i><i style="background:#1B4D3E"></i><span>Literata · Albert Sans</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="3">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="3">Copy brief</button>
+      <a class="i-btn" href="../04-veridian-biofoundry/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="quiet" data-src="Collection">
+  <figure class="i-shot"><img src="../15-hikari-matcha/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 15 Hikari Matcha Guild, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 15 · light</p>
+    <h3>Hikari Matcha Guild</h3>
+    <p class="i-line">See every token your words become</p>
+    <p class="i-sw" aria-label="Palette #EEF0E6, #E0E4D4, #2E6F40"><i style="background:#EEF0E6"></i><i style="background:#E0E4D4"></i><i style="background:#2E6F40"></i><span>Newsreader · Hanken Grotesk</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="14">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="14">Copy brief</button>
+      <a class="i-btn" href="../15-hikari-matcha/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="quiet" data-src="Lab">
+  <figure class="i-shot"><img src="lab/01-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 01 Field Notes, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 01 · light</p>
+    <h3>Field Notes</h3>
+    <p class="i-line">Editorial feature with an annotated thread</p>
+    <p class="i-sw" aria-label="Palette #F7F5F0, #ECE8DF, #2337C6"><i style="background:#F7F5F0"></i><i style="background:#ECE8DF"></i><i style="background:#2337C6"></i><span>Newsreader · Bricolage Grotesque · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="20">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="20">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/01</span>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="quiet" data-src="Lab">
+  <figure class="i-shot"><img src="lab/03-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 03 Pearl, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 03 · light</p>
+    <h3>Pearl</h3>
+    <p class="i-line">Holographic glass that refracts one prompt</p>
+    <p class="i-sw" aria-label="Palette #F7F7F9, #E8ECF3, #0B7A75"><i style="background:#F7F7F9"></i><i style="background:#E8ECF3"></i><i style="background:#0B7A75"></i><span>Sora · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="22">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="22">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/03</span>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="quiet" data-src="Lab">
+  <figure class="i-shot"><img src="lab/12-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 12 Aperture, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 12 · mixed</p>
+    <h3>Aperture</h3>
+    <p class="i-line">Fusion: paper outside, machine inside</p>
+    <p class="i-sw" aria-label="Palette #F7F5F0, #ECE6DA, #C23A1C"><i style="background:#F7F5F0"></i><i style="background:#ECE6DA"></i><i style="background:#C23A1C"></i><span>Literata · Hanken Grotesk · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="31">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="31">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/12</span>
+    </div>
+  </div>
+</article></div></div><div class="i-fam" data-fam="instrument"><div class="i-famhead"><h2>Instrument and telemetry</h2><div><p>The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data.</p><p class="i-kw" aria-label="Vocabulary"><span>telemetry</span><span>instrument panel</span><span>data as texture</span><span>mono labels</span><span>signal colour</span><span>procedural canvas</span></p></div></div><div class="i-grid">
+<article class="i-card" data-family="instrument" data-src="Collection">
+  <figure class="i-shot"><img src="../03-aether-orbital/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 03 Aether Orbital, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 03 · dark</p>
+    <h3>Aether Orbital</h3>
+    <p class="i-line">Every model, in orbit around one key</p>
+    <p class="i-sw" aria-label="Palette #05070B, #0F141C, #00F5D4"><i style="background:#05070B"></i><i style="background:#0F141C"></i><i style="background:#00F5D4"></i><span>Unbounded · Space Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="2">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="2">Copy brief</button>
+      <a class="i-btn" href="../03-aether-orbital/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Collection">
+  <figure class="i-shot"><img src="../07-solaris-tokamak/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 07 Solaris Tokamak, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 07 · dark</p>
+    <h3>Solaris Tokamak</h3>
+    <p class="i-line">Your whole repository in one prompt</p>
+    <p class="i-sw" aria-label="Palette #070913, #111625, #38BDF8"><i style="background:#070913"></i><i style="background:#111625"></i><i style="background:#38BDF8"></i><span>Host Grotesk · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="6">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="6">Copy brief</button>
+      <a class="i-btn" href="../07-solaris-tokamak/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Collection">
+  <figure class="i-shot"><img src="../09-kinetix-exoskeleton/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 09 Kinetix Exoskeleton, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 09 · dark</p>
+    <h3>Kinetix Exoskeleton</h3>
+    <p class="i-line">The agent does the heavy lifting</p>
+    <p class="i-sw" aria-label="Palette #0D0F12, #1A1E24, #CCFF00"><i style="background:#0D0F12"></i><i style="background:#1A1E24"></i><i style="background:#CCFF00"></i><span>Chakra Petch · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="8">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="8">Copy brief</button>
+      <a class="i-btn" href="../09-kinetix-exoskeleton/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Collection">
+  <figure class="i-shot"><img src="../13-synapse-bci/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 13 Synapse BCI, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 13 · dark</p>
+    <h3>Synapse BCI</h3>
+    <p class="i-line">One conversation. Every model listening.</p>
+    <p class="i-sw" aria-label="Palette #0A0910, #161421, #2DD4BF"><i style="background:#0A0910"></i><i style="background:#161421"></i><i style="background:#2DD4BF"></i><span>Urbanist · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="12">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="12">Copy brief</button>
+      <a class="i-btn" href="../13-synapse-bci/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Collection">
+  <figure class="i-shot"><img src="../18-lumina-photonics/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 18 Lumina Photonics, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 18 · dark</p>
+    <h3>Lumina Photonics</h3>
+    <p class="i-line">Stream every token the moment it exists</p>
+    <p class="i-sw" aria-label="Palette #06070A, #12151E, #10B981"><i style="background:#06070A"></i><i style="background:#12151E"></i><i style="background:#10B981"></i><span>Syncopate · Space Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="17">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="17">Copy brief</button>
+      <a class="i-btn" href="../18-lumina-photonics/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Collection">
+  <figure class="i-shot"><img src="../20-zenith-supersonic/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 20 Zenith Supersonic, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 20 · dark</p>
+    <h3>Zenith Supersonic</h3>
+    <p class="i-line">One gate to every model</p>
+    <p class="i-sw" aria-label="Palette #080B11, #131924, #F43F5E"><i style="background:#080B11"></i><i style="background:#131924"></i><i style="background:#F43F5E"></i><span>Big Shoulders Display · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="19">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="19">Copy brief</button>
+      <a class="i-btn" href="../20-zenith-supersonic/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Lab">
+  <figure class="i-shot"><img src="lab/02-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 02 Graphite, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 02 · dark</p>
+    <h3>Graphite</h3>
+    <p class="i-line">Technical luxury built on the refusal direction</p>
+    <p class="i-sw" aria-label="Palette #0C0C0B, #171715, #8EA2FF"><i style="background:#0C0C0B"></i><i style="background:#171715"></i><i style="background:#8EA2FF"></i><span>Hanken Grotesk · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="21">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="21">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/02</span>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Lab">
+  <figure class="i-shot"><img src="lab/07-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 07 Lab Seven, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 07 · dark</p>
+    <h3>Lab Seven</h3>
+    <p class="i-line">Research paper with live figures</p>
+    <p class="i-sw" aria-label="Palette #0B0F0E, #121917, #9EF0C5"><i style="background:#0B0F0E"></i><i style="background:#121917"></i><i style="background:#9EF0C5"></i><span>IBM Plex Sans · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="26">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="26">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/07</span>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="instrument" data-src="Lab">
+  <figure class="i-shot"><img src="lab/08-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 08 Observatory, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 08 · dark</p>
+    <h3>Observatory</h3>
+    <p class="i-line">Midnight star chart of every model</p>
+    <p class="i-sw" aria-label="Palette #050A1A, #0D1A3A, #5BA8FF"><i style="background:#050A1A"></i><i style="background:#0D1A3A"></i><i style="background:#5BA8FF"></i><span>Cormorant Garamond · Hanken Grotesk</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="27">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="27">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/08</span>
+    </div>
+  </div>
+</article></div></div><div class="i-fam" data-fam="swiss"><div class="i-famhead"><h2>Swiss systems and engineering</h2><div><p>Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing.</p><p class="i-kw" aria-label="Vocabulary"><span>strict grid</span><span>type scale</span><span>modular blocks</span><span>exploded diagram</span><span>primary signal</span><span>configurator</span></p></div></div><div class="i-grid">
+<article class="i-card" data-family="swiss" data-src="Collection">
+  <figure class="i-shot"><img src="../10-obelisk-zk/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 10 Obelisk ZK, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 10 · dark</p>
+    <h3>Obelisk ZK</h3>
+    <p class="i-line">Every token, traced to its request</p>
+    <p class="i-sw" aria-label="Palette #080808, #141414, #A855F7"><i style="background:#080808"></i><i style="background:#141414"></i><i style="background:#A855F7"></i><span>Bricolage Grotesque · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="9">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="9">Copy brief</button>
+      <a class="i-btn" href="../10-obelisk-zk/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="swiss" data-src="Collection">
+  <figure class="i-shot"><img src="../12-forma-modular/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 12 Forma Modular, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 12 · light</p>
+    <h3>Forma Modular</h3>
+    <p class="i-line">Build your stack, priced first.</p>
+    <p class="i-sw" aria-label="Palette #F5F5F3, #E5E5E0, #D9381E"><i style="background:#F5F5F3"></i><i style="background:#E5E5E0"></i><i style="background:#D9381E"></i><span>Familjen Grotesk · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="11">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="11">Copy brief</button>
+      <a class="i-btn" href="../12-forma-modular/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="swiss" data-src="Collection">
+  <figure class="i-shot"><img src="../14-veloce-aero/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 14 Veloce Aero, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 14 · dark</p>
+    <h3>Veloce Aero</h3>
+    <p class="i-line">Each task to the lightest model</p>
+    <p class="i-sw" aria-label="Palette #0F0F12, #1C1C22, #E11D48"><i style="background:#0F0F12"></i><i style="background:#1C1C22"></i><i style="background:#E11D48"></i><span>Archivo Black · Work Sans</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="13">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="13">Copy brief</button>
+      <a class="i-btn" href="../14-veloce-aero/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="swiss" data-src="Collection">
+  <figure class="i-shot"><img src="../16-stratosphere-haps/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 16 Stratosphere HAPS, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 16 · light</p>
+    <h3>Stratosphere HAPS</h3>
+    <p class="i-line">Forecast your token bill before takeoff</p>
+    <p class="i-sw" aria-label="Palette #F0F4F8, #DCE5EE, #0284C7"><i style="background:#F0F4F8"></i><i style="background:#DCE5EE"></i><i style="background:#0284C7"></i><span>Sora · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="15">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="15">Copy brief</button>
+      <a class="i-btn" href="../16-stratosphere-haps/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="swiss" data-src="Lab">
+  <figure class="i-shot"><img src="lab/04-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 04 Monolith, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 04 · light</p>
+    <h3>Monolith</h3>
+    <p class="i-line">Architectural type where width is context</p>
+    <p class="i-sw" aria-label="Palette #FFFFFF, #F1F1EE, #FF4A1C"><i style="background:#FFFFFF"></i><i style="background:#F1F1EE"></i><i style="background:#FF4A1C"></i><span>Archivo (width axis) · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="23">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="23">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/04</span>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="swiss" data-src="Lab">
+  <figure class="i-shot"><img src="lab/09-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 09 Raster, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 09 · light</p>
+    <h3>Raster</h3>
+    <p class="i-line">Swiss poster with a monthly estimator</p>
+    <p class="i-sw" aria-label="Palette #F4F3EF, #E8E6DF, #D9241B"><i style="background:#F4F3EF"></i><i style="background:#E8E6DF"></i><i style="background:#D9241B"></i><span>Public Sans · JetBrains Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="28">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="28">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/09</span>
+    </div>
+  </div>
+</article></div></div><div class="i-fam" data-fam="cinematic"><div class="i-famhead"><h2>Cinematic depth and journeys</h2><div><p>Scroll works as a camera: descents, horizons, device reveals and sound. Big shifts in scale, dark grounds, one warm light.</p><p class="i-kw" aria-label="Vocabulary"><span>scroll camera</span><span>depth descent</span><span>horizon line</span><span>device reveal</span><span>scale shift</span><span>warm key light</span></p></div></div><div class="i-grid">
+<article class="i-card" data-family="cinematic" data-src="Collection">
+  <figure class="i-shot"><img src="../05-valkyrie-hyperacoustics/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 05 Valkyrie Hyperacoustics, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 05 · dark</p>
+    <h3>Valkyrie Hyperacoustics</h3>
+    <p class="i-line">Nothing between you and the model</p>
+    <p class="i-sw" aria-label="Palette #0B0B0C, #18181B, #FF5500"><i style="background:#0B0B0C"></i><i style="background:#18181B"></i><i style="background:#FF5500"></i><span>Funnel Display · IBM Plex Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="4">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="4">Copy brief</button>
+      <a class="i-btn" href="../05-valkyrie-hyperacoustics/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="cinematic" data-src="Collection">
+  <figure class="i-shot"><img src="../11-nomad-expeditions/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Collection direction 11 Nomad Expeditions, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Collection 11 · dark</p>
+    <h3>Nomad Expeditions</h3>
+    <p class="i-line">Go as deep as you need</p>
+    <p class="i-sw" aria-label="Palette #06101E, #0E1E33, #F59E0B"><i style="background:#06101E"></i><i style="background:#0E1E33"></i><i style="background:#F59E0B"></i><span>DM Serif Display · Red Hat Text</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="10">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="10">Copy brief</button>
+      <a class="i-btn" href="../11-nomad-expeditions/index.html">Open</a>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="cinematic" data-src="Lab">
+  <figure class="i-shot"><img src="lab/06-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 06 Lumen, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 06 · light</p>
+    <h3>Lumen</h3>
+    <p class="i-line">Premium product page with a device cinema</p>
+    <p class="i-sw" aria-label="Palette #FFFFFF, #F5F5F7, #0063E6"><i style="background:#FFFFFF"></i><i style="background:#F5F5F7"></i><i style="background:#0063E6"></i><span>Albert Sans</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="25">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="25">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/06</span>
+    </div>
+  </div>
+</article></div></div><div class="i-fam" data-fam="tactile"><div class="i-famhead"><h2>Tactile, product first</h2><div><p>The product is the hero: a live console or objects you can drag before reading a word. Colour blocks and chunky controls.</p><p class="i-kw" aria-label="Vocabulary"><span>live demo first</span><span>draggable objects</span><span>colour blocking</span><span>chunky controls</span><span>instant feedback</span></p></div></div><div class="i-grid">
+<article class="i-card" data-family="tactile" data-src="Lab">
+  <figure class="i-shot"><img src="lab/05-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 05 Kiln, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 05 · mixed</p>
+    <h3>Kiln</h3>
+    <p class="i-line">Creative studio choreography for coding agents</p>
+    <p class="i-sw" aria-label="Palette #F3EFE6, #FF5E3A, #1D3BFF"><i style="background:#F3EFE6"></i><i style="background:#FF5E3A"></i><i style="background:#1D3BFF"></i><span>Syne · Space Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="24">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="24">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/05</span>
+    </div>
+  </div>
+</article>
+<article class="i-card" data-family="tactile" data-src="Lab">
+  <figure class="i-shot"><img src="lab/10-desktop.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Lab direction 10 Live Wire, desktop hero"></figure>
+  <div class="i-meta">
+    <p class="i-src">Lab 10 · light</p>
+    <h3>Live Wire</h3>
+    <p class="i-line">The homepage is the product</p>
+    <p class="i-sw" aria-label="Palette #F2F1EC, #FFFFFF, #C42D63"><i style="background:#F2F1EC"></i><i style="background:#FFFFFF"></i><i style="background:#C42D63"></i><span>DM Sans · DM Mono</span></p>
+    <div class="i-act">
+      <button type="button" class="i-btn" data-copy="prompt" data-i="29">Copy image prompt</button>
+      <button type="button" class="i-btn" data-copy="brief" data-i="29">Copy brief</button>
+      <span class="i-off">Lab: npm run dev, then /designs/10</span>
+    </div>
+  </div>
+</article></div></div>
+    </div>
+  </section>
+
+  <section id="yours" data-section aria-labelledby="i-y">
+    <div class="k-wrap">
+      <h2 id="i-y" class="i-h2" data-reveal>Your references.</h2>
+      <label class="i-drop" id="i-drop"><input type="file" id="i-file" accept="image/*" multiple class="k-sr"><strong>Drop screenshots here, or choose files</strong><p>Images stay in this browser only. Pick a family and add a note, then copy a brief that uses your reference. To make them part of the project, put the files in a folder and ask Claude to add them to this library.</p></label>
+      <div class="i-mine" id="i-mine"></div>
+    </div>
+  </section>
+</main>
+<footer class="i-foot"><span>Aether is a placeholder brand; all directions are design explorations with mock data.</span><a href="../index.html">Back to the gallery</a></footer>
+<div class="i-toast" id="i-toast" role="status" aria-live="polite"></div>
+<script>window.LIB = {"data":[{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Atelier and material luxury. Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals. Vocabulary: macro material, engraved detail, serif display, deep ground, one precious accent, slow reveal.\n2. Reference: match the feel (not the layout or content) of \"Chronos Atelier\", a direction inspired by bespoke Swiss horology lab. Palette #090A0F / #141722 with a #D4AF37 accent; type Cormorant Garamond · JetBrains Mono. Its signature: scroll-exploded calibre.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Chronos Atelier\" direction: bespoke swiss horology lab. macro material, engraved detail, serif display. Palette #090A0F and #141722 with a single #D4AF37 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Chronos Atelier"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Quiet paper and specimen. Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is. Vocabulary: negative space, specimen plate, hairline rules, roman serif, caption-led, ink accent.\n2. Reference: match the feel (not the layout or content) of \"Kanso Monolith\", a direction inspired by japanese brutalist architecture studio. Palette #EDEDEB / #DEDEDB with a #C83E2B accent; type Syne · IBM Plex Mono. Its signature: blueprint-to-structure scrubber.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Kanso Monolith\" direction: japanese brutalist architecture studio. negative space, specimen plate, hairline rules. Palette #EDEDEB and #DEDEDB with a single #C83E2B accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Kanso Monolith"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Aether Orbital\", a direction inspired by orbital debris and satellite logistics. Palette #05070B / #0F141C with a #00F5D4 accent; type Unbounded · Space Mono. Its signature: orbital shell lock-on.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Aether Orbital\" direction: orbital debris and satellite logistics. telemetry, instrument panel, data as texture. Palette #05070B and #0F141C with a single #00F5D4 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Aether Orbital"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Quiet paper and specimen. Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is. Vocabulary: negative space, specimen plate, hairline rules, roman serif, caption-led, ink accent.\n2. Reference: match the feel (not the layout or content) of \"Veridian Biofoundry\", a direction inspired by computational protein and mycelium materials lab. Palette #ECF1EF / #DCE5E1 with a #1B4D3E accent; type Literata · Albert Sans. Its signature: scroll-grown mycelium.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Veridian Biofoundry\" direction: computational protein and mycelium materials lab. negative space, specimen plate, hairline rules. Palette #ECF1EF and #DCE5E1 with a single #1B4D3E accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Veridian Biofoundry"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Cinematic depth and journeys. Scroll works as a camera: descents, horizons, device reveals and sound. Big shifts in scale, dark grounds, one warm light. Vocabulary: scroll camera, depth descent, horizon line, device reveal, scale shift, warm key light.\n2. Reference: match the feel (not the layout or content) of \"Valkyrie Hyperacoustics\", a direction inspired by planar magnetic mastering headphones. Palette #0B0B0C / #18181B with a #FF5500 accent; type Funnel Display · IBM Plex Mono. Its signature: playable frequency synthesiser.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Valkyrie Hyperacoustics\" direction: planar magnetic mastering headphones. scroll camera, depth descent, horizon line. Palette #0B0B0C and #18181B with a single #FF5500 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Valkyrie Hyperacoustics"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Atelier and material luxury. Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals. Vocabulary: macro material, engraved detail, serif display, deep ground, one precious accent, slow reveal.\n2. Reference: match the feel (not the layout or content) of \"Nocturne Perfumerie\", a direction inspired by rare molecular botanical apothecary. Palette #120E0A / #1F1812 with a #E5A93C accent; type Italiana · Work Sans. Its signature: pinned horizontal scent pyramid.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Nocturne Perfumerie\" direction: rare molecular botanical apothecary. macro material, engraved detail, serif display. Palette #120E0A and #1F1812 with a single #E5A93C accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Nocturne Perfumerie"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Solaris Tokamak\", a direction inspired by compact commercial fusion micro-reactors. Palette #070913 / #111625 with a #38BDF8 accent; type Host Grotesk · JetBrains Mono. Its signature: scroll-ramped confinement torus.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Solaris Tokamak\" direction: compact commercial fusion micro-reactors. telemetry, instrument panel, data as texture. Palette #070913 and #111625 with a single #38BDF8 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Solaris Tokamak"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Atelier and material luxury. Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals. Vocabulary: macro material, engraved detail, serif display, deep ground, one precious accent, slow reveal.\n2. Reference: match the feel (not the layout or content) of \"Terra Vinicola\", a direction inspired by high-altitude volcanic biodynamic vineyard. Palette #F2EDEE / #E6DDDF with a #7C1D26 accent; type Playfair Display · Newsreader. Its signature: elevation altimeter.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Terra Vinicola\" direction: high-altitude volcanic biodynamic vineyard. macro material, engraved detail, serif display. Palette #F2EDEE and #E6DDDF with a single #7C1D26 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Terra Vinicola"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Kinetix Exoskeleton\", a direction inspired by bionic rehabilitation and industrial exosuits. Palette #0D0F12 / #1A1E24 with a #CCFF00 accent; type Chakra Petch · IBM Plex Mono. Its signature: scroll-bent kinematic leg rig with live joint-torque and metabolic-load readouts.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Kinetix Exoskeleton\" direction: bionic rehabilitation and industrial exosuits. telemetry, instrument panel, data as texture. Palette #0D0F12 and #1A1E24 with a single #CCFF00 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Kinetix Exoskeleton"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Swiss systems and engineering. Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing. Vocabulary: strict grid, type scale, modular blocks, exploded diagram, primary signal, configurator.\n2. Reference: match the feel (not the layout or content) of \"Obelisk ZK\", a direction inspired by zero-knowledge cryptographic compute network. Palette #080808 / #141414 with a #A855F7 accent; type Bricolage Grotesque · JetBrains Mono. Its signature: cipher decode on entry.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Obelisk ZK\" direction: zero-knowledge cryptographic compute network. strict grid, type scale, modular blocks. Palette #080808 and #141414 with a single #A855F7 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Obelisk ZK"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Cinematic depth and journeys. Scroll works as a camera: descents, horizons, device reveals and sound. Big shifts in scale, dark grounds, one warm light. Vocabulary: scroll camera, depth descent, horizon line, device reveal, scale shift, warm key light.\n2. Reference: match the feel (not the layout or content) of \"Nomad Expeditions\", a direction inspired by private polar and deep-trench voyages. Palette #06101E / #0E1E33 with a #F59E0B accent; type DM Serif Display · Red Hat Text. Its signature: depth-gauge descent from +4,000 m to −10,928 m with live pressure readouts and sonar pings.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Nomad Expeditions\" direction: private polar and deep-trench voyages. scroll camera, depth descent, horizon line. Palette #06101E and #0E1E33 with a single #F59E0B accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Nomad Expeditions"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Swiss systems and engineering. Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing. Vocabulary: strict grid, type scale, modular blocks, exploded diagram, primary signal, configurator.\n2. Reference: match the feel (not the layout or content) of \"Forma Modular\", a direction inspired by precision CNC aluminium kitchen and living systems. Palette #F5F5F3 / #E5E5E0 with a #D9381E accent; type Familjen Grotesk · IBM Plex Mono. Its signature: snap-together configurator.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Forma Modular\" direction: precision cnc aluminium kitchen and living systems. strict grid, type scale, modular blocks. Palette #F5F5F3 and #E5E5E0 with a single #D9381E accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Forma Modular"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Synapse BCI\", a direction inspired by non-invasive neural interface for creative workstations. Palette #0A0910 / #161421 with a #2DD4BF accent; type Urbanist · JetBrains Mono. Its signature: focus-seeking constellation.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Synapse BCI\" direction: non-invasive neural interface for creative workstations. telemetry, instrument panel, data as texture. Palette #0A0910 and #161421 with a single #2DD4BF accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Synapse BCI"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Swiss systems and engineering. Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing. Vocabulary: strict grid, type scale, modular blocks, exploded diagram, primary signal, configurator.\n2. Reference: match the feel (not the layout or content) of \"Veloce Aero\", a direction inspired by wind-tunnel custom carbon track bicycles. Palette #0F0F12 / #1C1C22 with a #E11D48 accent; type Archivo Black · Work Sans. Its signature: scroll-driven CFD streamlines flowing over the frame, with a live CdA comparison slider.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Veloce Aero\" direction: wind-tunnel custom carbon track bicycles. strict grid, type scale, modular blocks. Palette #0F0F12 and #1C1C22 with a single #E11D48 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Veloce Aero"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Quiet paper and specimen. Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is. Vocabulary: negative space, specimen plate, hairline rules, roman serif, caption-led, ink accent.\n2. Reference: match the feel (not the layout or content) of \"Hikari Matcha Guild\", a direction inspired by single-cultivar ceremonial Uji matcha. Palette #EEF0E6 / #E0E4D4 with a #2E6F40 accent; type Newsreader · Hanken Grotesk. Its signature: scroll-paced stone mill.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Hikari Matcha Guild\" direction: single-cultivar ceremonial uji matcha. negative space, specimen plate, hairline rules. Palette #EEF0E6 and #E0E4D4 with a single #2E6F40 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Hikari Matcha Guild"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Swiss systems and engineering. Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing. Vocabulary: strict grid, type scale, modular blocks, exploded diagram, primary signal, configurator.\n2. Reference: match the feel (not the layout or content) of \"Stratosphere HAPS\", a direction inspired by solar stratospheric telecom gliders. Palette #F0F4F8 / #DCE5EE with a #0284C7 accent; type Sora · IBM Plex Mono. Its signature: scroll-pinned flight strips advance along the flight path, plus a wingspan solar-flux calculator.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Stratosphere HAPS\" direction: solar stratospheric telecom gliders. strict grid, type scale, modular blocks. Palette #F0F4F8 and #DCE5EE with a single #0284C7 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Stratosphere HAPS"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Atelier and material luxury. Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals. Vocabulary: macro material, engraved detail, serif display, deep ground, one precious accent, slow reveal.\n2. Reference: match the feel (not the layout or content) of \"Obsidian Roasters\", a direction inspired by competition-lot anaerobic coffee micro-roastery. Palette #100D0C / #1E1916 with a #EA580C accent; type Gloock · JetBrains Mono. Its signature: scroll-plotted roast profile.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Obsidian Roasters\" direction: competition-lot anaerobic coffee micro-roastery. macro material, engraved detail, serif display. Palette #100D0C and #1E1916 with a single #EA580C accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Obsidian Roasters"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Lumina Photonics\", a direction inspired by optical silicon interconnects for AI datacentres. Palette #06070A / #12151E with a #10B981 accent; type Syncopate · Space Mono. Its signature: photonic packet routing.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Lumina Photonics\" direction: optical silicon interconnects for ai datacentres. telemetry, instrument panel, data as texture. Palette #06070A and #12151E with a single #10B981 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Lumina Photonics"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Atelier and material luxury. Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals. Vocabulary: macro material, engraved detail, serif display, deep ground, one precious accent, slow reveal.\n2. Reference: match the feel (not the layout or content) of \"Atelier Kintsugi\", a direction inspired by rare book conservation and manuscript vault. Palette #EEF0F3 / #DFE3E9 with a #B45309 accent; type IM Fell English · Work Sans. Its signature: spectral inspection loupe.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Atelier Kintsugi\" direction: rare book conservation and manuscript vault. macro material, engraved detail, serif display. Palette #EEF0F3 and #DFE3E9 with a single #B45309 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Atelier Kintsugi"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Zenith Supersonic\", a direction inspired by mach 2.2 SAF private jet charter. Palette #080B11 / #131924 with a #F43F5E accent; type Big Shoulders Display · IBM Plex Mono. Its signature: split-flap route board flips city pairs on scroll while a Mach cone sweeps across a route globe.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Zenith Supersonic\" direction: mach 2.2 saf private jet charter. telemetry, instrument panel, data as texture. Palette #080B11 and #131924 with a single #F43F5E accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Zenith Supersonic"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Quiet paper and specimen. Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is. Vocabulary: negative space, specimen plate, hairline rules, roman serif, caption-led, ink accent.\n2. Reference: match the feel (not the layout or content) of \"Field Notes\", a direction inspired by editorial feature with an annotated thread. Palette #F7F5F0 / #ECE8DF with a #2337C6 accent; type Newsreader · Bricolage Grotesque · JetBrains Mono. Its signature: blue-pencil edits, Annotated thread, Rate card.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Field Notes\" direction: editorial feature with an annotated thread. negative space, specimen plate, hairline rules. Palette #F7F5F0 and #ECE8DF with a single #2337C6 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Field Notes"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Graphite\", a direction inspired by technical luxury built on the refusal direction. Palette #0C0C0B / #171715 with a #8EA2FF accent; type Hanken Grotesk · JetBrains Mono. Its signature: projection field, Response headers, JSON rate view.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Graphite\" direction: technical luxury built on the refusal direction. telemetry, instrument panel, data as texture. Palette #0C0C0B and #171715 with a single #8EA2FF accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Graphite"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Quiet paper and specimen. Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is. Vocabulary: negative space, specimen plate, hairline rules, roman serif, caption-led, ink accent.\n2. Reference: match the feel (not the layout or content) of \"Pearl\", a direction inspired by holographic glass that refracts one prompt. Palette #F7F7F9 / #E8ECF3 with a #0B7A75 accent; type Sora · JetBrains Mono. Its signature: 3D prism, Iridescent glass, Refraction.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Pearl\" direction: holographic glass that refracts one prompt. negative space, specimen plate, hairline rules. Palette #F7F7F9 and #E8ECF3 with a single #0B7A75 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Pearl"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Swiss systems and engineering. Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing. Vocabulary: strict grid, type scale, modular blocks, exploded diagram, primary signal, configurator.\n2. Reference: match the feel (not the layout or content) of \"Monolith\", a direction inspired by architectural type where width is context. Palette #FFFFFF / #F1F1EE with a #FF4A1C accent; type Archivo (width axis) · IBM Plex Mono. Its signature: variable width, Hairline grid, One accent.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Monolith\" direction: architectural type where width is context. strict grid, type scale, modular blocks. Palette #FFFFFF and #F1F1EE with a single #FF4A1C accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Monolith"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Tactile, product first. The product is the hero: a live console or objects you can drag before reading a word. Colour blocks and chunky controls. Vocabulary: live demo first, draggable objects, colour blocking, chunky controls, instant feedback.\n2. Reference: match the feel (not the layout or content) of \"Kiln\", a direction inspired by creative studio choreography for coding agents. Palette #F3EFE6 / #FF5E3A with a #1D3BFF accent; type Syne · Space Mono. Its signature: colour blocks, Drag stickers, Agent loop.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Kiln\" direction: creative studio choreography for coding agents. live demo first, draggable objects, colour blocking. Palette #F3EFE6 and #FF5E3A with a single #1D3BFF accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Kiln"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Cinematic depth and journeys. Scroll works as a camera: descents, horizons, device reveals and sound. Big shifts in scale, dark grounds, one warm light. Vocabulary: scroll camera, depth descent, horizon line, device reveal, scale shift, warm key light.\n2. Reference: match the feel (not the layout or content) of \"Lumen\", a direction inspired by premium product page with a device cinema. Palette #FFFFFF / #F5F5F7 with a #0063E6 accent; type Albert Sans. Its signature: cSS device, Cinematic scroll, Calm type.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Lumen\" direction: premium product page with a device cinema. scroll camera, depth descent, horizon line. Palette #FFFFFF and #F5F5F7 with a single #0063E6 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Lumen"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Lab Seven\", a direction inspired by research paper with live figures. Palette #0B0F0E / #121917 with a #9EF0C5 accent; type IBM Plex Sans · IBM Plex Mono. Its signature: neural figure, Token Sankey, Peer review.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Lab Seven\" direction: research paper with live figures. telemetry, instrument panel, data as texture. Palette #0B0F0E and #121917 with a single #9EF0C5 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Lab Seven"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Instrument and telemetry. The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data. Vocabulary: telemetry, instrument panel, data as texture, mono labels, signal colour, procedural canvas.\n2. Reference: match the feel (not the layout or content) of \"Observatory\", a direction inspired by midnight star chart of every model. Palette #050A1A / #0D1A3A with a #5BA8FF accent; type Cormorant Garamond · Hanken Grotesk. Its signature: orrery hero, Planisphere, Ephemeris.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Observatory\" direction: midnight star chart of every model. telemetry, instrument panel, data as texture. Palette #050A1A and #0D1A3A with a single #5BA8FF accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Observatory"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Swiss systems and engineering. Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing. Vocabulary: strict grid, type scale, modular blocks, exploded diagram, primary signal, configurator.\n2. Reference: match the feel (not the layout or content) of \"Raster\", a direction inspired by swiss poster with a monthly estimator. Palette #F4F3EF / #E8E6DF with a #D9241B accent; type Public Sans · JetBrains Mono. Its signature: 12-col raster, Poster disk, Estimator.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Raster\" direction: swiss poster with a monthly estimator. strict grid, type scale, modular blocks. Palette #F4F3EF and #E8E6DF with a single #D9241B accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Raster"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Tactile, product first. The product is the hero: a live console or objects you can drag before reading a word. Colour blocks and chunky controls. Vocabulary: live demo first, draggable objects, colour blocking, chunky controls, instant feedback.\n2. Reference: match the feel (not the layout or content) of \"Live Wire\", a direction inspired by the homepage is the product. Palette #F2F1EC / #FFFFFF with a #C42D63 accent; type DM Sans · DM Mono. Its signature: live router, Docking panels, Cost estimate.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Live Wire\" direction: the homepage is the product. live demo first, draggable objects, colour blocking. Palette #F2F1EC and #FFFFFF with a single #C42D63 accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Live Wire"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Atelier and material luxury. Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals. Vocabulary: macro material, engraved detail, serif display, deep ground, one precious accent, slow reveal.\n2. Reference: match the feel (not the layout or content) of \"Obsidian\", a direction inspired by luxury dark glass and precise metering. Palette #0A0A0C / #141418 with a #B7A6FF accent; type Manrope · JetBrains Mono. Its signature: titanium key, Token stream, Variant wipe.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Obsidian\" direction: luxury dark glass and precise metering. macro material, engraved detail, serif display. Palette #0A0A0C and #141418 with a single #B7A6FF accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Obsidian"},{"brief":"Build a landing page for Aether.\n\n1. Aesthetic: Quiet paper and specimen. Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is. Vocabulary: negative space, specimen plate, hairline rules, roman serif, caption-led, ink accent.\n2. Reference: match the feel (not the layout or content) of \"Aperture\", a direction inspired by fusion: paper outside, machine inside. Palette #F7F5F0 / #ECE6DA with a #C23A1C accent; type Literata · Hanken Grotesk · JetBrains Mono. Its signature: camera iris, Holographic portal, Light → dark.\n3. Intent: Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".\n4. Guardrails: Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything. Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified.\n\nMake five versions in five different directions within this family. I will pick one, then we iterate on three variations of its body before tuning the hero image and the details.","prompt":"Hero background image for an AI platform landing page, \"Aperture\" direction: fusion: paper outside, machine inside. negative space, specimen plate, hairline rules. Palette #F7F5F0 and #ECE6DA with a single #C23A1C accent. Cinematic light, high detail, calm empty area on the left third for a headline. No text, no logos, no people's faces. 2K, 16:9.","name":"Aperture"}],"families":[{"id":"atelier","name":"Atelier and material luxury","about":"Craft objects seen up close: engraved metal, glass, paper, roast and ink. Serif display type, dark or deep grounds, one precious accent, slow reveals.","keywords":["macro material","engraved detail","serif display","deep ground","one precious accent","slow reveal"]},{"id":"quiet","name":"Quiet paper and specimen","about":"Generous space, hairlines and paper-like grounds. Roman serifs, specimen plates and captions; colour used the way ink is.","keywords":["negative space","specimen plate","hairline rules","roman serif","caption-led","ink accent"]},{"id":"instrument","name":"Instrument and telemetry","about":"The page behaves like an instrument: live canvases, mono labels, measured grids and one signal colour kept for live data.","keywords":["telemetry","instrument panel","data as texture","mono labels","signal colour","procedural canvas"]},{"id":"swiss","name":"Swiss systems and engineering","about":"Grid, scale and diagram do the persuading. Modular blocks, strict type steps, a primary signal colour, the product as an exploded drawing.","keywords":["strict grid","type scale","modular blocks","exploded diagram","primary signal","configurator"]},{"id":"cinematic","name":"Cinematic depth and journeys","about":"Scroll works as a camera: descents, horizons, device reveals and sound. Big shifts in scale, dark grounds, one warm light.","keywords":["scroll camera","depth descent","horizon line","device reveal","scale shift","warm key light"]},{"id":"tactile","name":"Tactile, product first","about":"The product is the hero: a live console or objects you can drag before reading a word. Colour blocks and chunky controls.","keywords":["live demo first","draggable objects","colour blocking","chunky controls","instant feedback"]}],"intent":"Aether is an AI platform that sells model access and API tokens: five model families with standard, low-refusal and abliterated variants, unified chat, coding agents, a developer API, long context, prompt caching and transparent per-token pricing. Audience: developers, researchers and creative professionals. The page must sell API keys and per-token access; the primary action is \"Get your API key\".","guardrails":["Always: H1 at clamp(3.25rem, 6vw, 5rem) with -0.03em tracking and six words or fewer; body 1.05rem at 1.7, no wider than 65ch; a 60-30-10 token system with the accent only on calls to action, active nav and live data; WCAG AA contrast; headline, sub, one CTA, an interactive visual and a concrete trust signal above the fold; seven sections ending in pricing with per-token rates; reduced motion unpins everything.","Never: Inter, Roboto, Open Sans, Lato, Arial, system fonts, Fraunces, Geist, Plus Jakarta Sans, Space Grotesk or Instrument Sans/Serif; purple or blue-violet gradients; cyan on dark; coloured glows; cream backgrounds; small uppercase labels above headings; thick coloured side borders on cards; gradient text; fake logos, stats or testimonials; claims about performance, security or availability that are not verified."]};</script>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>window.AE_FONTS = [];</script>
+<script>/*
+ * Aether Tweaks: a live design panel plus the "weighted" hero motion, shared by the
+ * 20-site collection (inlined by awwwards-20-collection/_build/lib.mjs) and the Next.js
+ * lab (imported by components/lab/Tweaks.tsx).
+ *
+ *   AetherTweaks.init({ root, fonts, key, defaults })
+ *     root      element that owns the design tokens (documentElement, or the lab's .kit root)
+ *     fonts     [{ name, url, weight, style }] extra faces the font menus can load on demand
+ *     key       localStorage key for this page's tweaks
+ *
+ * It does three things, following the iterate-don't-one-shot workflow:
+ *   1. Hero load-in: the hero's parts arrive one by one with a heavy ease (pure CSS in tweaks.css).
+ *   2. Hero exit: as the hero scrolls away its copy fades and lifts (--hx), so the move into
+ *      the body is gradual instead of a hard cut.
+ *   3. Tweaks: a panel that rewrites the design tokens live (type, colour, motion, texture),
+ *      remembers them per page and copies them as JSON to paste back into a prompt.
+ * Reduced motion disables 1 and 2. Every storage access is wrapped: the page works without it.
+ */
+(function () {
+  if (typeof window === "undefined" || window.AetherTweaks) return;
+
+  var EASES = {
+    Heavy: "cubic-bezier(0.16, 1, 0.3, 1)",
+    Expo: "cubic-bezier(0.19, 1, 0.22, 1)",
+    Soft: "cubic-bezier(0.33, 1, 0.68, 1)",
+    Snappy: "cubic-bezier(0.5, 0, 0.1, 1)",
+  };
+
+  // Control schema. type: range | color | select | toggle. css: the custom property it drives.
+  var GROUPS = [
+    ["Type", [
+      { id: "fontDisplay", label: "Heading font", type: "select", css: "--font-display", font: true },
+      { id: "fontBody", label: "Body font", type: "select", css: "--font-body", font: true },
+      { id: "h1", label: "Headline size", type: "range", css: "--tw-h1", min: 0.7, max: 1.3, step: 0.01, def: 1, fmt: "x" },
+      { id: "h1ls", label: "Headline tracking", type: "range", css: "--tw-h1ls", min: -0.06, max: 0.04, step: 0.005, def: -0.03, unit: "em" },
+      { id: "h1w", label: "Headline weight", type: "range", css: "--h1-weight", min: 200, max: 900, step: 50, def: null },
+      { id: "body", label: "Body size", type: "range", css: "--tw-body", min: 0.85, max: 1.25, step: 0.01, def: 1, fmt: "x" },
+    ]],
+    ["Colour", [
+      { id: "accent", label: "Accent (10)", type: "color", css: "--accent" },
+      { id: "bg", label: "Background (60)", type: "color", css: "--bg-primary" },
+      { id: "bg2", label: "Surface (30)", type: "color", css: "--bg-secondary" },
+      { id: "text", label: "Text", type: "color", css: "--text-primary" },
+      { id: "muted", label: "Muted text", type: "color", css: "--text-muted" },
+    ]],
+    ["Motion", [
+      { id: "load", label: "Hero load-in", type: "toggle", def: true },
+      { id: "ldur", label: "Load duration", type: "range", css: "--tw-load-dur", min: 0.3, max: 2.4, step: 0.05, def: 1, unit: "s" },
+      { id: "lstg", label: "Load stagger", type: "range", css: "--tw-load-stg", min: 0, max: 400, step: 10, def: 110, unit: "ms" },
+      { id: "ldist", label: "Load distance", type: "range", css: "--tw-load-dist", min: 0, max: 120, step: 2, def: 28, unit: "px" },
+      { id: "lblur", label: "Load blur", type: "range", css: "--tw-load-blur", min: 0, max: 20, step: 1, def: 6, unit: "px" },
+      { id: "ease", label: "Weight", type: "select", css: "--tw-ease", options: Object.keys(EASES), def: "Heavy" },
+      { id: "rdist", label: "Reveal distance", type: "range", css: "--tw-rd", min: 0, max: 100, step: 2, def: 26, unit: "px" },
+      { id: "rdur", label: "Reveal duration", type: "range", css: "--tw-dur", min: 0.3, max: 2.5, step: 0.05, def: 1, fmt: "x" },
+      { id: "rstg", label: "Reveal stagger", type: "range", css: "--tw-stg", min: 0, max: 240, step: 10, def: 80, unit: "ms" },
+      { id: "exit", label: "Hero exit fade", type: "range", min: 0, max: 1, step: 0.05, def: 0.85 },
+    ]],
+    ["Texture", [
+      { id: "grain", label: "Grain", type: "range", css: "--tw-grain", min: 0, max: 0.12, step: 0.005, def: 0.035 },
+    ]],
+  ];
+
+  var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var store = {
+    get: function (k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} },
+  };
+
+  function toHex(c) {
+    var m = /rgba?\(([^)]+)\)/.exec(c || "");
+    if (!m) return /^#[0-9a-f]{6}/i.test(c || "") ? c.slice(0, 7) : "#888888";
+    return "#" + m[1].split(/[ ,/]+/).slice(0, 3).map(function (v) { return ("0" + Math.round(+v).toString(16)).slice(-2); }).join("");
+  }
+
+  function heroMotion(scope, getExit) {
+    var hero = scope.querySelector("[data-hero]");
+    var noop = { replay: function () {}, stop: function () {} };
+    if (!hero) return noop;
+    var parts = [].slice.call(hero.querySelectorAll("[data-hero-part]"));
+    var q = false, on = false;
+    // Exit: inline opacity/translate only while the hero is leaving, so at rest the
+    // page's own styles (and stacking) are untouched.
+    var exit = function () {
+      q = false;
+      var r = hero.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height * 0.85))) * getExit();
+      // Off screen (or back at rest) the hero keeps its own styles: the fade is a transition, not a state.
+      if (p <= 0.001 || r.bottom <= 0) {
+        if (on) { parts.forEach(function (el) { el.style.removeProperty("opacity"); el.style.removeProperty("translate"); }); on = false; }
+        return;
+      }
+      on = true;
+      parts.forEach(function (el) {
+        var vis = el.getAttribute("data-hero-part") === "visual";
+        el.style.opacity = String(1 - p * (vis ? 0.5 : 1));
+        if (!vis) el.style.translate = "0 " + (-48 * p).toFixed(1) + "px";
+      });
+    };
+    var onScrollFn = function () { if (!q) { q = true; requestAnimationFrame(exit); } };
+    if (!RM) { addEventListener("scroll", onScrollFn, { passive: true }); exit(); }
+    return {
+      // Switching between two identical keyframe names restarts the CSS entrance.
+      replay: function () { hero.classList.toggle("tw-again"); },
+      stop: function () { removeEventListener("scroll", onScrollFn); },
+    };
+  }
+
+  function init(opts) {
+    opts = opts || {};
+    var root = opts.root || document.documentElement;
+    var scope = opts.scope || document;
+    var key = opts.key || "aether-tweaks:" + location.pathname;
+    var fonts = opts.fonts || [];
+    var state;
+    var motion = heroMotion(scope, function () { return state ? +state.exit : 0.85; });
+    var hero = scope.querySelector("[data-hero]");
+
+    // Defaults come from the page's own tokens, so Reset returns to the design as built.
+    var cs = getComputedStyle(root);
+    var base = {};
+    GROUPS.forEach(function (g) { g[1].forEach(function (c) {
+      if (c.type === "color") base[c.id] = toHex(cs.getPropertyValue(c.css).trim());
+      else if (c.font) base[c.id] = cs.getPropertyValue(c.css).trim();
+      else if (c.id === "h1w") base[c.id] = parseFloat(cs.getPropertyValue("--h1-weight")) || 500;
+      else base[c.id] = c.def;
+    }); });
+    state = Object.assign({}, base, store.get(key) || {});
+    var loaded = {};
+
+    function loadFont(name) {
+      var f = fonts.filter(function (x) { return x.name === name; })[0];
+      if (!f || loaded[name] || !window.FontFace) return Promise.resolve();
+      loaded[name] = true;
+      var face = new FontFace(f.name, "url(" + f.url + ")", { weight: f.weight || "100 900", style: f.style || "normal" });
+      return face.load().then(function (ff) { document.fonts.add(ff); }).catch(function () {});
+    }
+
+    function apply() {
+      GROUPS.forEach(function (g) { g[1].forEach(function (c) {
+        var v = state[c.id];
+        if (!c.css) return;
+        var changed = v !== base[c.id];
+        if (!changed) { root.style.removeProperty(c.css); return; }
+        if (c.font) { var fam = /["',]/.test(v) ? v : '"' + v + '", ' + base[c.id]; root.style.setProperty(c.css, fam); loadFont(String(v).replace(/["']/g, "").split(",")[0].trim()); return; }
+        if (c.id === "ease") { root.style.setProperty(c.css, EASES[v] || v); return; }
+        root.style.setProperty(c.css, c.unit ? v + c.unit : String(v));
+      }); });
+      if (hero) hero.classList.toggle("tw-noload", state.load === false);
+      store.set(key, diff());
+    }
+    function diff() {
+      var d = {};
+      Object.keys(state).forEach(function (k) { if (state[k] !== base[k]) d[k] = state[k]; });
+      return d;
+    }
+
+    // —— panel UI ——
+    var wrap = document.createElement("div");
+    wrap.setAttribute("data-tweaks", "");
+    wrap.className = "tw-wrap";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "tw-toggle";
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", "tw-panel");
+    btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h8M13 4h1M2 12h3M8 12h6" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="11.5" cy="4" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="12" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Tweaks</span>';
+    var panel = document.createElement("div");
+    panel.className = "tw-panel";
+    panel.id = "tw-panel";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-label", "Design tweaks");
+    panel.hidden = true;
+
+    var fontNames = fonts.map(function (f) { return f.name; }).filter(function (n, i, a) { return a.indexOf(n) === i; });
+    var html = '<div class="tw-head"><b>Tweaks</b><span>Changes apply live and stay on this page.</span></div>';
+    GROUPS.forEach(function (g) {
+      html += '<fieldset class="tw-group"><legend>' + g[0] + "</legend>";
+      g[1].forEach(function (c) {
+        var id = "tw-" + c.id, v = state[c.id];
+        html += '<div class="tw-row"><label for="' + id + '">' + c.label + "</label>";
+        if (c.type === "range") html += '<input id="' + id + '" data-k="' + c.id + '" type="range" min="' + c.min + '" max="' + c.max + '" step="' + c.step + '" value="' + v + '"><output for="' + id + '"></output>';
+        else if (c.type === "color") html += '<input id="' + id + '" data-k="' + c.id + '" type="color" value="' + v + '"><output for="' + id + '"></output>';
+        else if (c.type === "toggle") html += '<input id="' + id + '" data-k="' + c.id + '" type="checkbox"' + (v !== false ? " checked" : "") + "><output></output>";
+        else {
+          var opts2 = c.font ? ["Site default"].concat(fontNames) : c.options;
+          html += '<select id="' + id + '" data-k="' + c.id + '">' + opts2.map(function (o) {
+            var val = o === "Site default" ? base[c.id] : o;
+            return '<option value="' + String(val).replace(/"/g, "&quot;") + '"' + (val === v ? " selected" : "") + ">" + o + "</option>";
+          }).join("") + "</select><output></output>";
+        }
+        html += "</div>";
+      });
+      html += "</fieldset>";
+    });
+    html += '<div class="tw-actions"><button type="button" data-act="replay">Replay load-in</button><button type="button" data-act="copy">Copy settings</button><button type="button" data-act="reset">Reset</button></div><p class="tw-note" aria-live="polite"></p>';
+    panel.innerHTML = html;
+    wrap.appendChild(panel);
+    wrap.appendChild(btn);
+    // The panel lives on <body>, outside a scoped token root, so it takes the page's font explicitly.
+    wrap.style.fontFamily = cs.getPropertyValue("--font-body").trim() || getComputedStyle(document.body).fontFamily;
+    document.body.appendChild(wrap);
+
+    var note = panel.querySelector(".tw-note");
+    function show(c, input) {
+      var out = input.parentElement.querySelector("output");
+      if (!out) return;
+      var v = state[c.id];
+      out.textContent = c.type === "range" ? (c.fmt === "x" ? (+v).toFixed(2) + "×" : (+v).toFixed(c.step < 0.01 ? 3 : c.step < 1 ? 2 : 0) + (c.unit || "")) : c.type === "color" ? String(v).toUpperCase() : "";
+    }
+    var all = {};
+    GROUPS.forEach(function (g) { g[1].forEach(function (c) { all[c.id] = c; }); });
+    panel.querySelectorAll("[data-k]").forEach(function (input) {
+      var c = all[input.getAttribute("data-k")];
+      show(c, input);
+      input.addEventListener("input", function () {
+        state[c.id] = c.type === "range" ? +input.value : c.type === "toggle" ? input.checked : input.value;
+        show(c, input);
+        apply();
+      });
+    });
+    panel.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("[data-act]");
+      if (!a) return;
+      var act = a.getAttribute("data-act");
+      if (act === "replay") { motion.replay(); scrollTo({ top: 0, behavior: RM ? "auto" : "smooth" }); }
+      if (act === "reset") {
+        state = Object.assign({}, base); store.del(key); apply();
+        panel.querySelectorAll("[data-k]").forEach(function (input) {
+          var c = all[input.getAttribute("data-k")], v = state[c.id];
+          if (c.type === "toggle") input.checked = v !== false; else input.value = v;
+          show(c, input);
+        });
+        note.textContent = "Back to the design as built.";
+      }
+      if (act === "copy") {
+        var text = JSON.stringify({ page: location.pathname, tweaks: diff() }, null, 2);
+        var done = function () { note.textContent = "Copied. Paste it into your next prompt to bake these in."; };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { note.textContent = text; });
+        else note.textContent = text;
+      }
+    });
+    function toggle(open) {
+      panel.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) { var f = panel.querySelector("input,select"); f && f.focus(); }
+    }
+    btn.addEventListener("click", function () { toggle(panel.hidden); });
+    var onKey = function (e) {
+      if (e.key === "Escape" && !panel.hidden) { toggle(false); btn.focus(); }
+      if (e.key === "T" && e.shiftKey && !/input|select|textarea/i.test((e.target && e.target.tagName) || "")) toggle(panel.hidden);
+    };
+    addEventListener("keydown", onKey);
+    apply();
+    return {
+      state: state,
+      replay: motion.replay,
+      destroy: function () {
+        removeEventListener("keydown", onKey);
+        motion.stop();
+        wrap.remove();
+        GROUPS.forEach(function (g) { g[1].forEach(function (c) { if (c.css) root.style.removeProperty(c.css); }); });
+      },
+    };
+  }
+
+  window.AetherTweaks = { init: init, EASES: EASES };
+})();
+
+AetherTweaks.init({ fonts: window.AE_FONTS, key: "aether-tweaks:" + location.pathname });</script>
+<script>
+(() => {
+      const { $, $$ } = K;
+      const L = window.LIB;
+      const toast = $("#i-toast");
+      let tt = 0;
+      const say = (t) => { toast.textContent = t; toast.classList.add("is-on"); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove("is-on"), 2200); };
+      const copy = (text, what) => (navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(text).then(() => say(what + " copied"), () => say("Copy blocked by the browser")) : say("Copy not available here"));
+      document.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-copy]");
+        if (!b || b.dataset.i == null) return;
+        const d = L.data[+b.dataset.i];
+        copy(b.dataset.copy === "brief" ? d.brief : d.prompt, b.dataset.copy === "brief" ? "Brief" : "Image prompt");
+      });
+      // family filter
+      const chips = $$("[data-f]"), fams = $$("[data-fam]");
+      chips.forEach((c) => c.addEventListener("click", () => {
+        chips.forEach((x) => x.setAttribute("aria-pressed", x === c ? "true" : "false"));
+        fams.forEach((f) => { f.hidden = !(c.dataset.f === "all" || f.dataset.fam === c.dataset.f); });
+        fams.forEach((f) => f.querySelectorAll("[data-reveal]").forEach((r) => r.classList.add("is-in")));
+      }));
+      // your references: IndexedDB in this browser only (falls back to memory)
+      const mine = $("#i-mine"), drop = $("#i-drop"), file = $("#i-file");
+      let db = null;
+      const mem = [];
+      const open = () => new Promise((res) => { try { const r = indexedDB.open("aether-taste", 1); r.onupgradeneeded = () => r.result.createObjectStore("refs", { keyPath: "id" }); r.onsuccess = () => res(r.result); r.onerror = () => res(null); } catch (err) { res(null); } });
+      const tx = (mode, fn) => new Promise((res) => { if (!db) return res(fn(null)); try { const t = db.transaction("refs", mode); const st = t.objectStore("refs"); const out = fn(st); t.oncomplete = () => res(out); t.onerror = () => res(out); } catch (err) { res(fn(null)); } });
+      const all = () => new Promise((res) => { if (!db) return res(mem.slice()); try { const r = db.transaction("refs").objectStore("refs").getAll(); r.onsuccess = () => res(r.result || []); r.onerror = () => res([]); } catch (err) { res(mem.slice()); } });
+      const put = (rec) => tx("readwrite", (st) => { if (st) return st.put(rec); const i = mem.findIndex((m) => m.id === rec.id); if (i >= 0) mem[i] = rec; else mem.push(rec); return null; });
+      const del = (id) => tx("readwrite", (st) => (st ? st.delete(id) : mem.splice(mem.findIndex((m) => m.id === id), 1)));
+      const briefFor = (rec) => {
+        const f = L.families.find((x) => x.id === rec.family) || L.families[0];
+        return [`Build a landing page for Aether.`, ``, `1. Aesthetic: ${f.name}. ${f.about} Vocabulary: ${f.keywords.join(", ")}.`, `2. Reference: the attached screenshot "${rec.name}". Match its feel, not its layout or content.${rec.note ? " What I like about it: " + rec.note : ""}`, `3. Intent: ${L.intent}`, `4. Guardrails: ${L.guardrails.join(" ")}`, ``, `Make five versions first; I will pick one and we iterate.`].join("\n");
+      };
+      const render = async () => {
+        const list = await all();
+        mine.innerHTML = "";
+        list.sort((a, b) => b.t - a.t).forEach((rec) => {
+          const url = URL.createObjectURL(rec.blob);
+          const el = document.createElement("article");
+          el.className = "i-card";
+          el.innerHTML = `<figure class="i-shot"><img alt="Your reference ${rec.name.replace(/"/g, "")}" src="${url}"></figure><div class="i-meta"><h3></h3><label>Family <select>${L.families.map((f) => `<option value="${f.id}">${f.name}</option>`).join("")}</select></label><label>What you like about it <textarea></textarea></label><div class="i-act"><button type="button" class="i-btn" data-mine="brief">Copy brief</button><button type="button" class="i-btn" data-mine="del">Remove</button></div></div>`;
+          el.querySelector("h3").textContent = rec.name;
+          const sel = el.querySelector("select"), ta = el.querySelector("textarea");
+          sel.value = rec.family; ta.value = rec.note || "";
+          sel.addEventListener("change", () => { rec.family = sel.value; put(rec); });
+          ta.addEventListener("input", () => { rec.note = ta.value; put(rec); });
+          el.querySelector('[data-mine="brief"]').addEventListener("click", () => copy(briefFor(rec), "Brief"));
+          el.querySelector('[data-mine="del"]').addEventListener("click", async () => { await del(rec.id); URL.revokeObjectURL(url); render(); });
+          mine.appendChild(el);
+        });
+      };
+      const add = async (files) => {
+        for (const f of files) if (f.type.startsWith("image/")) await put({ id: Date.now() + "-" + Math.random().toString(36).slice(2, 7), t: Date.now(), name: f.name.replace(/\.[^.]+$/, ""), family: "atelier", note: "", blob: f });
+        render();
+        say(files.length + " reference" + (files.length === 1 ? "" : "s") + " added");
+      };
+      file.addEventListener("change", () => add([...file.files]));
+      ["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("is-over"); }));
+      ["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("is-over"); }));
+      drop.addEventListener("drop", (e) => add([...(e.dataTransfer ? e.dataTransfer.files : [])]));
+      open().then((d) => { db = d; render(); });
+    })();
+</script>
+</body>
+</html>

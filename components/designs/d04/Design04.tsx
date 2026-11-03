@@ -81,7 +81,7 @@ export default function Design04() {
         <section className="m4-hero" data-hero aria-labelledby="m4-h">
           <div className="m4-beam" data-hero-part="visual"><Wordmark /></div>
           <div className="m4-grid">
-            <h1 id="m4-h" data-hero-part="headline">Every model, one key, billed by the token.</h1>
+            <h1 id="m4-h" data-hero-part="headline">Every model on one key.</h1>
             <p className="k-body" data-hero-part="sub">Five model families with standard, low-refusal and abliterated variants, behind a single API. Rates are printed per million tokens — nothing bundled, nothing rounded.</p>
             <div className="m4-act">
               <div data-hero-part="cta"><a className="m4-btn" href="#rates" data-cta="primary" data-magnetic="4,0.26,0.58,0.3"><span data-magnetic-label>Get an API key</span></a></div>
@@ -174,9 +174,9 @@ export default function Design04() {
       </main>
       <footer className="m4-foot">
         <p className="m4-foot-word" aria-hidden>{BRAND.name.toUpperCase()}</p>
-        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#catalogue">{m.name}</a>)}</div>
-        <div><h4>API</h4><a href="#method">Quickstart</a><a href="#rates">Rates</a><a href="#schedule">Caching</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
+        <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#catalogue">{m.name}</a>)}</div>
+        <div><h3>API</h3><a href="#method">Quickstart</a><a href="#rates">Rates</a><a href="#schedule">Caching</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a><span>{MOCK_NOTE}</span></div>
       </footer>
     </div>
   );

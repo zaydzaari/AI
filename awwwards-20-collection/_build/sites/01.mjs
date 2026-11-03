@@ -4,10 +4,10 @@ import { BRAND, MODELS, BENEFITS, STEPS, PROOF, PLANS, PRICE_NOTE, PROOF_NOTE, c
 // The Aether stack, explained as a hand-finished movement.
 const LAYERS = [
   ["Unified API", "The mainplate everything is built on: one base URL and one key carry every request, in the request shape your SDK already speaks."],
-  ["Model families", "The going train. Core, Unbound, Forge, Atlas and Swift mesh on the same request — change one string to switch."],
+  ["Model families", "The going train. Core, Unbound, Forge, Atlas and Swift mesh on the same request; change one string to switch."],
   ["Prompt cache", "The bridges that hold repeated work in place. Repeated prompt prefixes are billed at the cached rate automatically."],
   ["Token meter", "The escapement. It releases tokens one beat at a time and counts every one, so each response arrives with its exact cost."],
-  ["Your product", "The chapter ring — what your users see: chat, agents and answers, standard, low-refusal or abliterated."],
+  ["Your product", "The chapter ring is what your users see: chat, agents and answers, standard, low-refusal or abliterated."],
 ];
 const FEATURES = BENEFITS.map(([f, b, d], i) => [f, b, d, i === 0 ? "wide" : i === 5 ? "full" : ""]);
 const WHEN = ["Minute one", "Minute five", "Every request after"];
@@ -166,7 +166,7 @@ body{font-size:1.05rem}
 .c-final .c-h2{font-size:clamp(2.6rem,6vw,5.4rem);max-width:16ch}
 .c-final .k-body{color:var(--text-muted);max-width:52ch}
 .c-foot{border-top:1px solid var(--line);padding:80px var(--gutter) 48px;display:grid;grid-template-columns:2fr repeat(3,1fr);gap:48px;font-size:.82rem;color:var(--text-muted)}
-.c-foot h4{font-family:var(--font-body);font-weight:500;font-size:.78rem;color:var(--text-primary);margin-bottom:16px}
+.c-foot h3{font-family:var(--font-body);font-weight:500;font-size:.78rem;color:var(--text-primary);margin-bottom:16px}
 .c-foot ul{display:grid;gap:10px}
 .c-foot a{text-decoration:none}
 .c-foot a:hover{color:var(--text-primary)}
@@ -190,12 +190,12 @@ body{font-size:1.05rem}
 <main id="main">
   <section class="c-hero" data-hero aria-labelledby="hero-title">
     <div class="c-hero-copy">
-      <h1 id="hero-title" data-hero-part="headline">Pay for every token. <em>Not one more.</em></h1>
-      <p class="k-body" data-hero-part="sub">One API key for five model families — standard, low-refusal or abliterated. Per-token rates, prompt caching on every model, and the exact cost on every response.</p>
+      <h1 id="hero-title" data-hero-part="headline">Pay for every token, nothing more.</h1>
+      <p class="k-body" data-hero-part="sub">One API key for five model families: standard, low-refusal or abliterated. Per-token rates, prompt caching on every model, and the exact cost on every response.</p>
       <div data-hero-part="cta"><a class="c-btn" href="#pricing" data-cta="primary" data-magnetic="7,0.14,0.78,0.4"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a></div>
       <div class="c-trust" data-hero-part="trust">
         <span class="c-ledger" role="img" aria-label="Five model families behind one key">${MODELS.map(() => `<i class="on"></i>`)}<i></i></span>
-        <span>Demo meter: <span class="c-beat" id="beats">0</span> tokens · <span class="c-beat" id="spend">$0.00000</span><br>at Core's sample output rate — a running example.</span>
+        <span>Demo meter: <span class="c-beat" id="beats">0</span> tokens · <span class="c-beat" id="spend">$0.00000</span><br>at Core's sample output rate, as a running example.</span>
       </div>
     </div>
     <div class="c-hero-visual" data-hero-part="visual"><canvas id="hero-cal" aria-label="A precision movement, the Aether stack, running" role="img"></canvas></div>
@@ -278,9 +278,9 @@ body{font-size:1.05rem}
 </main>
 <footer class="c-foot">
   <div><p class="big">${BRAND.name}</p><p style="margin-top:16px;max-width:40ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Platform</h4><ul><li><a href="#calibre">The stack</a></li><li><a href="#finishing">Features</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
-  <div><h4>Models</h4><ul>${MODELS.map((m) => `<li><a href="#pricing">${m.name}</a></li>`)}</ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#calibre">The stack</a></li><li><a href="#finishing">Features</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
+  <div><h3>Models</h3><ul>${MODELS.map((m) => `<li><a href="#pricing">${m.name}</a></li>`)}</ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
   <div class="legal"><span>${PRICE_NOTE}</span><span>Set in Cormorant Garamond and JetBrains Mono.</span></div>
 </footer>
 `,

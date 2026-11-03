@@ -32,7 +32,7 @@ function specimenFaces(root, sites) {
   return css;
 }
 
-export function buildGallery(root, built) {
+export function buildGallery(root, built, tweakFonts = []) {
   const sites = built;
   const dark = sites.filter((s) => s.mode === "dark").length, light = sites.length - dark;
   const fontsUnique = new Set(sites.map((s) => s.heading_font)).size;
@@ -75,7 +75,7 @@ export function buildGallery(root, built) {
     css: /* css */ `
 :root{--h1-weight:500;--mono:"DM Mono",monospace}
 .g-ar{width:14px;height:14px;flex:none}
-.g-nav{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--gutter);background:#0B0B0C;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+.g-nav{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--gutter);background:#0B0B0C;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.76rem;letter-spacing:.06em}
 .g-mark{text-decoration:none;display:flex;gap:12px;align-items:baseline}
 .g-mark b{font-family:var(--font-display);font-size:1.35rem;font-weight:600;letter-spacing:0}
 .g-mark span{color:var(--text-muted)}
@@ -88,7 +88,7 @@ export function buildGallery(root, built) {
 .g-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 28px;border-radius:99px;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:1rem;text-decoration:none}
 .g-btn i{font-style:normal;transition:transform .5s var(--ease)}
 .g-btn.is-near i{transform:translateY(3px)}
-.g-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+.g-meta-line{display:block;font-family:var(--mono);font-size:.8rem;color:var(--text-muted)}
 .g-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:500;letter-spacing:-.02em;line-height:1;max-width:18ch}
 .g-h2 em{font-style:italic}
 
@@ -102,18 +102,18 @@ export function buildGallery(root, built) {
 .g-trust b{color:var(--text-primary);font-weight:500}
 .g-spec{position:relative;height:min(74vh,700px);border-radius:14px;overflow:hidden;border:1px solid var(--line);cursor:pointer;touch-action:pan-y}
 .g-spec canvas{position:absolute;inset:0;width:100%;height:100%}
-.g-spec p{position:absolute;left:14px;bottom:10px;font-family:var(--mono);font-size:.68rem;color:#ECE9E3;background:#0B0B0Ccc;padding:3px 8px;border-radius:99px;pointer-events:none}
+.g-spec p{position:absolute;left:14px;bottom:10px;font-family:var(--mono);font-size:.6875rem;color:#ECE9E3;background:#0B0B0Ccc;padding:3px 8px;border-radius:99px;pointer-events:none}
 @media (max-width:900px){
   .g-hero{grid-template-columns:1fr;gap:14px;padding:14px var(--gutter);align-content:start;min-height:0}
   .g-copy{gap:12px}
   .g-btn{min-height:52px}
-  .g-trust{font-size:.7rem;gap:2px 12px}
+  .g-trust{font-size:.76rem;gap:2px 12px}
   .g-spec{height:150px}
   .g-spec p{display:none}
 }
 
 /* wall */
-.g-bar{position:sticky;top:60px;z-index:30;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:14px 0;margin-top:clamp(64px,6vw,80px);background:#0B0B0C;box-shadow:0 -40px 0 #0B0B0C;border-bottom:1px solid var(--line)}
+.g-bar{position:sticky;top:60px;z-index:30;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:14px 0;margin-top:clamp(64px,6vw,80px);background:#0B0B0C;border-bottom:1px solid var(--line)}
 .g-chips{display:flex;flex-wrap:wrap;gap:8px}
 .g-chip{min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:transparent;font-family:var(--mono);font-size:.78rem;color:var(--text-muted)}
 .g-chip:hover{color:var(--text-primary);border-color:#ECE9E355}
@@ -132,16 +132,16 @@ export function buildGallery(root, built) {
 .g-meta{position:relative;isolation:isolate;display:grid;gap:14px;align-content:start}
 .g-meta::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#ECE9E30f,transparent 65%);opacity:0;transition:opacity .3s}
 .g-meta:hover::before{opacity:1}
-.g-no{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--text-muted);letter-spacing:.06em}
+.g-no{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.76rem;color:var(--text-muted);letter-spacing:.06em}
 .g-meta h3{font-size:clamp(1.9rem,2.6vw,2.5rem);font-weight:500;line-height:1.02;letter-spacing:-.01em}
 .g-line{font-size:.92rem;color:var(--text-muted)}
 .g-tok{display:flex;height:14px;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
-.g-hex{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.72rem;color:var(--text-muted)}
+.g-hex{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
 .g-hex span{display:inline-flex;align-items:center;gap:7px}
 .g-hex i{width:10px;height:10px;border-radius:50%;border:1px solid #ECE9E340}
 .g-fp{display:grid;gap:8px;font-size:.86rem}
 .g-fp div{display:grid;grid-template-columns:88px 1fr;gap:12px}
-.g-fp dt{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);padding-top:2px}
+.g-fp dt{font-family:var(--mono);font-size:.76rem;color:var(--text-muted);padding-top:2px}
 .g-fp dd{margin:0}
 .g-act{display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
 .g-open,.g-insp{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:99px;font-size:.88rem;font-weight:600;text-decoration:none}
@@ -156,7 +156,7 @@ export function buildGallery(root, built) {
 .g-law em{font-style:italic}
 .g-dna{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .g-rule{display:grid;gap:12px;align-content:start;border:1px solid var(--line);border-radius:14px;background:var(--bg-secondary)}
-.g-rule .n{font-family:var(--mono);font-size:.72rem;color:var(--text-muted)}
+.g-rule .n{font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
 .g-rule h3{font-size:1.7rem;font-weight:500}
 .g-rule p{font-size:.9rem;color:var(--text-muted)}
 .g-run{margin-top:28px;display:grid;gap:10px}
@@ -167,12 +167,12 @@ export function buildGallery(root, built) {
 .g-tw{margin-top:clamp(64px,6vw,80px);overflow-x:auto;border:1px solid var(--line);border-radius:14px}
 .g-table{width:100%;min-width:1100px;border-collapse:collapse;font-size:.82rem}
 .g-table th,.g-table td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--line)}
-.g-table thead th{font-family:var(--mono);font-weight:400;font-size:.7rem;color:var(--text-muted);letter-spacing:.06em;background:var(--bg-secondary)}
+.g-table thead th{font-family:var(--mono);font-weight:400;font-size:.76rem;color:var(--text-muted);letter-spacing:.06em;background:var(--bg-secondary)}
 .g-table tbody th{font-weight:500;white-space:nowrap}
 .g-table tbody th a{text-decoration:none}
 .g-table tbody th a:hover{text-decoration:underline}
 .g-table .nm{font-size:1.25rem;display:block;line-height:1.1}
-.g-table .sw{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:.7rem;color:var(--text-muted);white-space:nowrap}
+.g-table .sw{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:.76rem;color:var(--text-muted);white-space:nowrap}
 .g-table .sw i{width:16px;height:16px;border-radius:4px;border:1px solid #ECE9E340}
 .g-table td{color:var(--text-muted)}
 .g-table td b{color:var(--text-primary);font-weight:500}
@@ -190,12 +190,12 @@ export function buildGallery(root, built) {
 .g-dt h2{font-size:clamp(2rem,3.4vw,3rem);font-weight:500;line-height:1}
 .g-dt .k-muted{font-size:.9rem}
 .g-sw3{display:grid;grid-template-columns:6fr 3fr 1.4fr;gap:6px}
-.g-sw3 div{border-radius:10px;padding:12px;min-height:84px;display:grid;align-content:end;font-family:var(--mono);font-size:.7rem;line-height:1.4;border:1px solid #ECE9E326}
-.g-ct{display:grid;gap:4px;font-family:var(--mono);font-size:.74rem;color:var(--text-muted)}
+.g-sw3 div{border-radius:10px;padding:12px;min-height:84px;display:grid;align-content:end;font-family:var(--mono);font-size:.76rem;line-height:1.4;border:1px solid #ECE9E326}
+.g-ct{display:grid;gap:4px;font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
 .g-ct b{color:var(--text-primary);font-weight:500}
 .g-dl{display:grid;gap:10px;font-size:.86rem}
 .g-dl div{display:grid;grid-template-columns:96px 1fr;gap:12px}
-.g-dl dt{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);padding-top:2px}
+.g-dl dt{font-family:var(--mono);font-size:.76rem;color:var(--text-muted);padding-top:2px}
 .g-dl dd{margin:0}
 .g-dbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:8px}
 .g-x{position:absolute;right:14px;top:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid #ECE9E340;background:#0B0B0Ccc;color:var(--text-primary);font-size:1.1rem}
@@ -203,7 +203,7 @@ export function buildGallery(root, built) {
 
 /* footer */
 .g-foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.82rem;color:var(--text-muted)}
-.g-foot h4{font-family:var(--mono);font-size:.74rem;font-weight:400;letter-spacing:.08em;color:var(--text-primary);margin-bottom:12px}
+.g-foot h3{font-family:var(--mono);font-size:.76rem;font-weight:400;letter-spacing:.08em;color:var(--text-primary);margin-bottom:12px}
 .g-foot ul{display:grid;gap:8px}
 .g-foot a{text-decoration:none}
 .g-foot a:hover{color:var(--text-primary)}
@@ -212,14 +212,13 @@ export function buildGallery(root, built) {
     body: h`
 <header class="g-nav">
   <a class="g-mark" href="#main"><b>${BRAND.name}</b><span>SOTD 2026 COLLECTION</span></a>
-  <nav class="g-links" data-spy aria-label="Sections"><a href="#wall">Wall</a><a href="#laws">Laws</a><a href="#registry">Registry</a></nav>
+  <nav class="g-links" data-spy aria-label="Sections"><a href="#wall">Wall</a><a href="#laws">Laws</a><a href="#registry">Registry</a><a href="inspiration/index.html">Taste library</a></nav>
   <span class="g-count">${sites.length} / 20 built</span>
 </header>
 <main id="main">
   <section class="g-hero" data-hero aria-labelledby="g-h">
     <div class="g-copy">
-      <p class="g-kick">Exhibition · ${sites.length} directions · one product</p>
-      <h1 id="g-h" data-hero-part="headline">${BRAND.name}, <em>twenty ways.</em></h1>
+      <h1 id="g-h" data-hero-part="headline">${BRAND.name}, twenty ways.</h1>
       <p class="k-body" data-hero-part="sub">Twenty landing pages for one AI platform that sells models, abliterated variants, coding agents and API tokens. One product, twenty visual languages.</p>
       <div data-hero-part="cta"><a class="g-btn" href="#wall" data-cta="primary" data-magnetic="6,0.18,0.72,0.35"><span data-magnetic-label>Enter the collection</span><i aria-hidden="true">↓</i></a></div>
       <p class="g-trust" data-hero-part="trust"><span><b>${fontsUnique}</b> heading fonts</span><span><b>${accentsUnique}</b> accents</span><span><b>0</b> shared signatures</span><span>checked at <b>1440</b> and <b>375</b></span></p>
@@ -229,7 +228,7 @@ export function buildGallery(root, built) {
 
   <section id="wall" data-section aria-labelledby="g-w">
     <div class="k-wrap">
-      <p class="g-kick" data-reveal>The wall</p>
+      
       <h2 id="g-w" class="g-h2" data-reveal>Every direction, <em>one click</em> from live.</h2>
       <div class="g-bar">
         <div class="g-chips" role="group" aria-label="Filter by mode">
@@ -250,7 +249,7 @@ export function buildGallery(root, built) {
   <section id="laws" data-section aria-labelledby="g-l">
     <div class="k-wrap">
       <div class="g-laws">
-        <div><p class="g-kick" data-reveal>The laws</p><h2 id="g-l" class="g-h2" data-reveal>One product, <em>no repeats.</em></h2></div>
+        <div><h2 id="g-l" class="g-h2" data-reveal>One product, <em>no repeats.</em></h2></div>
         <div>
           <p class="g-law" data-reveal>No two sites share a <em>heading font</em>, an <em>accent colour</em>, a <em>hero structure</em> or a <em>signature scroll mechanic</em>. The build refuses to run if they do.</p>
           <div class="g-run" data-reveal>
@@ -268,19 +267,19 @@ export function buildGallery(root, built) {
           ["Hero", "Headline, sub, one magnetic CTA, an interactive procedural visual and a concrete trust signal, all above the fold at 1440 × 900 and 375 × 667."],
           ["Story", "Seven beats: hero, problem with the signature mechanic, benefit bento, a pinned three-step rail, role-based proof, pricing with per-token rates, final CTA."],
           ["Motion", "Vertical-only reveals with 80ms staggers. Spotlight and magnetism on fine pointers only. Transform, opacity, clip-path and filter only; off-screen loops pause; reduced motion unpins."],
-        ].map(([t, d], i) => `<article class="g-rule k-card"><p class="n">RULE ${String(i + 1).padStart(2, "0")}</p><h3>${t}</h3><p>${d}</p></article>`)}
+        ].map(([t, d], i) => `<article class="g-rule k-card"><h3>${t}</h3><p>${d}</p></article>`)}
       </div>
     </div>
   </section>
 
   <section id="registry" data-section aria-labelledby="g-r">
     <div class="k-wrap">
-      <p class="g-kick" data-reveal>Fingerprint registry</p>
+      
       <h2 id="g-r" class="g-h2" data-reveal>Twenty fingerprints, <em>side by side.</em></h2>
       <div class="g-tw" tabindex="0" role="region" aria-label="Fingerprint registry table">
         <table class="g-table">
           <thead><tr><th scope="col">Direction</th><th scope="col">Type pairing</th><th scope="col">60 · 30 · 10</th><th scope="col">Hero layout</th><th scope="col">Signature mechanic</th></tr></thead>
-          <tbody>${DATA.map((d) => `<tr><th scope="row"><a href="${d.folder}/index.html"><span class="g-kick">N° ${d.id} · ${d.mode}</span><span class="nm" style="font-family:'S${d.id}'">${esc(d.name)}</span></a></th><td><b>${esc(d.heading)}</b><br>${esc(d.body)}</td><td><span class="sw"><i style="background:${d.p}"></i><i style="background:${d.s}"></i><i style="background:${d.a}"></i>${d.a}</span></td><td><b>${esc(short(d.hero))}</b><br>${esc(d.hero.split(":").slice(1).join(":").trim())}</td><td><b>${esc(short(d.sig))}</b><br>${esc(d.sig.split(":").slice(1).join(":").trim())}</td></tr>`)}</tbody>
+          <tbody>${DATA.map((d) => `<tr><th scope="row"><a href="${d.folder}/index.html"><span class="g-meta-line">N° ${d.id}, ${d.mode}</span><span class="nm" style="font-family:'S${d.id}'">${esc(d.name)}</span></a></th><td><b>${esc(d.heading)}</b><br>${esc(d.body)}</td><td><span class="sw"><i style="background:${d.p}"></i><i style="background:${d.s}"></i><i style="background:${d.a}"></i>${d.a}</span></td><td><b>${esc(short(d.hero))}</b><br>${esc(d.hero.split(":").slice(1).join(":").trim())}</td><td><b>${esc(short(d.sig))}</b><br>${esc(d.sig.split(":").slice(1).join(":").trim())}</td></tr>`)}</tbody>
         </table>
       </div>
     </div>
@@ -289,8 +288,8 @@ export function buildGallery(root, built) {
 <dialog class="g-dlg" id="g-dlg" aria-labelledby="g-dh"><form method="dialog"><button class="g-x" aria-label="Close inspector">×</button></form><div class="g-di" id="g-di"></div></dialog>
 <footer class="g-foot">
   <div><p class="g-mark"><b>${BRAND.name}</b><span>SOTD 2026 COLLECTION</span></p><p style="margin-top:12px;max-width:60ch">${BRAND.name} is a placeholder brand. Every page here is a design direction for an AI platform selling model access and API tokens; models, rates and quotes are mock data and nothing is live. The 20 blueprints supply visual language only.</p></div>
-  <div><h4>COLLECTION</h4><ul><li><a href="#wall">The wall</a></li><li><a href="#laws">The laws</a></li><li><a href="#registry">Registry</a></li></ul></div>
-  <div><h4>FILES</h4><ul><li><a href="fingerprint-registry.json">fingerprint-registry.json</a></li><li><a href="01-chronos-atelier/index.html">Start at N° 01</a></li></ul></div>
+  <div><h3>COLLECTION</h3><ul><li><a href="#wall">The wall</a></li><li><a href="#laws">The laws</a></li><li><a href="#registry">Registry</a></li></ul></div>
+  <div><h3>FILES</h3><ul><li><a href="inspiration/index.html">Taste library</a></li><li><a href="fingerprint-registry.json">fingerprint-registry.json</a></li><li><a href="01-chronos-atelier/index.html">Start at N° 01</a></li></ul></div>
 </footer>
 <script>window.G = ${JSON.stringify(DATA)};</script>
 `,
@@ -390,7 +389,7 @@ export function buildGallery(root, built) {
         body.innerHTML = `
           <div class="g-dv" style="--dv:${d.p}"><img src="${d.folder}/preview.jpg" width="720" height="450" alt="Desktop hero of ${d.id} ${d.name}"><span class="g-phone" aria-hidden="true"><img src="${d.folder}/preview-mobile.jpg" width="300" height="534" alt=""></span></div>
           <div class="g-dt">
-            <p class="g-kick">N° ${d.id} · ${d.mode}</p>
+            <p class="g-meta-line">N° ${d.id}, ${d.mode}</p>
             <h2 id="g-dh" style="font-family:'S${d.id}'">${d.name}</h2>
             <p class="k-muted">“${d.line}”</p>
             <div class="g-sw3" aria-label="Colour system">
@@ -418,6 +417,6 @@ export function buildGallery(root, built) {
     { family: "Schibsted Grotesk", axes: "wght@400..700" },
     { family: "DM Mono", axes: "wght@400;500" },
   ]);
-  const html = page(site, { fontCss: css + specimenFaces(root, sites), preload: [files[0]] });
+  const html = page({ ...site, tweakFonts }, { fontCss: css + specimenFaces(root, sites), preload: [files[0]] });
   fs.writeFileSync(path.join(root, "index.html"), html);
 }

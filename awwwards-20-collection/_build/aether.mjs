@@ -14,9 +14,9 @@ export const BRAND = {
 };
 
 export const PRICE_NOTE = "Sample rates for layout only. Final pricing not yet set.";
-export const PROOF_NOTE = "Placeholder testimonials — swap in real beta quotes before launch.";
+export const PROOF_NOTE = "Placeholder testimonials. Swap in real beta quotes before launch.";
 export const conceptNote = (style) =>
-  `${BRAND.name} is a placeholder brand and this page is the "${style}" design direction. Models, rates and quotes are mock data — nothing here is live.`;
+  `${BRAND.name} is a placeholder brand and this page is the "${style}" design direction. Models, rates and quotes are mock data, and nothing here is live.`;
 
 export const MODELS = [
   { id: "core", name: "Core", role: "General chat & reasoning", blurb: "The everyday model. Writing, analysis, planning and conversation.", context: "128K", contextK: 128, variants: ["Standard", "Low-refusal"], inPrice: 0.6, outPrice: 2.4, cached: 0.15 },
@@ -50,7 +50,7 @@ export const BENEFITS = [
 ];
 
 export const STEPS = [
-  ["Pick a model and a temperament", "Choose from five families. Add a suffix when you need fewer refusals — the request stays the same."],
+  ["Pick a model and a temperament", "Choose from five families. Add a suffix when you need fewer refusals; the request stays the same."],
   ["Send your first request", `Point the SDK you already use at ${BRAND.name}'s base URL. Streaming and tool calls work as before.`],
   ["Ship with costs in view", "Every response reports tokens, cached tokens and cost. Long prompts are cached automatically."],
 ];

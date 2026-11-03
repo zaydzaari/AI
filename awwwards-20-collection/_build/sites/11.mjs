@@ -12,16 +12,16 @@ const ZONES = [
 ].map((z) => ({ ...z, usd: usd(cost(z.m, z.inTok, z.outTok, z.cached || 0)) }));
 
 export default {
-  title: "Aether — Go as deep as your work needs",
+  title: "Aether — Go as deep as you need",
   description: "From quick answers to refusal-free research to million-token archives: five model families on one key, billed per token. Nomad design direction.",
   fonts: [
     { family: "DM Serif Display", axes: "ital@0;1" },
-    { family: "Plus Jakarta Sans", axes: "wght@400;500;600" },
+    { family: "Red Hat Text", axes: "wght@400;500;600" },
   ],
   tokens: {
     bgPrimary: "#06101E", bgSecondary: "#0E1E33", accent: "#F59E0B", onAccent: "#06101E",
     textPrimary: "#EAF1F8", textMuted: "#9DB0C6", line: "rgba(234,241,248,.13)",
-    display: '"DM Serif Display", Georgia, serif', body: '"Plus Jakarta Sans", sans-serif',
+    display: '"DM Serif Display", Georgia, serif', body: '"Red Hat Text", sans-serif',
   },
   css: /* css */ `
 .n11-nav{position:fixed;inset:0 0 auto;z-index:40;height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:linear-gradient(#06101Ef0,#06101E00);font-size:.86rem}
@@ -32,7 +32,7 @@ export default {
 .n11-coord{color:var(--text-muted);font-variant-numeric:tabular-nums}
 @media (max-width:900px){.n11-links{display:none}}
 .n11-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none}
-.n11-btn i{width:10px;height:10px;border-radius:50%;background:var(--on-accent);box-shadow:0 0 0 0 #06101E66;animation:n11b 2s infinite}
+.n11-btn i{width:10px;height:10px;border-radius:50%;background:var(--on-accent);box-shadow:0 0 0 0 #06101E66}
 @keyframes n11b{70%{box-shadow:0 0 0 8px #06101E00}}
 .n11-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.02em;line-height:1;max-width:16ch}
 .n11-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted)}
@@ -42,7 +42,7 @@ export default {
 .n11-hero{position:relative;min-height:100svh;display:grid;grid-template-columns:88px minmax(0,1fr);gap:clamp(24px,5vw,80px);padding:80px var(--gutter) 32px 0;overflow:clip}
 .n11-sonar{position:absolute;inset:0}
 .n11-sonar canvas{width:100%;height:100%}
-.n11-ruler{position:relative;z-index:2;border-right:1px solid var(--line);display:grid;grid-template-rows:repeat(9,1fr);font-size:.7rem;color:var(--text-muted);padding-left:16px}
+.n11-ruler{position:relative;z-index:2;border-right:1px solid var(--line);display:grid;grid-template-rows:repeat(9,1fr);font-size:.76rem;color:var(--text-muted);padding-left:16px}
 .n11-ruler span{border-top:1px solid var(--line);padding-top:4px;font-variant-numeric:tabular-nums}
 .n11-ruler span.sea{color:var(--accent);border-color:var(--accent)}
 .n11-copy{position:relative;z-index:2;align-self:center;display:grid;gap:24px;justify-items:start;max-width:720px}
@@ -53,7 +53,7 @@ export default {
 .n11-trust b{color:var(--text-primary);font-weight:600}
 @media (max-width:760px){
   .n11-hero{grid-template-columns:44px minmax(0,1fr);gap:16px;padding:70px var(--gutter) 16px 0}
-  .n11-ruler{padding-left:8px;font-size:.6rem}
+  .n11-ruler{padding-left:8px;font-size:.6875rem}
   .n11-copy{gap:14px;align-self:end}
 }
 
@@ -69,13 +69,13 @@ export default {
 /* signature: the descent */
 .n11-dive{position:relative;margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:200px minmax(0,1fr);background:linear-gradient(#0E2C4A 0%,#0A2038 25%,#06101E 55%,#03070D 100%)}
 .n11-gauge{position:sticky;top:0;height:100vh;padding:84px 0 28px var(--gutter);display:grid;grid-template-rows:auto 1fr auto;gap:16px;z-index:2}
-.n11-gauge .lbl{font-size:.72rem;color:var(--text-muted)}
+.n11-gauge .lbl{font-size:.76rem;color:var(--text-muted)}
 .n11-gauge .dep{font-family:var(--font-display);font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
 .n11-bar{position:relative;border-left:1px solid var(--line);margin-left:6px}
 .n11-bar i{position:absolute;left:-1px;top:0;width:3px;height:100%;background:var(--accent);transform:scaleY(var(--d,0));transform-origin:top}
-.n11-bar span{position:absolute;left:12px;font-size:.66rem;color:var(--text-muted);transform:translateY(-50%)}
+.n11-bar span{position:absolute;left:12px;font-size:.6875rem;color:var(--text-muted);transform:translateY(-50%)}
 .n11-gauge dl{display:grid;gap:8px}
-.n11-gauge dt{font-size:.68rem;color:var(--text-muted)}
+.n11-gauge dt{font-size:.6875rem;color:var(--text-muted)}
 .n11-gauge dd{margin:0;font-size:.98rem;font-weight:600;font-variant-numeric:tabular-nums}
 .n11-zones{position:relative}
 .n11-pings{position:sticky;top:0;height:100vh;margin-bottom:-100vh;pointer-events:none}
@@ -149,7 +149,7 @@ export default {
 .n11-final{display:grid;justify-items:center;text-align:center;gap:28px}
 .n11-final .n11-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
 .n11-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.86rem;color:var(--text-muted)}
-.n11-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
+.n11-foot h3{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
 .n11-foot ul{display:grid;gap:8px}
 .n11-foot a{text-decoration:none}
 .n11-foot a:hover{color:var(--text-primary)}
@@ -167,8 +167,8 @@ export default {
     <div class="n11-sonar" data-hero-part="visual"><canvas id="sonar" role="img" aria-label="A sonar field; tap or move the pointer to send a ping"></canvas></div>
     <div class="n11-ruler" aria-hidden="true">${["+4,000", "+2,000", "0 m", "−2,000", "−4,000", "−6,000", "−8,000", "−10,000", "−10,928"].map((d, i) => `<span${i === 2 ? ' class="sea"' : ""}>${d}</span>`)}</div>
     <div class="n11-copy">
-      <h1 id="n11-h" data-hero-part="headline">Go as deep as <em>your work needs.</em></h1>
-      <p class="k-body" data-hero-part="sub">From quick answers to refusal-free research to million-token archives — five model families on one key, billed per token on the way down.</p>
+      <h1 id="n11-h" data-hero-part="headline">Go as deep as you need.</h1>
+      <p class="k-body" data-hero-part="sub">From quick answers to refusal-free research to million-token archives: five model families on one key, billed per token on the way down.</p>
       <div data-hero-part="cta"><a class="n11-btn" href="#manifest" data-cta="primary" data-magnetic="6,0.12,0.82,0.4"><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a></div>
       <p class="n11-trust" data-hero-part="trust">Deepest dive: <b>Atlas</b>, ${M.atlas.context} context (placeholder spec), <b>${rate(M.atlas.cached)}</b> per 1M cached tokens.</p>
     </div>
@@ -240,10 +240,10 @@ export default {
 </main>
 <footer class="n11-foot">
   <div><p class="n11-mark">${BRAND.name}</p><p style="margin-top:12px;max-width:44ch">${conceptNote(STYLE)}</p></div>
-  <div><h4>Depths</h4><ul>${ZONES.map((z) => `<li><a href="#dive">${z.name}</a></li>`)}</ul></div>
-  <div><h4>Platform</h4><ul><li><a href="#kit">Features</a></li><li><a href="#route">API quickstart</a></li><li><a href="#manifest">Token rates</a></li></ul></div>
-  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in DM Serif Display and Plus Jakarta Sans.</span></p>
+  <div><h3>Depths</h3><ul>${ZONES.map((z) => `<li><a href="#dive">${z.name}</a></li>`)}</ul></div>
+  <div><h3>Platform</h3><ul><li><a href="#kit">Features</a></li><li><a href="#route">API quickstart</a></li><li><a href="#manifest">Token rates</a></li></ul></div>
+  <div><h3>Exhibition</h3><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>${PRICE_NOTE}</span><span>Set in DM Serif Display and Red Hat Text.</span></p>
 </footer>
 `,
   js: iife(() => {

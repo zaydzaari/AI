@@ -1,0 +1,2 @@
+9fadc41729c38fd47d7ae622b501558653f9d2e9 2026-11-02
+Copied from https://github.com/pbakaus/impeccable (Apache-2.0) at the commit above.

@@ -219,9 +219,9 @@ export default function Design11() {
       </main>
       <footer className="o11-foot">
         <div><p className="o11-mark">{BRAND.name}</p><p>{MOCK_NOTE}. Brand name is a placeholder.</p></div>
-        <div><h4>Models</h4>{MODELS.map((m) => <a key={m.id} href="#pricing">{m.name}</a>)}</div>
-        <div><h4>API</h4><a href="#integrate">Quickstart</a><a href="#precision">Usage metering</a><a href="#pricing">Rates</a></div>
-        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+        <div><h3>Models</h3>{MODELS.map((m) => <a key={m.id} href="#pricing">{m.name}</a>)}</div>
+        <div><h3>API</h3><a href="#integrate">Quickstart</a><a href="#precision">Usage metering</a><a href="#pricing">Rates</a></div>
+        <div><h3>Lab</h3><a href="/designs">Back to the gallery</a></div>
       </footer>
     </div>
   );
