@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Stream every token the moment it exists</title>
+<meta name="description" content="Streaming and tool calls on every model family: your users see each token as it is generated, and every token is metered. Lumina design direction.">
+<meta name="theme-color" content="#06070A">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%2306070A'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%2310B981'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/syncopate-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Syncopate";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/syncopate-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Syncopate";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/syncopate-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Space Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/space-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Space Mono";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/space-mono-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#06070A;--bg-secondary:#12151E;--accent:#10B981;--on-accent:#03140D;--text-primary:#E8ECF2;--text-muted:#96A0AE;--line:rgba(232,236,242,.12);--font-display:"Syncopate", sans-serif;--font-body:"Space Mono", ui-monospace, monospace}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Lumina Photonics ——— */
+
+:root{--h1-weight:700}
+.l18-nav{position:sticky;top:0;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#06070Af2;border-bottom:1px solid var(--line);font-size:.74rem}
+.l18-mark{font-family:var(--font-display);font-weight:700;font-size:.95rem;letter-spacing:.2em;text-decoration:none}
+.l18-links{display:flex;gap:2px}
+.l18-links a{text-decoration:none;color:var(--text-muted);padding:6px 10px;border:1px solid transparent}
+.l18-links a.is-current{color:var(--text-primary);border-color:var(--accent);box-shadow:0 0 12px #10B98155}
+.l18-nm{color:var(--text-muted)}
+@media (max-width:900px){.l18-links{display:none}}
+.l18-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 24px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-decoration:none;box-shadow:0 0 30px -4px #10B98199}
+.l18-btn i{width:28px;height:2px;background:var(--on-accent);position:relative;transition:width .4s var(--ease)}
+.l18-btn i::after{content:"";position:absolute;right:-1px;top:-3px;width:8px;height:8px;border-right:2px solid var(--on-accent);border-top:2px solid var(--on-accent);transform:rotate(45deg)}
+.l18-btn.is-near i{width:38px}
+.l18-h2{font-size:clamp(1.8rem,3.6vw,3.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;max-width:20ch}
+.l18-fine{margin-top:22px;font-size:.74rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* hero: die floorplan */
+.l18-hero{position:relative;min-height:calc(100svh - 58px);display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto 1fr auto;gap:14px;padding:20px var(--gutter)}
+.l18-wg{position:absolute;inset:0;pointer-events:none}
+.l18-wg canvas{width:100%;height:100%}
+.l18-blk{position:relative;z-index:1;border:1px solid var(--line);background:#0B0D13e6;padding:22px;display:grid;gap:14px;align-content:start}
+.l18-blk::before{content:attr(data-id);position:absolute;right:8px;top:6px;font-size:.6rem;color:#96A0AE99}
+.l18-b1{grid-column:1 / span 8;grid-row:1}
+.l18-b1 h1{font-weight:700;line-height:1;max-width:none}
+.l18-b2{grid-column:1 / span 5;grid-row:2;align-content:center}
+.l18-b2 .k-body{color:var(--text-muted)}
+.l18-b3{grid-column:9 / -1;grid-row:1 / span 2;display:grid;grid-template-rows:1fr auto;padding:0}
+.l18-b3 .core{position:relative;min-height:180px}
+.l18-b3 .core canvas{position:absolute;inset:0;width:100%;height:100%}
+.l18-b3 .io{padding:16px;border-top:1px solid var(--line);font-size:.72rem;color:var(--text-muted)}
+.l18-b4{grid-column:6 / span 3;grid-row:2;align-content:center}
+.l18-b5{grid-column:1 / span 5;grid-row:3;align-content:center}
+.l18-b6{grid-column:6 / -1;grid-row:3;align-content:center}
+.l18-trust{font-size:.76rem;color:var(--text-muted);display:flex;gap:18px;flex-wrap:wrap}
+.l18-trust b{color:var(--text-primary);font-weight:400}
+@media (max-width:900px){
+  .l18-hero{grid-template-columns:1fr 1fr;grid-template-rows:auto;grid-auto-flow:dense;gap:8px;padding:10px var(--gutter);align-content:start}
+  .l18-btn{padding:0 14px;font-size:.7rem;gap:8px;white-space:nowrap}
+  .l18-btn i{width:18px}
+  .l18-blk{padding:12px;gap:8px}
+  .l18-b1,.l18-b2,.l18-b5,.l18-b6{grid-column:1 / -1;grid-row:auto}
+  .l18-b3{grid-column:2;grid-row:auto}
+  .l18-b3 .core{min-height:80px}
+  .l18-b3 .io{display:none}
+  .l18-b4{grid-column:1;grid-row:auto}
+  .l18-b6{display:none}
+}
+
+/* problem */
+.l18-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.l18-loss{display:grid;gap:8px}
+.l18-loss li{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:18px 20px;border:1px solid var(--line);background:var(--bg-secondary)}
+.l18-loss .was{color:var(--text-muted);font-size:.84rem}
+.l18-loss .now{font-size:.9rem;color:var(--text-primary)}
+@media (max-width:900px){.l18-cols{grid-template-columns:1fr;gap:40px}.l18-loss li{grid-template-columns:1fr;gap:4px}}
+
+/* signature: two lanes */
+.l18-run{height:420vh;position:relative;margin-top:clamp(64px,6vw,80px)}
+.l18-pin{position:sticky;top:58px;height:calc(100vh - 58px);display:grid;grid-template-rows:1fr auto;gap:18px;padding:22px var(--gutter)}
+.l18-bench{position:relative;border:1px solid var(--line);background:radial-gradient(800px 300px at 50% 50%,#10B9810d,transparent 70%),#08090D}
+.l18-bench canvas{position:absolute;inset:0;width:100%;height:100%}
+.l18-lab{position:absolute;left:16px;font-size:.7rem;color:var(--text-muted)}
+.l18-meters{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.l18-meters div{background:var(--bg-primary);padding:14px 16px;display:grid;gap:4px}
+.l18-meters span{font-size:.68rem;color:var(--text-muted)}
+.l18-meters b{font-family:var(--font-display);font-size:1.4rem;font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.l18-run{height:380vh}.l18-pin{padding:12px var(--gutter);gap:10px}.l18-meters{grid-template-columns:1fr 1fr}.l18-meters b{font-size:1.05rem}}
+@media (prefers-reduced-motion:reduce){.l18-run{height:auto}.l18-pin{position:relative;height:100vh}}
+
+/* bento: the wafer */
+.l18-wafer{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.l18-die{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--line);background:var(--bg-secondary);display:grid;gap:12px;align-content:start;min-height:230px}
+.l18-die::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),#10B9811f,transparent 65%);opacity:0;transition:opacity .3s}
+.l18-die:hover::before{opacity:1}
+.l18-die .tag{display:flex;justify-content:space-between;font-size:.66rem;color:var(--text-muted)}
+.l18-die h3{font-family:var(--font-display);font-size:1rem;font-weight:700;line-height:1.35;letter-spacing:.02em}
+.l18-die p{font-size:.8rem;color:var(--text-muted)}
+.l18-die.d0{grid-column:span 2;grid-row:span 2}.l18-die.d0 h3{font-size:clamp(1.4rem,2.2vw,2rem)}
+.l18-die.d5{grid-column:span 2}
+@media (max-width:900px){.l18-wafer{grid-template-columns:1fr}.l18-die{grid-column:auto!important;grid-row:auto!important;min-height:0}}
+
+/* rail */
+.l18-rail-head{padding:0 var(--gutter);margin-bottom:44px}
+.l18-steps{padding:0 var(--gutter);gap:8px}
+.l18-step{width:min(540px,50vw);border:1px solid var(--line);background:var(--bg-secondary);display:grid;gap:12px;align-content:start}
+.l18-step.is-active{border-color:var(--accent);box-shadow:0 0 24px -8px #10B98166}
+.l18-step .n{font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--text-muted);letter-spacing:.2em}
+.l18-step h3{font-family:var(--font-display);font-size:1.15rem;font-weight:700;line-height:1.3}
+.l18-step p{color:var(--text-muted);font-size:.84rem}
+.l18-step pre{margin:0;background:#06070A;border:1px solid var(--line);padding:12px;font-size:.72rem;overflow-x:auto;white-space:pre}
+@media (max-width:899px){.l18-step{width:auto}}
+
+/* logs */
+.l18-logs{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.l18-log{border:1px solid var(--line);display:grid;gap:12px;background:var(--bg-secondary)}
+.l18-log .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.68rem;color:var(--text-muted)}
+.l18-log b{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--text-primary);letter-spacing:.04em}
+.l18-log q{font-size:.86rem;line-height:1.6;quotes:"“" "”"}
+@media (max-width:760px){.l18-logs{grid-template-columns:1fr}}
+
+/* pricing */
+.l18-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.l18-plan{border:1px solid var(--line);display:grid;gap:12px;align-content:start}
+.l18-plan.feat{border-color:var(--accent);background:#0C1712}
+.l18-plan h3{font-family:var(--font-display);font-size:.9rem;font-weight:700;letter-spacing:.16em}
+.l18-plan .p{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1.1}
+.l18-plan .cad{font-size:.72rem;color:var(--text-muted)}
+.l18-plan ul{display:grid;gap:6px;font-size:.8rem}
+.l18-plan li::before{content:"> ";color:var(--accent)}
+.l18-plan .fk{font-size:.76rem;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:900px){.l18-plans{grid-template-columns:1fr}}
+.l18-table{width:100%;margin-top:32px;border-collapse:collapse;font-size:.8rem;font-variant-numeric:tabular-nums}
+.l18-table caption{text-align:left;font-family:var(--font-display);font-weight:700;font-size:.9rem;letter-spacing:.12em;padding-bottom:12px}
+.l18-table th,.l18-table td{text-align:left;padding:12px;border:1px solid var(--line)}
+.l18-table thead th{font-weight:400;color:var(--text-muted);font-size:.7rem}
+@media (max-width:700px){.l18-table th:nth-child(2),.l18-table td:nth-child(2){display:none}}
+
+/* final + footer */
+.l18-final{display:grid;justify-items:center;text-align:center;gap:28px}
+.l18-final .l18-h2{font-size:clamp(2.2rem,5vw,4.4rem)}
+.l18-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.74rem;color:var(--text-muted)}
+.l18-foot h4{font-family:var(--font-display);font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--text-primary);margin-bottom:12px}
+.l18-foot ul{display:grid;gap:8px}
+.l18-foot a{text-decoration:none}
+.l18-foot a:hover{color:var(--text-primary)}
+.l18-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.l18-foot{grid-template-columns:1fr 1fr}.l18-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="l18-nav">
+  <a class="l18-mark" href="#main">AETHER</a>
+  <nav class="l18-links" data-spy aria-label="Sections"><a href="#loss">Loss</a><a href="#bench">Bench</a><a href="#wafer">Wafer</a><a href="#fab">Fab</a><a href="#logs">Logs</a><a href="#rates">Rates</a></nav>
+  <span class="l18-nm">λ 1550 nm · streaming</span>
+</header>
+<main id="main">
+  <section class="l18-hero" data-hero aria-labelledby="l18-h">
+    <div class="l18-wg" aria-hidden="true"><canvas id="wg"></canvas></div>
+    <div class="l18-blk l18-b1" data-id="BLK-A · TITLE"><h1 id="l18-h" data-hero-part="headline">Stream every token.</h1></div>
+    <div class="l18-blk l18-b2" data-id="BLK-B · SPEC"><p class="k-body" data-hero-part="sub">Your users see each token the moment it is generated — streaming and tool calls on every model family, every token metered.</p></div>
+    <div class="l18-blk l18-b3" data-id="BLK-C · CORE"><div class="core" data-hero-part="visual"><canvas id="core" role="img" aria-label="A photonic core: light packets travel through waveguides; the pointer bends the beam"></canvas></div><p class="io">5 model families · one OpenAI-style request shape</p></div>
+    <div class="l18-blk l18-b4" data-id="BLK-D · IO" data-hero-part="cta"><a class="l18-btn" href="#rates" data-cta="primary" data-magnetic="4,0.24,0.6,0.4"><span data-magnetic-label>GET A KEY</span><i aria-hidden="true"></i></a></div>
+    <div class="l18-blk l18-b5" data-id="BLK-E · METER"><p class="l18-trust" data-hero-part="trust"><span>Streaming</span><b>on every model</b><span>Swift output from</span><b>$0.32 / 1M</b></p></div>
+    <div class="l18-blk l18-b6" data-id="BLK-F · BUS" aria-hidden="true"><p class="l18-trust"><span>stream: true</span><span>tools: [...]</span><span>usage → tokens · cost</span></p></div>
+  </section>
+
+  <section id="loss" data-section aria-labelledby="l18-l">
+    <div class="k-wrap l18-cols">
+      <h2 id="l18-l" class="l18-h2" data-reveal>Every hop between providers loses signal.</h2>
+      <ul class="l18-loss" data-stagger><li><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li></ul>
+    </div>
+    <div class="l18-run" id="bench">
+      <div class="l18-pin">
+        <div class="l18-bench"><canvas id="lanes" role="img" aria-label="Two lanes: buffered tokens arrive all at once at the end; streamed tokens arrive as they are generated"></canvas><span class="l18-lab" style="top:12px">LANE A · buffered (copper) — the user waits for the whole answer</span><span class="l18-lab" style="top:52%">LANE B · streamed (optical) — each token reaches the user as it is generated</span></div>
+        <div class="l18-meters" aria-live="polite">
+          <div><span>Tokens generated</span><b id="m-gen">0</b></div>
+          <div><span>Seen by user · buffered</span><b id="m-a">0</b></div>
+          <div><span>Seen by user · streamed</span><b class="live" id="m-b">0</b></div>
+          <div><span>Metered so far</span><b id="m-c">$0.0000</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="k-wrap l18-fine">A 620-token Core answer at sample output rates; the comparison is illustrative, not a latency benchmark. Sample rates for layout only. Final pricing not yet set.</p>
+  </section>
+
+  <section id="wafer" data-section aria-labelledby="l18-w">
+    <div class="k-wrap">
+      <h2 id="l18-w" class="l18-h2" data-reveal>The wafer: each die, and what it does for you.</h2>
+      <div class="l18-wafer" data-stagger><article class="l18-die k-card d0" data-spot><p class="tag"><span>DIE 01</span><span>Unified chat</span></p><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="l18-die k-card d1" data-spot><p class="tag"><span>DIE 02</span><span>Three temperaments</span></p><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="l18-die k-card d2" data-spot><p class="tag"><span>DIE 03</span><span>Coding agents</span></p><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="l18-die k-card d3" data-spot><p class="tag"><span>DIE 04</span><span>Long context</span></p><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="l18-die k-card d4" data-spot><p class="tag"><span>DIE 05</span><span>Prompt caching</span></p><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="l18-die k-card d5" data-spot><p class="tag"><span>DIE 06</span><span>Side-by-side compare</span></p><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article></div>
+    </div>
+  </section>
+
+  <section id="fab" data-section aria-labelledby="l18-f">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="l18-rail-head"><h2 id="l18-f" class="l18-h2" data-reveal>Fabrication: three steps.</h2></div>
+        <ol class="l18-steps" data-rail-track><li class="l18-step k-card"><span class="n">STEP 1</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p><pre><code>model: "core-128k"</code></pre></li><li class="l18-step k-card"><span class="n">STEP 2</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+stream:  true</code></pre></li><li class="l18-step k-card"><span class="n">STEP 3</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p><pre><code>for await (const chunk of stream) render(chunk)</code></pre></li></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="logs" data-section aria-labelledby="l18-g">
+    <div class="k-wrap">
+      <h2 id="l18-g" class="l18-h2" data-reveal>Bench logs, by role.</h2>
+      <div class="l18-logs" data-stagger><article class="l18-log k-card"><p class="hd"><b>BACKEND DEVELOPER</b><span>LOG 001 · One key instead of three</span></p><q>Replace with a real quote about consolidating providers behind one base URL.</q></article><article class="l18-log k-card"><p class="hd"><b>SAFETY RESEARCHER</b><span>LOG 002 · Studying refusal behaviour</span></p><q>Replace with a real quote about comparing standard and abliterated variants.</q></article><article class="l18-log k-card"><p class="hd"><b>NOVELIST</b><span>LOG 003 · Dark themes, no lectures</span></p><q>Replace with a real quote about writing difficult scenes without refusals.</q></article><article class="l18-log k-card"><p class="hd"><b>STARTUP CTO</b><span>LOG 004 · Predictable costs</span></p><q>Replace with a real quote about per-request cost reporting and caching.</q></article></div>
+      <p class="l18-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="rates" data-section aria-labelledby="l18-r">
+    <div class="k-wrap">
+      <h2 id="l18-r" class="l18-h2" data-reveal>Rates, metered per token.</h2>
+      <div class="l18-plans" data-stagger><article class="l18-plan k-card"><h3>EXPLORE</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="l18-plan k-card feat"><h3>PRO</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="l18-plan k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article></div>
+      <table class="l18-table" data-reveal>
+        <caption>PER 1M TOKENS</caption>
+        <thead><tr><th scope="col">Model</th><th scope="col">Role</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>128K</td><td>$0.60</td><td>$0.15</td><td>$2.40</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>128K</td><td>$0.80</td><td>$0.20</td><td>$3.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>256K</td><td>$1.20</td><td>$0.30</td><td>$4.80</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>1M</td><td>$1.50</td><td>$0.25</td><td>$6.00</td></tr><tr><th scope="row">Swift</th><td>Fast & small</td><td>32K</td><td>$0.08</td><td>$0.02</td><td>$0.32</td></tr></tbody>
+      </table>
+      <p class="l18-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="l18-z">
+    <div class="k-wrap l18-final">
+      <h2 id="l18-z" class="l18-h2" data-reveal>Turn on the light.</h2>
+      <a class="l18-btn" href="#main" data-magnetic="4,0.24,0.6,0.4" data-reveal><span data-magnetic-label>GET A KEY</span><i aria-hidden="true"></i></a>
+    </div>
+  </section>
+</main>
+<footer class="l18-foot">
+  <div><p class="l18-mark">AETHER</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Lumina" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>MODELS</h4><ul><li><a href="#rates">Core</a></li><li><a href="#rates">Unbound</a></li><li><a href="#rates">Forge</a></li><li><a href="#rates">Atlas</a></li><li><a href="#rates">Swift</a></li></ul></div>
+  <div><h4>PLATFORM</h4><ul><li><a href="#bench">Streaming</a></li><li><a href="#fab">API quickstart</a></li><li><a href="#rates">Token rates</a></li></ul></div>
+  <div><h4>EXHIBITION</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Syncopate and Space Mono.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, lerp, canvas, loop, onScroll, progress, pointer } = K;
+    const TAU = Math.PI * 2;
+
+    // —— hero: waveguides between the floorplan blocks + a photonic core ——
+    const hero = $(".l18-hero"), wc = $("#wg"), ws = canvas(wc);
+    const blocks = $$(".l18-blk");
+    const centre = (el) => { const r = el.getBoundingClientRect(), h = hero.getBoundingClientRect(); return [r.left - h.left + r.width / 2, r.top - h.top + r.height / 2]; };
+    const pairs = [[0, 2], [1, 3], [3, 2], [1, 4], [4, 5], [3, 5]];
+    loop(wc, (t) => {
+      const { ctx, w, h } = ws;
+      ctx.clearRect(0, 0, w, h);
+      const pts = blocks.map(centre);
+      const guides = new Path2D();
+      pairs.forEach(([a, b]) => { const [x0, y0] = pts[a], [x1, y1] = pts[b]; guides.moveTo(x0, y0); guides.lineTo((x0 + x1) / 2, y0); guides.lineTo((x0 + x1) / 2, y1); guides.lineTo(x1, y1); });
+      ctx.strokeStyle = "rgba(16,185,129,.16)"; ctx.lineWidth = 3; ctx.stroke(guides);
+      ctx.strokeStyle = "rgba(16,185,129,.5)"; ctx.lineWidth = 1; ctx.stroke(guides);
+      const pk = new Path2D();
+      pairs.forEach(([a, b], i) => {
+        const [x0, y0] = pts[a], [x1, y1] = pts[b], mx = (x0 + x1) / 2;
+        const L1 = Math.abs(mx - x0), L2 = Math.abs(y1 - y0), L3 = Math.abs(x1 - mx), L = L1 + L2 + L3 || 1;
+        for (let k = 0; k < 3; k++) {
+          let d = (((RM ? 0.5 : t * 0.35) + i * 0.17 + k / 3) % 1) * L, x, y;
+          if (d < L1) { x = x0 + Math.sign(mx - x0) * d; y = y0; } else if ((d -= L1) < L2) { x = mx; y = y0 + Math.sign(y1 - y0) * d; } else { d -= L2; x = mx + Math.sign(x1 - mx) * d; y = y1; }
+          pk.moveTo(x + 3, y); pk.arc(x, y, 3, 0, TAU);
+        }
+      });
+      ctx.fillStyle = "#6EF0C2"; ctx.fill(pk);
+    });
+    const cc = $("#core"), cs = canvas(cc);
+    loop(cc, (t) => {
+      const { ctx, w, h } = cs;
+      ctx.clearRect(0, 0, w, h);
+      const r = cc.getBoundingClientRect();
+      const bend = pointer.active ? clamp((pointer.y - (r.top + r.height / 2)) / r.height, -0.5, 0.5) : Math.sin(t * 0.7) * 0.25;
+      // ring resonator + bus waveguides
+      const R = Math.min(w, h) * 0.22, cx = w / 2, cy = h / 2;
+      ctx.strokeStyle = "rgba(16,185,129,.6)"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, cy - R - 6); ctx.lineTo(w, cy - R - 6); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, cy + R + 6 + bend * 30); ctx.bezierCurveTo(w * 0.3, cy + R + 6 + bend * 30, w * 0.7, cy + R + 6 - bend * 30, w, cy + R + 6 - bend * 30); ctx.stroke();
+      const pk = new Path2D();
+      for (let k = 0; k < 10; k++) { const a = (RM ? 0 : t * 2) + (k / 10) * TAU; pk.moveTo(cx + Math.cos(a) * R + 3, cy + Math.sin(a) * R); pk.arc(cx + Math.cos(a) * R, cy + Math.sin(a) * R, 3, 0, TAU); }
+      for (let k = 0; k < 6; k++) { const x = (((RM ? 0.3 : t * 0.3) + k / 6) % 1) * w; pk.moveTo(x + 2.5, cy - R - 6); pk.arc(x, cy - R - 6, 2.5, 0, TAU); }
+      ctx.fillStyle = "#6EF0C2"; ctx.fill(pk);
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.6); g.addColorStop(0, "rgba(16,185,129,.18)"); g.addColorStop(1, "rgba(16,185,129,0)");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    });
+
+    // —— signature: scroll is generation time; compare buffered vs streamed delivery ——
+    const run = $("#bench"), lc = $("#lanes"), ls = canvas(lc);
+    const TOTAL = 620, core = AE.MODELS[0];
+    const m = { gen: $("#m-gen"), a: $("#m-a"), b: $("#m-b"), c: $("#m-c") };
+    let p = 0;
+    onScroll(() => {
+      p = RM ? 1 : clamp((progress(run) - 0.05) / 0.85);
+      const gen = Math.round(p * TOTAL);
+      m.gen.textContent = gen; m.a.textContent = p >= 0.999 ? TOTAL : 0; m.b.textContent = gen;
+      m.c.textContent = "$" + ((gen * core.outPrice) / 1e6).toFixed(4);
+    });
+    loop(lc, (t) => {
+      const { ctx, w, h } = ls;
+      ctx.clearRect(0, 0, w, h);
+      const lanes = [h * 0.3, h * 0.78], gx = Math.max(60, w * 0.12), ux = w - 70;
+      lanes.forEach((y, i) => {
+        ctx.strokeStyle = i ? "rgba(16,185,129,.55)" : "rgba(184,115,51,.55)"; ctx.lineWidth = i ? 2 : 6;
+        ctx.beginPath(); ctx.moveTo(gx, y); ctx.lineTo(ux, y); ctx.stroke();
+        // model (source) and user (sink)
+        ctx.fillStyle = "#12151E"; ctx.strokeStyle = "rgba(232,236,242,.5)"; ctx.lineWidth = 1;
+        ctx.fillRect(gx - 50, y - 22, 64, 44); ctx.strokeRect(gx - 50, y - 22, 64, 44);
+        ctx.fillRect(ux - 10, y - 22, 64, 44); ctx.strokeRect(ux - 10, y - 22, 64, 44);
+        ctx.fillStyle = "#96A0AE"; ctx.font = '11px "Space Mono", monospace';
+        ctx.fillText("MODEL", gx - 42, y + 4); ctx.fillText("USER", ux + 4, y + 4);
+      });
+      const gen = p * TOTAL, pk = new Path2D(), buf = new Path2D();
+      // lane B: each generated token flies to the user immediately
+      const N = 40;
+      for (let k = 0; k < N; k++) {
+        const born = (k / N) * TOTAL;
+        if (born > gen) break;
+        const age = (gen - born) / (TOTAL / N) * 0.1 + ((RM ? 0 : t * 0.6) % 0.05);
+        const x = lerp(gx + 20, ux - 14, Math.min(1, age));
+        if (age < 1) { pk.moveTo(x + 4, lanes[1]); pk.arc(x, lanes[1], 4, 0, TAU); }
+      }
+      // lane A: tokens pile up in a buffer, then release together at the end
+      const piled = Math.min(N, Math.round((gen / TOTAL) * N));
+      for (let k = 0; k < piled; k++) { const x = gx + 24 + (k % 10) * 7, y = lanes[0] - 14 + Math.floor(k / 10) * 7; buf.rect(x, y, 5, 5); }
+      if (p >= 0.999) for (let k = 0; k < N; k++) { const x = ux - 30 - (k % 10) * 6; buf.rect(x, lanes[0] - 14 + Math.floor(k / 10) * 7, 4, 4); }
+      ctx.fillStyle = "#6EF0C2"; ctx.fill(pk);
+      ctx.fillStyle = "#D08A4E"; ctx.fill(buf);
+      // user progress bars
+      ctx.fillStyle = "rgba(232,236,242,.12)"; ctx.fillRect(ux + 60, lanes[0] - 4, 8, 8 + 0); ctx.fillRect(ux + 60, lanes[1] - 4, 8, 8);
+    });
+  })();
+</script>
+</body>
+</html>

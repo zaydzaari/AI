@@ -332,7 +332,7 @@
       },
       "signature_scroll_mechanic": "Photonic packet routing: scroll fires laser packets through logic gates while copper and optical loss are compared live",
       "hero_layout_type": "Die floorplan: the hero is laid out as chip blocks joined by glowing waveguides",
-      "built": false
+      "built": true
     },
     {
       "id": "19",
