@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Every model, in orbit around one key</title>
+<meta name="description" content="Five model families on one API, each in its own orbit, with a routing receipt for every request. Aether Orbital design direction.">
+<meta name="theme-color" content="#05070B">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%2305070B'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%2300F5D4'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/unbounded-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Unbounded";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Unbounded";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/unbounded-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Unbounded";font-style:normal;font-weight:800;font-display:swap;src:url(fonts/unbounded-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Space Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/space-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Space Mono";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/space-mono-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#05070B;--bg-secondary:#0F141C;--accent:#00F5D4;--on-accent:#021512;--text-primary:#E6EEF5;--text-muted:#93A3B5;--line:rgba(230,238,245,.12);--font-display:"Unbounded", sans-serif;--font-body:"Space Mono", ui-monospace, monospace}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Aether Orbital ——— */
+
+body{font-size:1.05rem}
+.o3-nav{position:fixed;inset:0 0 auto;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:linear-gradient(#05070Bf0,#05070B00)}
+.o3-mark{font-family:var(--font-display);font-weight:800;font-size:1rem;letter-spacing:.08em;text-decoration:none}
+.o3-mark span{color:var(--text-muted);font-weight:400}
+.o3-links{display:flex;gap:4px;font-size:.78rem}
+.o3-links a{text-decoration:none;color:var(--text-muted);padding:6px 12px;border:1px solid transparent;border-radius:2px}
+.o3-links a.is-current{color:var(--text-primary);border-color:var(--accent)}
+.o3-utc{font-size:.76rem;color:var(--text-muted);font-variant-numeric:tabular-nums}
+@media (max-width:900px){.o3-links{display:none}}
+.o3-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 26px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:600;font-size:.86rem;letter-spacing:.02em;text-decoration:none;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.o3-btn svg{width:16px;height:16px;transition:transform .4s var(--ease)}
+.o3-btn.is-near svg{transform:rotate(45deg)}
+.o3-h2{font-size:clamp(2rem,3.8vw,3.4rem);font-weight:600;letter-spacing:-.03em;line-height:1.02;max-width:20ch}
+.o3-fine{margin-top:22px;font-size:.78rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* hero: HUD corners */
+.o3-hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr auto;padding:84px var(--gutter) 32px;overflow:clip}
+.o3-globe{position:absolute;inset:0}
+.o3-globe canvas{width:100%;height:100%}
+.o3-corner{position:relative;z-index:2}
+.o3-tl{grid-column:1 / span 2;display:grid;gap:18px;max-width:780px}
+.o3-tl h1{font-weight:800;line-height:.96}
+.o3-tl .k-body{color:var(--text-muted);max-width:46ch}
+.o3-tr{grid-column:2;grid-row:2;justify-self:end;align-self:start;text-align:right;font-size:.76rem;color:var(--text-muted);display:grid;gap:4px;margin-top:24px}
+.o3-tr b{font-family:var(--font-display);font-size:1.6rem;color:var(--text-primary);font-weight:400}
+.o3-bl{grid-column:1;grid-row:3;align-self:end;display:grid;gap:12px;justify-items:start}
+.o3-br{grid-column:2;grid-row:3;align-self:end;justify-self:end;text-align:right;font-size:.8rem;color:var(--text-muted);max-width:34ch;border-right:2px solid var(--accent);padding-right:14px}
+.o3-br b{color:var(--text-primary)}
+.o3-tick{position:absolute;width:22px;height:22px;border-color:#E6EEF566;border-style:solid;pointer-events:none;z-index:2}
+.o3-tick.a{top:72px;left:16px;border-width:1px 0 0 1px}.o3-tick.b{top:72px;right:16px;border-width:1px 1px 0 0}.o3-tick.c{bottom:16px;left:16px;border-width:0 0 1px 1px}.o3-tick.d{bottom:16px;right:16px;border-width:0 1px 1px 0}
+@media (max-width:860px){
+  .o3-hero{grid-template-columns:1fr;grid-template-rows:auto 1fr auto auto;padding:72px var(--gutter) 18px}
+  .o3-tl{grid-column:1;gap:12px}
+  .o3-tr{display:none}
+  .o3-bl{grid-column:1;grid-row:3}
+  .o3-br{grid-column:1;grid-row:4;justify-self:start;text-align:left;border-right:0;border-left:2px solid var(--accent);padding:0 0 0 12px;margin-top:12px;font-size:.74rem}
+  .o3-globe{opacity:.75}
+}
+
+/* problem */
+.o3-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.o3-anom{display:grid;border-top:1px solid var(--line)}
+.o3-anom li{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.o3-anom .code{grid-row:span 2;font-size:.74rem;color:var(--text-muted);padding-top:3px}
+.o3-anom .was{color:var(--text-muted);font-size:.92rem}
+.o3-anom .now{font-family:var(--font-display);font-size:1.15rem;line-height:1.3}
+@media (max-width:900px){.o3-cols{grid-template-columns:1fr;gap:40px}}
+
+/* signature: shell lock-on */
+.o3-run{height:520vh;position:relative;margin-top:clamp(64px,6vw,80px)}
+.o3-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(300px,1fr) minmax(0,1.6fr);gap:32px;padding:76px var(--gutter) 24px}
+.o3-rail{align-self:center;display:grid;gap:14px;max-height:calc(100vh - 120px);overflow:hidden}
+.o3-rail .now{display:grid;gap:4px;border-left:2px solid var(--accent);padding-left:14px}
+.o3-rail .now span{font-size:.74rem;color:var(--text-muted)}
+.o3-rail .now b{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;letter-spacing:-.02em}
+.o3-rail .now em{font-style:normal;font-size:.86rem;color:var(--text-muted)}
+.o3-log{display:grid;gap:8px;font-size:.74rem}
+.o3-log li{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;padding:10px 12px;background:var(--bg-secondary);border:1px solid var(--line);opacity:0;transform:translateX(-10px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.o3-log li.on{opacity:1;transform:none}
+.o3-log li .id{color:var(--text-muted)}
+.o3-log li .c{grid-column:1 / -1;color:var(--text-muted)}
+.o3-cam{position:relative;min-height:0}
+.o3-cam canvas{width:100%;height:100%}
+.o3-shells{position:absolute;right:0;top:0;display:grid;gap:6px;font-size:.72rem;color:var(--text-muted)}
+.o3-shells li{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.o3-shells li i{width:18px;height:2px;background:#E6EEF544}
+.o3-shells li.on{color:var(--text-primary)}
+.o3-shells li.on i{background:var(--accent)}
+@media (max-width:900px){
+  .o3-run{height:460vh}
+  .o3-pin{grid-template-columns:1fr;grid-template-rows:1fr auto;gap:8px;padding:68px var(--gutter) 14px}
+  .o3-cam{grid-row:1}
+  .o3-rail{grid-row:2;align-self:end}
+  .o3-log li:not(.last){display:none}
+  .o3-shells{display:none}
+}
+@media (prefers-reduced-motion:reduce){.o3-run{height:auto}.o3-pin{position:relative;height:auto;min-height:100vh}.o3-log li{opacity:1;transform:none}}
+
+/* bento: mission systems */
+.o3-bento{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.o3-sys{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:14px;align-content:start;min-height:260px}
+.o3-sys::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#00F5D414,transparent 65%);opacity:0;transition:opacity .3s}
+.o3-sys:hover::before{opacity:1}
+.o3-sys .tag{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-muted)}
+.o3-sys h3{font-size:1.15rem;font-weight:600;line-height:1.3;letter-spacing:-.01em}
+.o3-sys p{font-size:.86rem;color:var(--text-muted)}
+.o3-sys.s0{grid-column:span 2;grid-row:span 2}
+.o3-sys.s0 h3{font-size:clamp(1.6rem,2.4vw,2.2rem);line-height:1.12}
+.o3-sys.s5{grid-column:span 2}
+.o3-sys .scope{width:100%;max-width:280px;height:auto;margin-top:auto}
+@media (max-width:900px){.o3-bento{grid-template-columns:1fr}.o3-sys{grid-column:auto!important;grid-row:auto!important;min-height:0}}
+
+/* rail: launch sequence */
+.o3-rail-head{padding:0 var(--gutter);margin-bottom:48px;display:flex;justify-content:space-between;align-items:end;gap:24px}
+.o3-count{font-family:var(--font-display);font-size:2.4rem;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.o3-steps{padding:0 var(--gutter);gap:16px}
+.o3-step{width:min(600px,56vw);background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:16px;align-content:start;transition:border-color .4s}
+.o3-step.is-active{border-color:#00F5D466}
+.o3-step .t{font-size:.76rem;color:var(--text-muted)}
+.o3-step h3{font-size:1.6rem;font-weight:600;line-height:1.15}
+.o3-step p{color:var(--text-muted);font-size:.92rem}
+.o3-step pre{margin:0;background:#05070B;border:1px solid var(--line);padding:14px;font-size:.74rem;line-height:1.6;overflow-x:auto;white-space:pre}
+@media (max-width:899px){.o3-step{width:auto}.o3-count{display:none}}
+
+/* crew notes */
+.o3-crew{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.o3-note{border:1px solid var(--line);display:grid;gap:16px;background:linear-gradient(#0F141C,#0A0E14)}
+.o3-note .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.74rem;color:var(--text-muted)}
+.o3-note b{font-family:var(--font-display);font-weight:600;font-size:1.05rem}
+.o3-note q{font-size:.98rem;line-height:1.6;quotes:"“" "”"}
+@media (max-width:760px){.o3-crew{grid-template-columns:1fr}}
+
+/* fuel table */
+.o3-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.o3-plan{border:1px solid var(--line);display:grid;gap:14px;align-content:start}
+.o3-plan.feat{background:var(--bg-secondary);border-color:#00F5D455}
+.o3-plan h3{font-size:1rem;font-weight:600;letter-spacing:.04em}
+.o3-plan .p{font-family:var(--font-display);font-size:2.2rem;font-weight:600;letter-spacing:-.03em;line-height:1}
+.o3-plan .cad{font-size:.78rem;color:var(--text-muted)}
+.o3-plan ul{display:grid;gap:6px;font-size:.86rem}
+.o3-plan li::before{content:"› ";color:var(--text-muted)}
+.o3-plan .fk{font-size:.8rem;border-top:1px dashed var(--line);padding-top:12px}
+@media (max-width:900px){.o3-plans{grid-template-columns:1fr}}
+.o3-fuel{width:100%;margin-top:32px;border-collapse:collapse;font-size:.84rem;font-variant-numeric:tabular-nums}
+.o3-fuel caption{text-align:left;font-family:var(--font-display);font-size:1rem;padding-bottom:12px}
+.o3-fuel th,.o3-fuel td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
+.o3-fuel thead th{font-weight:400;color:var(--text-muted);font-size:.74rem}
+@media (max-width:700px){.o3-fuel th:nth-child(2),.o3-fuel td:nth-child(2),.o3-fuel th:nth-child(5),.o3-fuel td:nth-child(5){display:none}}
+
+/* final + footer */
+.o3-final{display:grid;justify-items:center;text-align:center;gap:32px}
+.o3-final .o3-h2{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:800}
+.o3-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.8rem;color:var(--text-muted)}
+.o3-foot h4{font-family:var(--font-display);font-weight:600;font-size:.78rem;color:var(--text-primary);margin-bottom:12px}
+.o3-foot ul{display:grid;gap:8px}
+.o3-foot a{text-decoration:none}
+.o3-foot a:hover{color:var(--text-primary)}
+.o3-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.o3-foot{grid-template-columns:1fr 1fr}.o3-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="o3-nav">
+  <a class="o3-mark" href="#main">AETHER <span>orbital</span></a>
+  <nav class="o3-links" data-spy aria-label="Sections"><a href="#anomalies">Anomalies</a><a href="#shells">Shells</a><a href="#systems">Systems</a><a href="#launch">Launch</a><a href="#crew">Crew</a><a href="#fuel">Fuel</a></nav>
+  <span class="o3-utc" id="utc" aria-hidden="true">T+00:00:00</span>
+</header>
+<main id="main">
+  <section class="o3-hero" data-hero aria-labelledby="o3-h">
+    <div class="o3-globe" data-hero-part="visual"><canvas id="globe" role="img" aria-label="A rotating globe with five orbital shells, one per model family; drag the pointer to steer it"></canvas></div>
+    <span class="o3-tick a" aria-hidden="true"></span><span class="o3-tick b" aria-hidden="true"></span><span class="o3-tick c" aria-hidden="true"></span><span class="o3-tick d" aria-hidden="true"></span>
+    <div class="o3-corner o3-tl">
+      <h1 id="o3-h" data-hero-part="headline">Every model, in orbit.</h1>
+      <p class="k-body" data-hero-part="sub">Five model families circle one API key. Pick the orbit — fast and small, long-range, or unbound — and every request comes back with its own receipt.</p>
+    </div>
+    <div class="o3-corner o3-tr" aria-hidden="true"><span>Shells in orbit</span><b>05</b><span>One key, one endpoint</span></div>
+    <div class="o3-corner o3-bl" data-hero-part="cta"><a class="o3-btn" href="#fuel" data-cta="primary" data-magnetic="6,0.18,0.72,0.4"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></a></div>
+    <p class="o3-corner o3-br" data-hero-part="trust">Lowest orbit: <b>Swift</b> at $0.08 per 1M input tokens. Widest: <b>Atlas</b>, 1M context. Sample rates.</p>
+  </section>
+
+  <section id="anomalies" data-section aria-labelledby="o3-a">
+    <div class="k-wrap o3-cols">
+      <h2 id="o3-a" class="o3-h2" data-reveal>Three anomalies we cleared from the flight path.</h2>
+      <ol class="o3-anom" data-stagger>
+        <li><span class="code">ANM-01</span><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="code">ANM-02</span><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="code">ANM-03</span><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li>
+      </ol>
+    </div>
+    <div class="o3-run" id="shells">
+      <div class="o3-pin">
+        <aside class="o3-rail" aria-live="polite">
+          <div class="now"><span id="sh-label">Shell 1 of 5 · locked</span><b id="sh-name">Swift</b><em id="sh-role">Fast &amp; small · 32K</em></div>
+          <ol class="o3-log" id="log">
+            <li data-i="0"><span class="id">RCPT-0001</span><span>swift-32k</span><span class="live">$0.0000</span><span class="c">212 in · 38 out · 0% cached</span></li><li data-i="1"><span class="id">RCPT-0002</span><span>core-128k</span><span class="live">$0.0017</span><span class="c">1,840 in · 410 out · 50% cached</span></li><li data-i="2"><span class="id">RCPT-0003</span><span>unbound-128k</span><span class="live">$0.0021</span><span class="c">1,620 in · 380 out · 40% cached</span></li><li data-i="3"><span class="id">RCPT-0004</span><span>forge-256k</span><span class="live">$0.013</span><span class="c">9,400 in · 1,900 out · 82% cached</span></li><li data-i="4"><span class="id">RCPT-0005</span><span>atlas-1m</span><span class="live">$0.023</span><span class="c">48,000 in · 900 out · 90% cached</span></li>
+          </ol>
+          <p class="o3-fine">Example receipts at sample rates. Sample rates for layout only. Final pricing not yet set.</p>
+        </aside>
+        <div class="o3-cam">
+          <canvas id="cam" role="img" aria-label="The globe with the currently locked orbital shell highlighted"></canvas>
+          <ol class="o3-shells" aria-hidden="true"><li><span>Swift · 32K</span><i></i></li><li><span>Core · 128K</span><i></i></li><li><span>Unbound · 128K</span><i></i></li><li><span>Forge · 256K</span><i></i></li><li><span>Atlas · 1M</span><i></i></li></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="systems" data-section aria-labelledby="o3-s">
+    <div class="k-wrap">
+      <h2 id="o3-s" class="o3-h2" data-reveal>Mission systems, and what each one does for you.</h2>
+      <div class="o3-bento" data-stagger>
+        <article class="o3-sys k-card s0" data-spot><p class="tag"><span>SYS-01</span><span>Unified chat</span></p><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p><svg class="scope" viewBox="0 0 280 90" aria-hidden="true"><path d="M0 70 C 60 70, 80 20, 140 20 S 220 70, 280 40" fill="none" stroke="#00F5D4" stroke-width="1.4"/><path d="M0 80 H280" stroke="#E6EEF522"/><circle cx="140" cy="20" r="4" fill="#00F5D4"/></svg></article><article class="o3-sys k-card s1" data-spot><p class="tag"><span>SYS-02</span><span>Three temperaments</span></p><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="o3-sys k-card s2" data-spot><p class="tag"><span>SYS-03</span><span>Coding agents</span></p><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="o3-sys k-card s3" data-spot><p class="tag"><span>SYS-04</span><span>Long context</span></p><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="o3-sys k-card s4" data-spot><p class="tag"><span>SYS-05</span><span>Prompt caching</span></p><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="o3-sys k-card s5" data-spot><p class="tag"><span>SYS-06</span><span>Side-by-side compare</span></p><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="launch" data-section aria-labelledby="o3-l">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="o3-rail-head"><h2 id="o3-l" class="o3-h2" data-reveal>Launch sequence: three burns.</h2><span class="o3-count" aria-hidden="true">T−3</span></div>
+        <ol class="o3-steps" data-rail-track>
+          <li class="o3-step k-card"><span class="t">Burn 1 · T−3</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p><pre><code>model: swift-32k:abliterated</code></pre></li><li class="o3-step k-card"><span class="t">Burn 2 · T−2</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"</code></pre></li><li class="o3-step k-card"><span class="t">Burn 3 · T−1</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p><pre><code>usage: { tokens, cached_tokens, cost_usd }</code></pre></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="crew" data-section aria-labelledby="o3-c">
+    <div class="k-wrap">
+      <h2 id="o3-c" class="o3-h2" data-reveal>Crew notes, by role.</h2>
+      <div class="o3-crew" data-stagger>
+        <article class="o3-note k-card"><p class="hd"><b>Backend developer</b><span>LOG-01 · One key instead of three</span></p><q>Replace with a real quote about consolidating providers behind one base URL.</q></article><article class="o3-note k-card"><p class="hd"><b>Safety researcher</b><span>LOG-02 · Studying refusal behaviour</span></p><q>Replace with a real quote about comparing standard and abliterated variants.</q></article><article class="o3-note k-card"><p class="hd"><b>Novelist</b><span>LOG-03 · Dark themes, no lectures</span></p><q>Replace with a real quote about writing difficult scenes without refusals.</q></article><article class="o3-note k-card"><p class="hd"><b>Startup CTO</b><span>LOG-04 · Predictable costs</span></p><q>Replace with a real quote about per-request cost reporting and caching.</q></article>
+      </div>
+      <p class="o3-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="fuel" data-section aria-labelledby="o3-f">
+    <div class="k-wrap">
+      <h2 id="o3-f" class="o3-h2" data-reveal>Fuel is billed by the token.</h2>
+      <div class="o3-plans" data-stagger>
+        <article class="o3-plan k-card"><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="o3-plan k-card feat"><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="o3-plan k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article>
+      </div>
+      <table class="o3-fuel" data-reveal>
+        <caption>Fuel table — per 1M tokens</caption>
+        <thead><tr><th scope="col">Shell</th><th scope="col">Role</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Swift</th><td>Fast & small</td><td>32K</td><td>$0.08</td><td>$0.02</td><td>$0.32</td></tr><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>128K</td><td>$0.60</td><td>$0.15</td><td>$2.40</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>128K</td><td>$0.80</td><td>$0.20</td><td>$3.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>256K</td><td>$1.20</td><td>$0.30</td><td>$4.80</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>1M</td><td>$1.50</td><td>$0.25</td><td>$6.00</td></tr></tbody>
+      </table>
+      <p class="o3-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="o3-z">
+    <div class="k-wrap o3-final">
+      <h2 id="o3-z" class="o3-h2" data-reveal>Clear for launch.</h2>
+      <p class="k-body k-muted" data-reveal>One key puts all five shells in range. Your first request is one string away.</p>
+      <a class="o3-btn" href="#main" data-magnetic="6,0.18,0.72,0.4" data-reveal><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></a>
+    </div>
+  </section>
+</main>
+<footer class="o3-foot">
+  <div><p class="o3-mark">AETHER <span>orbital</span></p><p style="margin-top:14px;max-width:44ch">Aether is a placeholder brand and this page is the "Aether Orbital" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Shells</h4><ul><li><a href="#shells">Swift</a></li><li><a href="#shells">Core</a></li><li><a href="#shells">Unbound</a></li><li><a href="#shells">Forge</a></li><li><a href="#shells">Atlas</a></li></ul></div>
+  <div><h4>Mission</h4><ul><li><a href="#systems">Systems</a></li><li><a href="#launch">API quickstart</a></li><li><a href="#fuel">Token rates</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Unbounded and Space Mono.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, lerp, smooth, canvas, loop, onScroll, progress, pointer } = K;
+    const TAU = Math.PI * 2;
+    const ORDER = ["swift", "core", "unbound", "forge", "atlas"];
+    const SH = ORDER.map((id) => AE.MODELS.find((m) => m.id === id));
+    const radius = (m) => 1.28 + ((Math.log(m.contextK) - Math.log(32)) / (Math.log(1000) - Math.log(32))) * 1.15;
+    const incl = [0.35, -0.5, 0.75, -0.2, 0.12];
+
+    // mission clock
+    const utc = $("#utc"), t0 = performance.now();
+    setInterval(() => { const s = Math.floor((performance.now() - t0) / 1000); utc.textContent = "T+" + [s / 3600, (s / 60) % 60, s % 60].map((v) => String(Math.floor(v)).padStart(2, "0")).join(":"); }, 1000);
+
+    function Globe(cv, opts) {
+      const s = canvas(cv);
+      let yaw = 0.6, pitch = 0.32;
+      const rot = (x, y, z) => {
+        const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+        const x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+        return [x1, y * cp - z1 * sp, y * sp + z1 * cp];
+      };
+      const draw = (t, { focus = -1, zoom = 1, cx = 0.5, cy = 0.5, spin = 0 } = {}) => {
+        const { ctx, w, h } = s;
+        ctx.clearRect(0, 0, w, h);
+        yaw = 0.6 + t * 0.08 + spin;
+        const R = Math.min(w, h) * 0.2 * zoom, X = w * cx, Y = h * cy;
+        const P = (x, y, z) => { const [a, b, c] = rot(x, y, z); return [X + a * R, Y + b * R, c]; };
+        // globe body
+        const g = ctx.createRadialGradient(X - R * 0.3, Y - R * 0.4, R * 0.1, X, Y, R);
+        g.addColorStop(0, "#162231"); g.addColorStop(1, "#070B11");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X, Y, R, 0, TAU); ctx.fill();
+        // graticule
+        ctx.lineWidth = 1;
+        for (let lat = -60; lat <= 60; lat += 30) {
+          const phi = (lat * Math.PI) / 180;
+          ctx.beginPath();
+          for (let i = 0; i <= 64; i++) { const th = (i / 64) * TAU; const [px, py, pz] = P(Math.cos(phi) * Math.cos(th), Math.sin(phi), Math.cos(phi) * Math.sin(th)); ctx.strokeStyle = "rgba(147,163,181,.22)"; if (pz < 0) { ctx.moveTo(px, py); continue; } i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+          ctx.stroke();
+        }
+        for (let lon = 0; lon < 180; lon += 30) {
+          const th = (lon * Math.PI) / 180;
+          ctx.beginPath();
+          let pen = false;
+          for (let i = 0; i <= 64; i++) { const phi = (i / 64) * TAU; const [px, py, pz] = P(Math.cos(phi) * Math.cos(th), Math.sin(phi), Math.cos(phi) * Math.sin(th)); if (pz < 0) { pen = false; continue; } pen ? ctx.lineTo(px, py) : ctx.moveTo(px, py); pen = true; }
+          ctx.strokeStyle = "rgba(147,163,181,.18)"; ctx.stroke();
+        }
+        ctx.strokeStyle = "rgba(230,238,245,.35)"; ctx.beginPath(); ctx.arc(X, Y, R, 0, TAU); ctx.stroke();
+        // shells
+        SH.forEach((m, i) => {
+          const r = radius(m), inc = incl[i];
+          const pts = [];
+          for (let k = 0; k <= 96; k++) { const a = (k / 96) * TAU; const x = Math.cos(a) * r, z = Math.sin(a) * r; pts.push(P(x, z * Math.sin(inc), z * Math.cos(inc))); }
+          const on = i === focus, dim = focus >= 0 && !on;
+          ctx.lineWidth = on ? 2 : 1;
+          for (let k = 0; k < pts.length - 1; k++) {
+            const [ax, ay, az] = pts[k], [bx, by] = pts[k + 1];
+            const behind = az < 0 && Math.hypot(ax - X, ay - Y) < R;
+            if (behind) continue;
+            ctx.strokeStyle = on ? "rgba(0,245,212,.95)" : `rgba(230,238,245,${dim ? 0.1 : 0.28})`;
+            ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+          }
+          for (let n = 0; n < 3; n++) {
+            const a = (RM ? 0.4 : t) * (0.6 / r) + n * (TAU / 3) + i;
+            const x = Math.cos(a) * r, z = Math.sin(a) * r;
+            const [px, py, pz] = P(x, z * Math.sin(inc), z * Math.cos(inc));
+            if (pz < 0 && Math.hypot(px - X, py - Y) < R) continue;
+            ctx.fillStyle = on ? "#00F5D4" : dim ? "rgba(230,238,245,.3)" : "#E6EEF5";
+            ctx.beginPath(); ctx.arc(px, py, on ? 3.6 : 2.2, 0, TAU); ctx.fill();
+            if (on && n === 0 && opts.labels) { ctx.font = '400 12px "Space Mono", monospace'; ctx.fillText(m.name.toUpperCase() + " · " + m.context, px + 10, py - 8); }
+          }
+        });
+      };
+      return { draw };
+    }
+
+    // hero globe: pointer steers the yaw
+    const hero = Globe($("#globe"), { labels: false });
+    let steer = 0;
+    loop($("#globe"), (t) => {
+      steer += ((pointer.active ? (pointer.x / innerWidth - 0.5) * 1.2 : 0) - steer) * 0.04;
+      const wide = innerWidth > 860;
+      hero.draw(t, { zoom: wide ? 1.5 : 1.25, cx: wide ? 0.66 : 0.62, cy: wide ? 0.56 : 0.6, spin: steer });
+    });
+
+    // signature: scroll locks onto each shell; receipts print in the rail
+    const run = $("#shells"), cam = Globe($("#cam"), { labels: true });
+    const items = $$("#log li"), shells = $$(".o3-shells li");
+    const nm = $("#sh-name"), rl = $("#sh-role"), lb = $("#sh-label");
+    let p = 0, focus = 0;
+    onScroll(() => {
+      p = RM ? 1 : clamp((progress(run) - 0.04) / 0.9);
+      const f = Math.min(4, Math.floor(p * 5));
+      if (f !== focus) focus = f;
+      items.forEach((li, i) => { li.classList.toggle("on", i <= focus); li.classList.toggle("last", i === focus); });
+      shells.forEach((li, i) => li.classList.toggle("on", i === focus));
+      nm.textContent = SH[focus].name; rl.textContent = SH[focus].role + " · " + SH[focus].context;
+      lb.textContent = "Shell " + (focus + 1) + " of 5 · locked";
+    });
+    loop($("#cam"), (t) => {
+      const target = 1.45 - radius(SH[focus]) * 0.28;
+      cam.draw(t, { focus, zoom: target, cx: 0.5, cy: 0.52, spin: p * 2 });
+    });
+  })();
+</script>
+</body>
+</html>

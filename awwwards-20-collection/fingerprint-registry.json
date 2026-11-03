@@ -56,7 +56,7 @@
       },
       "signature_scroll_mechanic": "Orbital shell lock-on: scroll moves the camera through LEO, MEO and GEO shells while a sticky rail prints avoidance receipts",
       "hero_layout_type": "HUD corners: full-bleed 3D globe, headline top-left, live readouts pinned to the corners",
-      "built": false
+      "built": true
     },
     {
       "id": "04",
