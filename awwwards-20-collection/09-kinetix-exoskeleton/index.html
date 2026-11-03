@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Let the agent carry the heavy lifting</title>
+<meta name="description" content="Forge reads your repository, plans, edits and tests, and hands you one diff — billed per token with the cost of every step logged. Kinetix design direction.">
+<meta name="theme-color" content="#0D0F12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230D0F12'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23CCFF00'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/chakra-petch-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/chakra-petch-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/chakra-petch-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/chakra-petch-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#0D0F12;--bg-secondary:#1A1E24;--accent:#CCFF00;--on-accent:#0D0F12;--text-primary:#E7EBF0;--text-muted:#9AA4B0;--line:rgba(231,235,240,.12);--font-display:"Chakra Petch", sans-serif;--font-body:"IBM Plex Mono", ui-monospace, monospace}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Kinetix Exoskeleton ——— */
+
+.x9-nav{position:fixed;inset:0 0 auto;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:linear-gradient(#0D0F12f0,#0D0F1200);font-size:.78rem}
+.x9-mark{font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.06em;text-decoration:none;display:flex;gap:8px;align-items:center}
+.x9-mark i{width:10px;height:10px;background:var(--accent);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.x9-links{display:flex;gap:2px}
+.x9-links a{text-decoration:none;color:var(--text-muted);padding:6px 12px;border:1px solid transparent}
+.x9-links a.is-current{color:var(--text-primary);border-color:var(--accent)}
+.x9-sys{color:var(--text-muted)}
+@media (max-width:900px){.x9-links{display:none}}
+.x9-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 26px;background:var(--accent);color:var(--on-accent);font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:.03em;text-decoration:none;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+.x9-btn .bars{display:flex;gap:3px;align-items:end;height:16px}
+.x9-btn .bars i{width:3px;background:var(--on-accent);height:40%;transition:height .3s var(--ease)}
+.x9-btn .bars i:nth-child(2){height:70%}.x9-btn .bars i:nth-child(3){height:100%}
+.x9-btn.is-near .bars i{height:100%}
+.x9-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:700;letter-spacing:-.03em;line-height:.98;max-width:18ch;text-transform:uppercase}
+.x9-fine{margin-top:22px;font-size:.76rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* hero: telemetry panel */
+.x9-hero{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,640px) 1fr;align-items:end;padding:80px var(--gutter) 28px;overflow:clip}
+.x9-rig{position:absolute;inset:0}
+.x9-rig canvas{width:100%;height:100%}
+.x9-panel{position:relative;z-index:2;display:grid;gap:18px;justify-items:start;padding:32px;background:#0D0F12eb;border:1px solid var(--line)}
+.x9-panel::before{content:"";position:absolute;left:-1px;top:-1px;width:28px;height:28px;border-left:2px solid var(--accent);border-top:2px solid var(--accent)}
+.x9-panel h1{font-weight:700;text-transform:uppercase;line-height:.95}
+.x9-panel .k-body{color:var(--text-muted)}
+.x9-trust{font-size:.78rem;color:var(--text-muted);display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;width:100%}
+.x9-trust b{color:var(--text-primary);font-weight:500}
+.x9-hud{position:absolute;right:var(--gutter);top:84px;z-index:2;display:grid;gap:10px;text-align:right;font-size:.72rem;color:var(--text-muted)}
+.x9-hud b{display:block;font-family:var(--font-display);font-size:1.6rem;color:var(--text-primary);font-weight:600}
+@media (max-width:860px){
+  .x9-hero{grid-template-columns:1fr;padding:62px var(--gutter) 10px}
+  .x9-panel{padding:16px;gap:10px}
+  .x9-trust span{display:none}
+  .x9-trust{padding-top:10px}
+  .x9-hud{display:none}
+  .x9-rig{opacity:.6}
+  .x9-trust{gap:6px 12px}
+}
+
+/* problem */
+.x9-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.x9-loads{display:grid;gap:10px}
+.x9-loads li{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 22px;background:var(--bg-secondary);border-left:3px solid var(--text-muted)}
+.x9-loads .was{color:var(--text-muted);font-size:.86rem}
+.x9-loads .now{font-family:var(--font-display);font-size:1.15rem;font-weight:600}
+@media (max-width:900px){.x9-cols{grid-template-columns:1fr;gap:40px}.x9-loads li{grid-template-columns:1fr;gap:6px}}
+
+/* signature: kinematic rig under load */
+.x9-run{height:460vh;position:relative;margin-top:clamp(64px,6vw,80px)}
+.x9-pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(320px,1fr);gap:32px;padding:76px var(--gutter) 24px}
+.x9-stage{position:relative;border:1px solid var(--line);background:repeating-linear-gradient(0deg,#E7EBF006 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,#E7EBF006 0 1px,transparent 1px 40px)}
+.x9-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.x9-tele{display:grid;align-content:center;gap:16px}
+.x9-phase{display:flex;gap:4px}
+.x9-phase li{flex:1;height:6px;background:var(--bg-secondary);position:relative}
+.x9-phase li.on{background:var(--accent)}
+.x9-now{display:grid;gap:4px;border-left:2px solid var(--accent);padding-left:14px}
+.x9-now span{font-size:.72rem;color:var(--text-muted)}
+.x9-now b{font-family:var(--font-display);font-size:clamp(2rem,3.6vw,3rem);font-weight:700;text-transform:uppercase;line-height:1}
+.x9-now em{font-style:normal;font-size:.86rem;color:var(--text-muted)}
+.x9-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.x9-grid div{background:var(--bg-primary);padding:12px;display:grid;gap:2px}
+.x9-grid span{font-size:.68rem;color:var(--text-muted)}
+.x9-grid b{font-family:var(--font-display);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:900px){
+  .x9-run{height:400vh}
+  .x9-pin{grid-template-columns:1fr;grid-template-rows:1fr auto;gap:10px;padding:66px var(--gutter) 12px}
+  .x9-tele{gap:10px}
+  .x9-now b{font-size:1.6rem}
+  .x9-grid b{font-size:1.1rem}
+}
+@media (prefers-reduced-motion:reduce){.x9-run{height:auto}.x9-pin{position:relative;height:auto;min-height:100vh}}
+
+/* modules */
+.x9-mods{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.x9-mod{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:14px;align-content:start;min-height:250px}
+.x9-mod::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),#CCFF0014,transparent 65%);opacity:0;transition:opacity .3s}
+.x9-mod:hover::before{opacity:1}
+.x9-mod .id{display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-muted)}
+.x9-mod h3{font-family:var(--font-display);font-size:1.45rem;font-weight:600;line-height:1.12}
+.x9-mod p{font-size:.84rem;color:var(--text-muted)}
+.x9-mod.m0{grid-column:span 2;grid-row:span 2}.x9-mod.m0 h3{font-size:clamp(1.9rem,3vw,2.6rem)}
+@media (max-width:900px){.x9-mods{grid-template-columns:1fr}.x9-mod{grid-column:auto!important;grid-row:auto!important;min-height:0}}
+
+/* rail */
+.x9-rail-head{padding:0 var(--gutter);margin-bottom:44px}
+.x9-steps{padding:0 var(--gutter);gap:12px}
+.x9-step{width:min(560px,52vw);background:var(--bg-secondary);border:1px solid var(--line);display:grid;gap:14px;align-content:start}
+.x9-step.is-active{border-color:#CCFF0088}
+.x9-step .n{font-family:var(--font-display);font-size:.9rem;color:var(--text-muted)}
+.x9-step.is-active .n{color:var(--accent)}
+.x9-step h3{font-family:var(--font-display);font-size:1.7rem;font-weight:600;text-transform:uppercase;line-height:1.05}
+.x9-step p{color:var(--text-muted);font-size:.88rem}
+.x9-step pre{margin:0;background:#0D0F12;border:1px solid var(--line);padding:12px;font-size:.74rem;overflow-x:auto;white-space:pre}
+@media (max-width:899px){.x9-step{width:auto}}
+
+/* field tests */
+.x9-tests{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.x9-test{border:1px solid var(--line);display:grid;gap:14px;background:linear-gradient(135deg,#1A1E24,#12151A)}
+.x9-test .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--text-muted)}
+.x9-test b{font-family:var(--font-display);font-size:1.1rem;color:var(--text-primary)}
+.x9-test q{font-size:.92rem;line-height:1.6;quotes:"“" "”"}
+@media (max-width:760px){.x9-tests{grid-template-columns:1fr}}
+
+/* load classes */
+.x9-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.x9-plan{border:1px solid var(--line);display:grid;gap:12px;align-content:start}
+.x9-plan.feat{background:var(--bg-secondary);border-color:#CCFF0066}
+.x9-plan h3{font-family:var(--font-display);font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.x9-plan .p{font-family:var(--font-display);font-size:2.6rem;font-weight:700;line-height:1}
+.x9-plan .cad{font-size:.76rem;color:var(--text-muted)}
+.x9-plan ul{display:grid;gap:6px;font-size:.84rem}
+.x9-plan li::before{content:"▪ ";color:var(--text-muted)}
+.x9-plan .fk{font-size:.78rem;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:900px){.x9-plans{grid-template-columns:1fr}}
+.x9-table{width:100%;margin-top:32px;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums}
+.x9-table caption{text-align:left;font-family:var(--font-display);font-size:1.1rem;padding-bottom:12px;text-transform:uppercase}
+.x9-table th,.x9-table td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
+.x9-table thead th{font-weight:400;color:var(--text-muted);font-size:.72rem}
+@media (max-width:700px){.x9-table th:nth-child(2),.x9-table td:nth-child(2){display:none}}
+
+/* final + footer */
+.x9-final{display:grid;gap:28px;justify-items:start}
+.x9-final .x9-h2{font-size:clamp(2.8rem,6vw,5.4rem)}
+.x9-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-muted)}
+.x9-foot h4{font-family:var(--font-display);font-size:.9rem;color:var(--text-primary);margin-bottom:12px;text-transform:uppercase}
+.x9-foot ul{display:grid;gap:8px}
+.x9-foot a{text-decoration:none}
+.x9-foot a:hover{color:var(--text-primary)}
+.x9-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.x9-foot{grid-template-columns:1fr 1fr}.x9-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="x9-nav">
+  <a class="x9-mark" href="#main"><i aria-hidden="true"></i>AETHER</a>
+  <nav class="x9-links" data-spy aria-label="Sections"><a href="#load">Load</a><a href="#rig">Agent run</a><a href="#modules">Modules</a><a href="#calibrate">Calibrate</a><a href="#tests">Field tests</a><a href="#classes">Pricing</a></nav>
+  <span class="x9-sys">FORGE · ONLINE</span>
+</header>
+<main id="main">
+  <section class="x9-hero" data-hero aria-labelledby="x9-h">
+    <div class="x9-rig" data-hero-part="visual"><canvas id="rig" role="img" aria-label="A vector exoskeleton leg; the pointer bends the knee"></canvas></div>
+    <div class="x9-hud" aria-hidden="true"><span>Knee<b id="h-knee">32°</b></span><span>Hip<b id="h-hip">18°</b></span><span>Model<b>forge-256k</b></span></div>
+    <div class="x9-panel">
+      <h1 id="x9-h" data-hero-part="headline">Let the agent carry the heavy lifting.</h1>
+      <p class="k-body" data-hero-part="sub">Forge reads the repository, plans the change, edits files and runs the tests. You review one diff — billed per token, with every step on the log.</p>
+      <div data-hero-part="cta"><a class="x9-btn" href="#classes" data-cta="primary" data-magnetic="5,0.22,0.64,0.4"><span data-magnetic-label>Get your API key</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></a></div>
+      <p class="x9-trust" data-hero-part="trust"><span>Sample run</span><b>6 steps</b><b>47,400 tokens</b><b>$0.068</b><span>at Forge sample rates</span></p>
+    </div>
+  </section>
+
+  <section id="load" data-section aria-labelledby="x9-l">
+    <div class="k-wrap x9-cols">
+      <h2 id="x9-l" class="x9-h2" data-reveal>Your team carries too much load.</h2>
+      <ul class="x9-loads" data-stagger><li><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li></ul>
+    </div>
+    <div class="x9-run" id="rig-run">
+      <div class="x9-pin">
+        <div class="x9-stage"><canvas id="rig2" role="img" aria-label="The rig bends through each phase of an agent run"></canvas></div>
+        <div class="x9-tele" aria-live="polite">
+          <ol class="x9-phase" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+          <div class="x9-now"><span id="t-step">Step 1 of 6</span><b id="t-phase">Read</b><em id="t-log">Loaded 38 files from src/ and tests/</em></div>
+          <div class="x9-grid">
+            <div><span>Files edited</span><b id="t-files">0</b></div><div><span>Tests run</span><b id="t-tests">0</b></div><div><span>Knee angle</span><b class="live" id="t-knee">0°</b></div>
+            <div><span>Tokens</span><b id="t-tok">0</b></div><div><span>Cached</span><b id="t-cache">0%</b></div><div><span>Cost so far</span><b class="live" id="t-cost">$0.000</b></div>
+          </div>
+          <p class="x9-fine">Sample agent run at Forge rates. Sample rates for layout only. Final pricing not yet set.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modules" data-section aria-labelledby="x9-m">
+    <div class="k-wrap">
+      <h2 id="x9-m" class="x9-h2" data-reveal>Modules, and the load each one takes off you.</h2>
+      <div class="x9-mods" data-stagger><article class="x9-mod k-card m0" data-spot><p class="id"><span>MOD-01</span><span>Unified chat</span></p><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="x9-mod k-card m1" data-spot><p class="id"><span>MOD-02</span><span>Three temperaments</span></p><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="x9-mod k-card m2" data-spot><p class="id"><span>MOD-03</span><span>Coding agents</span></p><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="x9-mod k-card m3" data-spot><p class="id"><span>MOD-04</span><span>Long context</span></p><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="x9-mod k-card m4" data-spot><p class="id"><span>MOD-05</span><span>Prompt caching</span></p><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="x9-mod k-card m5" data-spot><p class="id"><span>MOD-06</span><span>Side-by-side compare</span></p><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article></div>
+    </div>
+  </section>
+
+  <section id="calibrate" data-section aria-labelledby="x9-c">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="x9-rail-head"><h2 id="x9-c" class="x9-h2" data-reveal>Calibration: three steps.</h2></div>
+        <ol class="x9-steps" data-rail-track><li class="x9-step k-card"><span class="n">CAL-01</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p><pre><code>model: "forge-256k"</code></pre></li><li class="x9-step k-card"><span class="n">CAL-02</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"</code></pre></li><li class="x9-step k-card"><span class="n">CAL-03</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p><pre><code>log: step, tokens, cached, cost_usd</code></pre></li></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="tests" data-section aria-labelledby="x9-t">
+    <div class="k-wrap">
+      <h2 id="x9-t" class="x9-h2" data-reveal>Field tests, by role.</h2>
+      <div class="x9-tests" data-stagger><article class="x9-test k-card"><p class="hd"><b>Backend developer</b><span>TEST-01 · One key instead of three</span></p><q>Replace with a real quote about consolidating providers behind one base URL.</q></article><article class="x9-test k-card"><p class="hd"><b>Safety researcher</b><span>TEST-02 · Studying refusal behaviour</span></p><q>Replace with a real quote about comparing standard and abliterated variants.</q></article><article class="x9-test k-card"><p class="hd"><b>Novelist</b><span>TEST-03 · Dark themes, no lectures</span></p><q>Replace with a real quote about writing difficult scenes without refusals.</q></article><article class="x9-test k-card"><p class="hd"><b>Startup CTO</b><span>TEST-04 · Predictable costs</span></p><q>Replace with a real quote about per-request cost reporting and caching.</q></article></div>
+      <p class="x9-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="classes" data-section aria-labelledby="x9-p">
+    <div class="k-wrap">
+      <h2 id="x9-p" class="x9-h2" data-reveal>Load classes, billed per token.</h2>
+      <div class="x9-plans" data-stagger><article class="x9-plan k-card"><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="x9-plan k-card feat"><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="x9-plan k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article></div>
+      <table class="x9-table" data-reveal>
+        <caption>Rates per 1M tokens</caption>
+        <thead><tr><th scope="col">Model</th><th scope="col">Role</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>128K</td><td>$0.60</td><td>$0.15</td><td>$2.40</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>128K</td><td>$0.80</td><td>$0.20</td><td>$3.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>256K</td><td>$1.20</td><td>$0.30</td><td>$4.80</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>1M</td><td>$1.50</td><td>$0.25</td><td>$6.00</td></tr><tr><th scope="row">Swift</th><td>Fast & small</td><td>32K</td><td>$0.08</td><td>$0.02</td><td>$0.32</td></tr></tbody>
+      </table>
+      <p class="x9-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="x9-f">
+    <div class="k-wrap x9-final">
+      <h2 id="x9-f" class="x9-h2" data-reveal>Hand over the next ticket.</h2>
+      <a class="x9-btn" href="#main" data-magnetic="5,0.22,0.64,0.4" data-reveal><span data-magnetic-label>Get your API key</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></a>
+    </div>
+  </section>
+</main>
+<footer class="x9-foot">
+  <div><p class="x9-mark"><i aria-hidden="true"></i>AETHER</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Kinetix" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Models</h4><ul><li><a href="#classes">Core</a></li><li><a href="#classes">Unbound</a></li><li><a href="#classes">Forge</a></li><li><a href="#classes">Atlas</a></li><li><a href="#classes">Swift</a></li></ul></div>
+  <div><h4>Platform</h4><ul><li><a href="#rig-run">Coding agents</a></li><li><a href="#calibrate">API quickstart</a></li><li><a href="#classes">Token rates</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Chakra Petch and IBM Plex Mono.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, lerp, smooth, canvas, loop, onScroll, progress, pointer } = K;
+    const TAU = Math.PI * 2, D = Math.PI / 180;
+
+    // A vector exoskeleton leg: hip → knee → ankle → toe, with frame, actuators and joint gauges.
+    function drawRig(ctx, w, h, { hip, knee, ankle, scale = 1, cx = 0.62, cy = 0.2, load = 0, hot = -1 }) {
+      const L1 = h * 0.3 * scale, L2 = h * 0.3 * scale, L3 = h * 0.1 * scale;
+      const H = [w * cx, h * cy];
+      const a1 = Math.PI / 2 - hip * D, a2 = a1 + knee * D, a3 = a2 - Math.PI / 2 + ankle * D;
+      const K = [H[0] + Math.cos(a1) * L1, H[1] + Math.sin(a1) * L1];
+      const A = [K[0] + Math.cos(a2) * L2, K[1] + Math.sin(a2) * L2];
+      const T = [A[0] + Math.cos(a3) * L3, A[1] + Math.sin(a3) * L3];
+      const seg = (p, q, wd, col) => { ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); };
+      const off = (p, q, d) => { const dx = q[0] - p[0], dy = q[1] - p[1], l = Math.hypot(dx, dy); return [[p[0] - (dy / l) * d, p[1] + (dx / l) * d], [q[0] - (dy / l) * d, q[1] + (dx / l) * d]]; };
+      // limb (muted) and exo frame (bright)
+      seg(H, K, 22 * scale, "#2C333D"); seg(K, A, 18 * scale, "#2C333D"); seg(A, T, 12 * scale, "#2C333D");
+      for (const [p, q] of [[H, K], [K, A]]) { const [o1, o2] = off(p, q, 16 * scale); seg(o1, o2, 2, "rgba(231,235,240,.85)"); const [i1, i2] = off(p, q, -16 * scale); seg(i1, i2, 1, "rgba(231,235,240,.35)"); }
+      // actuator along the thigh, extension proportional to load
+      const mid = [lerp(H[0], K[0], 0.35), lerp(H[1], K[1], 0.35)], end = [lerp(H[0], K[0], 0.35 + 0.4 * (0.4 + load * 0.6)), lerp(H[1], K[1], 0.35 + 0.4 * (0.4 + load * 0.6))];
+      const [m1] = off(mid, end, 30 * scale), [, e2] = off(mid, end, 30 * scale);
+      seg(m1, e2, 6 * scale, "rgba(204,255,0,.85)");
+      seg(A, T, 2, "rgba(231,235,240,.7)");
+      // joints with angle gauges
+      [[H, hip], [K, knee], [A, ankle]].forEach(([p, ang], i) => {
+        const r = (i === 1 ? 20 : 16) * scale;
+        ctx.strokeStyle = i === hot ? "#CCFF00" : "rgba(231,235,240,.5)"; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, TAU); ctx.stroke();
+        ctx.strokeStyle = "#CCFF00"; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(p[0], p[1], r + 6, -Math.PI / 2, -Math.PI / 2 + Math.abs(ang) * D); ctx.stroke();
+        ctx.fillStyle = "#0D0F12"; ctx.beginPath(); ctx.arc(p[0], p[1], r * 0.45, 0, TAU); ctx.fill();
+        ctx.font = '500 11px "IBM Plex Mono", monospace'; ctx.fillStyle = "rgba(231,235,240,.8)";
+        ctx.fillText(Math.round(ang) + "°", p[0] + r + 12, p[1] + 4);
+      });
+      // cable
+      ctx.strokeStyle = "rgba(204,255,0,.35)"; ctx.lineWidth = 1; ctx.setLineDash([4, 5]);
+      ctx.beginPath(); ctx.moveTo(H[0] + 30 * scale, H[1]); ctx.quadraticCurveTo(K[0] + 40 * scale, K[1] - 40 * scale, A[0] + 18 * scale, A[1]); ctx.stroke(); ctx.setLineDash([]);
+      return { K, A };
+    }
+
+    // hero: the pointer bends the knee
+    const hc = $("#rig"), hs = canvas(hc), hk = $("#h-knee"), hh = $("#h-hip");
+    let knee = 32, hip = 18;
+    loop(hc, (t) => {
+      const { ctx, w, h } = hs;
+      ctx.clearRect(0, 0, w, h);
+      const tk = pointer.active ? 10 + (pointer.y / innerHeight) * 90 : 32 + Math.sin(t * 0.8) * 12;
+      const th = pointer.active ? -10 + (pointer.x / innerWidth) * 50 : 18 + Math.sin(t * 0.8 + 1) * 8;
+      knee += (tk - knee) * 0.08; hip += (th - hip) * 0.08;
+      const wide = w > 860;
+      drawRig(ctx, w, h, { hip, knee, ankle: 10 + knee * 0.2, scale: wide ? 1 : 0.8, cx: wide ? 0.68 : 0.7, cy: wide ? 0.14 : 0.1, load: knee / 100, hot: 1 });
+      hk.textContent = Math.round(knee) + "°"; hh.textContent = Math.round(hip) + "°";
+    });
+
+    // signature: scroll drives the rig through the six phases of a sample agent run
+    const RUN = [
+      ["Read", "Loaded 38 files from src/ and tests/", 31000, 900, 0, 0, 0], ["Plan", "Retry with exponential backoff in the API client", 2000, 600, 0.6, 0, 0],
+      ["Edit", "src/client.ts +18 −6, src/retry.ts new", 3000, 2600, 0.9, 2, 0], ["Test", "214 tests run, 1 failing", 3400, 400, 0.92, 2, 214],
+      ["Fix", "Off-by-one in the attempt counter", 2000, 700, 0.9, 2, 214], ["Diff", "All tests pass — one diff ready for review", 500, 300, 0.9, 2, 214],
+    ];
+    const F = AE.MODELS.find((m) => m.id === "forge");
+    const POSE = [[10, 15, 5], [35, 60, 12], [55, 95, 20], [25, 45, 8], [40, 75, 15], [5, 8, 2], [5, 8, 2]];
+    const run = $("#rig-run"), rc = $("#rig2"), rs = canvas(rc), phases = $$(".x9-phase li");
+    const el = { step: $("#t-step"), phase: $("#t-phase"), log: $("#t-log"), files: $("#t-files"), tests: $("#t-tests"), knee: $("#t-knee"), tok: $("#t-tok"), cache: $("#t-cache"), cost: $("#t-cost") };
+    let p = 0;
+    onScroll(() => {
+      p = RM ? 0.999 : clamp((progress(run) - 0.04) / 0.88, 0, 0.999);
+      const i = Math.floor(p * RUN.length), r = RUN[i];
+      let tok = 0, c = 0, cachedTok = 0, inTok = 0;
+      RUN.slice(0, i + 1).forEach(([, , a, b, ca]) => { tok += a + b; inTok += a; cachedTok += a * ca; c += ((a * (1 - ca)) * F.inPrice + a * ca * F.cached + b * F.outPrice) / 1e6; });
+      phases.forEach((li, k) => li.classList.toggle("on", k <= i));
+      el.step.textContent = "Step " + (i + 1) + " of " + RUN.length; el.phase.textContent = r[0]; el.log.textContent = r[1];
+      el.files.textContent = r[5]; el.tests.textContent = r[6]; el.tok.textContent = tok.toLocaleString("en-US");
+      el.cache.textContent = Math.round((cachedTok / inTok) * 100) + "%"; el.cost.textContent = "$" + c.toFixed(3);
+    });
+    loop(rc, () => {
+      const { ctx, w, h } = rs;
+      ctx.clearRect(0, 0, w, h);
+      const f = p * RUN.length, i = Math.floor(f), k = smooth(f - i);
+      const a = POSE[i], b = POSE[i + 1];
+      const pose = a.map((v, j) => lerp(v, b[j], k));
+      drawRig(ctx, w, h, { hip: pose[0], knee: pose[1], ankle: pose[2], scale: w < 600 ? 0.7 : 0.9, cx: 0.45, cy: 0.12, load: pose[1] / 100, hot: 1 });
+      el.knee.textContent = Math.round(pose[1]) + "°";
+    });
+  })();
+</script>
+</body>
+</html>

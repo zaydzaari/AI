@@ -40,7 +40,9 @@ async function sheet(browser, files, out, cols, w) {
 }
 
 (async () => {
-  const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--autoplay-policy=no-user-gesture-required"] });
+  // The collection draws with 2D canvas only, so the default (CPU-raster) browser is used: software-GL
+  // flags made screenshots of animated canvases 50–100× slower without changing what is rendered.
+  const browser = await chromium.launch();
   const report = {};
   let total = 0;
   for (const id of ids) {

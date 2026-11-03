@@ -130,7 +130,7 @@
       },
       "signature_scroll_mechanic": "Scroll-ramped confinement torus: plasma heats from 1M to 150M °C, firing net-gain milestones",
       "hero_layout_type": "Report cover: oversized live temperature readout as the visual with the torus overlaid, headline set bottom-left",
-      "built": false
+      "built": true
     },
     {
       "id": "08",
@@ -148,7 +148,7 @@
       },
       "signature_scroll_mechanic": "Elevation altimeter: a sticky gauge descends 1,200 m to 400 m with soil strata, rainfall and tasting notes per band",
       "hero_layout_type": "Centred wine label: symmetric crest, headline and terroir line over contour lines",
-      "built": false
+      "built": true
     },
     {
       "id": "09",
@@ -166,7 +166,7 @@
       },
       "signature_scroll_mechanic": "Scroll-bent kinematic leg rig with live joint-torque and metabolic-load readouts",
       "hero_layout_type": "Telemetry panel: full-bleed kinematic rig with copy locked into a framed bottom-left panel",
-      "built": false
+      "built": true
     },
     {
       "id": "10",
@@ -184,7 +184,7 @@
       },
       "signature_scroll_mechanic": "Cipher decode on entry: headings decrypt and a Merkle proof tree verifies leaf by leaf as sections arrive",
       "hero_layout_type": "Exposed grid cells: headline spanning cells above a proof-tree cell block",
-      "built": false
+      "built": true
     },
     {
       "id": "11",
