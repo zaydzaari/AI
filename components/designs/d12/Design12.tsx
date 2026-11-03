@@ -1,144 +1,207 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { BRAND, MODELS, MOCK_NOTE } from "@/lib/content";
-import { Bento, FinalCTA, Footer, Head, HowItWorks, Plans, PrimaryCTA, ProblemSolution, Proof, Reveal, Trust } from "@/components/system";
-import { usePrefersReduced } from "@/lib/hooks";
+/**
+ * 12 Aperture (v3) — the fusion proposal.
+ * Warm paper outside (friendly chat), a real camera iris, and a dark machine inside
+ * (API, agents, per-token rates). Signature: a full-viewport iris that scroll opens to
+ * reveal a holographic portal where five glass lenses — the model families — fan out
+ * with their rates. The page stays inside the machine until the final CTA closes it.
+ */
+
+import { useEffect, useRef, useState } from "react";
+import { useMotionValue } from "motion/react";
+import { BENEFITS, BRAND, CODE, MODELS, PLANS, PRICE_NOTE, PROBLEM, PROOF, PROOF_NOTE, STEPS, STEP_CODE, MOCK_NOTE } from "@/lib/content";
+import { clamp, lerp, onScroll, pointer, progress, reduced, smooth, useKit } from "@/lib/kit";
 import { Iris } from "./Iris";
-import { Lenses, Specimen } from "./parts";
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-function FieldGuide() {
-  const [row, setRow] = useState<number | null>(null);
+function Portal({ fan = 0 }: { fan?: number }) {
   return (
-    <section id="models" data-section className="sys-section">
-      <div className="sys-container">
-        <Head title="A field guide to five families." lead={`${MOCK_NOTE}. Context sizes are placeholder specs.`} />
-        <div className="border-b border-[var(--text-primary)]">
-          {MODELS.map((m, i) => (
-            <Reveal key={m.id} i={i}>
-              <div onMouseEnter={() => setRow(i)} onMouseLeave={() => setRow(null)} className="relative grid items-center gap-4 border-t border-[var(--text-primary)] py-8 md:grid-cols-[1.1fr_1.4fr_1fr_160px] md:gap-10">
-                <span className="font-[family-name:var(--font-display)] text-[clamp(2.75rem,4.6vw,4.25rem)] leading-[0.95] transition-[font-variation-settings] duration-700" style={{ fontVariationSettings: row === i ? '"SOFT" 100, "WONK" 1, "opsz" 144' : '"SOFT" 0, "WONK" 0, "opsz" 144' }}>
-                  {m.name}
-                </span>
-                <span className="sys-body">{m.blurb}</span>
-                <span className="text-[0.9375rem]">{m.variants.join(" · ")}</span>
-                <span className="sys-mono text-[0.9375rem] md:text-right">
-                  {m.context} ctx
-                  <br />
-                  <span className="text-[var(--text-muted)]">
-                    ${m.inPrice}/${m.outPrice} · 1M
-                  </span>
-                </span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+    <div className="a12-portal" aria-hidden>
+      <span className="ring" />
+      {MODELS.map((m, i) => {
+        const a = (i / MODELS.length) * Math.PI * 2 - Math.PI / 2;
+        const r = lerp(10, 34, fan);
+        return (
+          <span key={m.id} className="lens" style={{ left: `${(50 + Math.cos(a) * r).toFixed(2)}%`, top: `${(50 + Math.sin(a) * r).toFixed(2)}%`, opacity: +(0.35 + fan * 0.65).toFixed(3) }}>
+            <b>{m.name}</b><em>{m.context}</em><i>${m.inPrice.toFixed(2)} / ${m.outPrice.toFixed(2)}</i>
+          </span>
+        );
+      })}
+    </div>
   );
 }
 
-export default function Design12() {
-  const reduce = usePrefersReduced();
-  const stage = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: stage, offset: ["start start", "end end"] });
-  const open = useTransform(scrollYProgress, [0.05, 0.75], [reduce ? 1 : 0, 1], { clamp: true });
-  const textOp = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.22], [0, -50]);
-  const innerOp = useTransform(scrollYProgress, [0.35, 0.65], [0, 1]);
-  const innerScale = useTransform(scrollYProgress, [0.2, 0.9], [0.85, 1]);
-
+function HeroIris() {
+  const open = useMotionValue(0.16);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (reduced()) { open.set(0.4); return; }
+    let raf = 0, v = 0.16;
+    const tick = () => {
+      const r = ref.current?.getBoundingClientRect();
+      let target = 0.18 + Math.sin(performance.now() / 2600) * 0.03;
+      if (r && pointer.active) { const d = Math.hypot(pointer.x - (r.left + r.width / 2), pointer.y - (r.top + r.height / 2)) / r.width; target = 0.18 + Math.max(0, 0.9 - d) * 0.32; }
+      v += (target - v) * 0.06; open.set(v);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [open]);
   return (
-    <div className="d12 sys min-h-screen">
-      <header className="fixed inset-x-0 top-0 z-40 h-[var(--nav-h)] border-b border-[var(--border)] bg-[var(--bg-primary)]/85 backdrop-blur-md">
-        <div className="sys-container flex h-full items-center gap-8">
-          <a href="#" className="flex items-center gap-2 font-[family-name:var(--font-display)] text-[1.5rem] leading-none">
-            <svg viewBox="-10 -10 20 20" className="h-5 w-5" aria-hidden>
-              {Array.from({ length: 6 }).map((_, i) => (
-                <line key={i} x1="0" y1="-9" x2="5" y2="-2" stroke="currentColor" strokeWidth="1.4" transform={`rotate(${i * 60})`} />
-              ))}
-              <circle r="9" fill="none" stroke="currentColor" strokeWidth="1.4" />
-            </svg>
-            {BRAND.name}
-          </a>
-          <nav aria-label="Primary" className="ml-auto hidden gap-7 text-[0.9375rem] md:flex">
-            {[
-              ["Why", "#why"],
-              ["Inside", "#features"],
-              ["How it works", "#how"],
-              ["Models", "#models"],
-              ["Pricing", "#pricing"],
-            ].map(([l, h]) => (
-              <a key={l} href={h} className="hover:opacity-70">
-                {l}
-              </a>
-            ))}
-          </nav>
-          <a href="#" className="ml-auto rounded-full border border-[var(--text-primary)] px-4 py-2 text-[0.875rem] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] md:ml-0">
-            Sign in
-          </a>
-        </div>
-      </header>
+    <div className="a12-hero-iris" ref={ref} data-hero-part="visual">
+      <Portal fan={0.2} />
+      <div className="a12-blades"><Iris open={open} /></div>
+      <span className="a12-housing" aria-hidden />
+    </div>
+  );
+}
 
-      <main>
-        <section ref={stage} className="relative h-[260vh]">
-          <div data-hero className="sticky top-0 h-[100svh] overflow-hidden">
-            <div className="d12-interior absolute inset-0 grid place-items-center">
-              <motion.div style={{ opacity: innerOp, scale: innerScale }} className="w-[min(560px,90vw)]">
-                <Specimen compact />
-              </motion.div>
-            </div>
-            <div data-hero-part="visual" className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute left-1/2 top-1/2 aspect-square w-[max(150vw,150vh)] -translate-x-1/2 -translate-y-1/2">
-                <Iris open={open} color="#F7F5F0" />
-              </div>
-            </div>
-            <motion.div style={{ opacity: textOp, y: textY }} className="sys-container pointer-events-none absolute inset-x-0 top-0 flex h-full flex-col justify-between pb-8 pt-[calc(var(--nav-h)+24px)] md:pb-12">
-              <motion.h1 data-hero-part="headline" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease }} className="sys-h1 d12-plate w-fit !max-w-[12ch]">
-                Open every model with one key.
-              </motion.h1>
-              <div className="d12-plate pointer-events-auto flex w-fit flex-col gap-5 md:max-w-[560px]">
-                <p data-hero-part="sub" className="sys-hero-sub">
-                  A warm, readable surface over a deep machine: five model families and three temperaments for chat, agents and API. Scroll to open the aperture.
-                </p>
-                <div>
-                  <PrimaryCTA>Request early access</PrimaryCTA>
-                </div>
-                <Trust />
-              </div>
-            </motion.div>
+function Aperture() {
+  const run = useRef<HTMLDivElement>(null);
+  const open = useMotionValue(0.05);
+  const [p, setP] = useState(0);
+  useEffect(() => onScroll(() => { const v = reduced() ? 1 : progress(run.current!); setP(v); open.set(smooth(clamp(v / 0.62)) * 0.98 + 0.02); }), [open]);
+  const fan = smooth(clamp((p - 0.55) / 0.3));
+  return (
+    <div className="a12-run" ref={run}>
+      <div className="a12-pin">
+        <div className="a12-inside"><Portal fan={fan} /><p className="a12-in-cap" style={{ opacity: fan }}>Inside: one API, five families, every rate in view.</p></div>
+        <div className="a12-big"><Iris open={open} size={1000} /></div>
+        <p className="a12-out-cap" style={{ opacity: 1 - smooth(clamp(p / 0.3)) }}>Outside, it's a friendly chat. Scroll to open the aperture.</p>
+      </div>
+    </div>
+  );
+}
+
+function ClosingIris() {
+  const box = useRef<HTMLDivElement>(null);
+  const open = useMotionValue(1);
+  useEffect(() => onScroll(() => open.set(reduced() ? 0.2 : 1 - smooth(progress(box.current!, "through")) * 0.85)), [open]);
+  return <div className="a12-close" ref={box} aria-hidden><Portal fan={1} /><div className="a12-blades"><Iris open={open} /></div><span className="a12-housing" /></div>;
+}
+
+export default function Design12() {
+  const root = useRef<HTMLDivElement>(null);
+  useKit(root);
+  return (
+    <div ref={root} className="kit d12">
+      <a className="k-skip" href="#main">Skip to content</a>
+      <header className="a12-nav">
+        <a className="a12-mark" href="#main"><span aria-hidden />{BRAND.name}</a>
+        <nav data-spy aria-label="Sections"><a href="#outside">Outside</a><a href="#inside">Inside</a><a href="#build">Build</a><a href="#voices">Voices</a><a href="#rates">Rates</a></nav>
+        <a className="a12-key" href="#rates">Get your key</a>
+      </header>
+      <main id="main">
+        <section className="a12-hero" data-hero aria-labelledby="a12-h">
+          <div className="a12-copy">
+            <h1 id="a12-h" data-hero-part="headline">Open every model with a single key.</h1>
+            <p className="k-body" data-hero-part="sub">Start in a friendly chat. Step inside to the API, the coding agents and the per-token rates — it's all one platform, standard, low-refusal or abliterated.</p>
+            <div data-hero-part="cta"><a className="a12-btn" href="#rates" data-cta="primary" data-magnetic="6,0.13,0.8,0.45"><span data-magnetic-label>Get your key</span></a></div>
+            <p className="a12-trust" data-hero-part="trust">Sample input rates run from <b>$0.08</b> on Swift to <b>$1.50</b> on Atlas, per million tokens.</p>
           </div>
+          <HeroIris />
         </section>
 
-        <ProblemSolution variant="ledger" />
-        <div className="sys-invert d12-interior">
-          <Bento layout="offset" title="What lives inside the machine." lead="Each capability, and what it does for you." />
-          <section id="lenses" data-section className="sys-section">
-            <div className="sys-container grid gap-16 lg:grid-cols-2 lg:items-center">
-              <Reveal>
-                <Specimen />
-              </Reveal>
-              <div>
-                <h2 className="sys-h2">Choose how the model sees your request.</h2>
-                <div className="mt-16">
-                  <Lenses />
-                </div>
+        <section id="outside" data-section aria-labelledby="a12-o">
+          <div className="k-wrap a12-outside">
+            <h2 id="a12-o" className="a12-h2" data-reveal>Friendly on the outside.</h2>
+            <ol className="a12-notes" data-stagger>
+              {PROBLEM.rows.map((r, i) => <li key={i}><p className="was">{r.problem}</p><p className="now">{r.solution}</p></li>)}
+            </ol>
+          </div>
+          <Aperture />
+        </section>
+
+        <div className="a12-dark">
+          <section id="inside" data-section aria-labelledby="a12-i">
+            <div className="k-wrap">
+              <h2 id="a12-i" className="a12-h2" data-reveal>Precise on the inside.</h2>
+              <div className="a12-bento" data-stagger>
+                {BENEFITS.map((b, i) => (
+                  <article key={b.key} className={`a12-glass k-card q${i}`} data-spot>
+                    <span className="tag">{b.feature}</span>
+                    <h3>{b.benefit}</h3>
+                    <p>{b.detail}</p>
+                    {i === 0 && <pre><code>{CODE.curl}</code></pre>}
+                  </article>
+                ))}
               </div>
             </div>
           </section>
+
+          <section id="build" data-section aria-labelledby="a12-b">
+            <div data-rail>
+              <div data-rail-view>
+                <div className="k-wrap"><h2 id="a12-b" className="a12-h2 a12-rail-h" data-reveal>Build through the aperture in three steps.</h2></div>
+                <ol className="a12-steps" data-rail-track>
+                  {STEPS.map((s, i) => (
+                    <li key={i} className="a12-glass a12-step k-card">
+                      <span className="n">{["i", "ii", "iii"][i]}.</span>
+                      <h3>{s.title}</h3>
+                      <p>{s.body}</p>
+                      {i === 1 && <pre><code>{STEP_CODE}</code></pre>}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <section id="voices" data-section aria-labelledby="a12-v">
+            <div className="k-wrap">
+              <h2 id="a12-v" className="a12-h2" data-reveal>For everyone on both sides of the lens.</h2>
+              <div className="a12-voices" data-stagger>
+                {PROOF.map((p) => (
+                  <figure key={p.role} className="a12-glass k-card">
+                    <blockquote>“{p.quote}”</blockquote>
+                    <figcaption><b>{p.role}</b><span>{p.focus}</span></figcaption>
+                  </figure>
+                ))}
+              </div>
+              <p className="a12-fine">{PROOF_NOTE}</p>
+            </div>
+          </section>
+
+          <section id="rates" data-section aria-labelledby="a12-r">
+            <div className="k-wrap">
+              <h2 id="a12-r" className="a12-h2" data-reveal>Every rate, in focus.</h2>
+              <div className="a12-plans" data-stagger>
+                {PLANS.map((p) => (
+                  <article key={p.name} className={`a12-glass a12-plan k-card ${p.featured ? "feat" : ""}`}>
+                    <h3>{p.name}</h3>
+                    <p className="price">{p.price}<span> {p.cadence}</span></p>
+                    <p className="body">{p.body}</p>
+                    <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                    <p className="fk">{p.name === "API" ? "No minimum. Cached input billed lower, automatically." : p.name === "Pro" ? "Cancel any time." : "No card required."}</p>
+                  </article>
+                ))}
+              </div>
+              <table className="a12-table" data-reveal>
+                <caption>Per 1M tokens</caption>
+                <thead><tr><th scope="col">Lens</th><th scope="col">For</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+                <tbody>{MODELS.map((m) => <tr key={m.id}><th scope="row">{m.name}</th><td>{m.role}</td><td>{m.context}</td><td>${m.inPrice.toFixed(2)}</td><td>${m.cached.toFixed(2)}</td><td>${m.outPrice.toFixed(2)}</td></tr>)}</tbody>
+              </table>
+              <p className="a12-fine">{PRICE_NOTE}</p>
+            </div>
+          </section>
         </div>
-        <HowItWorks variant="rail" />
-        <FieldGuide />
-        <Proof variant="tabs" />
-        <Plans title="Rates, openly." />
-        <div className="sys-invert d12-interior">
-          <FinalCTA title="Open the aperture." />
-        </div>
+
+        <section id="final" data-section aria-labelledby="a12-f" className="a12-final-sec">
+          <div className="k-wrap a12-final">
+            <ClosingIris />
+            <div className="a12-final-copy">
+              <h2 id="a12-f" className="a12-h2" data-reveal>Step back out whenever you like. Your key stays open.</h2>
+              <a className="a12-btn" href="#main" data-magnetic="6,0.13,0.8,0.45" data-reveal><span data-magnetic-label>Get your key</span></a>
+            </div>
+          </div>
+        </section>
       </main>
-      <Footer />
+      <footer className="a12-foot">
+        <div><p className="a12-mark big"><span aria-hidden />{BRAND.name}</p><p>{MOCK_NOTE}. Brand name is a placeholder.</p></div>
+        <div><h4>Lenses</h4>{MODELS.map((m) => <a key={m.id} href="#rates">{m.name}</a>)}</div>
+        <div><h4>Inside</h4><a href="#inside">Features</a><a href="#build">API quickstart</a><a href="#rates">Token rates</a></div>
+        <div><h4>Lab</h4><a href="/designs">Back to the gallery</a></div>
+      </footer>
     </div>
   );
 }
