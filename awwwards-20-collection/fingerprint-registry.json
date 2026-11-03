@@ -294,7 +294,7 @@
       },
       "signature_scroll_mechanic": "Scroll-pinned flight strips advance along the flight path, plus a wingspan solar-flux calculator",
       "hero_layout_type": "Sky over instrument band: sky canvas fills the upper field, copy and CTA sit in a band of flight-strip readouts",
-      "built": false
+      "built": true
     },
     {
       "id": "17",
