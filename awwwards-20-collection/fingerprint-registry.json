@@ -313,7 +313,7 @@
       },
       "signature_scroll_mechanic": "Scroll-plotted roast profile: scroll advances roast time through drying, Maillard, first crack and development",
       "hero_layout_type": "Chart-as-hero: the live roast curve plotted across the hero, headline set inside the chart area",
-      "built": false
+      "built": true
     },
     {
       "id": "18",
