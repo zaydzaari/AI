@@ -74,7 +74,7 @@
       },
       "signature_scroll_mechanic": "Scroll-grown mycelium: a branching network grows down the page through nine lab receipts",
       "hero_layout_type": "Specimen plate: centred framed plate with mycelium growing past its borders",
-      "built": false
+      "built": true
     },
     {
       "id": "05",

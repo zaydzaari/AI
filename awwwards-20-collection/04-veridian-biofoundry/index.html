@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Grow from one request to a whole product</title>
+<meta name="description" content="Start with a single API call and grow into chat, agents and long-context work on the same key, billed per token. Veridian design direction.">
+<meta name="theme-color" content="#F7F6F1">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23F7F6F1'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%231B4D3E'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/fraunces-300-700-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;font-display:swap;src:url(fonts/fraunces-300-700-italic.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/fraunces-300-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/plus-jakarta-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/plus-jakarta-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/plus-jakarta-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#F7F6F1;--bg-secondary:#E6E4DC;--accent:#1B4D3E;--on-accent:#FFFFFF;--text-primary:#1F2620;--text-muted:#535C55;--line:rgba(31,38,32,.16);--font-display:"Fraunces", Georgia, serif;--font-body:"Plus Jakarta Sans", sans-serif}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Veridian Biofoundry ——— */
+
+h1,.v4-h2{font-variation-settings:"opsz" 144,"SOFT" 30}
+.v4-nav{position:sticky;top:0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:#F7F6F1ee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);font-size:.88rem}
+.v4-mark{font-family:var(--font-display);font-size:1.35rem;font-style:italic;text-decoration:none}
+.v4-links{display:flex;gap:22px}
+.v4-links a{text-decoration:none;color:var(--text-muted);padding:4px 0;border-bottom:2px solid transparent}
+.v4-links a.is-current{color:var(--text-primary);border-color:var(--accent)}
+.v4-plate-no{color:var(--text-muted);font-size:.8rem}
+@media (max-width:860px){.v4-links{display:none}}
+.v4-btn{display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;transition:box-shadow .4s var(--ease)}
+.v4-btn.is-near{box-shadow:0 0 0 6px #1B4D3E1f}
+.v4-btn i{width:8px;height:8px;border-radius:50%;background:#B9E0C9}
+.v4-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:380;letter-spacing:-.025em;line-height:1.02;max-width:18ch}
+.v4-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* hero: specimen plate */
+.v4-hero{position:relative;min-height:calc(100svh - 60px);display:grid;place-items:center;padding:28px var(--gutter);overflow:clip}
+.v4-hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.v4-plate{position:relative;z-index:2;width:min(880px,100%);background:#FBFAF6;border:1px solid var(--text-primary);outline:1px solid var(--text-primary);outline-offset:6px;padding:clamp(28px,5vh,56px) clamp(24px,5vw,64px);display:grid;justify-items:center;text-align:center;gap:20px;box-shadow:0 40px 80px -60px #1F262066}
+.v4-plate .lbl{display:flex;justify-content:space-between;width:100%;font-size:.76rem;color:var(--text-muted);border-bottom:1px solid var(--line);padding-bottom:10px}
+.v4-plate h1{font-weight:360;max-width:14ch}
+.v4-plate h1 em{font-weight:300}
+.v4-plate .k-body{color:var(--text-muted);max-width:52ch}
+.v4-trust{font-size:.86rem;color:var(--text-muted);display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+.v4-trust b{color:var(--text-primary);font-weight:600}
+@media (max-width:760px){
+  .v4-hero{padding:16px var(--gutter);place-items:start center}
+  .v4-plate{gap:12px;padding:20px 18px;outline-offset:4px}
+  .v4-plate .lbl span:last-child{display:none}
+}
+
+/* problem */
+.v4-intro{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.v4-obs{display:grid;gap:14px}
+.v4-obs li{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;padding:22px 26px;border-radius:4px;background:#FBFAF6;border:1px solid var(--line)}
+.v4-obs .fig{grid-row:span 2;font-family:var(--font-display);font-style:italic;font-size:1.4rem;color:var(--text-muted)}
+.v4-obs .was{color:var(--text-muted);font-size:.95rem}
+.v4-obs .now{font-family:var(--font-display);font-size:1.35rem;line-height:1.25}
+@media (max-width:900px){.v4-intro{grid-template-columns:1fr;gap:40px}}
+
+/* signature: grown network of receipts */
+.v4-colony{position:relative;margin-top:clamp(64px,6vw,80px)}
+.v4-colony canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.v4-cards{position:relative;display:grid;gap:clamp(48px,9vh,96px);padding:40px 0 80px}
+.v4-rcpt{position:relative;width:min(420px,86%);background:#FBFAF6e8;border:1px solid var(--text-primary);display:grid;gap:10px;backdrop-filter:blur(2px)}
+.v4-rcpt:nth-child(3n+1){justify-self:start;margin-left:6%}
+.v4-rcpt:nth-child(3n+2){justify-self:center}
+.v4-rcpt:nth-child(3n){justify-self:end;margin-right:6%}
+.v4-rcpt .no{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text-muted);border-bottom:1px dashed var(--line);padding-bottom:8px}
+.v4-rcpt h3{font-family:var(--font-display);font-size:1.6rem;font-weight:400;line-height:1.1}
+.v4-rcpt p{font-size:.9rem;color:var(--text-muted)}
+.v4-rcpt dl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:10px;font-size:.8rem}
+.v4-rcpt dt{color:var(--text-muted);font-size:.7rem}
+.v4-rcpt dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.v4-rcpt.grown{border-color:var(--accent);box-shadow:0 0 0 3px #1B4D3E14}
+.v4-count{position:sticky;top:76px;z-index:3;margin:0 0 0 auto;width:max-content;display:flex;gap:16px;align-items:center;padding:10px 18px;border-radius:999px;background:#F7F6F1f0;border:1px solid var(--line);font-size:.84rem;margin-right:var(--gutter)}
+@media (max-width:760px){.v4-rcpt{width:100%;margin:0!important;justify-self:stretch!important}.v4-count{top:68px;font-size:.76rem;gap:10px}}
+
+/* bento: field guide */
+.v4-guide{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.v4-entry{position:relative;isolation:isolate;overflow:hidden;background:var(--bg-secondary);border-radius:4px;display:grid;gap:14px;align-content:start;min-height:280px}
+.v4-entry::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(320px circle at var(--mx) var(--my),#FBFAF6,transparent 70%);opacity:0;transition:opacity .3s}
+.v4-entry:hover::before{opacity:1}
+.v4-entry .latin{font-family:var(--font-display);font-style:italic;font-size:.95rem;color:var(--text-muted)}
+.v4-entry h3{font-family:var(--font-display);font-size:1.7rem;font-weight:400;line-height:1.12}
+.v4-entry p{font-size:.92rem;color:var(--text-muted)}
+.v4-entry.e0{grid-column:span 2;background:var(--text-primary);color:#F7F6F1}
+.v4-entry.e0 .latin,.v4-entry.e0 p{color:#C7CEC8}
+.v4-entry.e0 h3{font-size:clamp(2rem,3.2vw,2.8rem)}
+.v4-entry.e0::before{background:radial-gradient(320px circle at var(--mx) var(--my),#FFFFFF14,transparent 70%)}
+.v4-entry.e5{grid-column:1 / -1;min-height:0}
+@media (max-width:900px){.v4-guide{grid-template-columns:1fr}.v4-entry.e0,.v4-entry.e5{grid-column:auto}}
+
+/* rail: protocol */
+.v4-rail-head{padding:0 var(--gutter);margin-bottom:48px}
+.v4-steps{padding:0 var(--gutter);gap:20px}
+.v4-step{width:min(560px,52vw);background:#FBFAF6;border:1px solid var(--text-primary);display:grid;gap:14px;align-content:start}
+.v4-step .n{font-family:var(--font-display);font-style:italic;font-size:2.6rem;line-height:1;color:var(--text-muted);transition:color .4s}
+.v4-step.is-active .n{color:var(--accent)}
+.v4-step h3{font-family:var(--font-display);font-size:2rem;font-weight:400;line-height:1.08}
+.v4-step p{color:var(--text-muted)}
+.v4-step pre{margin:0;background:var(--text-primary);color:#E8EDE9;padding:14px;font-size:.74rem;line-height:1.6;overflow-x:auto;white-space:pre}
+@media (max-width:899px){.v4-step{width:auto}}
+
+/* field notes */
+.v4-notes{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.v4-note{border-top:3px solid var(--text-primary);background:#FBFAF6;display:grid;gap:16px;align-content:start}
+.v4-note q{font-family:var(--font-display);font-size:1.2rem;line-height:1.35;quotes:"“" "”"}
+.v4-note p{font-size:.84rem;color:var(--text-muted)}
+.v4-note b{display:block;color:var(--text-primary)}
+@media (max-width:1000px){.v4-notes{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.v4-notes{grid-template-columns:1fr}}
+
+/* pricing */
+.v4-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.v4-plan{border:1px solid var(--text-primary);display:grid;gap:14px;align-content:start;background:#FBFAF6}
+.v4-plan.feat{background:var(--bg-secondary)}
+.v4-plan h3{font-size:1rem;font-weight:600}
+.v4-plan .p{font-family:var(--font-display);font-size:2.8rem;font-weight:380;line-height:1}
+.v4-plan .cad{font-size:.82rem;color:var(--text-muted)}
+.v4-plan ul{display:grid;gap:6px;font-size:.92rem}
+.v4-plan li::before{content:"❧ ";color:var(--text-muted)}
+.v4-plan .fk{font-size:.84rem;border-top:1px dashed var(--line);padding-top:12px}
+@media (max-width:900px){.v4-plans{grid-template-columns:1fr}}
+.v4-table{width:100%;margin-top:40px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.v4-table caption{text-align:left;font-family:var(--font-display);font-size:1.5rem;padding-bottom:12px}
+.v4-table th,.v4-table td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
+.v4-table thead th{font-weight:500;color:var(--text-muted);font-size:.8rem;border-bottom:1px solid var(--text-primary)}
+@media (max-width:700px){.v4-table th:nth-child(2),.v4-table td:nth-child(2){display:none}}
+
+/* final + footer */
+.v4-final{display:grid;justify-items:center;text-align:center;gap:28px}
+.v4-final .v4-h2{font-size:clamp(2.6rem,5.4vw,4.8rem)}
+.v4-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--text-primary);font-size:.86rem;color:var(--text-muted)}
+.v4-foot h4{font-size:.8rem;color:var(--text-primary);margin-bottom:12px}
+.v4-foot ul{display:grid;gap:8px}
+.v4-foot a{text-decoration:none}
+.v4-foot a:hover{color:var(--text-primary);text-decoration:underline}
+.v4-foot .big{font-family:var(--font-display);font-style:italic;font-size:2.4rem;color:var(--text-primary)}
+.v4-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.v4-foot{grid-template-columns:1fr 1fr}.v4-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="v4-nav">
+  <a class="v4-mark" href="#main">Aether</a>
+  <nav class="v4-links" data-spy aria-label="Sections"><a href="#observations">Observations</a><a href="#colony">The colony</a><a href="#guide">Field guide</a><a href="#protocol">Protocol</a><a href="#pricing">Pricing</a></nav>
+  <span class="v4-plate-no">Plate I · per-token API</span>
+</header>
+<main id="main">
+  <section class="v4-hero" data-hero aria-labelledby="v4-h">
+    <canvas id="hyphae" data-hero-part="visual" role="img" aria-label="A hyphal network growing outward from the plate; it sprouts toward the pointer"></canvas>
+    <div class="v4-plate">
+      <p class="lbl"><span>Plate I — Specimen 001</span><span>One key, five families</span></p>
+      <h1 id="v4-h" data-hero-part="headline">Grow from one request to a <em>whole product.</em></h1>
+      <p class="k-body" data-hero-part="sub">Start with a single call. Add models, temperaments and agents as you grow — the same key, the same request shape, billed per token.</p>
+      <div data-hero-part="cta"><a class="v4-btn" href="#pricing" data-cta="primary" data-magnetic="6,0.12,0.82,0.4"><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a></div>
+      <p class="v4-trust" data-hero-part="trust">Specimen 001: <b>212 tokens on Swift</b> cost <b>$0.0000</b> at sample rates.</p>
+    </div>
+  </section>
+
+  <section id="observations" data-section aria-labelledby="v4-o">
+    <div class="k-wrap v4-intro">
+      <h2 id="v4-o" class="v4-h2" data-reveal>Observations from teams that outgrew their first AI provider.</h2>
+      <ol class="v4-obs" data-stagger>
+        <li><span class="fig">i.</span><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="fig">ii.</span><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="fig">iii.</span><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li>
+      </ol>
+    </div>
+    <div class="v4-colony" id="colony">
+      <canvas id="colony-cv" aria-hidden="true"></canvas>
+      <p class="v4-count" aria-live="polite"><span><b class="live" id="grown">0</b> of 9 receipts reached</span><span>Total <b class="live" id="spent">$0.0000</b></span></p>
+      <ol class="v4-cards">
+        <li class="v4-rcpt k-card" data-i="0"><p class="no"><span>Receipt 001</span><span>swift-32k</span></p><h3>Autocomplete</h3><p>Inline suggestions while a user types.</p><dl><div><dt>In</dt><dd>180</dd></div><div><dt>Out</dt><dd>24</dd></div><div><dt>Cost</dt><dd>$0.0000</dd></div></dl></li><li class="v4-rcpt k-card" data-i="1"><p class="no"><span>Receipt 002</span><span>core-128k</span></p><h3>Support reply</h3><p>A cached system prompt answers a ticket.</p><dl><div><dt>In</dt><dd>1,200</dd></div><div><dt>Out</dt><dd>300</dd></div><div><dt>Cost</dt><dd>$0.0011</dd></div></dl></li><li class="v4-rcpt k-card" data-i="2"><p class="no"><span>Receipt 003</span><span>unbound-128k</span></p><h3>Fiction scene</h3><p>A dark chapter, written without lectures.</p><dl><div><dt>In</dt><dd>900</dd></div><div><dt>Out</dt><dd>700</dd></div><div><dt>Cost</dt><dd>$0.0030</dd></div></dl></li><li class="v4-rcpt k-card" data-i="3"><p class="no"><span>Receipt 004</span><span>forge-256k</span></p><h3>Code review</h3><p>Forge reads a pull request and comments.</p><dl><div><dt>In</dt><dd>12,000</dd></div><div><dt>Out</dt><dd>1,100</dd></div><div><dt>Cost</dt><dd>$0.012</dd></div></dl></li><li class="v4-rcpt k-card" data-i="4"><p class="no"><span>Receipt 005</span><span>atlas-1m</span></p><h3>Contract search</h3><p>Every renewal date across 40 files.</p><dl><div><dt>In</dt><dd>220,000</dd></div><div><dt>Out</dt><dd>800</dd></div><div><dt>Cost</dt><dd>$0.087</dd></div></dl></li><li class="v4-rcpt k-card" data-i="5"><p class="no"><span>Receipt 006</span><span>swift-32k</span></p><h3>Data extraction</h3><p>Names and amounts pulled into JSON.</p><dl><div><dt>In</dt><dd>3,000</dd></div><div><dt>Out</dt><dd>200</dd></div><div><dt>Cost</dt><dd>$0.0002</dd></div></dl></li><li class="v4-rcpt k-card" data-i="6"><p class="no"><span>Receipt 007</span><span>core-128k</span></p><h3>Research summary</h3><p>Twelve papers condensed into one page.</p><dl><div><dt>In</dt><dd>18,000</dd></div><div><dt>Out</dt><dd>900</dd></div><div><dt>Cost</dt><dd>$0.0097</dd></div></dl></li><li class="v4-rcpt k-card" data-i="7"><p class="no"><span>Receipt 008</span><span>unbound-128k</span></p><h3>Red-team probe</h3><p>A refusal-free test of your own guardrails.</p><dl><div><dt>In</dt><dd>600</dd></div><div><dt>Out</dt><dd>400</dd></div><div><dt>Cost</dt><dd>$0.0018</dd></div></dl></li><li class="v4-rcpt k-card" data-i="8"><p class="no"><span>Receipt 009</span><span>forge-256k</span></p><h3>Agent bug fix</h3><p>Plan, edit, test — a reviewed diff.</p><dl><div><dt>In</dt><dd>48,000</dd></div><div><dt>Out</dt><dd>3,000</dd></div><div><dt>Cost</dt><dd>$0.037</dd></div></dl></li>
+      </ol>
+      <p class="k-wrap v4-fine">Nine example requests at sample rates, with typical caching. Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="guide" data-section aria-labelledby="v4-g">
+    <div class="k-wrap">
+      <h2 id="v4-g" class="v4-h2" data-reveal>A field guide to what each feature yields.</h2>
+      <div class="v4-guide" data-stagger>
+        <article class="v4-entry k-card e0" data-spot><span class="latin">Unified chat</span><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="v4-entry k-card e1" data-spot><span class="latin">Three temperaments</span><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="v4-entry k-card e2" data-spot><span class="latin">Coding agents</span><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="v4-entry k-card e3" data-spot><span class="latin">Long context</span><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="v4-entry k-card e4" data-spot><span class="latin">Prompt caching</span><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="v4-entry k-card e5" data-spot><span class="latin">Side-by-side compare</span><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="protocol" data-section aria-labelledby="v4-p">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="v4-rail-head"><h2 id="v4-p" class="v4-h2" data-reveal>Protocol, in three steps.</h2></div>
+        <ol class="v4-steps" data-rail-track>
+          <li class="v4-step k-card"><span class="n">i.</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></li><li class="v4-step k-card"><span class="n">ii.</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+model:   "core-128k"</code></pre></li><li class="v4-step k-card"><span class="n">iii.</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="notes" data-section aria-labelledby="v4-n">
+    <div class="k-wrap">
+      <h2 id="v4-n" class="v4-h2" data-reveal>Field notes, by role.</h2>
+      <div class="v4-notes" data-stagger>
+        <figure class="v4-note k-card"><q>Replace with a real quote about consolidating providers behind one base URL.</q><p><b>Backend developer</b>One key instead of three</p></figure><figure class="v4-note k-card"><q>Replace with a real quote about comparing standard and abliterated variants.</q><p><b>Safety researcher</b>Studying refusal behaviour</p></figure><figure class="v4-note k-card"><q>Replace with a real quote about writing difficult scenes without refusals.</q><p><b>Novelist</b>Dark themes, no lectures</p></figure><figure class="v4-note k-card"><q>Replace with a real quote about per-request cost reporting and caching.</q><p><b>Startup CTO</b>Predictable costs</p></figure>
+      </div>
+      <p class="v4-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="pricing" data-section aria-labelledby="v4-pr">
+    <div class="k-wrap">
+      <h2 id="v4-pr" class="v4-h2" data-reveal>Pay for what grows, one token at a time.</h2>
+      <div class="v4-plans" data-stagger>
+        <article class="v4-plan k-card"><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="v4-plan k-card feat"><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="v4-plan k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article>
+      </div>
+      <table class="v4-table" data-reveal>
+        <caption>Rates per 1M tokens</caption>
+        <thead><tr><th scope="col">Family</th><th scope="col">Best for</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>128K</td><td>$0.60</td><td>$0.15</td><td>$2.40</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>128K</td><td>$0.80</td><td>$0.20</td><td>$3.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>256K</td><td>$1.20</td><td>$0.30</td><td>$4.80</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>1M</td><td>$1.50</td><td>$0.25</td><td>$6.00</td></tr><tr><th scope="row">Swift</th><td>Fast & small</td><td>32K</td><td>$0.08</td><td>$0.02</td><td>$0.32</td></tr></tbody>
+      </table>
+      <p class="v4-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="v4-f">
+    <div class="k-wrap v4-final">
+      <h2 id="v4-f" class="v4-h2" data-reveal>Plant your first request today.</h2>
+      <p class="k-body k-muted" data-reveal>Everything you saw above runs on one key. Start small; the network grows with you.</p>
+      <a class="v4-btn" href="#main" data-magnetic="6,0.12,0.82,0.4" data-reveal><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a>
+    </div>
+  </section>
+</main>
+<footer class="v4-foot">
+  <div><p class="big">Aether</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Veridian" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Families</h4><ul><li><a href="#pricing">Core</a></li><li><a href="#pricing">Unbound</a></li><li><a href="#pricing">Forge</a></li><li><a href="#pricing">Atlas</a></li><li><a href="#pricing">Swift</a></li></ul></div>
+  <div><h4>Platform</h4><ul><li><a href="#colony">Use cases</a></li><li><a href="#protocol">API quickstart</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Fraunces and Plus Jakarta Sans.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, canvas, loop, onScroll, progress, pointer } = K;
+    const TAU = Math.PI * 2;
+    const rng = (seed) => () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+
+    // —— hero: hyphae grow outward from the plate, and sprout toward the pointer ——
+    const cv = $("#hyphae"), plate = $(".v4-plate");
+    let s = null, tips = [], segs = [], born = performance.now();
+    s = canvas(cv, () => s && seed());
+    function seed() {
+      const r = rng(7), w = s.w, h = s.h;
+      const pr = plate.getBoundingClientRect(), cr = cv.getBoundingClientRect();
+      const L = pr.left - cr.left, T = pr.top - cr.top, R = L + pr.width, B = T + pr.height;
+      tips = []; segs = [];
+      for (let i = 0; i < 46; i++) {
+        const side = i % 4, u = r();
+        const x = side === 0 ? L + u * pr.width : side === 1 ? R : side === 2 ? L + u * pr.width : L;
+        const y = side === 0 ? T : side === 1 ? T + u * pr.height : side === 2 ? B : T + u * pr.height;
+        const a = [-Math.PI / 2, 0, Math.PI / 2, Math.PI][side] + (r() - 0.5) * 0.9;
+        tips.push({ x, y, a, life: 60 + r() * 90, w: 1.2 });
+      }
+      s.box = { L, T, R, B, w, h };
+      born = performance.now();
+      s.ctx.clearRect(0, 0, w, h);
+    }
+    seed();
+    const grow = (r, limit) => {
+      const { ctx } = s, { L, T, R, B, w, h } = s.box;
+      for (let n = 0; n < limit && tips.length; n++) {
+        const t = tips[(Math.random() * tips.length) | 0];
+        const nx = t.x + Math.cos(t.a) * 3.2, ny = t.y + Math.sin(t.a) * 3.2;
+        const inside = nx > L && nx < R && ny > T && ny < B;
+        if (t.life-- <= 0 || nx < 0 || ny < 0 || nx > w || ny > h || inside) { tips.splice(tips.indexOf(t), 1); continue; }
+        ctx.strokeStyle = `rgba(83,92,85,${0.16 + t.w * 0.18})`; ctx.lineWidth = t.w;
+        ctx.beginPath(); ctx.moveTo(t.x, t.y); ctx.lineTo(nx, ny); ctx.stroke();
+        t.x = nx; t.y = ny; t.a += (Math.random() - 0.5) * 0.5;
+        if (Math.random() < 0.035 && tips.length < 260) tips.push({ x: t.x, y: t.y, a: t.a + (Math.random() < 0.5 ? 0.7 : -0.7), life: t.life * 0.7, w: Math.max(0.5, t.w * 0.75) });
+        if (Math.random() < 0.01) { ctx.fillStyle = "rgba(27,77,62,.55)"; ctx.beginPath(); ctx.arc(t.x, t.y, 1.8, 0, TAU); ctx.fill(); }
+      }
+    };
+    let lastSprout = 0;
+    loop(cv, (time) => {
+      if (RM) { for (let i = 0; i < 40; i++) grow(null, 200); return; }
+      grow(null, performance.now() - born < 4000 ? 90 : 14);
+      if (pointer.active && time - lastSprout > 0.25) {
+        lastSprout = time;
+        const cr = cv.getBoundingClientRect(), px = pointer.x - cr.left, py = pointer.y - cr.top;
+        const { L, T, R, B } = s.box;
+        if (px > 0 && py > 0 && px < s.w && py < s.h && !(px > L && px < R && py > T && py < B)) {
+          const ex = Math.max(L, Math.min(R, px)), ey = Math.max(T, Math.min(B, py));
+          tips.push({ x: ex, y: ey, a: Math.atan2(py - ey, px - ex), life: 40, w: 1 });
+        }
+      }
+    });
+
+    // —— signature: a colony grows down the page and reaches each receipt ——
+    const colony = $("#colony"), ccv = $("#colony-cv"), cards = $$(".v4-rcpt");
+    let cs = null, net = [], drawn = 0, front = 0;
+    cs = canvas(ccv, () => cs && build());
+    function build() {
+      const r = rng(42), cr = ccv.getBoundingClientRect();
+      const anchors = cards.map((c) => { const b = c.getBoundingClientRect(); return { x: b.left - cr.left + b.width * (0.2 + r() * 0.6), y: b.top - cr.top + b.height / 2 }; });
+      net = [];
+      let prev = { x: cs.w * 0.5, y: 0 };
+      anchors.forEach((a, i) => {
+        // trunk from previous anchor to this one, wandering
+        let x = prev.x, y = prev.y;
+        const steps = Math.max(12, Math.round(Math.hypot(a.x - x, a.y - y) / 9));
+        for (let k = 1; k <= steps; k++) {
+          const t = k / steps, nx = prev.x + (a.x - prev.x) * t + Math.sin(t * 9 + i) * 26 * (1 - Math.abs(t - 0.5) * 2), ny = prev.y + (a.y - prev.y) * t;
+          net.push({ x0: x, y0: y, x1: nx, y1: ny, w: 2.2, card: k === steps ? i : -1 });
+          // side branches
+          if (r() < 0.32) {
+            let bx = nx, by = ny, ba = (r() < 0.5 ? 0 : Math.PI) + (r() - 0.5) * 0.8;
+            for (let j = 0; j < 6 + r() * 14; j++) { const ex = bx + Math.cos(ba) * 8, ey = by + Math.sin(ba) * 8 + 2; net.push({ x0: bx, y0: by, x1: ex, y1: ey, w: 0.8, card: -1 }); bx = ex; by = ey; ba += (r() - 0.5) * 0.7; }
+          }
+          x = nx; y = ny;
+        }
+        prev = a;
+      });
+      net.sort((a, b) => a.y0 - b.y0);
+      drawn = 0; cs.ctx.clearRect(0, 0, cs.w, cs.h);
+      paint();
+    }
+    const grownEl = $("#grown"), spentEl = $("#spent");
+    const costs = cards.map((c) => parseFloat(c.querySelector("dd:last-child").textContent.replace("$", "")));
+    function paint() {
+      const { ctx } = cs;
+      while (drawn < net.length && net[drawn].y0 <= front) {
+        const g = net[drawn++];
+        ctx.strokeStyle = g.w > 1 ? "rgba(27,77,62,.55)" : "rgba(83,92,85,.35)"; ctx.lineWidth = g.w; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(g.x0, g.y0); ctx.lineTo(g.x1, g.y1); ctx.stroke();
+      }
+      let reached = 0, spent = 0;
+      cards.forEach((c, i) => { const r = c.offsetTop + c.offsetHeight / 2 + c.parentElement.offsetTop; const on = front >= r - 10; c.classList.toggle("grown", on); if (on) { reached++; spent += costs[i]; } });
+      grownEl.textContent = reached; spentEl.textContent = "$" + spent.toFixed(4);
+    }
+    build();
+    onScroll(() => {
+      const r = colony.getBoundingClientRect();
+      const f = RM ? cs.h : Math.max(0, innerHeight * 0.72 - r.top);
+      if (f > front) { front = f; paint(); }
+    });
+  })();
+</script>
+</body>
+</html>
