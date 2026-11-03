@@ -10,6 +10,15 @@ This document records what was taken from the two reference sites, the reasoning
 
 ---
 
+## v3 update (latest)
+
+Every concept was rebuilt to the unified rule set (see README → v3). What changed in judgement:
+
+- **Distinctness is back.** v2 had converged on shared body sections; v3 gives each concept its own sections and a signature mechanic that explains part of the business: temperaments (02), comparison (03), context (04), agents (05), caching and routing (07, 09), discovery (08), metering (01, 11), the live router (10).
+- **Top three remain Aperture (12), Lab Seven (07) and Live Wire (10)**, with Graphite (02) now a close fourth: its refusal-direction projection is the most credible explanation of abliteration in the set.
+- **Trade-offs:** Kiln (05) and Aperture (12) are the most memorable and the most expensive to maintain; Raster (09) and Lumen (06) are the clearest but the least ownable; Observatory (08) and Pearl (03) depend on their metaphor staying legible on phones.
+- **Still true:** all model names, rates and testimonials are placeholders, and nothing was tested on real GPUs, Safari or Windows.
+
 ## 1. Reference study
 
 Both sites were loaded in a real Chromium browser (Playwright) at 1440 × 900. I scrolled through the full length of each page, captured viewport screenshots every 900 px, and read the computed fonts and colours. That covered roughly 6,400 px of tryabracadabra.com and 11,300 px of abliteration.ai. I did not test their behaviour on mobile, and I did not reverse-engineer their animation code.

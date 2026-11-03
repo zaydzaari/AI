@@ -25,6 +25,35 @@ npm run build
 npm start
 ```
 
+## v3 — Unified rules, every concept rebuilt
+
+All 12 concepts were rebuilt from scratch (v2 is archived in `components/designs/_archive/v2/`). Each one now has its own composition, its own copy and one signature scroll mechanic tied to the token/API business — no shared body sections.
+
+**One rule set that satisfies every brief at once** (`components/system/kit.css`, `lib/kit.ts`):
+
+- H1 `clamp(3.25rem, 6vw, 5rem)` at `-0.03em`; body 1.05rem / 1.7 at ≤ 65ch; no Inter, Roboto, Open Sans, Lato, Arial or system fonts.
+- 60-30-10 tokens on every root (`--bg-primary`, `--bg-secondary`, `--accent`, `--text-primary`, `--text-muted`); the accent appears only on primary CTAs, active nav states and live data readouts.
+- Sections 120 px (72 px mobile), block gaps 64–80 px, card padding 36–40 px, fractal grain at 0.035.
+- 5-part hero above the fold (headline, sub, one magnetic CTA, interactive visual, concrete trust signal), then problem/solution + signature → feature/benefit bento → 3-step pinned rail → role-based proof (placeholders) → pricing + per-token rates → final CTA + footer.
+- `useKit(ref)` wires reveals, 80 ms staggers, spring-physics magnetic CTAs, spotlight cards, the pinned rail, scroll-spy and count-ups; canvas loops pause off-screen; reduced motion disables pinning and scrubbing.
+
+| # | Concept | Signature scroll mechanic |
+|---|---|---|
+| 01 | Field Notes | Annotated thread: model and temperament switch mid-conversation, live token tally |
+| 02 | Graphite | Refusal direction projected out of an activation field |
+| 03 | Pearl | One prompt refracted through a prism into five priced answers |
+| 04 | Monolith | Width is context: names stretch on Archivo's width axis |
+| 05 | Kiln | Agent loop choreography (plan → edit → test → ship) with running cost |
+| 06 | Lumen | Laptop opens, camera pushes into the app |
+| 07 | Lab Seven | Token-flow Sankey through uncached / cached / routed runs |
+| 08 | Observatory | Planisphere: constellations open ephemeris cards at the meridian |
+| 09 | Raster | Monthly estimator poster from 1M to 1B tokens |
+| 10 | Live Wire | Live router console + docking workspace panels |
+| 11 | Obsidian | Scroll-scrubbed token stream with a precise usage meter |
+| 12 | Aperture | Full-viewport iris opens into the machine; closing iris finale |
+
+`npm run audit` checks every rule above at 1440×900 and 375×667 (plus contrast via axe). All 12 pass.
+
 ## v2 — Master design system
 
 All 12 concepts were rebuilt to a shared master design system. Each keeps its own hero, palette, typefaces and signature interactive pieces.
