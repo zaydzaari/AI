@@ -51,7 +51,7 @@ export default {
 .s7-trust{font-size:.8rem;color:var(--text-muted);border-left:1px solid var(--accent);padding-left:12px}
 .s7-trust b{color:var(--text-primary)}
 @media (max-width:900px){
-  .s7-hero{grid-template-columns:1fr;grid-template-rows:auto 112px auto auto;padding:14px var(--gutter);gap:10px}
+  .s7-hero{grid-template-columns:1fr;grid-template-rows:auto 92px auto auto;padding:12px var(--gutter);gap:8px}
   .s7-meta span:last-child{display:none}
   .s7-big{font-size:4.2rem}
   .s7-big small{margin-top:4px;font-size:.6875rem}
