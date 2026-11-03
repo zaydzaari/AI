@@ -26,13 +26,16 @@ const BASE_CSS = `
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
 ul,ol{padding:0;list-style:none}
 fieldset{border:0;padding:0}
 img,svg,canvas,video{display:block;max-width:100%}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-h1{font-family:var(--font-display);font-size:clamp(3.25rem,6.5vw,6rem);line-height:.98;letter-spacing:-.04em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
 h2,h3{font-family:var(--font-display);text-wrap:balance}
 .k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
 .k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}

@@ -39,7 +39,7 @@
   text-wrap: balance;
 }
 .kit :where(h2, h3) { font-family: var(--font-display); text-wrap: balance; }
-.kit :where(h1, h2, h3, h4) { overflow-wrap: break-word; hyphens: auto; }
+.kit :where(h1, h2, h3, h4) { overflow-wrap: anywhere; hyphens: manual; }
 .kit ::selection { background: var(--accent); color: var(--on-accent); }
 .kit :focus-visible { outline: 2px solid var(--focus, var(--text-primary)); outline-offset: 3px; }
 

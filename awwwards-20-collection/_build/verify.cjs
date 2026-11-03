@@ -119,8 +119,8 @@ async function sheet(browser, files, out, cols, w) {
         if (h1s.length !== 1) out.push(`h1: ${h1s.length} h1 elements`);
         h1s.forEach((h) => {
           const cs = getComputedStyle(h), fs = parseFloat(cs.fontSize), ls = parseFloat(cs.letterSpacing) / fs;
-          if (fs < 51.5 || fs > 96.5) out.push(`h1: font-size ${fs}px outside clamp(3.25rem,6.5vw,6rem)`);
-          if (!(ls <= -0.0295 && ls >= -0.0505)) out.push(`h1: tracking ${ls.toFixed(3)}em (want -0.03 to -0.05)`);
+          if (fs < 51.5 || fs > 80.5) out.push(`h1: font-size ${fs}px outside clamp(3.25rem,6vw,5rem)`);
+          if (!(ls <= -0.0295 && ls >= -0.0355)) out.push(`h1: tracking ${ls.toFixed(3)}em (want -0.03em)`);
         });
         document.querySelectorAll(".k-body").forEach((p) => {
           const cs = getComputedStyle(p), fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight) / fs;
@@ -131,6 +131,11 @@ async function sheet(browser, files, out, cols, w) {
           const ch = c.measureText("0").width;
           if (p.getBoundingClientRect().width > ch * 66.5) out.push(`body: measure ${Math.round(p.getBoundingClientRect().width / ch)}ch "${p.textContent.trim().slice(0, 24)}"`);
         });
+        document.querySelectorAll(".k-card").forEach((c) => {
+          const cs = getComputedStyle(c), pads = [cs.paddingTop, cs.paddingRight, cs.paddingBottom, cs.paddingLeft].map(parseFloat);
+          if (pads.some((v) => v < 35.5 || v > 40.5)) out.push(`card: padding ${pads.join("/")} outside 36–40px "${c.textContent.trim().slice(0, 24)}"`);
+        });
+        if (Math.abs(parseFloat(getComputedStyle(document.body, "::after").opacity) - 0.035) > 0.002 && document.querySelector("[data-hero]")) out.push("grain: overlay missing or not 0.035");
         const min = innerWidth >= 768 ? 120 : 72;
         document.querySelectorAll("[data-section]").forEach((s) => {
           const cs = getComputedStyle(s);

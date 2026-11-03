@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chronos Atelier — Twelve hand-made calibres a year</title>
-<meta name="description" content="Commission a mechanical watch drawn, cut and finished by two watchmakers over 14 months. Twelve commissions a year.">
+<title>Aether — Every token, metered like a chronometer</title>
+<meta name="description" content="One API key for five model families, standard, low-refusal or abliterated, billed per token with the exact cost on every response. Chronos design direction.">
 <meta name="theme-color" content="#090A0F">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23090A0F'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23D4AF37'%2F%3E%3C%2Fsvg%3E">
@@ -25,13 +25,16 @@
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
 ul,ol{padding:0;list-style:none}
 fieldset{border:0;padding:0}
 img,svg,canvas,video{display:block;max-width:100%}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
-h1{font-family:var(--font-display);font-size:clamp(3.25rem,6.5vw,6rem);line-height:.98;letter-spacing:-.04em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
 h2,h3{font-family:var(--font-display);text-wrap:balance}
 .k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
 .k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
@@ -82,7 +85,7 @@ body{font-size:1.05rem}
 /* hero: asymmetric 5/7 split */
 .c-hero{position:relative;min-height:100svh;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:center;padding:96px var(--gutter) 40px;overflow:clip}
 .c-hero-copy{grid-column:1 / span 5;position:relative;z-index:2;display:grid;gap:30px}
-.c-hero h1{font-weight:500;letter-spacing:-.035em;line-height:.94}
+.c-hero h1{font-weight:500;letter-spacing:-.03em;line-height:.94}
 .c-hero h1 em{font-weight:400}
 .c-hero .k-body{color:var(--text-muted);max-width:44ch}
 .c-hero-visual{grid-column:6 / -1;position:relative;height:min(78vh,760px);aspect-ratio:auto}
@@ -142,7 +145,7 @@ body{font-size:1.05rem}
 .c-bento-head{display:flex;justify-content:space-between;align-items:end;gap:48px;margin-bottom:72px;flex-wrap:wrap}
 .c-bento-head .k-body{color:var(--text-muted);max-width:40ch}
 .c-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.c-card{position:relative;background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;padding:40px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden;isolation:isolate;transition:border-color .3s}
+.c-card{position:relative;background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden;isolation:isolate;transition:border-color .3s}
 .c-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px circle at var(--mx) var(--my),#EDE7DA12,transparent 60%);opacity:0;transition:opacity .35s}
 .c-card:hover{border-color:#EDE7DA2e}
 .c-card:hover::before{opacity:1}
@@ -159,22 +162,22 @@ body{font-size:1.05rem}
 .c-rail-head .c-progress{width:220px;height:1px;background:var(--line);position:relative}
 .c-rail-head .c-progress::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--rp,0));transform-origin:left}
 .c-steps{padding:0 var(--gutter);gap:24px}
-.c-step{width:min(640px,58vw);background:var(--bg-secondary);border:1px solid var(--line);padding:48px;border-radius:4px;display:grid;gap:22px;transition:border-color .5s}
+.c-step{width:min(640px,58vw);background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;display:grid;gap:22px;transition:border-color .5s}
 .c-step.is-active{border-color:#EDE7DA40}
 .c-step .num{font-family:var(--font-display);font-style:italic;font-size:6rem;line-height:.8;color:#EDE7DA30;transition:color .5s}
 .c-step.is-active .num{color:var(--text-primary)}
 .c-step h3{font-size:2.4rem;font-weight:500;line-height:1}
 .c-step .when{font-size:.8rem;color:var(--text-muted)}
 .c-step p{color:var(--text-muted);font-size:.95rem;max-width:44ch}
-@media (max-width:899px){.c-step{width:auto;padding:36px}.c-rail-head .c-progress{display:none}}
+@media (max-width:899px){.c-step{width:auto}.c-rail-head .c-progress{display:none}}
 
 /* receipts */
 .c-receipts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:72px}
-.c-ticket{border:1px solid var(--line);border-radius:4px;padding:40px;display:grid;gap:26px;align-content:start;background:linear-gradient(#141722,#10121a)}
+.c-ticket{border:1px solid var(--line);border-radius:4px;display:grid;gap:26px;align-content:start;background:linear-gradient(#141722,#10121a)}
 .c-ticket .who{display:grid;gap:2px}
 .c-ticket .who b{font-family:var(--font-display);font-size:1.6rem;font-weight:500}
 .c-ticket .who span,.c-ticket .ref{font-size:.78rem;color:var(--text-muted)}
-.c-ticket .metric{font-family:var(--font-display);font-size:3.4rem;line-height:.9;letter-spacing:-.02em}
+.c-ticket .metric{font-family:var(--font-display);font-size:2.6rem;line-height:1;letter-spacing:-.02em}
 .c-ticket .metric small{display:block;font-family:var(--font-body);font-size:.78rem;letter-spacing:0;color:var(--text-muted);margin-top:10px;line-height:1.5}
 .c-ticket blockquote{font-family:var(--font-display);font-style:italic;font-size:1.3rem;line-height:1.35;border-top:1px dashed var(--line);padding-top:22px}
 .c-note{font-size:.78rem;color:var(--text-muted);margin-top:28px}
@@ -182,7 +185,7 @@ body{font-size:1.05rem}
 
 /* pricing */
 .c-tiers{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border:1px solid var(--line);border-radius:4px}
-.c-tier{padding:44px 40px;display:grid;gap:26px;align-content:start}
+.c-tier{display:grid;gap:26px;align-content:start}
 .c-tier+.c-tier{border-left:1px solid var(--line)}
 .c-tier.mid{background:var(--bg-secondary)}
 .c-tier h3{font-size:2.2rem;font-weight:500;line-height:1}
@@ -192,7 +195,7 @@ body{font-size:1.05rem}
 .c-tier li{padding-left:18px;position:relative}
 .c-tier li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:1px;background:var(--text-muted)}
 .c-tier .fk{font-size:.78rem;color:var(--text-primary);border-top:1px dashed var(--line);padding-top:18px}
-@media (max-width:960px){.c-tiers{grid-template-columns:1fr}.c-tier+.c-tier{border-left:0;border-top:1px solid var(--line)}.c-tier{padding:36px}}
+@media (max-width:960px){.c-tiers{grid-template-columns:1fr}.c-tier+.c-tier{border-left:0;border-top:1px solid var(--line)}}
 
 /* final + footer */
 .c-final{text-align:center;display:grid;justify-items:center;gap:40px}
@@ -206,6 +209,11 @@ body{font-size:1.05rem}
 .c-foot .big{font-family:var(--font-display);font-size:2.4rem;color:var(--text-primary);line-height:1}
 .c-foot .legal{grid-column:1 / -1;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px}
 @media (max-width:860px){.c-foot{grid-template-columns:1fr 1fr}.c-foot>div:first-child{grid-column:1 / -1}}
+.c-rates{margin-top:40px;display:grid;border-top:1px solid var(--line)}
+.c-rates p{display:grid;grid-template-columns:1.2fr 2fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--text-muted)}
+.c-rates b{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--text-primary)}
+@media (max-width:860px){.c-rates p{grid-template-columns:1fr 1fr 1fr}.c-rates p span:nth-child(2),.c-rates p span:nth-child(5){display:none}}
+.c-tier h3 span{font-size:.82rem;line-height:1.6;margin-top:10px}
 
 </style>
 </head>
@@ -213,40 +221,40 @@ body{font-size:1.05rem}
 <a class="k-skip" href="#main">Skip to content</a>
 
 <header class="c-nav">
-  <a class="c-mark" href="#main">Chronos <i>Atelier</i></a>
+  <a class="c-mark" href="#main">Aether <i>Chronos</i></a>
   <nav class="c-links" data-spy aria-label="Sections">
-    <a href="#calibre">Calibre</a><a href="#finishing">Finishing</a><a href="#process">Commission</a><a href="#owners">Owners</a><a href="#pricing">Pricing</a>
+    <a href="#calibre">The movement</a><a href="#finishing">Features</a><a href="#process">How it works</a><a href="#owners">People</a><a href="#pricing">Pricing</a>
   </nav>
-  <span class="c-nav-meta">Le Sentier, CH</span>
+  <span class="c-nav-meta">Per-token API</span>
 </header>
 <main id="main">
   <section class="c-hero" data-hero aria-labelledby="hero-title">
     <div class="c-hero-copy">
-      <h1 id="hero-title" data-hero-part="headline">Wear an hour <em>no one else</em> owns.</h1>
-      <p class="k-body" data-hero-part="sub">312 parts drawn, cut and finished by two watchmakers over 14&nbsp;months. We take twelve commissions a year, and each calibre is made once.</p>
-      <div data-hero-part="cta"><a class="c-btn" href="#pricing" data-cta="primary" data-magnetic="7,0.14,0.78,0.4"><span data-magnetic-label>Reserve a 2027 commission</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a></div>
+      <h1 id="hero-title" data-hero-part="headline">Pay for every token. <em>Not one more.</em></h1>
+      <p class="k-body" data-hero-part="sub">One API key for five model families — standard, low-refusal or abliterated. Per-token rates, prompt caching on every model, and the exact cost on every response.</p>
+      <div data-hero-part="cta"><a class="c-btn" href="#pricing" data-cta="primary" data-magnetic="7,0.14,0.78,0.4"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a></div>
       <div class="c-trust" data-hero-part="trust">
-        <span class="c-ledger" role="img" aria-label="9 of 12 commissions reserved"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
-        <span>2027 ledger: 9 of 12 reserved<br>Beats since you arrived: <span class="c-beat" id="beats">0</span></span>
+        <span class="c-ledger" role="img" aria-label="Five model families behind one key"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+        <span>Demo meter: <span class="c-beat" id="beats">0</span> tokens · <span class="c-beat" id="spend">$0.00000</span><br>at Core's sample output rate — a running example.</span>
       </div>
     </div>
-    <div class="c-hero-visual" data-hero-part="visual"><canvas id="hero-cal" aria-label="A hand-finished watch movement, beating at 4 Hz" role="img"></canvas></div>
+    <div class="c-hero-visual" data-hero-part="visual"><canvas id="hero-cal" aria-label="A precision movement, the Aether stack, running" role="img"></canvas></div>
   </section>
 
   <section id="calibre" data-section aria-labelledby="t-title">
     <div class="k-wrap c-tension">
-      <h2 id="t-title" class="c-h2" data-reveal>Most luxury watches are finished by machine, by the hundred thousand.</h2>
-      <p class="k-body" data-reveal>A Chronos calibre is the opposite bet: fewer than a dozen a year, every surface touched by hand, every part made for one wrist. Scroll down and we will take one apart for you.</p>
+      <h2 id="t-title" class="c-h2" data-reveal>Most AI bills are worked out after the fact.</h2>
+      <p class="k-body" data-reveal>Credits, bundles and multipliers hide what a single request cost. Aether is built the other way round: every part of the stack exists to count tokens precisely. Scroll and we will take it apart for you.</p>
       <div class="c-versus" data-reveal>
-        <dl><dt>Serial "luxury"</dt><dd>Movements per year <b>100,000+</b></dd><dd>Finishing <b>machine-stamped</b></dd><dd>Who services it <b>a regional centre</b></dd></dl>
-        <dl><dt>A Chronos commission</dt><dd>Movements per year <b>12</b></dd><dd>Finishing <b>70 hours by hand</b></dd><dd>Who services it <b>the two who built it</b></dd></dl>
+        <dl><dt>The usual way</dt><dd>How you pay <b>credits and bundles</b></dd><dd>What a request costs <b>estimated later</b></dd><dd>Models per key <b>one provider's</b></dd></dl>
+        <dl><dt>With Aether</dt><dd>How you pay <b>per token</b></dd><dd>What a request costs <b>on every response</b></dd><dd>Models per key <b>five families</b></dd></dl>
       </div>
     </div>
     <div class="c-explode" id="explode">
       <div class="c-explode-pin">
-        <canvas id="ex-cal" role="img" aria-label="The calibre separating into five layers"></canvas>
+        <canvas id="ex-cal" role="img" aria-label="The Aether stack separating into five layers"></canvas>
         <ol class="c-layers" id="layers">
-          <li class="is-on"><span class="n">Layer 1 of 5</span><h3>Mainplate</h3><p>Perlage by hand: 2,400 overlapping circles grained with a rotating peg, so the base plate shimmers under the wheels.</p></li><li><span class="n">Layer 2 of 5</span><h3>Going train</h3><p>Barrel, centre, third and fourth wheels in gilded brass. 72 hours of reserve — off the wrist all weekend, still running Monday.</p></li><li><span class="n">Layer 3 of 5</span><h3>Bridges</h3><p>Côtes de Genève stripes and 45° anglage polished with gentian wood. 70 hours of hand finishing per movement.</p></li><li><span class="n">Layer 4 of 5</span><h3>Escapement</h3><p>Free-sprung balance at 4 Hz with a Breguet overcoil, regulated on the bench over 15 days in six positions.</p></li><li><span class="n">Layer 5 of 5</span><h3>Chapter ring</h3><p>Grand feu enamel fired eleven times, then the minute track is transferred by hand and re-fired.</p></li>
+          <li class="is-on"><span class="n">Layer 1 of 5</span><h3>Unified API</h3><p>The mainplate everything is built on: one base URL and one key carry every request, in the request shape your SDK already speaks.</p></li><li><span class="n">Layer 2 of 5</span><h3>Model families</h3><p>The going train. Core, Unbound, Forge, Atlas and Swift mesh on the same request — change one string to switch.</p></li><li><span class="n">Layer 3 of 5</span><h3>Prompt cache</h3><p>The bridges that hold repeated work in place. Repeated prompt prefixes are billed at the cached rate automatically.</p></li><li><span class="n">Layer 4 of 5</span><h3>Token meter</h3><p>The escapement. It releases tokens one beat at a time and counts every one, so each response arrives with its exact cost.</p></li><li><span class="n">Layer 5 of 5</span><h3>Your product</h3><p>The chapter ring — what your users see: chat, agents and answers, standard, low-refusal or abliterated.</p></li>
         </ol>
       </div>
     </div>
@@ -255,23 +263,23 @@ body{font-size:1.05rem}
   <section id="finishing" data-section aria-labelledby="f-title">
     <div class="k-wrap">
       <div class="c-bento-head">
-        <h2 id="f-title" class="c-h2" data-reveal>What fourteen months buys you.</h2>
-        <p class="k-body" data-reveal>Every hour at the bench turns into something you can see or feel on the wrist. Here is the exchange rate.</p>
+        <h2 id="f-title" class="c-h2" data-reveal>Every part does one job for you.</h2>
+        <p class="k-body" data-reveal>Each feature, and the outcome it is there to produce.</p>
       </div>
       <div class="c-bento" data-stagger>
-        <article class="c-card wide" data-spot>
-          <svg viewBox="0 0 300 90" aria-hidden="true"><path d="M0 70 L120 70 L150 40 L300 40" fill="none" stroke="#EDE7DA" stroke-width="1"/><path d="M120 70 L150 40" stroke="#EDE7DA" stroke-width="5" opacity=".35"/><text x="160" y="80" fill="#A2A6B5" font-size="11" font-family="JetBrains Mono">45° anglage, mirror polished</text></svg>
-          <h3>Hand-bevelled bridges</h3><p><b>So that</b>Light catches every edge, and keeps catching it for decades — polished steel does not wear like coating.</p></article><article class="c-card " data-spot>
+        <article class="c-card k-card wide" data-spot>
+          <svg viewBox="0 0 300 90" aria-hidden="true"><path d="M0 70 L120 70 L150 40 L300 40" fill="none" stroke="#EDE7DA" stroke-width="1"/><path d="M120 70 L150 40" stroke="#EDE7DA" stroke-width="5" opacity=".35"/><text x="160" y="80" fill="#A2A6B5" font-size="11" font-family="JetBrains Mono">core-128k → unbound-128k</text></svg>
+          <h3>Switch models mid-conversation without explaining yourself again.</h3><p><b>Unified chat</b>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="c-card k-card " data-spot>
           
-          <h3>One drawing, one owner</h3><p><b>So that</b>The technical drawing of your calibre is archived in your name and never reused.</p></article><article class="c-card " data-spot>
+          <h3>Get direct answers for fiction, red-teaming and research.</h3><p><b>Three temperaments</b>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="c-card k-card " data-spot>
           
-          <h3>72-hour reserve</h3><p><b>So that</b>Take it off Friday night; it is still keeping time on Monday morning.</p></article><article class="c-card " data-spot>
+          <h3>Hand off the bug fix and review a tested diff.</h3><p><b>Coding agents</b>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="c-card k-card " data-spot>
           
-          <h3>Free-sprung balance</h3><p><b>So that</b>Holds its rate after knocks and servicing, because nothing on the balance is ever adjusted by hand again.</p></article><article class="c-card " data-spot>
+          <h3>Ask one question across an entire repository or archive.</h3><p><b>Long context</b>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="c-card k-card " data-spot>
           
-          <h3>Caseback in your words</h3><p><b>So that</b>Up to 40 characters engraved by our graveur, in any script you send us.</p></article><article class="c-card full" data-spot>
+          <h3>Pay less every time a long prompt repeats.</h3><p><b>Prompt caching</b>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="c-card k-card full" data-spot>
           
-          <h3>Lifetime bench service</h3><p><b>So that</b>Every service is done by one of the two watchmakers who built it.</p></article>
+          <h3>Find the right model for your prompt before you commit.</h3><p><b>Side-by-side compare</b>Run one prompt on several models and compare answers and cost.</p></article>
       </div>
     </div>
   </section>
@@ -279,9 +287,9 @@ body{font-size:1.05rem}
   <section id="process" data-section aria-labelledby="p-title">
     <div data-rail>
       <div data-rail-view>
-        <div class="c-rail-head"><h2 id="p-title" class="c-h2" data-reveal>Three meetings, fourteen months.</h2><span class="c-progress" aria-hidden="true"></span></div>
+        <div class="c-rail-head"><h2 id="p-title" class="c-h2" data-reveal>Three steps to your first metered token.</h2><span class="c-progress" aria-hidden="true"></span></div>
         <ol class="c-steps" data-rail-track>
-          <li class="c-step"><span class="num" aria-hidden="true">1</span><span class="when">Week 1</span><h3>Sit with the watchmaker</h3><p>Two hours at the bench in Le Sentier or by video. We sketch proportions, complication and dial together.</p></li><li class="c-step"><span class="num" aria-hidden="true">2</span><span class="when">Weeks 2–8</span><h3>Approve the drawn calibre</h3><p>You receive the full technical drawing. Nothing is cut until you sign it — and you can still walk away.</p></li><li class="c-step"><span class="num" aria-hidden="true">3</span><span class="when">Month 14</span><h3>Collect from the bench</h3><p>Final regulation in front of you, then the rate log, the drawing and the watch leave the atelier together.</p></li>
+          <li class="c-step k-card"><span class="num" aria-hidden="true">1</span><span class="when">Minute one</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></li><li class="c-step k-card"><span class="num" aria-hidden="true">2</span><span class="when">Minute five</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p></li><li class="c-step k-card"><span class="num" aria-hidden="true">3</span><span class="when">Every request after</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></li>
         </ol>
       </div>
     </div>
@@ -289,39 +297,44 @@ body{font-size:1.05rem}
 
   <section id="owners" data-section aria-labelledby="o-title">
     <div class="k-wrap">
-      <h2 id="o-title" class="c-h2" data-reveal>Rate logs from the people wearing them.</h2>
+      <h2 id="o-title" class="c-h2" data-reveal>Built for the people who read the invoice.</h2>
       <div class="c-receipts" data-stagger>
-        <article class="c-ticket"><div class="who"><b>Margit Halvorsen</b><span>Principal conductor, Bergen</span></div><span class="ref">Calibre II · No. 0417</span><p class="metric">+1.4 s/day<small>average rate after 26 months on the wrist</small></p><blockquote>“I wanted something that kept time the way an orchestra does — by people, not machines.”</blockquote></article><article class="c-ticket"><div class="who"><b>Tomás Ferreira</b><span>Structural engineer, Porto</span></div><span class="ref">Calibre I · No. 0388</span><p class="metric">0 services<small>needed in 4 years of daily wear</small></p><blockquote>“I asked to see the bevels under a loupe before signing. They let me keep the loupe.”</blockquote></article><article class="c-ticket"><div class="who"><b>Aiyana Redcloud</b><span>Surgeon, Calgary</span></div><span class="ref">Calibre III · No. 0402</span><p class="metric">11 months<small>from first sketch to collection, three months early</small></p><blockquote>“The drawing hangs in my office. Patients ask about it more than my diplomas.”</blockquote></article>
+        <article class="c-ticket k-card"><div class="who"><b>Backend developer</b><span>Placeholder testimonial</span></div><p class="metric">One key instead of three</p><blockquote>“Replace with a real quote about consolidating providers behind one base URL.”</blockquote></article><article class="c-ticket k-card"><div class="who"><b>Safety researcher</b><span>Placeholder testimonial</span></div><p class="metric">Studying refusal behaviour</p><blockquote>“Replace with a real quote about comparing standard and abliterated variants.”</blockquote></article><article class="c-ticket k-card"><div class="who"><b>Novelist</b><span>Placeholder testimonial</span></div><p class="metric">Dark themes, no lectures</p><blockquote>“Replace with a real quote about writing difficult scenes without refusals.”</blockquote></article>
       </div>
-      <p class="c-note">Illustrative owners and figures. Chronos Atelier is a fictional concept built for the Awwwards 20 design exhibition. People, case studies, figures and prices are illustrative.</p>
+      <p class="c-note">Placeholder testimonials — swap in real beta quotes before launch.</p>
     </div>
   </section>
 
   <section id="pricing" data-section aria-labelledby="pr-title">
     <div class="k-wrap">
-      <h2 id="pr-title" class="c-h2" data-reveal>Three calibres. One price each, fixed at signing.</h2>
+      <h2 id="pr-title" class="c-h2" data-reveal>Three ways in. One rate per token.</h2>
       <div class="c-tiers" data-stagger>
-        <article class="c-tier"><h3>Calibre I<span>Time only</span></h3><p class="price">CHF 48,000</p><ul><li>Hours, minutes, small seconds</li><li>Hand-finished 312-part movement</li><li>Steel or titanium case</li><li>Caseback engraving</li></ul><p class="fk">10% deposit, refunded in full if you don't approve the drawing.</p><a class="c-ghost" href="#final">Start with Calibre I</a></article><article class="c-tier mid"><h3>Calibre II<span>Moonphase</span></h3><p class="price">CHF 76,000</p><ul><li>Everything in Calibre I</li><li>Hand-engraved moonphase, 122-year accuracy</li><li>Grand feu enamel dial</li><li>Choice of 18k red or white gold</li></ul><p class="fk">Price fixed when you sign — no surprises at delivery.</p><a class="c-ghost" href="#final">Start with Calibre II</a></article><article class="c-tier"><h3>Calibre III<span>Grand complication</span></h3><p class="price">from CHF 140,000</p><ul><li>Perpetual calendar or minute repeater</li><li>Two dedicated watchmakers, 18–22 months</li><li>Visits to the bench at every stage</li><li>Archive drawing framed on vellum</li></ul><p class="fk">Speak to a watchmaker first. No deposit until a drawing exists.</p><a class="c-ghost" href="#final">Start with Calibre III</a></article>
+        <article class="c-tier k-card"><h3>Explore<span>Try every model family in chat with a daily allowance.</span></h3><p class="price">$0</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p><a class="c-ghost" href="#final">Choose Explore</a></article><article class="c-tier k-card mid"><h3>Pro<span>For people who live in the chat and want the larger models.</span></h3><p class="price">$20</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p><a class="c-ghost" href="#final">Choose Pro</a></article><article class="c-tier k-card"><h3>API<span>Per-token billing with prompt caching on every model.</span></h3><p class="price">Pay as you go</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p><a class="c-ghost" href="#final">Choose API</a></article>
       </div>
+      <div class="c-rates" data-reveal>
+        <p><b>Core</b><span>General chat & reasoning</span><span>128K</span><span>in $0.60</span><span>cached $0.15</span><span>out $2.40</span></p><p><b>Unbound</b><span>Abliterated variant</span><span>128K</span><span>in $0.80</span><span>cached $0.20</span><span>out $3.20</span></p><p><b>Forge</b><span>Coding agents</span><span>256K</span><span>in $1.20</span><span>cached $0.30</span><span>out $4.80</span></p><p><b>Atlas</b><span>Long context</span><span>1M</span><span>in $1.50</span><span>cached $0.25</span><span>out $6.00</span></p><p><b>Swift</b><span>Fast & small</span><span>32K</span><span>in $0.08</span><span>cached $0.02</span><span>out $0.32</span></p>
+      </div>
+      <p class="c-note">Per 1M tokens. Sample rates for layout only. Final pricing not yet set.</p>
     </div>
   </section>
 
   <section id="final" data-section aria-labelledby="fi-title">
     <div class="k-wrap c-final">
-      <h2 id="fi-title" class="c-h2" data-reveal>Three places left on the 2027 bench.</h2>
-      <p class="k-body" data-reveal>Reserve with a 10% deposit. If you don't approve the drawing, you get every franc back — and you keep the sketches.</p>
-      <a class="c-btn" href="#main" data-magnetic="7,0.14,0.78,0.4" data-reveal><span data-magnetic-label>Reserve a 2027 commission</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a>
+      <h2 id="fi-title" class="c-h2" data-reveal>Your first token is one string away.</h2>
+      <p class="k-body" data-reveal>Point the SDK you already use at api.aether.example/v1 and every response comes back with its exact cost.</p>
+      <a class="c-btn" href="#main" data-magnetic="7,0.14,0.78,0.4" data-reveal><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a>
     </div>
   </section>
 </main>
 <footer class="c-foot">
-  <div><p class="big">Chronos Atelier</p><p style="margin-top:16px;max-width:36ch">Rue du Lac 14, 1347 Le Sentier, Vallée de Joux. Bench visits by appointment, Tuesday to Friday.</p></div>
-  <div><h4>Commission</h4><ul><li><a href="#pricing">Calibres and prices</a></li><li><a href="#process">How it works</a></li><li><a href="#owners">Owner rate logs</a></li></ul></div>
-  <div><h4>Atelier</h4><ul><li><a href="#calibre">The movement</a></li><li><a href="#finishing">Hand finishing</a></li><li><a href="#final">Bench visits</a></li></ul></div>
+  <div><p class="big">Aether</p><p style="margin-top:16px;max-width:40ch">Aether is a placeholder brand and this page is the "Chronos" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Platform</h4><ul><li><a href="#calibre">The stack</a></li><li><a href="#finishing">Features</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
+  <div><h4>Models</h4><ul><li><a href="#pricing">Core</a></li><li><a href="#pricing">Unbound</a></li><li><a href="#pricing">Forge</a></li><li><a href="#pricing">Atlas</a></li><li><a href="#pricing">Swift</a></li></ul></div>
   <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <div class="legal"><span>Chronos Atelier is a fictional concept built for the Awwwards 20 design exhibition. People, case studies, figures and prices are illustrative.</span><span>Set in Cormorant Garamond and JetBrains Mono.</span></div>
+  <div class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Cormorant Garamond and JetBrains Mono.</span></div>
 </footer>
 
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
 <script>
 (() => {
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -683,9 +696,13 @@ body{font-size:1.05rem}
     const nav = $(".c-nav");
     onScroll(() => nav.classList.toggle("is-scrolled", scrollY > 40));
 
-    // live beat counter (28,800 vph = 8 beats per second)
-    const beats = $("#beats"), t0 = performance.now();
-    const tickBeats = () => { beats.textContent = Math.floor(((performance.now() - t0) / 1000) * 8).toLocaleString("en-US"); };
+    // demo token meter: 40 tokens a second, priced at Core's sample output rate
+    const beats = $("#beats"), spend = $("#spend"), t0 = performance.now(), core = AE.MODELS[0];
+    const tickBeats = () => {
+      const n = Math.floor(((performance.now() - t0) / 1000) * 40);
+      beats.textContent = n.toLocaleString("en-US");
+      spend.textContent = "$" + ((n * core.outPrice) / 1e6).toFixed(5);
+    };
     tickBeats(); setInterval(tickBeats, 125);
 
     // —— signature: scroll-exploded calibre ——

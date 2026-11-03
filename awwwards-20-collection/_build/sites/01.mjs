@@ -1,43 +1,21 @@
-import { h, iife, fiction } from "../lib.mjs";
+import { h, iife } from "../lib.mjs";
+import { BRAND, MODELS, BENEFITS, STEPS, PROOF, PLANS, PRICE_NOTE, PROOF_NOTE, conceptNote, rate } from "../aether.mjs";
 
+// The Aether stack, explained as a hand-finished movement.
 const LAYERS = [
-  ["Mainplate", "Perlage by hand: 2,400 overlapping circles grained with a rotating peg, so the base plate shimmers under the wheels."],
-  ["Going train", "Barrel, centre, third and fourth wheels in gilded brass. 72 hours of reserve — off the wrist all weekend, still running Monday."],
-  ["Bridges", "Côtes de Genève stripes and 45° anglage polished with gentian wood. 70 hours of hand finishing per movement."],
-  ["Escapement", "Free-sprung balance at 4 Hz with a Breguet overcoil, regulated on the bench over 15 days in six positions."],
-  ["Chapter ring", "Grand feu enamel fired eleven times, then the minute track is transferred by hand and re-fired."],
+  ["Unified API", "The mainplate everything is built on: one base URL and one key carry every request, in the request shape your SDK already speaks."],
+  ["Model families", "The going train. Core, Unbound, Forge, Atlas and Swift mesh on the same request — change one string to switch."],
+  ["Prompt cache", "The bridges that hold repeated work in place. Repeated prompt prefixes are billed at the cached rate automatically."],
+  ["Token meter", "The escapement. It releases tokens one beat at a time and counts every one, so each response arrives with its exact cost."],
+  ["Your product", "The chapter ring — what your users see: chat, agents and answers, standard, low-refusal or abliterated."],
 ];
-
-const FEATURES = [
-  ["Hand-bevelled bridges", "Light catches every edge, and keeps catching it for decades — polished steel does not wear like coating.", "wide"],
-  ["One drawing, one owner", "The technical drawing of your calibre is archived in your name and never reused.", ""],
-  ["72-hour reserve", "Take it off Friday night; it is still keeping time on Monday morning.", ""],
-  ["Free-sprung balance", "Holds its rate after knocks and servicing, because nothing on the balance is ever adjusted by hand again.", ""],
-  ["Caseback in your words", "Up to 40 characters engraved by our graveur, in any script you send us.", ""],
-  ["Lifetime bench service", "Every service is done by one of the two watchmakers who built it.", "full"],
-];
-
-const STEPS = [
-  ["Sit with the watchmaker", "Week 1", "Two hours at the bench in Le Sentier or by video. We sketch proportions, complication and dial together."],
-  ["Approve the drawn calibre", "Weeks 2–8", "You receive the full technical drawing. Nothing is cut until you sign it — and you can still walk away."],
-  ["Collect from the bench", "Month 14", "Final regulation in front of you, then the rate log, the drawing and the watch leave the atelier together."],
-];
-
-const RECEIPTS = [
-  ["Margit Halvorsen", "Principal conductor, Bergen", "Calibre II · No. 0417", "+1.4 s/day", "average rate after 26 months on the wrist", "I wanted something that kept time the way an orchestra does — by people, not machines."],
-  ["Tomás Ferreira", "Structural engineer, Porto", "Calibre I · No. 0388", "0 services", "needed in 4 years of daily wear", "I asked to see the bevels under a loupe before signing. They let me keep the loupe."],
-  ["Aiyana Redcloud", "Surgeon, Calgary", "Calibre III · No. 0402", "11 months", "from first sketch to collection, three months early", "The drawing hangs in my office. Patients ask about it more than my diplomas."],
-];
-
-const TIERS = [
-  ["Calibre I", "Time only", "CHF 48,000", ["Hours, minutes, small seconds", "Hand-finished 312-part movement", "Steel or titanium case", "Caseback engraving"], "10% deposit, refunded in full if you don't approve the drawing."],
-  ["Calibre II", "Moonphase", "CHF 76,000", ["Everything in Calibre I", "Hand-engraved moonphase, 122-year accuracy", "Grand feu enamel dial", "Choice of 18k red or white gold"], "Price fixed when you sign — no surprises at delivery."],
-  ["Calibre III", "Grand complication", "from CHF 140,000", ["Perpetual calendar or minute repeater", "Two dedicated watchmakers, 18–22 months", "Visits to the bench at every stage", "Archive drawing framed on vellum"], "Speak to a watchmaker first. No deposit until a drawing exists."],
-];
+const FEATURES = BENEFITS.map(([f, b, d], i) => [f, b, d, i === 0 ? "wide" : i === 5 ? "full" : ""]);
+const WHEN = ["Minute one", "Minute five", "Every request after"];
+const STYLE = "Chronos";
 
 export default {
-  title: "Chronos Atelier — Twelve hand-made calibres a year",
-  description: "Commission a mechanical watch drawn, cut and finished by two watchmakers over 14 months. Twelve commissions a year.",
+  title: "Aether — Every token, metered like a chronometer",
+  description: "One API key for five model families, standard, low-refusal or abliterated, billed per token with the exact cost on every response. Chronos design direction.",
   fonts: [
     { family: "Cormorant Garamond", axes: "ital,wght@0,400;0,500;0,600;1,400;1,500" },
     { family: "JetBrains Mono", axes: "wght@400;500" },
@@ -71,7 +49,7 @@ body{font-size:1.05rem}
 /* hero: asymmetric 5/7 split */
 .c-hero{position:relative;min-height:100svh;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:center;padding:96px var(--gutter) 40px;overflow:clip}
 .c-hero-copy{grid-column:1 / span 5;position:relative;z-index:2;display:grid;gap:30px}
-.c-hero h1{font-weight:500;letter-spacing:-.035em;line-height:.94}
+.c-hero h1{font-weight:500;letter-spacing:-.03em;line-height:.94}
 .c-hero h1 em{font-weight:400}
 .c-hero .k-body{color:var(--text-muted);max-width:44ch}
 .c-hero-visual{grid-column:6 / -1;position:relative;height:min(78vh,760px);aspect-ratio:auto}
@@ -131,7 +109,7 @@ body{font-size:1.05rem}
 .c-bento-head{display:flex;justify-content:space-between;align-items:end;gap:48px;margin-bottom:72px;flex-wrap:wrap}
 .c-bento-head .k-body{color:var(--text-muted);max-width:40ch}
 .c-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.c-card{position:relative;background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;padding:40px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden;isolation:isolate;transition:border-color .3s}
+.c-card{position:relative;background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;overflow:hidden;isolation:isolate;transition:border-color .3s}
 .c-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px circle at var(--mx) var(--my),#EDE7DA12,transparent 60%);opacity:0;transition:opacity .35s}
 .c-card:hover{border-color:#EDE7DA2e}
 .c-card:hover::before{opacity:1}
@@ -148,22 +126,22 @@ body{font-size:1.05rem}
 .c-rail-head .c-progress{width:220px;height:1px;background:var(--line);position:relative}
 .c-rail-head .c-progress::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--rp,0));transform-origin:left}
 .c-steps{padding:0 var(--gutter);gap:24px}
-.c-step{width:min(640px,58vw);background:var(--bg-secondary);border:1px solid var(--line);padding:48px;border-radius:4px;display:grid;gap:22px;transition:border-color .5s}
+.c-step{width:min(640px,58vw);background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;display:grid;gap:22px;transition:border-color .5s}
 .c-step.is-active{border-color:#EDE7DA40}
 .c-step .num{font-family:var(--font-display);font-style:italic;font-size:6rem;line-height:.8;color:#EDE7DA30;transition:color .5s}
 .c-step.is-active .num{color:var(--text-primary)}
 .c-step h3{font-size:2.4rem;font-weight:500;line-height:1}
 .c-step .when{font-size:.8rem;color:var(--text-muted)}
 .c-step p{color:var(--text-muted);font-size:.95rem;max-width:44ch}
-@media (max-width:899px){.c-step{width:auto;padding:36px}.c-rail-head .c-progress{display:none}}
+@media (max-width:899px){.c-step{width:auto}.c-rail-head .c-progress{display:none}}
 
 /* receipts */
 .c-receipts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:72px}
-.c-ticket{border:1px solid var(--line);border-radius:4px;padding:40px;display:grid;gap:26px;align-content:start;background:linear-gradient(#141722,#10121a)}
+.c-ticket{border:1px solid var(--line);border-radius:4px;display:grid;gap:26px;align-content:start;background:linear-gradient(#141722,#10121a)}
 .c-ticket .who{display:grid;gap:2px}
 .c-ticket .who b{font-family:var(--font-display);font-size:1.6rem;font-weight:500}
 .c-ticket .who span,.c-ticket .ref{font-size:.78rem;color:var(--text-muted)}
-.c-ticket .metric{font-family:var(--font-display);font-size:3.4rem;line-height:.9;letter-spacing:-.02em}
+.c-ticket .metric{font-family:var(--font-display);font-size:2.6rem;line-height:1;letter-spacing:-.02em}
 .c-ticket .metric small{display:block;font-family:var(--font-body);font-size:.78rem;letter-spacing:0;color:var(--text-muted);margin-top:10px;line-height:1.5}
 .c-ticket blockquote{font-family:var(--font-display);font-style:italic;font-size:1.3rem;line-height:1.35;border-top:1px dashed var(--line);padding-top:22px}
 .c-note{font-size:.78rem;color:var(--text-muted);margin-top:28px}
@@ -171,7 +149,7 @@ body{font-size:1.05rem}
 
 /* pricing */
 .c-tiers{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border:1px solid var(--line);border-radius:4px}
-.c-tier{padding:44px 40px;display:grid;gap:26px;align-content:start}
+.c-tier{display:grid;gap:26px;align-content:start}
 .c-tier+.c-tier{border-left:1px solid var(--line)}
 .c-tier.mid{background:var(--bg-secondary)}
 .c-tier h3{font-size:2.2rem;font-weight:500;line-height:1}
@@ -181,7 +159,7 @@ body{font-size:1.05rem}
 .c-tier li{padding-left:18px;position:relative}
 .c-tier li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:1px;background:var(--text-muted)}
 .c-tier .fk{font-size:.78rem;color:var(--text-primary);border-top:1px dashed var(--line);padding-top:18px}
-@media (max-width:960px){.c-tiers{grid-template-columns:1fr}.c-tier+.c-tier{border-left:0;border-top:1px solid var(--line)}.c-tier{padding:36px}}
+@media (max-width:960px){.c-tiers{grid-template-columns:1fr}.c-tier+.c-tier{border-left:0;border-top:1px solid var(--line)}}
 
 /* final + footer */
 .c-final{text-align:center;display:grid;justify-items:center;gap:40px}
@@ -195,41 +173,46 @@ body{font-size:1.05rem}
 .c-foot .big{font-family:var(--font-display);font-size:2.4rem;color:var(--text-primary);line-height:1}
 .c-foot .legal{grid-column:1 / -1;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px}
 @media (max-width:860px){.c-foot{grid-template-columns:1fr 1fr}.c-foot>div:first-child{grid-column:1 / -1}}
+.c-rates{margin-top:40px;display:grid;border-top:1px solid var(--line)}
+.c-rates p{display:grid;grid-template-columns:1.2fr 2fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--text-muted)}
+.c-rates b{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--text-primary)}
+@media (max-width:860px){.c-rates p{grid-template-columns:1fr 1fr 1fr}.c-rates p span:nth-child(2),.c-rates p span:nth-child(5){display:none}}
+.c-tier h3 span{font-size:.82rem;line-height:1.6;margin-top:10px}
 `,
   body: h`
 <header class="c-nav">
-  <a class="c-mark" href="#main">Chronos <i>Atelier</i></a>
+  <a class="c-mark" href="#main">${BRAND.name} <i>Chronos</i></a>
   <nav class="c-links" data-spy aria-label="Sections">
-    <a href="#calibre">Calibre</a><a href="#finishing">Finishing</a><a href="#process">Commission</a><a href="#owners">Owners</a><a href="#pricing">Pricing</a>
+    <a href="#calibre">The movement</a><a href="#finishing">Features</a><a href="#process">How it works</a><a href="#owners">People</a><a href="#pricing">Pricing</a>
   </nav>
-  <span class="c-nav-meta">Le Sentier, CH</span>
+  <span class="c-nav-meta">Per-token API</span>
 </header>
 <main id="main">
   <section class="c-hero" data-hero aria-labelledby="hero-title">
     <div class="c-hero-copy">
-      <h1 id="hero-title" data-hero-part="headline">Wear an hour <em>no one else</em> owns.</h1>
-      <p class="k-body" data-hero-part="sub">312 parts drawn, cut and finished by two watchmakers over 14&nbsp;months. We take twelve commissions a year, and each calibre is made once.</p>
-      <div data-hero-part="cta"><a class="c-btn" href="#pricing" data-cta="primary" data-magnetic="7,0.14,0.78,0.4"><span data-magnetic-label>Reserve a 2027 commission</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a></div>
+      <h1 id="hero-title" data-hero-part="headline">Pay for every token. <em>Not one more.</em></h1>
+      <p class="k-body" data-hero-part="sub">One API key for five model families — standard, low-refusal or abliterated. Per-token rates, prompt caching on every model, and the exact cost on every response.</p>
+      <div data-hero-part="cta"><a class="c-btn" href="#pricing" data-cta="primary" data-magnetic="7,0.14,0.78,0.4"><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a></div>
       <div class="c-trust" data-hero-part="trust">
-        <span class="c-ledger" role="img" aria-label="9 of 12 commissions reserved">${Array.from({ length: 12 }, (_, i) => `<i class="${i < 9 ? "on" : ""}"></i>`)}</span>
-        <span>2027 ledger: 9 of 12 reserved<br>Beats since you arrived: <span class="c-beat" id="beats">0</span></span>
+        <span class="c-ledger" role="img" aria-label="Five model families behind one key">${MODELS.map(() => `<i class="on"></i>`)}<i></i></span>
+        <span>Demo meter: <span class="c-beat" id="beats">0</span> tokens · <span class="c-beat" id="spend">$0.00000</span><br>at Core's sample output rate — a running example.</span>
       </div>
     </div>
-    <div class="c-hero-visual" data-hero-part="visual"><canvas id="hero-cal" aria-label="A hand-finished watch movement, beating at 4 Hz" role="img"></canvas></div>
+    <div class="c-hero-visual" data-hero-part="visual"><canvas id="hero-cal" aria-label="A precision movement, the Aether stack, running" role="img"></canvas></div>
   </section>
 
   <section id="calibre" data-section aria-labelledby="t-title">
     <div class="k-wrap c-tension">
-      <h2 id="t-title" class="c-h2" data-reveal>Most luxury watches are finished by machine, by the hundred thousand.</h2>
-      <p class="k-body" data-reveal>A Chronos calibre is the opposite bet: fewer than a dozen a year, every surface touched by hand, every part made for one wrist. Scroll down and we will take one apart for you.</p>
+      <h2 id="t-title" class="c-h2" data-reveal>Most AI bills are worked out after the fact.</h2>
+      <p class="k-body" data-reveal>Credits, bundles and multipliers hide what a single request cost. ${BRAND.name} is built the other way round: every part of the stack exists to count tokens precisely. Scroll and we will take it apart for you.</p>
       <div class="c-versus" data-reveal>
-        <dl><dt>Serial "luxury"</dt><dd>Movements per year <b>100,000+</b></dd><dd>Finishing <b>machine-stamped</b></dd><dd>Who services it <b>a regional centre</b></dd></dl>
-        <dl><dt>A Chronos commission</dt><dd>Movements per year <b>12</b></dd><dd>Finishing <b>70 hours by hand</b></dd><dd>Who services it <b>the two who built it</b></dd></dl>
+        <dl><dt>The usual way</dt><dd>How you pay <b>credits and bundles</b></dd><dd>What a request costs <b>estimated later</b></dd><dd>Models per key <b>one provider's</b></dd></dl>
+        <dl><dt>With ${BRAND.name}</dt><dd>How you pay <b>per token</b></dd><dd>What a request costs <b>on every response</b></dd><dd>Models per key <b>five families</b></dd></dl>
       </div>
     </div>
     <div class="c-explode" id="explode">
       <div class="c-explode-pin">
-        <canvas id="ex-cal" role="img" aria-label="The calibre separating into five layers"></canvas>
+        <canvas id="ex-cal" role="img" aria-label="The Aether stack separating into five layers"></canvas>
         <ol class="c-layers" id="layers">
           ${LAYERS.map(([t, d], i) => `<li${i === 0 ? ' class="is-on"' : ""}><span class="n">Layer ${i + 1} of 5</span><h3>${t}</h3><p>${d}</p></li>`)}
         </ol>
@@ -240,13 +223,13 @@ body{font-size:1.05rem}
   <section id="finishing" data-section aria-labelledby="f-title">
     <div class="k-wrap">
       <div class="c-bento-head">
-        <h2 id="f-title" class="c-h2" data-reveal>What fourteen months buys you.</h2>
-        <p class="k-body" data-reveal>Every hour at the bench turns into something you can see or feel on the wrist. Here is the exchange rate.</p>
+        <h2 id="f-title" class="c-h2" data-reveal>Every part does one job for you.</h2>
+        <p class="k-body" data-reveal>Each feature, and the outcome it is there to produce.</p>
       </div>
       <div class="c-bento" data-stagger>
-        ${FEATURES.map(([t, o, cls], i) => h`<article class="c-card ${cls}" data-spot>
-          ${i === 0 ? `<svg viewBox="0 0 300 90" aria-hidden="true"><path d="M0 70 L120 70 L150 40 L300 40" fill="none" stroke="#EDE7DA" stroke-width="1"/><path d="M120 70 L150 40" stroke="#EDE7DA" stroke-width="5" opacity=".35"/><text x="160" y="80" fill="#A2A6B5" font-size="11" font-family="JetBrains Mono">45° anglage, mirror polished</text></svg>` : ""}
-          <h3>${t}</h3><p><b>So that</b>${o}</p></article>`)}
+        ${FEATURES.map(([f, b, d, cls], i) => h`<article class="c-card k-card ${cls}" data-spot>
+          ${i === 0 ? `<svg viewBox="0 0 300 90" aria-hidden="true"><path d="M0 70 L120 70 L150 40 L300 40" fill="none" stroke="#EDE7DA" stroke-width="1"/><path d="M120 70 L150 40" stroke="#EDE7DA" stroke-width="5" opacity=".35"/><text x="160" y="80" fill="#A2A6B5" font-size="11" font-family="JetBrains Mono">core-128k → unbound-128k</text></svg>` : ""}
+          <h3>${b}</h3><p><b>${f}</b>${d}</p></article>`)}
       </div>
     </div>
   </section>
@@ -254,9 +237,9 @@ body{font-size:1.05rem}
   <section id="process" data-section aria-labelledby="p-title">
     <div data-rail>
       <div data-rail-view>
-        <div class="c-rail-head"><h2 id="p-title" class="c-h2" data-reveal>Three meetings, fourteen months.</h2><span class="c-progress" aria-hidden="true"></span></div>
+        <div class="c-rail-head"><h2 id="p-title" class="c-h2" data-reveal>Three steps to your first metered token.</h2><span class="c-progress" aria-hidden="true"></span></div>
         <ol class="c-steps" data-rail-track>
-          ${STEPS.map(([t, w, d], i) => `<li class="c-step"><span class="num" aria-hidden="true">${i + 1}</span><span class="when">${w}</span><h3>${t}</h3><p>${d}</p></li>`)}
+          ${STEPS.map(([t, d], i) => `<li class="c-step k-card"><span class="num" aria-hidden="true">${i + 1}</span><span class="when">${WHEN[i]}</span><h3>${t}</h3><p>${d}</p></li>`)}
         </ol>
       </div>
     </div>
@@ -264,37 +247,41 @@ body{font-size:1.05rem}
 
   <section id="owners" data-section aria-labelledby="o-title">
     <div class="k-wrap">
-      <h2 id="o-title" class="c-h2" data-reveal>Rate logs from the people wearing them.</h2>
+      <h2 id="o-title" class="c-h2" data-reveal>Built for the people who read the invoice.</h2>
       <div class="c-receipts" data-stagger>
-        ${RECEIPTS.map(([n, r, ref, m, ms, q]) => `<article class="c-ticket"><div class="who"><b>${n}</b><span>${r}</span></div><span class="ref">${ref}</span><p class="metric">${m}<small>${ms}</small></p><blockquote>“${q}”</blockquote></article>`)}
+        ${PROOF.slice(0, 3).map(([role, focus, quote]) => `<article class="c-ticket k-card"><div class="who"><b>${role}</b><span>Placeholder testimonial</span></div><p class="metric">${focus}</p><blockquote>“${quote}”</blockquote></article>`)}
       </div>
-      <p class="c-note">Illustrative owners and figures. ${fiction("Chronos Atelier")}</p>
+      <p class="c-note">${PROOF_NOTE}</p>
     </div>
   </section>
 
   <section id="pricing" data-section aria-labelledby="pr-title">
     <div class="k-wrap">
-      <h2 id="pr-title" class="c-h2" data-reveal>Three calibres. One price each, fixed at signing.</h2>
+      <h2 id="pr-title" class="c-h2" data-reveal>Three ways in. One rate per token.</h2>
       <div class="c-tiers" data-stagger>
-        ${TIERS.map(([n, s, p, list, fk], i) => h`<article class="c-tier${i === 1 ? " mid" : ""}"><h3>${n}<span>${s}</span></h3><p class="price">${p}</p><ul>${list.map((l) => `<li>${l}</li>`)}</ul><p class="fk">${fk}</p><a class="c-ghost" href="#final">Start with ${n}</a></article>`)}
+        ${PLANS.map((p) => h`<article class="c-tier k-card${p.featured ? " mid" : ""}"><h3>${p.name}<span>${p.body}</span></h3><p class="price">${p.price}</p><ul>${p.features.map((l) => `<li>${l}</li>`)}</ul><p class="fk">${p.fk}</p><a class="c-ghost" href="#final">Choose ${p.name}</a></article>`)}
       </div>
+      <div class="c-rates" data-reveal>
+        ${MODELS.map((m) => `<p><b>${m.name}</b><span>${m.role}</span><span>${m.context}</span><span>in ${rate(m.inPrice)}</span><span>cached ${rate(m.cached)}</span><span>out ${rate(m.outPrice)}</span></p>`)}
+      </div>
+      <p class="c-note">Per 1M tokens. ${PRICE_NOTE}</p>
     </div>
   </section>
 
   <section id="final" data-section aria-labelledby="fi-title">
     <div class="k-wrap c-final">
-      <h2 id="fi-title" class="c-h2" data-reveal>Three places left on the 2027 bench.</h2>
-      <p class="k-body" data-reveal>Reserve with a 10% deposit. If you don't approve the drawing, you get every franc back — and you keep the sketches.</p>
-      <a class="c-btn" href="#main" data-magnetic="7,0.14,0.78,0.4" data-reveal><span data-magnetic-label>Reserve a 2027 commission</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a>
+      <h2 id="fi-title" class="c-h2" data-reveal>Your first token is one string away.</h2>
+      <p class="k-body" data-reveal>Point the SDK you already use at ${BRAND.apiBase.replace("https://", "")} and every response comes back with its exact cost.</p>
+      <a class="c-btn" href="#main" data-magnetic="7,0.14,0.78,0.4" data-reveal><span data-magnetic-label>Get your API key</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a>
     </div>
   </section>
 </main>
 <footer class="c-foot">
-  <div><p class="big">Chronos Atelier</p><p style="margin-top:16px;max-width:36ch">Rue du Lac 14, 1347 Le Sentier, Vallée de Joux. Bench visits by appointment, Tuesday to Friday.</p></div>
-  <div><h4>Commission</h4><ul><li><a href="#pricing">Calibres and prices</a></li><li><a href="#process">How it works</a></li><li><a href="#owners">Owner rate logs</a></li></ul></div>
-  <div><h4>Atelier</h4><ul><li><a href="#calibre">The movement</a></li><li><a href="#finishing">Hand finishing</a></li><li><a href="#final">Bench visits</a></li></ul></div>
+  <div><p class="big">${BRAND.name}</p><p style="margin-top:16px;max-width:40ch">${conceptNote(STYLE)}</p></div>
+  <div><h4>Platform</h4><ul><li><a href="#calibre">The stack</a></li><li><a href="#finishing">Features</a></li><li><a href="#pricing">Token rates</a></li></ul></div>
+  <div><h4>Models</h4><ul>${MODELS.map((m) => `<li><a href="#pricing">${m.name}</a></li>`)}</ul></div>
   <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
-  <div class="legal"><span>${fiction("Chronos Atelier")}</span><span>Set in Cormorant Garamond and JetBrains Mono.</span></div>
+  <div class="legal"><span>${PRICE_NOTE}</span><span>Set in Cormorant Garamond and JetBrains Mono.</span></div>
 </footer>
 `,
   js: iife(() => {
@@ -500,9 +487,13 @@ body{font-size:1.05rem}
     const nav = $(".c-nav");
     onScroll(() => nav.classList.toggle("is-scrolled", scrollY > 40));
 
-    // live beat counter (28,800 vph = 8 beats per second)
-    const beats = $("#beats"), t0 = performance.now();
-    const tickBeats = () => { beats.textContent = Math.floor(((performance.now() - t0) / 1000) * 8).toLocaleString("en-US"); };
+    // demo token meter: 40 tokens a second, priced at Core's sample output rate
+    const beats = $("#beats"), spend = $("#spend"), t0 = performance.now(), core = AE.MODELS[0];
+    const tickBeats = () => {
+      const n = Math.floor(((performance.now() - t0) / 1000) * 40);
+      beats.textContent = n.toLocaleString("en-US");
+      spend.textContent = "$" + ((n * core.outPrice) / 1e6).toFixed(5);
+    };
     tickBeats(); setInterval(tickBeats, 125);
 
     // —— signature: scroll-exploded calibre ——
