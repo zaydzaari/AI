@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Go as deep as your work needs</title>
+<meta name="description" content="From quick answers to refusal-free research to million-token archives: five model families on one key, billed per token. Nomad design direction.">
+<meta name="theme-color" content="#06101E">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%2306101E'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23F59E0B'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/dm-serif-display-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"DM Serif Display";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/dm-serif-display-400-italic.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"DM Serif Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dm-serif-display-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/plus-jakarta-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/plus-jakarta-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/plus-jakarta-sans-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#06101E;--bg-secondary:#0E1E33;--accent:#F59E0B;--on-accent:#06101E;--text-primary:#EAF1F8;--text-muted:#9DB0C6;--line:rgba(234,241,248,.13);--font-display:"DM Serif Display", Georgia, serif;--font-body:"Plus Jakarta Sans", sans-serif}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Nomad Expeditions ——— */
+
+.n11-nav{position:fixed;inset:0 0 auto;z-index:40;height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);background:linear-gradient(#06101Ef0,#06101E00);font-size:.86rem}
+.n11-mark{font-family:var(--font-display);font-size:1.5rem;text-decoration:none}
+.n11-links{display:flex;gap:24px}
+.n11-links a{text-decoration:none;color:var(--text-muted);padding:4px 0;border-bottom:2px solid transparent}
+.n11-links a.is-current{color:var(--text-primary);border-color:var(--accent)}
+.n11-coord{color:var(--text-muted);font-variant-numeric:tabular-nums}
+@media (max-width:900px){.n11-links{display:none}}
+.n11-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none}
+.n11-btn i{width:10px;height:10px;border-radius:50%;background:var(--on-accent);box-shadow:0 0 0 0 #06101E66;animation:n11b 2s infinite}
+@keyframes n11b{70%{box-shadow:0 0 0 8px #06101E00}}
+.n11-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.02em;line-height:1;max-width:16ch}
+.n11-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* hero: depth column */
+.n11-hero{position:relative;min-height:100svh;display:grid;grid-template-columns:88px minmax(0,1fr);gap:clamp(24px,5vw,80px);padding:80px var(--gutter) 32px 0;overflow:clip}
+.n11-sonar{position:absolute;inset:0}
+.n11-sonar canvas{width:100%;height:100%}
+.n11-ruler{position:relative;z-index:2;border-right:1px solid var(--line);display:grid;grid-template-rows:repeat(9,1fr);font-size:.7rem;color:var(--text-muted);padding-left:16px}
+.n11-ruler span{border-top:1px solid var(--line);padding-top:4px;font-variant-numeric:tabular-nums}
+.n11-ruler span.sea{color:var(--accent);border-color:var(--accent)}
+.n11-copy{position:relative;z-index:2;align-self:center;display:grid;gap:24px;justify-items:start;max-width:720px}
+.n11-copy h1{font-weight:400;line-height:.98}
+.n11-copy h1 em{color:var(--text-muted)}
+.n11-copy .k-body{color:var(--text-muted);max-width:48ch}
+.n11-trust{font-size:.86rem;color:var(--text-muted);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.n11-trust b{color:var(--text-primary);font-weight:600}
+@media (max-width:760px){
+  .n11-hero{grid-template-columns:44px minmax(0,1fr);gap:16px;padding:70px var(--gutter) 16px 0}
+  .n11-ruler{padding-left:8px;font-size:.6rem}
+  .n11-copy{gap:14px;align-self:end}
+}
+
+/* problem */
+.n11-cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.n11-log{display:grid;border-top:1px solid var(--line)}
+.n11-log li{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.n11-log .d{grid-row:span 2;font-family:var(--font-display);font-size:1.3rem;color:var(--text-muted)}
+.n11-log .was{color:var(--text-muted);font-size:.92rem}
+.n11-log .now{font-family:var(--font-display);font-size:1.4rem;line-height:1.2}
+@media (max-width:900px){.n11-cols{grid-template-columns:1fr;gap:40px}}
+
+/* signature: the descent */
+.n11-dive{position:relative;margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:200px minmax(0,1fr);background:linear-gradient(#0E2C4A 0%,#0A2038 25%,#06101E 55%,#03070D 100%)}
+.n11-gauge{position:sticky;top:0;height:100vh;padding:84px 0 28px var(--gutter);display:grid;grid-template-rows:auto 1fr auto;gap:16px;z-index:2}
+.n11-gauge .lbl{font-size:.72rem;color:var(--text-muted)}
+.n11-gauge .dep{font-family:var(--font-display);font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.n11-bar{position:relative;border-left:1px solid var(--line);margin-left:6px}
+.n11-bar i{position:absolute;left:-1px;top:0;width:3px;height:100%;background:var(--accent);transform:scaleY(var(--d,0));transform-origin:top}
+.n11-bar span{position:absolute;left:12px;font-size:.66rem;color:var(--text-muted);transform:translateY(-50%)}
+.n11-gauge dl{display:grid;gap:8px}
+.n11-gauge dt{font-size:.68rem;color:var(--text-muted)}
+.n11-gauge dd{margin:0;font-size:.98rem;font-weight:600;font-variant-numeric:tabular-nums}
+.n11-zones{position:relative}
+.n11-pings{position:sticky;top:0;height:100vh;margin-bottom:-100vh;pointer-events:none}
+.n11-pings canvas{width:100%;height:100%}
+.n11-zone{position:relative;min-height:92vh;display:grid;align-content:center;gap:16px;padding:64px var(--gutter) 64px 56px;max-width:860px}
+.n11-zone .at{font-size:.8rem;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.n11-zone h3{font-family:var(--font-display);font-weight:400;font-size:clamp(3rem,6vw,5.4rem);line-height:.95}
+.n11-zone p{color:var(--text-muted);font-size:1.1rem;max-width:46ch}
+.n11-zone .kit{display:flex;gap:10px;flex-wrap:wrap;font-size:.84rem}
+.n11-zone .kit span{border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.n11-zone .kit span b{color:var(--accent);font-weight:600}
+@media (max-width:900px){
+  .n11-dive{grid-template-columns:1fr}
+  .n11-gauge{top:62px;height:auto;padding:10px var(--gutter);grid-template-rows:none;grid-auto-flow:column;justify-content:space-between;align-items:center;background:#06101Ef0;border-bottom:1px solid var(--line)}
+  .n11-bar,.n11-gauge dl div:nth-child(n+2),.n11-gauge .lbl{display:none}
+  .n11-gauge .dep{font-size:1.5rem}
+  .n11-zone{min-height:0;padding:56px var(--gutter)}
+  .n11-pings{display:none}
+}
+
+/* kit bento */
+.n11-kit{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.n11-item{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:var(--bg-secondary);display:grid;gap:14px;align-content:start;min-height:260px}
+.n11-item::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#F59E0B1a,transparent 65%);opacity:0;transition:opacity .3s}
+.n11-item:hover::before{opacity:1}
+.n11-item .tag{font-size:.76rem;color:var(--text-muted)}
+.n11-item h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem;line-height:1.08}
+.n11-item p{color:var(--text-muted);font-size:.92rem}
+.n11-item.i0{grid-column:span 2}.n11-item.i0 h3{font-size:clamp(2.2rem,3.4vw,3rem)}
+.n11-item.i5{grid-column:span 2}
+@media (max-width:900px){.n11-kit{grid-template-columns:1fr}.n11-item{grid-column:auto!important}}
+
+/* rail */
+.n11-rail-head{padding:0 var(--gutter);margin-bottom:44px}
+.n11-steps{padding:0 var(--gutter);gap:18px}
+.n11-step{width:min(560px,52vw);border:1px solid var(--line);border-radius:20px;background:var(--bg-secondary);display:grid;gap:14px;align-content:start}
+.n11-step.is-active{border-color:#F59E0B88}
+.n11-step .n{font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:var(--text-muted)}
+.n11-step h3{font-family:var(--font-display);font-weight:400;font-size:2rem;line-height:1.05}
+.n11-step p{color:var(--text-muted)}
+.n11-step pre{margin:0;background:#06101E;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:.76rem;overflow-x:auto;white-space:pre}
+.n11-step code{font-family:ui-monospace,monospace}
+@media (max-width:899px){.n11-step{width:auto}}
+
+/* journal */
+.n11-journal{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.n11-entry{border:1px solid var(--line);border-radius:20px;display:grid;gap:14px}
+.n11-entry .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
+.n11-entry b{font-family:var(--font-display);font-weight:400;font-size:1.3rem;color:var(--text-primary)}
+.n11-entry q{font-family:var(--font-display);font-style:italic;font-size:1.25rem;line-height:1.35;quotes:"“" "”"}
+@media (max-width:760px){.n11-journal{grid-template-columns:1fr}}
+
+/* manifest */
+.n11-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.n11-plan{border:1px solid var(--line);border-radius:20px;display:grid;gap:12px;align-content:start}
+.n11-plan.feat{background:var(--bg-secondary);border-color:#F59E0B66}
+.n11-plan h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem}
+.n11-plan .p{font-family:var(--font-display);font-size:3rem;line-height:1}
+.n11-plan .cad{font-size:.8rem;color:var(--text-muted)}
+.n11-plan ul{display:grid;gap:6px;font-size:.92rem}
+.n11-plan li::before{content:"◦ ";color:var(--accent)}
+.n11-plan .fk{font-size:.84rem;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:900px){.n11-plans{grid-template-columns:1fr}}
+.n11-table{width:100%;margin-top:40px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.n11-table caption{text-align:left;font-family:var(--font-display);font-size:1.6rem;padding-bottom:12px}
+.n11-table th,.n11-table td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
+.n11-table thead th{font-weight:500;color:var(--text-muted);font-size:.8rem}
+@media (max-width:700px){.n11-table th:nth-child(2),.n11-table td:nth-child(2){display:none}}
+
+/* final + footer */
+.n11-final{display:grid;justify-items:center;text-align:center;gap:28px}
+.n11-final .n11-h2{font-size:clamp(3rem,6.4vw,5.6rem)}
+.n11-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.86rem;color:var(--text-muted)}
+.n11-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
+.n11-foot ul{display:grid;gap:8px}
+.n11-foot a{text-decoration:none}
+.n11-foot a:hover{color:var(--text-primary)}
+.n11-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.n11-foot{grid-template-columns:1fr 1fr}.n11-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="n11-nav">
+  <a class="n11-mark" href="#main">Aether</a>
+  <nav class="n11-links" data-spy aria-label="Sections"><a href="#log">Log</a><a href="#dive">The dive</a><a href="#kit">Kit</a><a href="#route">Route</a><a href="#journal">Journal</a><a href="#manifest">Manifest</a></nav>
+  <span class="n11-coord" aria-hidden="true">11°21′N 142°12′E</span>
+</header>
+<main id="main">
+  <section class="n11-hero" data-hero aria-labelledby="n11-h">
+    <div class="n11-sonar" data-hero-part="visual"><canvas id="sonar" role="img" aria-label="A sonar field; tap or move the pointer to send a ping"></canvas></div>
+    <div class="n11-ruler" aria-hidden="true"><span>+4,000</span><span>+2,000</span><span class="sea">0 m</span><span>−2,000</span><span>−4,000</span><span>−6,000</span><span>−8,000</span><span>−10,000</span><span>−10,928</span></div>
+    <div class="n11-copy">
+      <h1 id="n11-h" data-hero-part="headline">Go as deep as <em>your work needs.</em></h1>
+      <p class="k-body" data-hero-part="sub">From quick answers to refusal-free research to million-token archives — five model families on one key, billed per token on the way down.</p>
+      <div data-hero-part="cta"><a class="n11-btn" href="#manifest" data-cta="primary" data-magnetic="6,0.12,0.82,0.4"><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a></div>
+      <p class="n11-trust" data-hero-part="trust">Deepest dive: <b>Atlas</b>, 1M context (placeholder spec), <b>$0.25</b> per 1M cached tokens.</p>
+    </div>
+  </section>
+
+  <section id="log" data-section aria-labelledby="n11-l">
+    <div class="k-wrap n11-cols">
+      <h2 id="n11-l" class="n11-h2" data-reveal>Every other expedition turned back early.</h2>
+      <ol class="n11-log" data-stagger><li><span class="d">Day 1</span><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="d">Day 2</span><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="d">Day 3</span><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li></ol>
+    </div>
+    <div class="n11-dive" id="dive">
+      <aside class="n11-gauge" aria-live="polite">
+        <span class="lbl">Depth</span>
+        <div><b class="dep" id="dep">+4,000 m</b></div>
+        <div class="n11-bar" id="bar"><i></i><span style="top:0.0%">The summit</span><span style="top:25.0%">Sea level</span><span style="top:50.0%">The twilight zone</span><span style="top:75.0%">The abyss</span><span style="top:100.0%">The trench</span></div>
+        <dl><div><dt>Model</dt><dd id="g-m">Swift · Standard</dd></div><div><dt>Context loaded</dt><dd id="g-c">360 tokens</dd></div><div><dt>Cost of this dive</dt><dd class="live" id="g-u">$0.0000</dd></div></dl>
+      </aside>
+      <div class="n11-zones">
+        <div class="n11-pings" aria-hidden="true"><canvas id="pings"></canvas></div>
+        <article class="n11-zone" data-i="0"><p class="at">+4,000 m</p><h3>The summit</h3><p>Quick answers in thin air: routing, extraction, autocomplete. Swift is small and fast, and costs fractions of a cent.</p><div class="kit"><span>Swift</span><span>Standard</span><span>360 tokens</span><span>dive cost <b>$0.0000</b></span></div></article><article class="n11-zone" data-i="1"><p class="at">0 m</p><h3>Sea level</h3><p>Everyday work at the surface: writing, analysis, planning. Core is the house model for most requests.</p><div class="kit"><span>Core</span><span>Standard</span><span>3,000 tokens</span><span>dive cost <b>$0.0029</b></span></div></article><article class="n11-zone" data-i="2"><p class="at">−2,000 m</p><h3>The twilight zone</h3><p>Where cautious models turn back. Low-refusal keeps going for fiction, security work and frank research.</p><div class="kit"><span>Core</span><span>Low-refusal</span><span>3,000 tokens</span><span>dive cost <b>$0.0029</b></span></div></article><article class="n11-zone" data-i="3"><p class="at">−6,000 m</p><h3>The abyss</h3><p>Refusal behaviour removed at the weights level. You bring the policy; Unbound brings no lectures.</p><div class="kit"><span>Unbound</span><span>Abliterated</span><span>3,900 tokens</span><span>dive cost <b>$0.0053</b></span></div></article><article class="n11-zone" data-i="4"><p class="at">−10,928 m</p><h3>The trench</h3><p>The deepest dive: whole archives and repositories in a single prompt, with the prefix cached after the first descent.</p><div class="kit"><span>Atlas</span><span>Standard</span><span>801,200 tokens</span><span>dive cost <b>$0.307</b></span></div></article>
+      </div>
+    </div>
+    <p class="k-wrap n11-fine">Sample dives at sample rates; the trench dive caches 90% of its prefix. Sample rates for layout only. Final pricing not yet set.</p>
+  </section>
+
+  <section id="kit" data-section aria-labelledby="n11-k">
+    <div class="k-wrap">
+      <h2 id="n11-k" class="n11-h2" data-reveal>The kit list, and what each item is for.</h2>
+      <div class="n11-kit" data-stagger><article class="n11-item k-card i0" data-spot><span class="tag">Unified chat</span><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="n11-item k-card i1" data-spot><span class="tag">Three temperaments</span><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="n11-item k-card i2" data-spot><span class="tag">Coding agents</span><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="n11-item k-card i3" data-spot><span class="tag">Long context</span><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="n11-item k-card i4" data-spot><span class="tag">Prompt caching</span><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="n11-item k-card i5" data-spot><span class="tag">Side-by-side compare</span><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article></div>
+    </div>
+  </section>
+
+  <section id="route" data-section aria-labelledby="n11-r">
+    <div data-rail>
+      <div data-rail-view>
+        <div class="n11-rail-head"><h2 id="n11-r" class="n11-h2" data-reveal>The route, in three legs.</h2></div>
+        <ol class="n11-steps" data-rail-track><li class="n11-step k-card"><span class="n">Leg one</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></li><li class="n11-step k-card"><span class="n">Leg two</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+model:   "unbound-128k"</code></pre></li><li class="n11-step k-card"><span class="n">Leg three</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></li></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="journal" data-section aria-labelledby="n11-j">
+    <div class="k-wrap">
+      <h2 id="n11-j" class="n11-h2" data-reveal>From the expedition journal.</h2>
+      <div class="n11-journal" data-stagger><article class="n11-entry k-card"><p class="hd"><b>Backend developer</b><span>Entry 1 · One key instead of three</span></p><q>Replace with a real quote about consolidating providers behind one base URL.</q></article><article class="n11-entry k-card"><p class="hd"><b>Safety researcher</b><span>Entry 2 · Studying refusal behaviour</span></p><q>Replace with a real quote about comparing standard and abliterated variants.</q></article><article class="n11-entry k-card"><p class="hd"><b>Novelist</b><span>Entry 3 · Dark themes, no lectures</span></p><q>Replace with a real quote about writing difficult scenes without refusals.</q></article><article class="n11-entry k-card"><p class="hd"><b>Startup CTO</b><span>Entry 4 · Predictable costs</span></p><q>Replace with a real quote about per-request cost reporting and caching.</q></article></div>
+      <p class="n11-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="manifest" data-section aria-labelledby="n11-m">
+    <div class="k-wrap">
+      <h2 id="n11-m" class="n11-h2" data-reveal>The manifest: what each berth costs.</h2>
+      <div class="n11-plans" data-stagger><article class="n11-plan k-card"><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="n11-plan k-card feat"><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="n11-plan k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article></div>
+      <table class="n11-table" data-reveal>
+        <caption>Rates per 1M tokens</caption>
+        <thead><tr><th scope="col">Family</th><th scope="col">Best for</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached</th><th scope="col">Output</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>128K</td><td>$0.60</td><td>$0.15</td><td>$2.40</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>128K</td><td>$0.80</td><td>$0.20</td><td>$3.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>256K</td><td>$1.20</td><td>$0.30</td><td>$4.80</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>1M</td><td>$1.50</td><td>$0.25</td><td>$6.00</td></tr><tr><th scope="row">Swift</th><td>Fast & small</td><td>32K</td><td>$0.08</td><td>$0.02</td><td>$0.32</td></tr></tbody>
+      </table>
+      <p class="n11-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="n11-f">
+    <div class="k-wrap n11-final">
+      <h2 id="n11-f" class="n11-h2" data-reveal>Your descent starts with one key.</h2>
+      <a class="n11-btn" href="#main" data-magnetic="6,0.12,0.82,0.4" data-reveal><i aria-hidden="true"></i><span data-magnetic-label>Get your API key</span></a>
+    </div>
+  </section>
+</main>
+<footer class="n11-foot">
+  <div><p class="n11-mark">Aether</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Nomad" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Depths</h4><ul><li><a href="#dive">The summit</a></li><li><a href="#dive">Sea level</a></li><li><a href="#dive">The twilight zone</a></li><li><a href="#dive">The abyss</a></li><li><a href="#dive">The trench</a></li></ul></div>
+  <div><h4>Platform</h4><ul><li><a href="#kit">Features</a></li><li><a href="#route">API quickstart</a></li><li><a href="#manifest">Token rates</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in DM Serif Display and Plus Jakarta Sans.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, lerp, canvas, loop, onScroll, pointer } = K;
+    const TAU = Math.PI * 2;
+
+    // —— hero sonar: rings from the pointer (or a slow sweep) reveal a seafloor ——
+    const sc = $("#sonar"), ss = canvas(sc);
+    const pings = [];
+    let lastPing = 0;
+    const floor = (x, w, h) => h * 0.78 + Math.sin(x * 0.006) * h * 0.06 + Math.sin(x * 0.019 + 1) * h * 0.025;
+    sc.parentElement.parentElement.addEventListener("pointerdown", (e) => { const r = sc.getBoundingClientRect(); pings.push({ x: e.clientX - r.left, y: e.clientY - r.top, t: performance.now() }); });
+    loop(sc, (t) => {
+      const { ctx, w, h } = ss;
+      ctx.clearRect(0, 0, w, h);
+      const now = performance.now();
+      if (now - lastPing > 1600) {
+        lastPing = now;
+        const r = sc.getBoundingClientRect();
+        pings.push(pointer.active ? { x: pointer.x - r.left, y: pointer.y - r.top, t: now } : { x: w * (0.55 + 0.3 * Math.sin(t * 0.3)), y: h * 0.35, t: now });
+      }
+      // seafloor contour lit by rings
+      ctx.lineWidth = 1;
+      for (let k = 0; k < 4; k++) {
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 6) { const y = floor(x, w, h) + k * 18; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+        ctx.strokeStyle = `rgba(157,176,198,${0.16 - k * 0.03})`; ctx.stroke();
+      }
+      for (let i = pings.length - 1; i >= 0; i--) {
+        const p = pings[i], age = (now - p.t) / 1000, R = age * 260;
+        if (age > 3.2) { pings.splice(i, 1); continue; }
+        const a = Math.max(0, 1 - age / 3.2);
+        ctx.strokeStyle = `rgba(245,158,11,${a * 0.55})`; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(p.x, p.y, R, 0, TAU); ctx.stroke();
+        ctx.strokeStyle = `rgba(234,241,248,${a * 0.18})`; ctx.beginPath(); ctx.arc(p.x, p.y, R * 0.7, 0, TAU); ctx.stroke();
+        // echoes where the ring meets the floor
+        for (let x = 0; x < w; x += 10) { const y = floor(x, w, h); const d = Math.hypot(x - p.x, y - p.y); if (Math.abs(d - R) < 8) { ctx.fillStyle = `rgba(245,158,11,${a})`; ctx.fillRect(x - 1, y - 1, 3, 3); } }
+      }
+    });
+
+    // —— the descent: gauge, background depth and pings per zone ——
+    const Z = [
+      { d: 4000, m: "Swift · Standard", c: 360 }, { d: 0, m: "Core · Standard", c: 3000 }, { d: -2000, m: "Core · Low-refusal", c: 3000 },
+      { d: -6000, m: "Unbound · Abliterated", c: 3900 }, { d: -10928, m: "Atlas · Standard", c: 801200 },
+    ];
+    const zones = $$(".n11-zone"), dep = $("#dep"), bar = $("#bar"), gm = $("#g-m"), gc = $("#g-c"), gu = $("#g-u");
+    const costs = zones.map((z) => z.querySelector(".kit b").textContent);
+    let pos = 0;
+    onScroll(() => {
+      const mid = innerHeight * 0.55;
+      let p = 0;
+      zones.forEach((z, i) => { const r = z.getBoundingClientRect(); if (r.top < mid) p = i + clamp((mid - r.top) / r.height); });
+      pos = clamp(p, 0, zones.length - 1);
+      const i = Math.floor(pos), f = pos - i, j = Math.min(i + 1, Z.length - 1);
+      const d = Math.round(lerp(Z[i].d, Z[j].d, f));
+      dep.textContent = (d > 0 ? "+" : d < 0 ? "−" : "") + Math.abs(d).toLocaleString("en-US") + " m";
+      bar.style.setProperty("--d", (pos / (zones.length - 1)).toFixed(4));
+      const k = Math.round(pos);
+      gm.textContent = Z[k].m; gc.textContent = Math.round(lerp(Z[i].c, Z[j].c, f)).toLocaleString("en-US") + " tokens"; gu.textContent = costs[k];
+    });
+    const pc = $("#pings");
+    if (pc) {
+      const ps = canvas(pc);
+      loop(pc, (t) => {
+        const { ctx, w, h } = ps;
+        ctx.clearRect(0, 0, w, h);
+        const x = w * 0.78, y = h * 0.5, depth = pos / (zones.length - 1);
+        for (let k = 0; k < 3; k++) {
+          const age = ((RM ? 0.5 : t) * 0.4 + k / 3) % 1, R = age * Math.min(w, h) * (0.3 + depth * 0.4);
+          ctx.strokeStyle = `rgba(245,158,11,${(1 - age) * (0.25 + depth * 0.35)})`; ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.arc(x, y, R, 0, TAU); ctx.stroke();
+        }
+        ctx.fillStyle = "#F59E0B"; ctx.beginPath(); ctx.arc(x, y, 4, 0, TAU); ctx.fill();
+      });
+    }
+  })();
+</script>
+</body>
+</html>

@@ -202,7 +202,7 @@
       },
       "signature_scroll_mechanic": "Depth-gauge descent from +4,000 m to −10,928 m with live pressure readouts and sonar pings",
       "hero_layout_type": "Depth column: vertical gauge strip on the left edge, copy right, sonar field behind",
-      "built": false
+      "built": true
     },
     {
       "id": "12",
