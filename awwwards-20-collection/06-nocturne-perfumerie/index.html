@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether — Know exactly what every answer is made of</title>
+<meta name="description" content="Every response is a blend of output, fresh input and cached tokens; Aether lists each note and its price for every model family. Nocturne design direction.">
+<meta name="theme-color" content="#120E0A">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%23120E0A'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23E5A93C'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-400-italic.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:300;font-display:swap;src:url(fonts/work-sans-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/work-sans-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/work-sans-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/work-sans-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#120E0A;--bg-secondary:#1F1812;--accent:#E5A93C;--on-accent:#120E0A;--text-primary:#F3E9DA;--text-muted:#B3A28C;--line:rgba(243,233,218,.13);--font-display:"Instrument Serif", Georgia, serif;--font-body:"Work Sans", sans-serif}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Nocturne Perfumerie ——— */
+
+body{font-weight:300}
+.n6-nav{position:fixed;inset:0 0 auto;z-index:40;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gutter);background:linear-gradient(#120E0Af2,#120E0A00);font-size:.84rem}
+.n6-mark{font-family:var(--font-display);font-size:1.6rem;text-decoration:none;font-style:italic}
+.n6-links{display:flex;gap:26px}
+.n6-links a{text-decoration:none;color:var(--text-muted);position:relative;padding:6px 0}
+.n6-links a::after{content:"";position:absolute;left:50%;bottom:0;width:4px;height:4px;border-radius:50%;background:var(--accent);transform:translateX(-50%) scale(0);transition:transform .4s var(--ease)}
+.n6-links a.is-current{color:var(--text-primary)}
+.n6-links a.is-current::after{transform:translateX(-50%) scale(1)}
+.n6-ed{justify-self:end;color:var(--text-muted);font-style:italic;font-family:var(--font-display);font-size:1.05rem}
+@media (max-width:860px){.n6-links{display:none}.n6-nav{grid-template-columns:1fr auto}}
+.n6-btn{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 30px;border-radius:2px;background:var(--accent);color:var(--on-accent);font-weight:500;letter-spacing:.02em;text-decoration:none;box-shadow:0 0 50px -10px #E5A93C99;transition:box-shadow .4s}
+.n6-btn.is-near{box-shadow:0 0 70px -6px #E5A93Ccc}
+.n6-h2{font-size:clamp(2.6rem,5vw,4.6rem);font-weight:400;letter-spacing:-.02em;line-height:1;max-width:16ch}
+.n6-fine{margin-top:22px;font-size:.8rem;color:var(--text-muted)}
+.live{color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* hero: triptych */
+.n6-hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.8fr);gap:clamp(24px,3vw,48px);align-items:center;padding:88px var(--gutter) 32px;background:radial-gradient(600px 500px at 50% 60%,#3A2A1544,transparent 70%)}
+.n6-copy{display:grid;gap:22px;justify-items:start}
+.n6-copy h1{font-weight:400;line-height:.96}
+.n6-copy h1 em{color:var(--text-muted)}
+.n6-copy .k-body{color:var(--text-muted);max-width:40ch}
+.n6-flacon{position:relative;height:min(74vh,660px)}
+.n6-flacon canvas{width:100%;height:100%}
+.n6-ledger{display:grid;gap:0;border-top:1px solid var(--line);align-self:end;margin-bottom:6vh}
+.n6-ledger .hd{font-family:var(--font-display);font-style:italic;font-size:1.2rem;padding:14px 0 8px}
+.n6-ledger li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.n6-ledger li span{color:var(--text-muted)}
+.n6-ledger li b{font-weight:500;font-variant-numeric:tabular-nums}
+.n6-ledger .note{grid-column:1 / -1;font-size:.74rem;color:var(--text-muted)}
+@media (max-width:980px){
+  .n6-hero{grid-template-columns:1fr 120px;grid-template-rows:auto auto;gap:14px;padding:76px var(--gutter) 16px;align-content:start}
+  .n6-copy{grid-column:1 / -1;gap:12px}
+  .n6-flacon{grid-column:2;grid-row:2;height:150px}
+  .n6-ledger{grid-column:1;grid-row:2;margin:0;align-self:start}
+  .n6-ledger .hd{display:none}
+  .n6-ledger li{padding:6px 0;font-size:.76rem}
+}
+
+/* problem */
+.n6-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+.n6-vials{display:grid;gap:12px}
+.n6-vials li{display:grid;gap:6px;padding:22px 24px;border:1px solid var(--line);border-radius:999px 999px 24px 24px / 60px 60px 24px 24px;background:linear-gradient(#1F1812,#170F09)}
+.n6-vials .was{color:var(--text-muted);font-size:.9rem}
+.n6-vials .now{font-family:var(--font-display);font-size:1.6rem;line-height:1.15}
+@media (max-width:900px){.n6-split{grid-template-columns:1fr;gap:40px}}
+
+/* signature: pinned horizontal scent pyramid */
+.n6-pyr{margin-top:clamp(64px,6vw,80px)}
+.n6-pyr [data-rail]{position:relative}
+
+.n6-pcv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.n6-panels{padding:0 var(--gutter);gap:24px;position:relative}
+.n6-panel{width:min(560px,74vw);display:grid;gap:16px;align-content:end;min-height:62vh;padding:40px;border-left:1px solid var(--line);position:relative}
+.n6-panel .tier{font-size:.8rem;color:var(--text-muted)}
+.n6-panel h3{font-family:var(--font-display);font-weight:400;font-size:clamp(3rem,6vw,5rem);line-height:.9}
+.n6-panel .what{font-size:1.05rem}
+.n6-panel p{color:var(--text-muted);max-width:40ch}
+.n6-panel dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:4px 28px;border-top:1px solid var(--line);padding-top:14px}
+.n6-panel dt{font-size:.72rem;color:var(--text-muted)}
+.n6-panel dd{margin:0;font-family:var(--font-display);font-size:1.6rem}
+.n6-panel.intro h3{font-size:clamp(2.6rem,4.6vw,4rem)}
+.n6-panel.sum{border-left:1px solid var(--accent)}
+.n6-panel .bar{display:flex;height:10px;border-radius:10px;overflow:hidden;width:100%;max-width:380px}
+.n6-panel .bar i{display:block;height:100%}
+@media (max-width:899px){.n6-panel{width:auto;min-height:0;padding:28px 0 28px 22px}.n6-pcv{display:none}}
+
+/* how it works: vertical decoction */
+.n6-how{display:grid;grid-template-columns:4fr 8fr;gap:64px}
+.n6-how .n6-h2{position:sticky;top:110px;align-self:start}
+.n6-dec{position:relative;display:grid;gap:clamp(64px,6vw,80px);padding-left:40px}
+.n6-dec::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line)}
+.n6-dec::after{content:"";position:absolute;left:0;top:0;width:1px;height:100%;background:var(--accent);transform:scaleY(var(--fill,0));transform-origin:top}
+.n6-dec li{display:grid;gap:12px}
+.n6-dec .n{font-family:var(--font-display);font-style:italic;font-size:1.4rem;color:var(--text-muted)}
+.n6-dec h3{font-family:var(--font-display);font-weight:400;font-size:2.4rem;line-height:1}
+.n6-dec p{color:var(--text-muted);max-width:52ch}
+.n6-dec pre{margin:0;background:var(--bg-secondary);border:1px solid var(--line);padding:16px;font-size:.78rem;line-height:1.6;overflow-x:auto;white-space:pre;color:#E9DCC7}
+@media (max-width:900px){.n6-how{grid-template-columns:1fr;gap:40px}.n6-how .n6-h2{position:static}}
+
+/* bento: the cabinet */
+.n6-cab{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.n6-drawer{position:relative;isolation:isolate;background:var(--bg-primary);display:grid;gap:14px;align-content:start;min-height:280px}
+.n6-drawer::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at var(--mx) var(--my),#E5A93C1f,transparent 65%);opacity:0;transition:opacity .35s}
+.n6-drawer:hover::before{opacity:1}
+.n6-drawer .lbl{font-size:.76rem;color:var(--text-muted);display:flex;justify-content:space-between}
+.n6-drawer h3{font-family:var(--font-display);font-weight:400;font-size:1.9rem;line-height:1.05}
+.n6-drawer p{color:var(--text-muted);font-size:.92rem}
+.n6-drawer.d0{grid-column:span 2;background:var(--bg-secondary)}
+.n6-drawer.d0 h3{font-size:clamp(2.4rem,3.6vw,3.2rem)}
+.n6-drawer.d5{grid-column:span 2}
+@media (max-width:900px){.n6-cab{grid-template-columns:1fr}.n6-drawer{grid-column:auto!important}}
+
+/* impressions */
+.n6-imp{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.n6-card{border-top:1px solid var(--accent);display:grid;gap:16px;align-content:start;background:linear-gradient(#1F1812,transparent)}
+.n6-card q{font-family:var(--font-display);font-size:1.3rem;line-height:1.3;quotes:"“" "”"}
+.n6-card p{font-size:.82rem;color:var(--text-muted)}
+.n6-card b{display:block;color:var(--text-primary);font-weight:500}
+@media (max-width:1000px){.n6-imp{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.n6-imp{grid-template-columns:1fr}}
+
+/* price list */
+.n6-plans{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.n6-plan{border:1px solid var(--line);display:grid;gap:14px;align-content:start}
+.n6-plan.feat{background:var(--bg-secondary);border-color:#E5A93C66}
+.n6-plan h3{font-family:var(--font-display);font-size:1.8rem;font-weight:400}
+.n6-plan .p{font-family:var(--font-display);font-size:3rem;line-height:1}
+.n6-plan .cad{font-size:.8rem;color:var(--text-muted)}
+.n6-plan ul{display:grid;gap:6px;font-size:.9rem}
+.n6-plan li::before{content:"· ";color:var(--accent)}
+.n6-plan .fk{font-size:.84rem;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:900px){.n6-plans{grid-template-columns:1fr}}
+.n6-list{width:100%;margin-top:40px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.n6-list caption{text-align:left;font-family:var(--font-display);font-size:1.8rem;font-style:italic;padding-bottom:12px}
+.n6-list th,.n6-list td{text-align:left;padding:14px 12px 14px 0;border-bottom:1px solid var(--line)}
+.n6-list thead th{font-weight:400;color:var(--text-muted);font-size:.8rem}
+.n6-list tbody th{font-family:var(--font-display);font-weight:400;font-size:1.3rem}
+@media (max-width:700px){.n6-list th:nth-child(2),.n6-list td:nth-child(2){display:none}}
+
+/* final + footer */
+.n6-final{display:grid;justify-items:center;text-align:center;gap:30px}
+.n6-final .n6-h2{font-size:clamp(3rem,6.4vw,5.6rem);max-width:14ch}
+.n6-foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.84rem;color:var(--text-muted)}
+.n6-foot h4{font-family:var(--font-display);font-weight:400;font-size:1.2rem;color:var(--text-primary);margin-bottom:12px}
+.n6-foot ul{display:grid;gap:8px}
+.n6-foot a{text-decoration:none}
+.n6-foot a:hover{color:var(--text-primary)}
+.n6-foot .legal{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:860px){.n6-foot{grid-template-columns:1fr 1fr}.n6-foot>div:first-child{grid-column:1 / -1}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="n6-nav">
+  <a class="n6-mark" href="#main">Aether</a>
+  <nav class="n6-links" data-spy aria-label="Sections"><a href="#blend">The blend</a><a href="#pyramid">Pyramid</a><a href="#method">Method</a><a href="#cabinet">Cabinet</a><a href="#prices">Price list</a></nav>
+  <span class="n6-ed">Nocturne edition</span>
+</header>
+<main id="main">
+  <section class="n6-hero" data-hero aria-labelledby="n6-h">
+    <div class="n6-copy">
+      <h1 id="n6-h" data-hero-part="headline">Know exactly what every answer is <em>made of.</em></h1>
+      <p class="k-body" data-hero-part="sub">Every response is a blend of output, fresh input and cached tokens. Aether prices each note separately, for every model family.</p>
+      <div data-hero-part="cta"><a class="n6-btn" href="#prices" data-cta="primary" data-magnetic="6,0.1,0.85,0.35"><span data-magnetic-label>Get your API key</span></a></div>
+    </div>
+    <div class="n6-flacon" data-hero-part="visual"><canvas id="flacon" role="img" aria-label="A glass flacon releasing particles; the pointer stirs them"></canvas></div>
+    <ol class="n6-ledger" data-hero-part="trust" aria-label="Core's per-note sample rates">
+      <li class="hd">The notes of Core, per 1M tokens</li>
+      <li><span>Top notes</span><b>$2.40</b><span class="note">Output tokens</span></li><li><span>Heart notes</span><b>$0.60</b><span class="note">Fresh input tokens</span></li><li><span>Base notes</span><b>$0.15</b><span class="note">Cached input tokens</span></li>
+    </ol>
+  </section>
+
+  <section id="blend" data-section aria-labelledby="n6-b">
+    <div class="k-wrap n6-split">
+      <h2 id="n6-b" class="n6-h2" data-reveal>Most AI bills come in an unlabelled bottle.</h2>
+      <ul class="n6-vials" data-stagger><li><span class="was">Every provider means a new key, a new SDK and a new bill.</span><span class="now">One key and one endpoint for five model families.</span></li><li><span class="was">Cautious models refuse ordinary fiction, research and security work.</span><span class="now">Choose standard, low-refusal or abliterated on every request.</span></li><li><span class="was">Credit systems hide what a single request actually costs.</span><span class="now">Per-token rates on every model, and the cost on every response.</span></li></ul>
+    </div>
+    <div class="n6-pyr" id="pyramid">
+      <div data-rail>
+        <div data-rail-view>
+          <canvas class="n6-pcv" id="pyr-cv" aria-hidden="true"></canvas>
+          <ol class="n6-panels" data-rail-track>
+            <li class="n6-panel intro"><span class="tier">One Core request, sample rates</span><h3>The scent pyramid of a single answer.</h3><p>9,000 cached tokens, 1,200 fresh and 600 out. Scroll sideways through its notes.</p></li>
+            <li class="n6-panel" data-note="top"><span class="tier">Top notes</span><h3>Output tokens</h3><p>What you notice first, and the priciest per token. Shorter answers, smaller bill.</p><dl><div><dt>Tokens</dt><dd>600</dd></div><div><dt>Rate / 1M</dt><dd>$2.40</dd></div><div><dt>Share</dt><dd class="live">41%</dd></div></dl></li><li class="n6-panel" data-note="heart"><span class="tier">Heart notes</span><h3>Fresh input tokens</h3><p>The body of the request: the question and anything that changed since last time.</p><dl><div><dt>Tokens</dt><dd>1,200</dd></div><div><dt>Rate / 1M</dt><dd>$0.60</dd></div><div><dt>Share</dt><dd class="live">21%</dd></div></dl></li><li class="n6-panel" data-note="base"><span class="tier">Base notes</span><h3>Cached input tokens</h3><p>System prompts and documents that repeat. They linger, billed at the cached rate.</p><dl><div><dt>Tokens</dt><dd>9,000</dd></div><div><dt>Rate / 1M</dt><dd>$0.15</dd></div><div><dt>Share</dt><dd class="live">38%</dd></div></dl></li>
+            <li class="n6-panel sum"><span class="tier">The whole bottle</span><h3>$0.0035</h3><p>That is the full price of the answer, itemised on the response. Without caching, the base notes alone would cost $0.0054.</p><span class="bar" aria-hidden="true"><i style="width:41.0%;background:#E5A93C"></i><i style="width:20.5%;background:#B3A28C"></i><i style="width:38.5%;background:#6E5A40"></i></span></li>
+          </ol>
+        </div>
+      </div>
+      <p class="k-wrap n6-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="method" data-section aria-labelledby="n6-m">
+    <div class="k-wrap n6-how">
+      <h2 id="n6-m" class="n6-h2" data-reveal>The method, in three steps.</h2>
+      <ol class="n6-dec" id="dec">
+        <li data-reveal><span class="n">First</span><h3>Pick a model and a temperament</h3><p>Choose from five families. Add a suffix when you need fewer refusals — the request stays the same.</p></li><li data-reveal><span class="n">Then</span><h3>Send your first request</h3><p>Point the SDK you already use at Aether's base URL. Streaming and tool calls work as before.</p><pre><code>baseURL: "https://api.aether.example/v1"
+model:   "core-128k"</code></pre></li><li data-reveal><span class="n">Finally</span><h3>Ship with costs in view</h3><p>Every response reports tokens, cached tokens and cost. Long prompts are cached automatically.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="cabinet" data-section aria-labelledby="n6-c">
+    <div class="k-wrap">
+      <h2 id="n6-c" class="n6-h2" data-reveal>The cabinet: each drawer, and what it does for you.</h2>
+      <div class="n6-cab" data-stagger>
+        <article class="n6-drawer k-card d0" data-spot><p class="lbl"><span>Unified chat</span><span>No. 01</span></p><h3>Switch models mid-conversation without explaining yourself again.</h3><p>The whole thread, files included, moves with you from Core to Unbound to Forge.</p></article><article class="n6-drawer k-card d1" data-spot><p class="lbl"><span>Three temperaments</span><span>No. 02</span></p><h3>Get direct answers for fiction, red-teaming and research.</h3><p>Add :low-refusal or :abliterated to a model name. Your deployment sets the policy.</p></article><article class="n6-drawer k-card d2" data-spot><p class="lbl"><span>Coding agents</span><span>No. 03</span></p><h3>Hand off the bug fix and review a tested diff.</h3><p>Forge reads the repository, plans the change, edits files and runs the tests.</p></article><article class="n6-drawer k-card d3" data-spot><p class="lbl"><span>Long context</span><span>No. 04</span></p><h3>Ask one question across an entire repository or archive.</h3><p>Atlas is designed for very large prompts. Spec shown is a placeholder.</p></article><article class="n6-drawer k-card d4" data-spot><p class="lbl"><span>Prompt caching</span><span>No. 05</span></p><h3>Pay less every time a long prompt repeats.</h3><p>Repeated prefixes are billed at the cached rate automatically.</p></article><article class="n6-drawer k-card d5" data-spot><p class="lbl"><span>Side-by-side compare</span><span>No. 06</span></p><h3>Find the right model for your prompt before you commit.</h3><p>Run one prompt on several models and compare answers and cost.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="voices" data-section aria-labelledby="n6-v">
+    <div class="k-wrap">
+      <h2 id="n6-v" class="n6-h2" data-reveal>Impressions, by role.</h2>
+      <div class="n6-imp" data-stagger><figure class="n6-card k-card"><q>Replace with a real quote about consolidating providers behind one base URL.</q><p><b>Backend developer</b>One key instead of three</p></figure><figure class="n6-card k-card"><q>Replace with a real quote about comparing standard and abliterated variants.</q><p><b>Safety researcher</b>Studying refusal behaviour</p></figure><figure class="n6-card k-card"><q>Replace with a real quote about writing difficult scenes without refusals.</q><p><b>Novelist</b>Dark themes, no lectures</p></figure><figure class="n6-card k-card"><q>Replace with a real quote about per-request cost reporting and caching.</q><p><b>Startup CTO</b>Predictable costs</p></figure></div>
+      <p class="n6-fine">Placeholder testimonials — swap in real beta quotes before launch.</p>
+    </div>
+  </section>
+
+  <section id="prices" data-section aria-labelledby="n6-p">
+    <div class="k-wrap">
+      <h2 id="n6-p" class="n6-h2" data-reveal>The price list, note by note.</h2>
+      <div class="n6-plans" data-stagger>
+        <article class="n6-plan k-card"><h3>Explore</h3><p class="p">$0</p><p class="cad">to start</p><ul><li>Unified chat</li><li>All model families</li><li>Daily usage allowance</li></ul><p class="fk">No card needed to look around.</p></article><article class="n6-plan k-card feat"><h3>Pro</h3><p class="p">$20</p><p class="cad">per month</p><ul><li>Higher limits</li><li>Abliterated variants</li><li>Side-by-side compare</li><li>Coding agent (preview)</li></ul><p class="fk">Cancel from settings in one click.</p></article><article class="n6-plan k-card"><h3>API</h3><p class="p">Pay as you go</p><p class="cad">per token</p><ul><li>One key, every model</li><li>Prompt caching</li><li>Usage dashboard</li></ul><p class="fk">No minimum spend. Pay only for tokens you use.</p></article>
+      </div>
+      <table class="n6-list" data-reveal>
+        <caption>Per 1M tokens</caption>
+        <thead><tr><th scope="col">Family</th><th scope="col">Character</th><th scope="col">Top (output)</th><th scope="col">Heart (input)</th><th scope="col">Base (cached)</th></tr></thead>
+        <tbody><tr><th scope="row">Core</th><td>General chat & reasoning</td><td>$2.40</td><td>$0.60</td><td>$0.15</td></tr><tr><th scope="row">Unbound</th><td>Abliterated variant</td><td>$3.20</td><td>$0.80</td><td>$0.20</td></tr><tr><th scope="row">Forge</th><td>Coding agents</td><td>$4.80</td><td>$1.20</td><td>$0.30</td></tr><tr><th scope="row">Atlas</th><td>Long context</td><td>$6.00</td><td>$1.50</td><td>$0.25</td></tr><tr><th scope="row">Swift</th><td>Fast & small</td><td>$0.32</td><td>$0.08</td><td>$0.02</td></tr></tbody>
+      </table>
+      <p class="n6-fine">Sample rates for layout only. Final pricing not yet set.</p>
+    </div>
+  </section>
+
+  <section id="final" data-section aria-labelledby="n6-f">
+    <div class="k-wrap n6-final">
+      <h2 id="n6-f" class="n6-h2" data-reveal>Uncork your first request.</h2>
+      <a class="n6-btn" href="#main" data-magnetic="6,0.1,0.85,0.35" data-reveal><span data-magnetic-label>Get your API key</span></a>
+    </div>
+  </section>
+</main>
+<footer class="n6-foot">
+  <div><p class="n6-mark">Aether</p><p style="margin-top:12px;max-width:44ch">Aether is a placeholder brand and this page is the "Nocturne" design direction. Models, rates and quotes are mock data — nothing here is live.</p></div>
+  <div><h4>Families</h4><ul><li><a href="#prices">Core</a></li><li><a href="#prices">Unbound</a></li><li><a href="#prices">Forge</a></li><li><a href="#prices">Atlas</a></li><li><a href="#prices">Swift</a></li></ul></div>
+  <div><h4>Platform</h4><ul><li><a href="#pyramid">Token pricing</a></li><li><a href="#method">API quickstart</a></li><li><a href="#cabinet">Features</a></li></ul></div>
+  <div><h4>Exhibition</h4><ul><li><a href="../index.html">Back to the collection</a></li><li><a href="../fingerprint-registry.json">Fingerprint registry</a></li></ul></div>
+  <p class="legal"><span>Sample rates for layout only. Final pricing not yet set.</span><span>Set in Instrument Serif and Work Sans.</span></p>
+</footer>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+    const { RM, $, $$, clamp, canvas, loop, onScroll, progress, pointer } = K;
+    const TAU = Math.PI * 2;
+
+    // —— hero flacon: amber glass, particles rising from the neck; the pointer stirs them ——
+    const fc = $("#flacon"), fs = canvas(fc);
+    const parts = Array.from({ length: 180 }, () => ({ x: 0, y: 0, vx: 0, vy: 0, life: Math.random(), size: 0 }));
+    const respawn = (p, w, h) => { p.x = w / 2 + (Math.random() - 0.5) * w * 0.05; p.y = h * 0.3; p.vx = (Math.random() - 0.5) * 0.3; p.vy = -0.4 - Math.random() * 0.8; p.life = 1; p.size = 0.6 + Math.random() * 1.8; };
+    loop(fc, (t, dt) => {
+      const { ctx, w, h } = fs;
+      ctx.clearRect(0, 0, w, h);
+      const bw = Math.min(w * 0.7, h * 0.42), bx = w / 2, by = h * 0.68;
+      // body
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(bx - bw * 0.14, h * 0.32); ctx.lineTo(bx - bw * 0.14, h * 0.4);
+      ctx.bezierCurveTo(bx - bw * 0.55, h * 0.44, bx - bw * 0.55, by + bw * 0.5, bx - bw * 0.3, by + bw * 0.56);
+      ctx.lineTo(bx + bw * 0.3, by + bw * 0.56);
+      ctx.bezierCurveTo(bx + bw * 0.55, by + bw * 0.5, bx + bw * 0.55, h * 0.44, bx + bw * 0.14, h * 0.4);
+      ctx.lineTo(bx + bw * 0.14, h * 0.32); ctx.closePath();
+      const g = ctx.createLinearGradient(bx - bw / 2, 0, bx + bw / 2, 0);
+      g.addColorStop(0, "rgba(229,169,60,.18)"); g.addColorStop(0.45, "rgba(229,169,60,.06)"); g.addColorStop(1, "rgba(229,169,60,.22)");
+      ctx.fillStyle = g; ctx.fill(); ctx.strokeStyle = "rgba(243,233,218,.45)"; ctx.lineWidth = 1.2; ctx.stroke();
+      ctx.clip();
+      const lvl = by + bw * 0.1 + Math.sin(t * 1.4) * 3;
+      const liq = ctx.createLinearGradient(0, lvl, 0, by + bw * 0.6);
+      liq.addColorStop(0, "rgba(229,169,60,.55)"); liq.addColorStop(1, "rgba(120,70,20,.75)");
+      ctx.fillStyle = liq; ctx.fillRect(0, lvl, w, h);
+      ctx.restore();
+      // stopper
+      ctx.fillStyle = "#2B2016"; ctx.strokeStyle = "rgba(243,233,218,.35)";
+      ctx.fillRect(bx - bw * 0.1, h * 0.26, bw * 0.2, h * 0.06); ctx.strokeRect(bx - bw * 0.1, h * 0.26, bw * 0.2, h * 0.06);
+      // vapour
+      const r = fc.getBoundingClientRect(), px = pointer.x - r.left, py = pointer.y - r.top;
+      for (const p of parts) {
+        if (p.life <= 0 || !p.size) { if (!RM) respawn(p, w, h); continue; }
+        const dx = p.x - px, dy = p.y - py, d = Math.hypot(dx, dy);
+        if (pointer.active && d < 120) { p.vx += (-dy / d) * 0.08; p.vy += (dx / d) * 0.05; }
+        p.vx += Math.sin(p.y * 0.03 + t) * 0.01; p.x += p.vx; p.y += p.vy; p.vy *= 0.995; p.life -= dt * 0.25;
+        ctx.fillStyle = `rgba(229,169,60,${Math.max(0, p.life) * 0.7})`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, TAU); ctx.fill();
+      }
+    });
+
+    // —— signature: notes evaporate as the pyramid rail passes ——
+    const run = $("#pyramid [data-rail]"), pc = $("#pyr-cv"), ps = canvas(pc);
+    const panels = $$(".n6-panel[data-note]");
+    const speed = { top: 1.6, heart: 0.9, base: 0.35 };
+    const clouds = panels.map((el) => ({ el, key: el.dataset.note, dots: Array.from({ length: 140 }, () => ({ u: Math.random(), v: Math.random(), s: 0.8 + Math.random() * 2.2, ph: Math.random() * TAU })) }));
+    let p = 0;
+    onScroll(() => { p = RM ? 0 : progress(run); });
+    loop(pc, (t) => {
+      const { ctx, w, h } = ps;
+      ctx.clearRect(0, 0, w, h);
+      const cr = pc.getBoundingClientRect();
+      for (const c of clouds) {
+        const r = c.el.getBoundingClientRect();
+        const x0 = r.left - cr.left, cx = x0 + r.width * 0.55;
+        // how far this panel has travelled past the centre of the viewport
+        const pass = clamp((w * 0.65 - x0) / (w * 0.9));
+        const evap = clamp(pass * speed[c.key] * 1.4);
+        for (const d of c.dots) {
+          const lift = evap * h * 0.5 * (0.4 + d.v);
+          const x = cx + (d.u - 0.5) * r.width * 0.8 + Math.sin(t + d.ph) * 6 * evap;
+          const y = h * 0.32 + d.v * h * 0.22 - lift;
+          const a = (1 - evap) * 0.55 + 0.05;
+          ctx.fillStyle = c.key === "top" ? `rgba(229,169,60,${a})` : c.key === "heart" ? `rgba(243,233,218,${a * 0.7})` : `rgba(179,162,140,${a})`;
+          ctx.beginPath(); ctx.arc(x, y, d.s * (1 + evap), 0, TAU); ctx.fill();
+        }
+      }
+    });
+
+    // —— method: a single amber line fills as the steps scroll past ——
+    const dec = $("#dec");
+    onScroll(() => { const r = dec.getBoundingClientRect(); dec.style.setProperty("--fill", clamp((innerHeight * 0.6 - r.top) / r.height).toFixed(3)); });
+  })();
+</script>
+</body>
+</html>

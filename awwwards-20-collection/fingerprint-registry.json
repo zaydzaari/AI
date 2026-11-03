@@ -111,7 +111,7 @@
       },
       "signature_scroll_mechanic": "Pinned horizontal scent pyramid: top, heart and base notes evaporate as particle diffusion",
       "hero_layout_type": "Triptych: copy column, particle flacon in the centre column, note ledger on the right",
-      "built": false
+      "built": true
     },
     {
       "id": "07",
