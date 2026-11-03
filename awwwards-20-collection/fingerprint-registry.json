@@ -239,7 +239,7 @@
       },
       "signature_scroll_mechanic": "Focus-seeking constellation: synaptic pulses fire toward whichever card or CTA is focused or scrolled to",
       "hero_layout_type": "Off-centre float: copy in the lower-right third, neural constellation filling the rest",
-      "built": false
+      "built": true
     },
     {
       "id": "14",
