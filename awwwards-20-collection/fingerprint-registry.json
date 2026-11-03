@@ -220,7 +220,7 @@
       },
       "signature_scroll_mechanic": "Snap-together configurator: modules spring into a rail as you scroll, plus a before/after room scrubber",
       "hero_layout_type": "Tool-first: copy top-left, a live modular configurator occupying the lower-right grid",
-      "built": false
+      "built": true
     },
     {
       "id": "13",
