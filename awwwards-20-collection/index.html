@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOTD 2026 Collection — Aether, twenty ways</title>
+<meta name="description" content="Twenty landing-page directions for Aether, an AI platform selling model access and API tokens. Filter, preview, inspect tokens and font pairings, and open any site.">
+<meta name="theme-color" content="#0B0B0C">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%230B0B0C'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'7'%20fill%3D'%23F3EEE4'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/bodoni-moda-400-700-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400 700;font-display:swap;src:url(fonts/bodoni-moda-400-700-italic.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/bodoni-moda-400-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/schibsted-grotesk-400-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dm-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/dm-mono-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S01";font-style:normal;font-weight:600;font-display:swap;src:url(01-chronos-atelier/fonts/cormorant-garamond-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S02";font-style:normal;font-weight:500;font-display:swap;src:url(02-kanso-monolith/fonts/syne-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S03";font-style:normal;font-weight:600;font-display:swap;src:url(03-aether-orbital/fonts/unbounded-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S04";font-style:normal;font-weight:300 700;font-display:swap;src:url(04-veridian-biofoundry/fonts/fraunces-300-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S05";font-style:normal;font-weight:600;font-display:swap;src:url(05-valkyrie-hyperacoustics/fonts/funnel-display-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S06";font-style:normal;font-weight:400;font-display:swap;src:url(06-nocturne-perfumerie/fonts/instrument-serif-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S07";font-style:normal;font-weight:300 800;font-display:swap;src:url(07-solaris-tokamak/fonts/host-grotesk-300-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S08";font-style:normal;font-weight:400 800;font-display:swap;src:url(08-terra-vinicola/fonts/playfair-display-400-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S09";font-style:normal;font-weight:600;font-display:swap;src:url(09-kinetix-exoskeleton/fonts/chakra-petch-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S10";font-style:normal;font-weight:400 800;font-display:swap;src:url(10-obelisk-zk/fonts/bricolage-grotesque-400-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S11";font-style:normal;font-weight:400;font-display:swap;src:url(11-nomad-expeditions/fonts/dm-serif-display-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S12";font-style:normal;font-weight:600;font-display:swap;src:url(12-forma-modular/fonts/space-grotesk-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S13";font-style:normal;font-weight:200 700;font-display:swap;src:url(13-synapse-bci/fonts/urbanist-200-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S14";font-style:normal;font-weight:400;font-display:swap;src:url(14-veloce-aero/fonts/archivo-black-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S15";font-style:normal;font-weight:300 600;font-display:swap;src:url(15-hikari-matcha/fonts/newsreader-300-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S16";font-style:normal;font-weight:600;font-display:swap;src:url(16-stratosphere-haps/fonts/sora-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S17";font-style:normal;font-weight:400;font-display:swap;src:url(17-obsidian-roasters/fonts/gloock-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S18";font-style:normal;font-weight:700;font-display:swap;src:url(18-lumina-photonics/fonts/syncopate-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S19";font-style:normal;font-weight:400;font-display:swap;src:url(19-atelier-kintsugi/fonts/im-fell-english-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"S20";font-style:normal;font-weight:500;font-display:swap;src:url(20-zenith-supersonic/fonts/big-shoulders-display-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#0B0B0C;--bg-secondary:#161618;--accent:#F3EEE4;--on-accent:#0B0B0C;--text-primary:#ECE9E3;--text-muted:#A19D95;--line:rgba(236,233,227,.12);--font-display:"Bodoni Moda", serif;--font-body:"Schibsted Grotesk", sans-serif}
+
+:root{--ease:cubic-bezier(0.22,1,0.36,1);--ease-io:cubic-bezier(0.65,0,0.35,1);--gutter:clamp(20px,5vw,72px);--maxw:1320px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-size:1.05rem;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd,fieldset{margin:0}
+.k-gap{height:clamp(64px,6vw,80px)}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0}
+img,svg,canvas,video{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+code,kbd,pre,samp{font-family:var(--font-code,var(--font-body))}
+button{cursor:pointer}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+h1{font-family:var(--font-display);font-size:clamp(3.25rem,6vw,5rem);line-height:.98;letter-spacing:-.03em;font-weight:var(--h1-weight,500);text-wrap:balance}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+.k-card{padding:clamp(36px,3vw,40px)}
+h2,h3{font-family:var(--font-display);text-wrap:balance}
+.k-wrap{width:min(100% - 2*var(--gutter),var(--maxw));margin-inline:auto}
+.k-body{font-size:1.05rem;line-height:1.7;max-width:65ch}
+.k-muted{color:var(--text-muted)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary);text-decoration:none}
+.k-skip:focus{top:12px}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[data-section]{padding-block:120px;position:relative}
+@media (max-width:767px){[data-section]{padding-block:72px}}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'220'%20height%3D'220'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.82'%20numOctaves%3D'3'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%20.5%200%200%200%200%20.5%200%200%200%200%20.5%200%200%200%201.4%20-.2'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%2523n)'%2F%3E%3C%2Fsvg%3E");background-size:220px}
+[data-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:opacity .8s var(--ease) calc(var(--i,0)*80ms),transform .9s var(--ease) calc(var(--i,0)*80ms)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-magnetic]{will-change:transform;touch-action:manipulation}
+[data-spot]{--mx:50%;--my:50%}
+/* Pinned horizontal rail mechanics; each site styles the cards itself. */
+[data-rail-track]{display:grid;gap:24px}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  [data-rail]{height:calc(var(--steps,3) * 80vh + 20vh)}
+  [data-rail-view]{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  [data-rail-track]{display:flex;width:max-content;will-change:transform}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ——— Exhibition Gallery ——— */
+
+:root{--h1-weight:500;--mono:"DM Mono",monospace}
+.g-ar{width:14px;height:14px;flex:none}
+.g-nav{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--gutter);background:#0B0B0Cf0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+.g-mark{text-decoration:none;display:flex;gap:12px;align-items:baseline}
+.g-mark b{font-family:var(--font-display);font-size:1.35rem;font-weight:600;letter-spacing:0}
+.g-mark span{color:var(--text-muted)}
+.g-links{display:flex;gap:6px}
+.g-links a{text-decoration:none;color:var(--text-muted);padding:8px 12px;border-radius:99px}
+.g-links a:hover{color:var(--text-primary)}
+.g-links a.is-current{color:var(--on-accent);background:var(--accent)}
+.g-count{color:var(--text-muted)}
+@media (max-width:760px){.g-links,.g-count{display:none}}
+.g-btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 28px;border-radius:99px;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:1rem;text-decoration:none}
+.g-btn i{font-style:normal;transition:transform .5s var(--ease)}
+.g-btn.is-near i{transform:translateY(3px)}
+.g-kick{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+.g-h2{font-size:clamp(2.4rem,4.6vw,4.2rem);font-weight:500;letter-spacing:-.02em;line-height:1;max-width:18ch}
+.g-h2 em{font-style:italic}
+
+/* hero */
+.g-hero{min-height:calc(100svh - 60px);display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,4vw,64px);align-items:center;padding:28px var(--gutter)}
+.g-copy{display:grid;gap:24px;justify-items:start}
+.g-copy h1{max-width:11ch}
+.g-copy h1 em{font-style:italic;font-weight:400}
+.g-copy .k-body{color:var(--text-muted);max-width:44ch}
+.g-trust{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
+.g-trust b{color:var(--text-primary);font-weight:500}
+.g-spec{position:relative;height:min(74vh,700px);border-radius:14px;overflow:hidden;border:1px solid var(--line);cursor:pointer;touch-action:pan-y}
+.g-spec canvas{position:absolute;inset:0;width:100%;height:100%}
+.g-spec p{position:absolute;left:14px;bottom:10px;font-family:var(--mono);font-size:.68rem;color:#ECE9E3;background:#0B0B0Ccc;padding:3px 8px;border-radius:99px;pointer-events:none}
+@media (max-width:900px){
+  .g-hero{grid-template-columns:1fr;gap:14px;padding:14px var(--gutter);align-content:start;min-height:0}
+  .g-copy{gap:12px}
+  .g-btn{min-height:52px}
+  .g-trust{font-size:.7rem;gap:2px 12px}
+  .g-spec{height:150px}
+  .g-spec p{display:none}
+}
+
+/* wall */
+.g-bar{position:sticky;top:60px;z-index:30;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:14px 0;margin-top:clamp(64px,6vw,80px);background:#0B0B0Cf2;border-bottom:1px solid var(--line)}
+.g-chips{display:flex;flex-wrap:wrap;gap:8px}
+.g-chip{min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:transparent;font-family:var(--mono);font-size:.78rem;color:var(--text-muted)}
+.g-chip:hover{color:var(--text-primary);border-color:#ECE9E355}
+.g-chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.g-shown{font-family:var(--mono);font-size:.76rem;color:var(--text-muted)}
+.g-wall{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.g-ex{display:grid;grid-template-rows:auto 1fr;border-radius:14px;overflow:hidden;background:var(--bg-secondary);border:1px solid var(--line)}
+.g-ex[hidden]{display:none}
+.g-ex.is-ping{box-shadow:0 0 0 2px var(--accent)}
+.g-shot{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--sp)}
+.g-shot>img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.g-phone{position:absolute;right:18px;bottom:-40px;width:22%;aspect-ratio:300/534;border-radius:14px;overflow:hidden;border:3px solid #0B0B0C;box-shadow:0 20px 40px -12px #000c;transform:translateY(0);transition:transform .7s var(--ease)}
+.g-phone img{width:100%;height:100%;object-fit:cover}
+.g-shot:hover>img,.g-shot:focus-visible>img{transform:scale(1.035)}
+.g-shot:hover .g-phone,.g-shot:focus-visible .g-phone{transform:translateY(-52px)}
+.g-meta{position:relative;isolation:isolate;display:grid;gap:14px;align-content:start}
+.g-meta::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(300px circle at var(--mx) var(--my),#ECE9E30f,transparent 65%);opacity:0;transition:opacity .3s}
+.g-meta:hover::before{opacity:1}
+.g-no{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--text-muted);letter-spacing:.06em}
+.g-meta h3{font-size:clamp(1.9rem,2.6vw,2.5rem);font-weight:500;line-height:1.02;letter-spacing:-.01em}
+.g-line{font-size:.92rem;color:var(--text-muted)}
+.g-tok{display:flex;height:14px;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.g-hex{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:.72rem;color:var(--text-muted)}
+.g-hex span{display:inline-flex;align-items:center;gap:7px}
+.g-hex i{width:10px;height:10px;border-radius:50%;border:1px solid #ECE9E340}
+.g-fp{display:grid;gap:8px;font-size:.86rem}
+.g-fp div{display:grid;grid-template-columns:88px 1fr;gap:12px}
+.g-fp dt{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);padding-top:2px}
+.g-fp dd{margin:0}
+.g-act{display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+.g-open,.g-insp{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:99px;font-size:.88rem;font-weight:600;text-decoration:none}
+.g-open{background:var(--accent);color:var(--on-accent)}
+.g-insp{background:transparent;border:1px solid #ECE9E340;color:var(--text-primary)}
+.g-insp:hover{border-color:var(--text-primary)}
+@media (max-width:900px){.g-wall{grid-template-columns:1fr;gap:20px}.g-bar{top:60px}}
+
+/* laws */
+.g-laws{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.g-law{font-family:var(--font-display);font-size:clamp(1.5rem,2.4vw,2.1rem);line-height:1.25;font-weight:400}
+.g-law em{font-style:italic}
+.g-dna{margin-top:clamp(64px,6vw,80px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g-rule{display:grid;gap:12px;align-content:start;border:1px solid var(--line);border-radius:14px;background:var(--bg-secondary)}
+.g-rule .n{font-family:var(--mono);font-size:.72rem;color:var(--text-muted)}
+.g-rule h3{font-size:1.7rem;font-weight:500}
+.g-rule p{font-size:.9rem;color:var(--text-muted)}
+.g-run{margin-top:28px;display:grid;gap:10px}
+.g-run pre{margin:0;padding:16px 18px;border-radius:10px;background:var(--bg-secondary);border:1px solid var(--line);font-family:var(--mono);font-size:.8rem;overflow-x:auto;white-space:pre}
+@media (max-width:900px){.g-laws{grid-template-columns:1fr;gap:32px}.g-dna{grid-template-columns:1fr}}
+
+/* registry */
+.g-tw{margin-top:clamp(64px,6vw,80px);overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+.g-table{width:100%;min-width:1100px;border-collapse:collapse;font-size:.82rem}
+.g-table th,.g-table td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--line)}
+.g-table thead th{font-family:var(--mono);font-weight:400;font-size:.7rem;color:var(--text-muted);letter-spacing:.06em;background:var(--bg-secondary)}
+.g-table tbody th{font-weight:500;white-space:nowrap}
+.g-table tbody th a{text-decoration:none}
+.g-table tbody th a:hover{text-decoration:underline}
+.g-table .nm{font-size:1.25rem;display:block;line-height:1.1}
+.g-table .sw{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:.7rem;color:var(--text-muted);white-space:nowrap}
+.g-table .sw i{width:16px;height:16px;border-radius:4px;border:1px solid #ECE9E340}
+.g-table td{color:var(--text-muted)}
+.g-table td b{color:var(--text-primary);font-weight:500}
+
+/* inspector */
+.g-dlg{width:min(1180px,100vw - 32px);max-height:calc(100vh - 32px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg-secondary);color:var(--text-primary);overflow:auto}
+.g-dlg::backdrop{background:#000000b8}
+.g-dlg[open]{animation:g-in .5s var(--ease)}
+@keyframes g-in{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+.g-di{display:grid;grid-template-columns:7fr 5fr}
+.g-dv{position:relative;background:#000;min-height:320px}
+.g-dv>img{width:100%;height:100%;object-fit:cover;display:block}
+.g-dv .g-phone{bottom:24px;width:26%}
+.g-dt{display:grid;gap:16px;align-content:start;padding:clamp(24px,3vw,40px)}
+.g-dt h2{font-size:clamp(2rem,3.4vw,3rem);font-weight:500;line-height:1}
+.g-dt .k-muted{font-size:.9rem}
+.g-sw3{display:grid;grid-template-columns:6fr 3fr 1.4fr;gap:6px}
+.g-sw3 div{border-radius:10px;padding:12px;min-height:84px;display:grid;align-content:end;font-family:var(--mono);font-size:.7rem;line-height:1.4;border:1px solid #ECE9E326}
+.g-ct{display:grid;gap:4px;font-family:var(--mono);font-size:.74rem;color:var(--text-muted)}
+.g-ct b{color:var(--text-primary);font-weight:500}
+.g-dl{display:grid;gap:10px;font-size:.86rem}
+.g-dl div{display:grid;grid-template-columns:96px 1fr;gap:12px}
+.g-dl dt{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);padding-top:2px}
+.g-dl dd{margin:0}
+.g-dbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:8px}
+.g-x{position:absolute;right:14px;top:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid #ECE9E340;background:#0B0B0Ccc;color:var(--text-primary);font-size:1.1rem}
+@media (max-width:900px){.g-di{grid-template-columns:1fr}.g-dv{min-height:0;aspect-ratio:16/10}.g-dv .g-phone{display:none}}
+
+/* footer */
+.g-foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding:72px var(--gutter) 40px;border-top:1px solid var(--line);font-size:.82rem;color:var(--text-muted)}
+.g-foot h4{font-family:var(--mono);font-size:.74rem;font-weight:400;letter-spacing:.08em;color:var(--text-primary);margin-bottom:12px}
+.g-foot ul{display:grid;gap:8px}
+.g-foot a{text-decoration:none}
+.g-foot a:hover{color:var(--text-primary)}
+@media (max-width:760px){.g-foot{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<a class="k-skip" href="#main">Skip to content</a>
+
+<header class="g-nav">
+  <a class="g-mark" href="#main"><b>Aether</b><span>SOTD 2026 COLLECTION</span></a>
+  <nav class="g-links" data-spy aria-label="Sections"><a href="#wall">Wall</a><a href="#laws">Laws</a><a href="#registry">Registry</a></nav>
+  <span class="g-count">20 / 20 built</span>
+</header>
+<main id="main">
+  <section class="g-hero" data-hero aria-labelledby="g-h">
+    <div class="g-copy">
+      <p class="g-kick">Exhibition · 20 directions · one product</p>
+      <h1 id="g-h" data-hero-part="headline">Aether, <em>twenty ways.</em></h1>
+      <p class="k-body" data-hero-part="sub">Twenty landing pages for one AI platform that sells models, abliterated variants, coding agents and API tokens. One product, twenty visual languages.</p>
+      <div data-hero-part="cta"><a class="g-btn" href="#wall" data-cta="primary" data-magnetic="6,0.18,0.72,0.35"><span data-magnetic-label>Enter the collection</span><i aria-hidden="true">↓</i></a></div>
+      <p class="g-trust" data-hero-part="trust"><span><b>20</b> heading fonts</span><span><b>20</b> accents</span><span><b>0</b> shared signatures</span><span>checked at <b>1440</b> and <b>375</b></span></p>
+    </div>
+    <div class="g-spec" data-hero-part="visual"><canvas id="g-spec" role="img" aria-label="All twenty colour systems side by side, each split 60, 30 and 10 percent. Point to magnify one; click to inspect it."></canvas><p>Point to magnify a palette · click to inspect</p></div>
+  </section>
+
+  <section id="wall" data-section aria-labelledby="g-w">
+    <div class="k-wrap">
+      <p class="g-kick" data-reveal>The wall</p>
+      <h2 id="g-w" class="g-h2" data-reveal>Every direction, <em>one click</em> from live.</h2>
+      <div class="g-bar">
+        <div class="g-chips" role="group" aria-label="Filter by mode">
+          <button type="button" class="g-chip" data-f="all" aria-pressed="true">All 20</button>
+          <button type="button" class="g-chip" data-f="dark" aria-pressed="false">Dark 13</button>
+          <button type="button" class="g-chip" data-f="light" aria-pressed="false">Light 7</button>
+        </div>
+        <div class="g-chips" role="group" aria-label="Sort">
+          <button type="button" class="g-chip" data-s="n" aria-pressed="true">By number</button>
+          <button type="button" class="g-chip" data-s="hue" aria-pressed="false">By accent hue</button>
+        </div>
+        <p class="g-shown" aria-live="polite" id="g-shown">Showing 20 of 20</p>
+      </div>
+      <div class="g-wall" id="g-wall" data-stagger>
+<article class="g-ex" id="s01" data-mode="dark" data-n="1" data-hue="46" style="--sp:#090A0F;--ss:#141722;--sa:#D4AF37">
+  <a class="g-shot" href="01-chronos-atelier/index.html" aria-label="Open 01 Chronos Atelier">
+    <img src="01-chronos-atelier/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 01 Chronos Atelier">
+    <span class="g-phone" aria-hidden="true"><img src="01-chronos-atelier/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 01</span><span>Dark</span></p>
+    <h3 style="font-family:'S01'">Chronos Atelier</h3>
+    <p class="g-line">“Every token, metered like a chronometer”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #090A0F, #141722, #D4AF37"><span style="background:#090A0F;flex:6"></span><span style="background:#141722;flex:3"></span><span style="background:#D4AF37;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#090A0F"></i>60 #090A0F</span><span><i style="background:#141722"></i>30 #141722</span><span><i style="background:#D4AF37"></i>10 #D4AF37</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Cormorant Garamond / JetBrains Mono</dd></div><div><dt>Signature</dt><dd>Scroll-exploded calibre</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="01-chronos-atelier/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="0">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s02" data-mode="light" data-n="2" data-hue="7" style="--sp:#F2EFE9;--ss:#E2DDD3;--sa:#C83E2B">
+  <a class="g-shot" href="02-kanso-monolith/index.html" aria-label="Open 02 Kanso Monolith">
+    <img src="02-kanso-monolith/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 02 Kanso Monolith">
+    <span class="g-phone" aria-hidden="true"><img src="02-kanso-monolith/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 02</span><span>Light</span></p>
+    <h3 style="font-family:'S02'">Kanso Monolith</h3>
+    <p class="g-line">“One key. Every model.”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F2EFE9, #E2DDD3, #C83E2B"><span style="background:#F2EFE9;flex:6"></span><span style="background:#E2DDD3;flex:3"></span><span style="background:#C83E2B;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F2EFE9"></i>60 #F2EFE9</span><span><i style="background:#E2DDD3"></i>30 #E2DDD3</span><span><i style="background:#C83E2B"></i>10 #C83E2B</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Syne / IBM Plex Mono</dd></div><div><dt>Signature</dt><dd>Blueprint-to-structure scrubber</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="02-kanso-monolith/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="1">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s03" data-mode="dark" data-n="3" data-hue="172" style="--sp:#05070B;--ss:#0F141C;--sa:#00F5D4">
+  <a class="g-shot" href="03-aether-orbital/index.html" aria-label="Open 03 Aether Orbital">
+    <img src="03-aether-orbital/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 03 Aether Orbital">
+    <span class="g-phone" aria-hidden="true"><img src="03-aether-orbital/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 03</span><span>Dark</span></p>
+    <h3 style="font-family:'S03'">Aether Orbital</h3>
+    <p class="g-line">“Every model, in orbit around one key”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #05070B, #0F141C, #00F5D4"><span style="background:#05070B;flex:6"></span><span style="background:#0F141C;flex:3"></span><span style="background:#00F5D4;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#05070B"></i>60 #05070B</span><span><i style="background:#0F141C"></i>30 #0F141C</span><span><i style="background:#00F5D4"></i>10 #00F5D4</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Unbounded / Space Mono</dd></div><div><dt>Signature</dt><dd>Orbital shell lock-on</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="03-aether-orbital/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="2">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s04" data-mode="light" data-n="4" data-hue="162" style="--sp:#F7F6F1;--ss:#E6E4DC;--sa:#1B4D3E">
+  <a class="g-shot" href="04-veridian-biofoundry/index.html" aria-label="Open 04 Veridian Biofoundry">
+    <img src="04-veridian-biofoundry/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 04 Veridian Biofoundry">
+    <span class="g-phone" aria-hidden="true"><img src="04-veridian-biofoundry/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 04</span><span>Light</span></p>
+    <h3 style="font-family:'S04'">Veridian Biofoundry</h3>
+    <p class="g-line">“Grow from one request to a whole product”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F7F6F1, #E6E4DC, #1B4D3E"><span style="background:#F7F6F1;flex:6"></span><span style="background:#E6E4DC;flex:3"></span><span style="background:#1B4D3E;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F7F6F1"></i>60 #F7F6F1</span><span><i style="background:#E6E4DC"></i>30 #E6E4DC</span><span><i style="background:#1B4D3E"></i>10 #1B4D3E</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Fraunces / Plus Jakarta Sans</dd></div><div><dt>Signature</dt><dd>Scroll-grown mycelium</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="04-veridian-biofoundry/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="3">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s05" data-mode="dark" data-n="5" data-hue="20" style="--sp:#0B0B0C;--ss:#18181B;--sa:#FF5500">
+  <a class="g-shot" href="05-valkyrie-hyperacoustics/index.html" aria-label="Open 05 Valkyrie Hyperacoustics">
+    <img src="05-valkyrie-hyperacoustics/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 05 Valkyrie Hyperacoustics">
+    <span class="g-phone" aria-hidden="true"><img src="05-valkyrie-hyperacoustics/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 05</span><span>Dark</span></p>
+    <h3 style="font-family:'S05'">Valkyrie Hyperacoustics</h3>
+    <p class="g-line">“Zero noise between you and the model”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #0B0B0C, #18181B, #FF5500"><span style="background:#0B0B0C;flex:6"></span><span style="background:#18181B;flex:3"></span><span style="background:#FF5500;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#0B0B0C"></i>60 #0B0B0C</span><span><i style="background:#18181B"></i>30 #18181B</span><span><i style="background:#FF5500"></i>10 #FF5500</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Funnel Display / IBM Plex Mono</dd></div><div><dt>Signature</dt><dd>Playable frequency synthesiser</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="05-valkyrie-hyperacoustics/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="4">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s06" data-mode="dark" data-n="6" data-hue="39" style="--sp:#120E0A;--ss:#1F1812;--sa:#E5A93C">
+  <a class="g-shot" href="06-nocturne-perfumerie/index.html" aria-label="Open 06 Nocturne Perfumerie">
+    <img src="06-nocturne-perfumerie/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 06 Nocturne Perfumerie">
+    <span class="g-phone" aria-hidden="true"><img src="06-nocturne-perfumerie/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 06</span><span>Dark</span></p>
+    <h3 style="font-family:'S06'">Nocturne Perfumerie</h3>
+    <p class="g-line">“Know exactly what every answer is made of”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #120E0A, #1F1812, #E5A93C"><span style="background:#120E0A;flex:6"></span><span style="background:#1F1812;flex:3"></span><span style="background:#E5A93C;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#120E0A"></i>60 #120E0A</span><span><i style="background:#1F1812"></i>30 #1F1812</span><span><i style="background:#E5A93C"></i>10 #E5A93C</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Instrument Serif / Work Sans</dd></div><div><dt>Signature</dt><dd>Pinned horizontal scent pyramid</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="06-nocturne-perfumerie/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="5">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s07" data-mode="dark" data-n="7" data-hue="198" style="--sp:#070913;--ss:#111625;--sa:#38BDF8">
+  <a class="g-shot" href="07-solaris-tokamak/index.html" aria-label="Open 07 Solaris Tokamak">
+    <img src="07-solaris-tokamak/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 07 Solaris Tokamak">
+    <span class="g-phone" aria-hidden="true"><img src="07-solaris-tokamak/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 07</span><span>Dark</span></p>
+    <h3 style="font-family:'S07'">Solaris Tokamak</h3>
+    <p class="g-line">“Fit the whole repository in one prompt”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #070913, #111625, #38BDF8"><span style="background:#070913;flex:6"></span><span style="background:#111625;flex:3"></span><span style="background:#38BDF8;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#070913"></i>60 #070913</span><span><i style="background:#111625"></i>30 #111625</span><span><i style="background:#38BDF8"></i>10 #38BDF8</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Host Grotesk / JetBrains Mono</dd></div><div><dt>Signature</dt><dd>Scroll-ramped confinement torus</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="07-solaris-tokamak/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="6">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s08" data-mode="light" data-n="8" data-hue="354" style="--sp:#F4F0EA;--ss:#E5DEC9;--sa:#7C1D26">
+  <a class="g-shot" href="08-terra-vinicola/index.html" aria-label="Open 08 Terra Vinicola">
+    <img src="08-terra-vinicola/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 08 Terra Vinicola">
+    <span class="g-phone" aria-hidden="true"><img src="08-terra-vinicola/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 08</span><span>Light</span></p>
+    <h3 style="font-family:'S08'">Terra Vinicola</h3>
+    <p class="g-line">“Five models, each with its own character”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F4F0EA, #E5DEC9, #7C1D26"><span style="background:#F4F0EA;flex:6"></span><span style="background:#E5DEC9;flex:3"></span><span style="background:#7C1D26;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F4F0EA"></i>60 #F4F0EA</span><span><i style="background:#E5DEC9"></i>30 #E5DEC9</span><span><i style="background:#7C1D26"></i>10 #7C1D26</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Playfair Display / Newsreader</dd></div><div><dt>Signature</dt><dd>Elevation altimeter</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="08-terra-vinicola/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="7">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s09" data-mode="dark" data-n="9" data-hue="72" style="--sp:#0D0F12;--ss:#1A1E24;--sa:#CCFF00">
+  <a class="g-shot" href="09-kinetix-exoskeleton/index.html" aria-label="Open 09 Kinetix Exoskeleton">
+    <img src="09-kinetix-exoskeleton/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 09 Kinetix Exoskeleton">
+    <span class="g-phone" aria-hidden="true"><img src="09-kinetix-exoskeleton/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 09</span><span>Dark</span></p>
+    <h3 style="font-family:'S09'">Kinetix Exoskeleton</h3>
+    <p class="g-line">“Let the agent carry the heavy lifting”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #0D0F12, #1A1E24, #CCFF00"><span style="background:#0D0F12;flex:6"></span><span style="background:#1A1E24;flex:3"></span><span style="background:#CCFF00;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#0D0F12"></i>60 #0D0F12</span><span><i style="background:#1A1E24"></i>30 #1A1E24</span><span><i style="background:#CCFF00"></i>10 #CCFF00</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Chakra Petch / IBM Plex Mono</dd></div><div><dt>Signature</dt><dd>Scroll-bent kinematic leg rig with live joint-torque and metabolic-load readouts</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="09-kinetix-exoskeleton/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="8">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s10" data-mode="dark" data-n="10" data-hue="271" style="--sp:#080808;--ss:#141414;--sa:#A855F7">
+  <a class="g-shot" href="10-obelisk-zk/index.html" aria-label="Open 10 Obelisk ZK">
+    <img src="10-obelisk-zk/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 10 Obelisk ZK">
+    <span class="g-phone" aria-hidden="true"><img src="10-obelisk-zk/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 10</span><span>Dark</span></p>
+    <h3 style="font-family:'S10'">Obelisk ZK</h3>
+    <p class="g-line">“Every token traced to its request”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #080808, #141414, #A855F7"><span style="background:#080808;flex:6"></span><span style="background:#141414;flex:3"></span><span style="background:#A855F7;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#080808"></i>60 #080808</span><span><i style="background:#141414"></i>30 #141414</span><span><i style="background:#A855F7"></i>10 #A855F7</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Bricolage Grotesque / JetBrains Mono</dd></div><div><dt>Signature</dt><dd>Cipher decode on entry</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="10-obelisk-zk/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="9">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s11" data-mode="dark" data-n="11" data-hue="38" style="--sp:#06101E;--ss:#0E1E33;--sa:#F59E0B">
+  <a class="g-shot" href="11-nomad-expeditions/index.html" aria-label="Open 11 Nomad Expeditions">
+    <img src="11-nomad-expeditions/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 11 Nomad Expeditions">
+    <span class="g-phone" aria-hidden="true"><img src="11-nomad-expeditions/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 11</span><span>Dark</span></p>
+    <h3 style="font-family:'S11'">Nomad Expeditions</h3>
+    <p class="g-line">“Go as deep as your work needs”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #06101E, #0E1E33, #F59E0B"><span style="background:#06101E;flex:6"></span><span style="background:#0E1E33;flex:3"></span><span style="background:#F59E0B;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#06101E"></i>60 #06101E</span><span><i style="background:#0E1E33"></i>30 #0E1E33</span><span><i style="background:#F59E0B"></i>10 #F59E0B</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>DM Serif Display / Plus Jakarta Sans</dd></div><div><dt>Signature</dt><dd>Depth-gauge descent from +4,000 m to −10,928 m with live pressure readouts and sonar pings</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="11-nomad-expeditions/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="10">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s12" data-mode="light" data-n="12" data-hue="8" style="--sp:#F5F5F3;--ss:#E5E5E0;--sa:#D9381E">
+  <a class="g-shot" href="12-forma-modular/index.html" aria-label="Open 12 Forma Modular">
+    <img src="12-forma-modular/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 12 Forma Modular">
+    <span class="g-phone" aria-hidden="true"><img src="12-forma-modular/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 12</span><span>Light</span></p>
+    <h3 style="font-family:'S12'">Forma Modular</h3>
+    <p class="g-line">“Configure your stack. See the price first.”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F5F5F3, #E5E5E0, #D9381E"><span style="background:#F5F5F3;flex:6"></span><span style="background:#E5E5E0;flex:3"></span><span style="background:#D9381E;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F5F5F3"></i>60 #F5F5F3</span><span><i style="background:#E5E5E0"></i>30 #E5E5E0</span><span><i style="background:#D9381E"></i>10 #D9381E</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Space Grotesk / IBM Plex Mono</dd></div><div><dt>Signature</dt><dd>Snap-together configurator</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="12-forma-modular/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="11">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s13" data-mode="dark" data-n="13" data-hue="172" style="--sp:#0A0910;--ss:#161421;--sa:#2DD4BF">
+  <a class="g-shot" href="13-synapse-bci/index.html" aria-label="Open 13 Synapse BCI">
+    <img src="13-synapse-bci/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 13 Synapse BCI">
+    <span class="g-phone" aria-hidden="true"><img src="13-synapse-bci/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 13</span><span>Dark</span></p>
+    <h3 style="font-family:'S13'">Synapse BCI</h3>
+    <p class="g-line">“One conversation. Every model listening.”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #0A0910, #161421, #2DD4BF"><span style="background:#0A0910;flex:6"></span><span style="background:#161421;flex:3"></span><span style="background:#2DD4BF;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#0A0910"></i>60 #0A0910</span><span><i style="background:#161421"></i>30 #161421</span><span><i style="background:#2DD4BF"></i>10 #2DD4BF</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Urbanist / JetBrains Mono</dd></div><div><dt>Signature</dt><dd>Focus-seeking constellation</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="13-synapse-bci/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="12">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s14" data-mode="dark" data-n="14" data-hue="347" style="--sp:#0F0F12;--ss:#1C1C22;--sa:#E11D48">
+  <a class="g-shot" href="14-veloce-aero/index.html" aria-label="Open 14 Veloce Aero">
+    <img src="14-veloce-aero/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 14 Veloce Aero">
+    <span class="g-phone" aria-hidden="true"><img src="14-veloce-aero/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 14</span><span>Dark</span></p>
+    <h3 style="font-family:'S14'">Veloce Aero</h3>
+    <p class="g-line">“Route every task to the lightest model”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #0F0F12, #1C1C22, #E11D48"><span style="background:#0F0F12;flex:6"></span><span style="background:#1C1C22;flex:3"></span><span style="background:#E11D48;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#0F0F12"></i>60 #0F0F12</span><span><i style="background:#1C1C22"></i>30 #1C1C22</span><span><i style="background:#E11D48"></i>10 #E11D48</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Archivo Black / Work Sans</dd></div><div><dt>Signature</dt><dd>Scroll-driven CFD streamlines flowing over the frame, with a live CdA comparison slider</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="14-veloce-aero/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="13">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s15" data-mode="light" data-n="15" data-hue="137" style="--sp:#F8F6F0;--ss:#EAE6DA;--sa:#2E6F40">
+  <a class="g-shot" href="15-hikari-matcha/index.html" aria-label="Open 15 Hikari Matcha Guild">
+    <img src="15-hikari-matcha/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 15 Hikari Matcha Guild">
+    <span class="g-phone" aria-hidden="true"><img src="15-hikari-matcha/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 15</span><span>Light</span></p>
+    <h3 style="font-family:'S15'">Hikari Matcha Guild</h3>
+    <p class="g-line">“See every token your words become”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F8F6F0, #EAE6DA, #2E6F40"><span style="background:#F8F6F0;flex:6"></span><span style="background:#EAE6DA;flex:3"></span><span style="background:#2E6F40;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F8F6F0"></i>60 #F8F6F0</span><span><i style="background:#EAE6DA"></i>30 #EAE6DA</span><span><i style="background:#2E6F40"></i>10 #2E6F40</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Newsreader / Plus Jakarta Sans</dd></div><div><dt>Signature</dt><dd>Scroll-paced stone mill</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="15-hikari-matcha/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="14">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s16" data-mode="light" data-n="16" data-hue="200" style="--sp:#F0F4F8;--ss:#DCE5EE;--sa:#0284C7">
+  <a class="g-shot" href="16-stratosphere-haps/index.html" aria-label="Open 16 Stratosphere HAPS">
+    <img src="16-stratosphere-haps/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 16 Stratosphere HAPS">
+    <span class="g-phone" aria-hidden="true"><img src="16-stratosphere-haps/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 16</span><span>Light</span></p>
+    <h3 style="font-family:'S16'">Stratosphere HAPS</h3>
+    <p class="g-line">“Forecast your token bill before takeoff”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F0F4F8, #DCE5EE, #0284C7"><span style="background:#F0F4F8;flex:6"></span><span style="background:#DCE5EE;flex:3"></span><span style="background:#0284C7;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F0F4F8"></i>60 #F0F4F8</span><span><i style="background:#DCE5EE"></i>30 #DCE5EE</span><span><i style="background:#0284C7"></i>10 #0284C7</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Sora / IBM Plex Mono</dd></div><div><dt>Signature</dt><dd>Scroll-pinned flight strips advance along the flight path, plus a wingspan solar-flux calculator</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="16-stratosphere-haps/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="15">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s17" data-mode="dark" data-n="17" data-hue="21" style="--sp:#100D0C;--ss:#1E1916;--sa:#EA580C">
+  <a class="g-shot" href="17-obsidian-roasters/index.html" aria-label="Open 17 Obsidian Roasters">
+    <img src="17-obsidian-roasters/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 17 Obsidian Roasters">
+    <span class="g-phone" aria-hidden="true"><img src="17-obsidian-roasters/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 17</span><span>Dark</span></p>
+    <h3 style="font-family:'S17'">Obsidian Roasters</h3>
+    <p class="g-line">“Pay full price once. Then the cache takes over.”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #100D0C, #1E1916, #EA580C"><span style="background:#100D0C;flex:6"></span><span style="background:#1E1916;flex:3"></span><span style="background:#EA580C;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#100D0C"></i>60 #100D0C</span><span><i style="background:#1E1916"></i>30 #1E1916</span><span><i style="background:#EA580C"></i>10 #EA580C</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Gloock / JetBrains Mono</dd></div><div><dt>Signature</dt><dd>Scroll-plotted roast profile</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="17-obsidian-roasters/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="16">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s18" data-mode="dark" data-n="18" data-hue="160" style="--sp:#06070A;--ss:#12151E;--sa:#10B981">
+  <a class="g-shot" href="18-lumina-photonics/index.html" aria-label="Open 18 Lumina Photonics">
+    <img src="18-lumina-photonics/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 18 Lumina Photonics">
+    <span class="g-phone" aria-hidden="true"><img src="18-lumina-photonics/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 18</span><span>Dark</span></p>
+    <h3 style="font-family:'S18'">Lumina Photonics</h3>
+    <p class="g-line">“Stream every token the moment it exists”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #06070A, #12151E, #10B981"><span style="background:#06070A;flex:6"></span><span style="background:#12151E;flex:3"></span><span style="background:#10B981;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#06070A"></i>60 #06070A</span><span><i style="background:#12151E"></i>30 #12151E</span><span><i style="background:#10B981"></i>10 #10B981</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Syncopate / Space Mono</dd></div><div><dt>Signature</dt><dd>Photonic packet routing</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="18-lumina-photonics/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="17">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s19" data-mode="light" data-n="19" data-hue="26" style="--sp:#F9F6F0;--ss:#EBE5D8;--sa:#B45309">
+  <a class="g-shot" href="19-atelier-kintsugi/index.html" aria-label="Open 19 Atelier Kintsugi">
+    <img src="19-atelier-kintsugi/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 19 Atelier Kintsugi">
+    <span class="g-phone" aria-hidden="true"><img src="19-atelier-kintsugi/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 19</span><span>Light</span></p>
+    <h3 style="font-family:'S19'">Atelier Kintsugi</h3>
+    <p class="g-line">“Look beneath every answer”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #F9F6F0, #EBE5D8, #B45309"><span style="background:#F9F6F0;flex:6"></span><span style="background:#EBE5D8;flex:3"></span><span style="background:#B45309;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#F9F6F0"></i>60 #F9F6F0</span><span><i style="background:#EBE5D8"></i>30 #EBE5D8</span><span><i style="background:#B45309"></i>10 #B45309</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>IM Fell English / Work Sans</dd></div><div><dt>Signature</dt><dd>Spectral inspection loupe</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="19-atelier-kintsugi/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="18">Inspect</button></div>
+  </div>
+</article>
+<article class="g-ex" id="s20" data-mode="dark" data-n="20" data-hue="350" style="--sp:#080B11;--ss:#131924;--sa:#F43F5E">
+  <a class="g-shot" href="20-zenith-supersonic/index.html" aria-label="Open 20 Zenith Supersonic">
+    <img src="20-zenith-supersonic/preview.jpg" width="720" height="450" loading="lazy" decoding="async" alt="Desktop hero of 20 Zenith Supersonic">
+    <span class="g-phone" aria-hidden="true"><img src="20-zenith-supersonic/preview-mobile.jpg" width="300" height="534" loading="lazy" decoding="async" alt=""></span>
+  </a>
+  <div class="g-meta k-card" data-spot>
+    <p class="g-no"><span>N° 20</span><span>Dark</span></p>
+    <h3 style="font-family:'S20'">Zenith Supersonic</h3>
+    <p class="g-line">“One gate to every model”</p>
+    <div class="g-tok" role="img" aria-label="60-30-10 colour system: #080B11, #131924, #F43F5E"><span style="background:#080B11;flex:6"></span><span style="background:#131924;flex:3"></span><span style="background:#F43F5E;flex:1"></span></div>
+    <p class="g-hex"><span><i style="background:#080B11"></i>60 #080B11</span><span><i style="background:#131924"></i>30 #131924</span><span><i style="background:#F43F5E"></i>10 #F43F5E</span></p>
+    <dl class="g-fp"><div><dt>Type</dt><dd>Big Shoulders Display / IBM Plex Mono</dd></div><div><dt>Signature</dt><dd>Split-flap route board flips city pairs on scroll while a Mach cone sweeps across a route globe</dd></div></dl>
+    <div class="g-act"><a class="g-open" href="20-zenith-supersonic/index.html">Open site <svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><button type="button" class="g-insp" data-i="19">Inspect</button></div>
+  </div>
+</article></div>
+    </div>
+  </section>
+
+  <section id="laws" data-section aria-labelledby="g-l">
+    <div class="k-wrap">
+      <div class="g-laws">
+        <div><p class="g-kick" data-reveal>The laws</p><h2 id="g-l" class="g-h2" data-reveal>One product, <em>no repeats.</em></h2></div>
+        <div>
+          <p class="g-law" data-reveal>No two sites share a <em>heading font</em>, an <em>accent colour</em>, a <em>hero structure</em> or a <em>signature scroll mechanic</em>. The build refuses to run if they do.</p>
+          <div class="g-run" data-reveal>
+            <pre><code>node awwwards-20-collection/_build/build.mjs</code></pre>
+            <pre><code>node awwwards-20-collection/serve.mjs</code></pre>
+            <pre><code>node awwwards-20-collection/_build/verify.cjs</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="g-dna" data-stagger>
+        <article class="g-rule k-card"><p class="n">RULE 01</p><h3>Type</h3><p>H1 at clamp(3.25rem, 6vw, 5rem) with −0.03em tracking. Body 1.05rem at 1.7, never wider than 65ch. No Inter, Roboto, Open Sans, Lato, Arial or system fonts.</p></article><article class="g-rule k-card"><p class="n">RULE 02</p><h3>Colour</h3><p>Each site is a 60-30-10 system. The accent appears only on calls to action, the active nav item and live data. Contrast is checked against WCAG AA with axe.</p></article><article class="g-rule k-card"><p class="n">RULE 03</p><h3>Space</h3><p>Sections breathe at 120px (72px on mobile), blocks sit 64–80px apart, cards pad 36–40px, and a 3.5% grain sits over everything.</p></article><article class="g-rule k-card"><p class="n">RULE 04</p><h3>Hero</h3><p>Headline, sub, one magnetic CTA, an interactive procedural visual and a concrete trust signal, all above the fold at 1440 × 900 and 375 × 667.</p></article><article class="g-rule k-card"><p class="n">RULE 05</p><h3>Story</h3><p>Seven beats: hero, problem with the signature mechanic, benefit bento, a pinned three-step rail, role-based proof, pricing with per-token rates, final CTA.</p></article><article class="g-rule k-card"><p class="n">RULE 06</p><h3>Motion</h3><p>Vertical-only reveals with 80ms staggers. Spotlight and magnetism on fine pointers only. Transform, opacity, clip-path and filter only; off-screen loops pause; reduced motion unpins.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="registry" data-section aria-labelledby="g-r">
+    <div class="k-wrap">
+      <p class="g-kick" data-reveal>Fingerprint registry</p>
+      <h2 id="g-r" class="g-h2" data-reveal>Twenty fingerprints, <em>side by side.</em></h2>
+      <div class="g-tw" tabindex="0" role="region" aria-label="Fingerprint registry table">
+        <table class="g-table">
+          <thead><tr><th scope="col">Direction</th><th scope="col">Type pairing</th><th scope="col">60 · 30 · 10</th><th scope="col">Hero layout</th><th scope="col">Signature mechanic</th></tr></thead>
+          <tbody><tr><th scope="row"><a href="01-chronos-atelier/index.html"><span class="g-kick">N° 01 · dark</span><span class="nm" style="font-family:'S01'">Chronos Atelier</span></a></th><td><b>Cormorant Garamond</b><br>JetBrains Mono</td><td><span class="sw"><i style="background:#090A0F"></i><i style="background:#141722"></i><i style="background:#D4AF37"></i>#D4AF37</span></td><td><b>Asymmetric 5/7 split</b><br>type column left, live calibre canvas right</td><td><b>Scroll-exploded calibre</b><br>a pinned canvas lifts five movement layers apart with engineering callouts</td></tr><tr><th scope="row"><a href="02-kanso-monolith/index.html"><span class="g-kick">N° 02 · light</span><span class="nm" style="font-family:'S02'">Kanso Monolith</span></a></th><td><b>Syne</b><br>IBM Plex Mono</td><td><span class="sw"><i style="background:#F2EFE9"></i><i style="background:#E2DDD3"></i><i style="background:#C83E2B"></i>#C83E2B</span></td><td><b>Slab stack</b><br>full-width headline slab over a blueprint band, CTA cast into a concrete block</td><td><b>Blueprint-to-structure scrubber</b><br>linework draws itself, then solidifies into shaded pavilions with a sun-angle shadow slider</td></tr><tr><th scope="row"><a href="03-aether-orbital/index.html"><span class="g-kick">N° 03 · dark</span><span class="nm" style="font-family:'S03'">Aether Orbital</span></a></th><td><b>Unbounded</b><br>Space Mono</td><td><span class="sw"><i style="background:#05070B"></i><i style="background:#0F141C"></i><i style="background:#00F5D4"></i>#00F5D4</span></td><td><b>HUD corners</b><br>full-bleed 3D globe, headline top-left, live readouts pinned to the corners</td><td><b>Orbital shell lock-on</b><br>scroll moves the camera through LEO, MEO and GEO shells while a sticky rail prints avoidance receipts</td></tr><tr><th scope="row"><a href="04-veridian-biofoundry/index.html"><span class="g-kick">N° 04 · light</span><span class="nm" style="font-family:'S04'">Veridian Biofoundry</span></a></th><td><b>Fraunces</b><br>Plus Jakarta Sans</td><td><span class="sw"><i style="background:#F7F6F1"></i><i style="background:#E6E4DC"></i><i style="background:#1B4D3E"></i>#1B4D3E</span></td><td><b>Specimen plate</b><br>centred framed plate with mycelium growing past its borders</td><td><b>Scroll-grown mycelium</b><br>a branching network grows down the page through nine lab receipts</td></tr><tr><th scope="row"><a href="05-valkyrie-hyperacoustics/index.html"><span class="g-kick">N° 05 · dark</span><span class="nm" style="font-family:'S05'">Valkyrie Hyperacoustics</span></a></th><td><b>Funnel Display</b><br>IBM Plex Mono</td><td><span class="sw"><i style="background:#0B0B0C"></i><i style="background:#18181B"></i><i style="background:#FF5500"></i>#FF5500</span></td><td><b>Horizon line</b><br>headline above a full-width live waveform that splits the viewport, CTA below the line</td><td><b>Playable frequency synthesiser</b><br>Web Audio tone with bass/mid/treble isolation; scroll drives the waveform phase and sweep</td></tr><tr><th scope="row"><a href="06-nocturne-perfumerie/index.html"><span class="g-kick">N° 06 · dark</span><span class="nm" style="font-family:'S06'">Nocturne Perfumerie</span></a></th><td><b>Instrument Serif</b><br>Work Sans</td><td><span class="sw"><i style="background:#120E0A"></i><i style="background:#1F1812"></i><i style="background:#E5A93C"></i>#E5A93C</span></td><td><b>Triptych</b><br>copy column, particle flacon in the centre column, note ledger on the right</td><td><b>Pinned horizontal scent pyramid</b><br>top, heart and base notes evaporate as particle diffusion</td></tr><tr><th scope="row"><a href="07-solaris-tokamak/index.html"><span class="g-kick">N° 07 · dark</span><span class="nm" style="font-family:'S07'">Solaris Tokamak</span></a></th><td><b>Host Grotesk</b><br>JetBrains Mono</td><td><span class="sw"><i style="background:#070913"></i><i style="background:#111625"></i><i style="background:#38BDF8"></i>#38BDF8</span></td><td><b>Report cover</b><br>oversized live temperature readout as the visual with the torus overlaid, headline set bottom-left</td><td><b>Scroll-ramped confinement torus</b><br>plasma heats from 1M to 150M °C, firing net-gain milestones</td></tr><tr><th scope="row"><a href="08-terra-vinicola/index.html"><span class="g-kick">N° 08 · light</span><span class="nm" style="font-family:'S08'">Terra Vinicola</span></a></th><td><b>Playfair Display</b><br>Newsreader</td><td><span class="sw"><i style="background:#F4F0EA"></i><i style="background:#E5DEC9"></i><i style="background:#7C1D26"></i>#7C1D26</span></td><td><b>Centred wine label</b><br>symmetric crest, headline and terroir line over contour lines</td><td><b>Elevation altimeter</b><br>a sticky gauge descends 1,200 m to 400 m with soil strata, rainfall and tasting notes per band</td></tr><tr><th scope="row"><a href="09-kinetix-exoskeleton/index.html"><span class="g-kick">N° 09 · dark</span><span class="nm" style="font-family:'S09'">Kinetix Exoskeleton</span></a></th><td><b>Chakra Petch</b><br>IBM Plex Mono</td><td><span class="sw"><i style="background:#0D0F12"></i><i style="background:#1A1E24"></i><i style="background:#CCFF00"></i>#CCFF00</span></td><td><b>Telemetry panel</b><br>full-bleed kinematic rig with copy locked into a framed bottom-left panel</td><td><b>Scroll-bent kinematic leg rig with live joint-torque and metabolic-load readouts</b><br></td></tr><tr><th scope="row"><a href="10-obelisk-zk/index.html"><span class="g-kick">N° 10 · dark</span><span class="nm" style="font-family:'S10'">Obelisk ZK</span></a></th><td><b>Bricolage Grotesque</b><br>JetBrains Mono</td><td><span class="sw"><i style="background:#080808"></i><i style="background:#141414"></i><i style="background:#A855F7"></i>#A855F7</span></td><td><b>Exposed grid cells</b><br>headline spanning cells above a proof-tree cell block</td><td><b>Cipher decode on entry</b><br>headings decrypt and a Merkle proof tree verifies leaf by leaf as sections arrive</td></tr><tr><th scope="row"><a href="11-nomad-expeditions/index.html"><span class="g-kick">N° 11 · dark</span><span class="nm" style="font-family:'S11'">Nomad Expeditions</span></a></th><td><b>DM Serif Display</b><br>Plus Jakarta Sans</td><td><span class="sw"><i style="background:#06101E"></i><i style="background:#0E1E33"></i><i style="background:#F59E0B"></i>#F59E0B</span></td><td><b>Depth column</b><br>vertical gauge strip on the left edge, copy right, sonar field behind</td><td><b>Depth-gauge descent from +4,000 m to −10,928 m with live pressure readouts and sonar pings</b><br></td></tr><tr><th scope="row"><a href="12-forma-modular/index.html"><span class="g-kick">N° 12 · light</span><span class="nm" style="font-family:'S12'">Forma Modular</span></a></th><td><b>Space Grotesk</b><br>IBM Plex Mono</td><td><span class="sw"><i style="background:#F5F5F3"></i><i style="background:#E5E5E0"></i><i style="background:#D9381E"></i>#D9381E</span></td><td><b>Tool-first</b><br>copy top-left, a live modular configurator occupying the lower-right grid</td><td><b>Snap-together configurator</b><br>modules spring into a rail as you scroll, plus a before/after room scrubber</td></tr><tr><th scope="row"><a href="13-synapse-bci/index.html"><span class="g-kick">N° 13 · dark</span><span class="nm" style="font-family:'S13'">Synapse BCI</span></a></th><td><b>Urbanist</b><br>JetBrains Mono</td><td><span class="sw"><i style="background:#0A0910"></i><i style="background:#161421"></i><i style="background:#2DD4BF"></i>#2DD4BF</span></td><td><b>Off-centre float</b><br>copy in the lower-right third, neural constellation filling the rest</td><td><b>Focus-seeking constellation</b><br>synaptic pulses fire toward whichever card or CTA is focused or scrolled to</td></tr><tr><th scope="row"><a href="14-veloce-aero/index.html"><span class="g-kick">N° 14 · dark</span><span class="nm" style="font-family:'S14'">Veloce Aero</span></a></th><td><b>Archivo Black</b><br>Work Sans</td><td><span class="sw"><i style="background:#0F0F12"></i><i style="background:#1C1C22"></i><i style="background:#E11D48"></i>#E11D48</span></td><td><b>Streamline band</b><br>stacked headline over a full-bleed CFD band, drag readout docked right</td><td><b>Scroll-driven CFD streamlines flowing over the frame, with a live CdA comparison slider</b><br></td></tr><tr><th scope="row"><a href="15-hikari-matcha/index.html"><span class="g-kick">N° 15 · light</span><span class="nm" style="font-family:'S15'">Hikari Matcha Guild</span></a></th><td><b>Newsreader</b><br>Plus Jakarta Sans</td><td><span class="sw"><i style="background:#F8F6F0"></i><i style="background:#EAE6DA"></i><i style="background:#2E6F40"></i>#2E6F40</span></td><td><b>Shoji panels</b><br>three paper panels that slide apart, copy in the centre panel, vertical tategaki label</td><td><b>Scroll-paced stone mill</b><br>the granite mill turns with scroll and unlocks farmer provenance certificates</td></tr><tr><th scope="row"><a href="16-stratosphere-haps/index.html"><span class="g-kick">N° 16 · light</span><span class="nm" style="font-family:'S16'">Stratosphere HAPS</span></a></th><td><b>Sora</b><br>IBM Plex Mono</td><td><span class="sw"><i style="background:#F0F4F8"></i><i style="background:#DCE5EE"></i><i style="background:#0284C7"></i>#0284C7</span></td><td><b>Sky over instrument band</b><br>sky canvas fills the upper field, copy and CTA sit in a band of flight-strip readouts</td><td><b>Scroll-pinned flight strips advance along the flight path, plus a wingspan solar-flux calculator</b><br></td></tr><tr><th scope="row"><a href="17-obsidian-roasters/index.html"><span class="g-kick">N° 17 · dark</span><span class="nm" style="font-family:'S17'">Obsidian Roasters</span></a></th><td><b>Gloock</b><br>JetBrains Mono</td><td><span class="sw"><i style="background:#100D0C"></i><i style="background:#1E1916"></i><i style="background:#EA580C"></i>#EA580C</span></td><td><b>Chart-as-hero</b><br>the live roast curve plotted across the hero, headline set inside the chart area</td><td><b>Scroll-plotted roast profile</b><br>scroll advances roast time through drying, Maillard, first crack and development</td></tr><tr><th scope="row"><a href="18-lumina-photonics/index.html"><span class="g-kick">N° 18 · dark</span><span class="nm" style="font-family:'S18'">Lumina Photonics</span></a></th><td><b>Syncopate</b><br>Space Mono</td><td><span class="sw"><i style="background:#06070A"></i><i style="background:#12151E"></i><i style="background:#10B981"></i>#10B981</span></td><td><b>Die floorplan</b><br>the hero is laid out as chip blocks joined by glowing waveguides</td><td><b>Photonic packet routing</b><br>scroll fires laser packets through logic gates while copper and optical loss are compared live</td></tr><tr><th scope="row"><a href="19-atelier-kintsugi/index.html"><span class="g-kick">N° 19 · light</span><span class="nm" style="font-family:'S19'">Atelier Kintsugi</span></a></th><td><b>IM Fell English</b><br>Work Sans</td><td><span class="sw"><i style="background:#F9F6F0"></i><i style="background:#EBE5D8"></i><i style="background:#B45309"></i>#B45309</span></td><td><b>Open-book spread</b><br>copy on the left page, manuscript with a live loupe on the right page</td><td><b>Spectral inspection loupe</b><br>a cursor- and scroll-steered loupe reveals UV, infrared and X-ray layers</td></tr><tr><th scope="row"><a href="20-zenith-supersonic/index.html"><span class="g-kick">N° 20 · dark</span><span class="nm" style="font-family:'S20'">Zenith Supersonic</span></a></th><td><b>Big Shoulders Display</b><br>IBM Plex Mono</td><td><span class="sw"><i style="background:#080B11"></i><i style="background:#131924"></i><i style="background:#F43F5E"></i>#F43F5E</span></td><td><b>Departure board</b><br>headline and CTA set into a split-flap board above a route arc</td><td><b>Split-flap route board flips city pairs on scroll while a Mach cone sweeps across a route globe</b><br></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+<dialog class="g-dlg" id="g-dlg" aria-labelledby="g-dh"><form method="dialog"><button class="g-x" aria-label="Close inspector">×</button></form><div class="g-di" id="g-di"></div></dialog>
+<footer class="g-foot">
+  <div><p class="g-mark"><b>Aether</b><span>SOTD 2026 COLLECTION</span></p><p style="margin-top:12px;max-width:60ch">Aether is a placeholder brand. Every page here is a design direction for an AI platform selling model access and API tokens; models, rates and quotes are mock data and nothing is live. The 20 blueprints supply visual language only.</p></div>
+  <div><h4>COLLECTION</h4><ul><li><a href="#wall">The wall</a></li><li><a href="#laws">The laws</a></li><li><a href="#registry">Registry</a></li></ul></div>
+  <div><h4>FILES</h4><ul><li><a href="fingerprint-registry.json">fingerprint-registry.json</a></li><li><a href="01-chronos-atelier/index.html">Start at N° 01</a></li></ul></div>
+</footer>
+<script>window.G = [{"id":"01","folder":"01-chronos-atelier","name":"Chronos Atelier","mode":"dark","inspiration":"Bespoke Swiss horology lab","movement":"Midnight atelier mechanicalism","heading":"Cormorant Garamond","body":"JetBrains Mono","blueprint":"","p":"#090A0F","s":"#141722","a":"#D4AF37","text":"#EDE7DA","muted":"#A2A6B5","onAccent":"#0B0A07","hero":"Asymmetric 5/7 split: type column left, live calibre canvas right","sig":"Scroll-exploded calibre: a pinned canvas lifts five movement layers apart with engineering callouts","line":"Every token, metered like a chronometer","hue":46},{"id":"02","folder":"02-kanso-monolith","name":"Kanso Monolith","mode":"light","inspiration":"Japanese brutalist architecture studio","movement":"Washi-and-concrete brutalism","heading":"Syne","body":"IBM Plex Mono","blueprint":"","p":"#F2EFE9","s":"#E2DDD3","a":"#C83E2B","text":"#1C1A17","muted":"#57534B","onAccent":"#FFFFFF","hero":"Slab stack: full-width headline slab over a blueprint band, CTA cast into a concrete block","sig":"Blueprint-to-structure scrubber: linework draws itself, then solidifies into shaded pavilions with a sun-angle shadow slider","line":"One key. Every model.","hue":7},{"id":"03","folder":"03-aether-orbital","name":"Aether Orbital","mode":"dark","inspiration":"Orbital debris and satellite logistics","movement":"Deep-space mission-control telemetry","heading":"Unbounded","body":"Space Mono","blueprint":"","p":"#05070B","s":"#0F141C","a":"#00F5D4","text":"#E6EEF5","muted":"#93A3B5","onAccent":"#021512","hero":"HUD corners: full-bleed 3D globe, headline top-left, live readouts pinned to the corners","sig":"Orbital shell lock-on: scroll moves the camera through LEO, MEO and GEO shells while a sticky rail prints avoidance receipts","line":"Every model, in orbit around one key","hue":172},{"id":"04","folder":"04-veridian-biofoundry","name":"Veridian Biofoundry","mode":"light","inspiration":"Computational protein and mycelium materials lab","movement":"Botanical scientific editorial","heading":"Fraunces","body":"Plus Jakarta Sans","blueprint":"","p":"#F7F6F1","s":"#E6E4DC","a":"#1B4D3E","text":"#1F2620","muted":"#535C55","onAccent":"#FFFFFF","hero":"Specimen plate: centred framed plate with mycelium growing past its borders","sig":"Scroll-grown mycelium: a branching network grows down the page through nine lab receipts","line":"Grow from one request to a whole product","hue":162},{"id":"05","folder":"05-valkyrie-hyperacoustics","name":"Valkyrie Hyperacoustics","mode":"dark","inspiration":"Planar magnetic mastering headphones","movement":"Anechoic industrial audio","heading":"Funnel Display","body":"IBM Plex Mono","blueprint":"Clash Display (Fontshare is unreachable from the build machine, so it cannot be self-hosted; Funnel Display is the closest open grotesk display)","p":"#0B0B0C","s":"#18181B","a":"#FF5500","text":"#F1EFEA","muted":"#A09E99","onAccent":"#0B0B0C","hero":"Horizon line: headline above a full-width live waveform that splits the viewport, CTA below the line","sig":"Playable frequency synthesiser: Web Audio tone with bass/mid/treble isolation; scroll drives the waveform phase and sweep","line":"Zero noise between you and the model","hue":20},{"id":"06","folder":"06-nocturne-perfumerie","name":"Nocturne Perfumerie","mode":"dark","inspiration":"Rare molecular botanical apothecary","movement":"Candlelit apothecary noir","heading":"Instrument Serif","body":"Work Sans","blueprint":"","p":"#120E0A","s":"#1F1812","a":"#E5A93C","text":"#F3E9DA","muted":"#B3A28C","onAccent":"#120E0A","hero":"Triptych: copy column, particle flacon in the centre column, note ledger on the right","sig":"Pinned horizontal scent pyramid: top, heart and base notes evaporate as particle diffusion","line":"Know exactly what every answer is made of","hue":39},{"id":"07","folder":"07-solaris-tokamak","name":"Solaris Tokamak","mode":"dark","inspiration":"Compact commercial fusion micro-reactors","movement":"High-energy-physics annual report","heading":"Host Grotesk","body":"JetBrains Mono","blueprint":"Cabinet Grotesk (Fontshare-only, unreachable from the build machine; Host Grotesk shares its quirky grotesk construction)","p":"#070913","s":"#111625","a":"#38BDF8","text":"#E8EDF7","muted":"#98A3BB","onAccent":"#04121C","hero":"Report cover: oversized live temperature readout as the visual with the torus overlaid, headline set bottom-left","sig":"Scroll-ramped confinement torus: plasma heats from 1M to 150M °C, firing net-gain milestones","line":"Fit the whole repository in one prompt","hue":198},{"id":"08","folder":"08-terra-vinicola","name":"Terra Vinicola","mode":"light","inspiration":"High-altitude volcanic biodynamic vineyard","movement":"Mediterranean letterpress heritage","heading":"Playfair Display","body":"Newsreader","blueprint":"","p":"#F4F0EA","s":"#E5DEC9","a":"#7C1D26","text":"#26201B","muted":"#5E5348","onAccent":"#FFF8F0","hero":"Centred wine label: symmetric crest, headline and terroir line over contour lines","sig":"Elevation altimeter: a sticky gauge descends 1,200 m to 400 m with soil strata, rainfall and tasting notes per band","line":"Five models, each with its own character","hue":354},{"id":"09","folder":"09-kinetix-exoskeleton","name":"Kinetix Exoskeleton","mode":"dark","inspiration":"Bionic rehabilitation and industrial exosuits","movement":"Biomechanics lab HUD","heading":"Chakra Petch","body":"IBM Plex Mono","blueprint":"","p":"#0D0F12","s":"#1A1E24","a":"#CCFF00","text":"#E7EBF0","muted":"#9AA4B0","onAccent":"#0D0F12","hero":"Telemetry panel: full-bleed kinematic rig with copy locked into a framed bottom-left panel","sig":"Scroll-bent kinematic leg rig with live joint-torque and metabolic-load readouts","line":"Let the agent carry the heavy lifting","hue":72},{"id":"10","folder":"10-obelisk-zk","name":"Obelisk ZK","mode":"dark","inspiration":"Zero-knowledge cryptographic compute network","movement":"Neo-brutalist Swiss grid","heading":"Bricolage Grotesque","body":"JetBrains Mono","blueprint":"","p":"#080808","s":"#141414","a":"#A855F7","text":"#F2F2F0","muted":"#A3A3A0","onAccent":"#080808","hero":"Exposed grid cells: headline spanning cells above a proof-tree cell block","sig":"Cipher decode on entry: headings decrypt and a Merkle proof tree verifies leaf by leaf as sections arrive","line":"Every token traced to its request","hue":271},{"id":"11","folder":"11-nomad-expeditions","name":"Nomad Expeditions","mode":"dark","inspiration":"Private polar and deep-trench voyages","movement":"Cartographic expedition journal","heading":"DM Serif Display","body":"Plus Jakarta Sans","blueprint":"","p":"#06101E","s":"#0E1E33","a":"#F59E0B","text":"#EAF1F8","muted":"#9DB0C6","onAccent":"#06101E","hero":"Depth column: vertical gauge strip on the left edge, copy right, sonar field behind","sig":"Depth-gauge descent from +4,000 m to −10,928 m with live pressure readouts and sonar pings","line":"Go as deep as your work needs","hue":38},{"id":"12","folder":"12-forma-modular","name":"Forma Modular","mode":"light","inspiration":"Precision CNC aluminium kitchen and living systems","movement":"Rams-school industrial functionalism","heading":"Space Grotesk","body":"IBM Plex Mono","blueprint":"","p":"#F5F5F3","s":"#E5E5E0","a":"#D9381E","text":"#1A1A18","muted":"#55554F","onAccent":"#FFFFFF","hero":"Tool-first: copy top-left, a live modular configurator occupying the lower-right grid","sig":"Snap-together configurator: modules spring into a rail as you scroll, plus a before/after room scrubber","line":"Configure your stack. See the price first.","hue":8},{"id":"13","folder":"13-synapse-bci","name":"Synapse BCI","mode":"dark","inspiration":"Non-invasive neural interface for creative workstations","movement":"Ethereal neuro-editorial","heading":"Urbanist","body":"JetBrains Mono","blueprint":"Satoshi (Fontshare-only, unreachable from the build machine; Urbanist keeps its geometric modernist skeleton)","p":"#0A0910","s":"#161421","a":"#2DD4BF","text":"#EEEBF7","muted":"#A39FB8","onAccent":"#06120F","hero":"Off-centre float: copy in the lower-right third, neural constellation filling the rest","sig":"Focus-seeking constellation: synaptic pulses fire toward whichever card or CTA is focused or scrolled to","line":"One conversation. Every model listening.","hue":172},{"id":"14","folder":"14-veloce-aero","name":"Veloce Aero","mode":"dark","inspiration":"Wind-tunnel custom carbon track bicycles","movement":"Italian aero telemetry","heading":"Archivo Black","body":"Work Sans","blueprint":"","p":"#0F0F12","s":"#1C1C22","a":"#E11D48","text":"#F1F1F3","muted":"#A2A2AD","onAccent":"#FFFFFF","hero":"Streamline band: stacked headline over a full-bleed CFD band, drag readout docked right","sig":"Scroll-driven CFD streamlines flowing over the frame, with a live CdA comparison slider","line":"Route every task to the lightest model","hue":347},{"id":"15","folder":"15-hikari-matcha","name":"Hikari Matcha Guild","mode":"light","inspiration":"Single-cultivar ceremonial Uji matcha","movement":"Kyoto tea-room quietism","heading":"Newsreader","body":"Plus Jakarta Sans","blueprint":"","p":"#F8F6F0","s":"#EAE6DA","a":"#2E6F40","text":"#26261F","muted":"#5B5A50","onAccent":"#FFFFFF","hero":"Shoji panels: three paper panels that slide apart, copy in the centre panel, vertical tategaki label","sig":"Scroll-paced stone mill: the granite mill turns with scroll and unlocks farmer provenance certificates","line":"See every token your words become","hue":137},{"id":"16","folder":"16-stratosphere-haps","name":"Stratosphere HAPS","mode":"light","inspiration":"Solar stratospheric telecom gliders","movement":"High-altitude atmospheric editorial","heading":"Sora","body":"IBM Plex Mono","blueprint":"Syne (already the heading font of 02; the uniqueness law forbids a repeat)","p":"#F0F4F8","s":"#DCE5EE","a":"#0284C7","text":"#0F2133","muted":"#4A5D72","onAccent":"#04131F","hero":"Sky over instrument band: sky canvas fills the upper field, copy and CTA sit in a band of flight-strip readouts","sig":"Scroll-pinned flight strips advance along the flight path, plus a wingspan solar-flux calculator","line":"Forecast your token bill before takeoff","hue":200},{"id":"17","folder":"17-obsidian-roasters","name":"Obsidian Roasters","mode":"dark","inspiration":"Competition-lot anaerobic coffee micro-roastery","movement":"Copper espresso-bar warmth","heading":"Gloock","body":"JetBrains Mono","blueprint":"Fraunces (already the heading font of 04; the uniqueness law forbids a repeat)","p":"#100D0C","s":"#1E1916","a":"#EA580C","text":"#F2E8DF","muted":"#AE9F92","onAccent":"#140A04","hero":"Chart-as-hero: the live roast curve plotted across the hero, headline set inside the chart area","sig":"Scroll-plotted roast profile: scroll advances roast time through drying, Maillard, first crack and development","line":"Pay full price once. Then the cache takes over.","hue":21},{"id":"18","folder":"18-lumina-photonics","name":"Lumina Photonics","mode":"dark","inspiration":"Optical silicon interconnects for AI datacentres","movement":"Cleanroom laser optics","heading":"Syncopate","body":"Space Mono","blueprint":"Clash Display (already planned for 05 and Fontshare-only; the uniqueness law forbids a repeat)","p":"#06070A","s":"#12151E","a":"#10B981","text":"#E8ECF2","muted":"#96A0AE","onAccent":"#03140D","hero":"Die floorplan: the hero is laid out as chip blocks joined by glowing waveguides","sig":"Photonic packet routing: scroll fires laser packets through logic gates while copper and optical loss are compared live","line":"Stream every token the moment it exists","hue":160},{"id":"19","folder":"19-atelier-kintsugi","name":"Atelier Kintsugi","mode":"light","inspiration":"Rare book conservation and manuscript vault","movement":"Museum conservation archive","heading":"IM Fell English","body":"Work Sans","blueprint":"Cormorant Garamond (already the heading font of 01; the uniqueness law forbids a repeat)","p":"#F9F6F0","s":"#EBE5D8","a":"#B45309","text":"#2A231C","muted":"#5F554A","onAccent":"#FFFFFF","hero":"Open-book spread: copy on the left page, manuscript with a live loupe on the right page","sig":"Spectral inspection loupe: a cursor- and scroll-steered loupe reveals UV, infrared and X-ray layers","line":"Look beneath every answer","hue":26},{"id":"20","folder":"20-zenith-supersonic","name":"Zenith Supersonic","mode":"dark","inspiration":"Mach 2.2 SAF private jet charter","movement":"Concorde-heritage cockpit HUD","heading":"Big Shoulders Display","body":"IBM Plex Mono","blueprint":"Unbounded (already the heading font of 03; the uniqueness law forbids a repeat)","p":"#080B11","s":"#131924","a":"#F43F5E","text":"#E9EDF4","muted":"#96A0B2","onAccent":"#16040A","hero":"Departure board: headline and CTA set into a split-flap board above a route arc","sig":"Split-flap route board flips city pairs on scroll while a Mach cone sweeps across a route globe","line":"One gate to every model","hue":350}];</script>
+
+<script>window.AE = {"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","blurb":"The everyday model. Writing, analysis, planning and conversation.","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Abliterated variant","blurb":"Refusal behaviour removed at the weights level. You set the policy.","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Coding agents","blurb":"Built for multi-file edits, tool calls and long agent loops.","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long context","blurb":"Whole repositories, books and archives in a single prompt.","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast & small","blurb":"Low-latency responses for routing, extraction and autocomplete.","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Sample rates for layout only. Final pricing not yet set."};</script>
+<script>
+(() => {
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const pointer = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0, active: false };
+  addEventListener("pointermove", (e) => {
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    pointer.nx = e.clientX / innerWidth * 2 - 1; pointer.ny = e.clientY / innerHeight * 2 - 1;
+  }, { passive: true });
+
+  // One rAF-throttled scroll/resize bus.
+  const subs = []; let queued = false;
+  const flush = () => { queued = false; for (const f of subs) f(); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  const onScroll = (f) => { subs.push(f); f(); };
+
+  // 0..1 while a tall element scrolls past a pinned viewport ("pin"), or from entering
+  // the bottom edge to leaving the top edge ("through").
+  const progress = (el, mode = "pin") => {
+    const r = el.getBoundingClientRect(), vh = innerHeight;
+    if (mode === "through") return clamp((vh - r.top) / (vh + r.height));
+    return clamp(-r.top / Math.max(1, r.height - vh));
+  };
+
+  // Reveals: vertical-only root margin, once.
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -12% 0px" });
+  $$("[data-stagger]").forEach((g) => [...g.children].forEach((c, i) => {
+    c.style.setProperty("--i", Math.min(i, 5)); c.setAttribute("data-reveal", "");
+  }));
+  $$("[data-reveal]").forEach((el) => (RM ? el.classList.add("is-in") : io.observe(el)));
+  const whenSeen = (el, fn, margin = "0px 0px -15% 0px") => {
+    const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { o.disconnect(); fn(); } }), { rootMargin: margin });
+    o.observe(el);
+  };
+
+  // Magnetic CTAs with spring physics. data-magnetic="reach,stiffness,damping[,innerFactor]".
+  const mags = FINE && !RM ? $$("[data-magnetic]").map((el) => {
+    const [reach = 6, k = 0.16, d = 0.74, inner = 0.35] = (el.dataset.magnetic || "").split(",").map(Number).map((n, i) => (isNaN(n) || !n ? [6, 0.16, 0.74, 0.35][i] : n));
+    return { el, reach, k, d, inner, x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, label: el.querySelector("[data-magnetic-label]") };
+  }) : [];
+  let magRaf = 0;
+  const magTick = () => {
+    let moving = false;
+    for (const m of mags) {
+      const r = m.el.getBoundingClientRect();
+      const cx = r.left + r.width / 2 - m.x, cy = r.top + r.height / 2 - m.y;
+      const dx = pointer.x - cx, dy = pointer.y - cy;
+      const radius = Math.max(r.width, r.height) * 0.95;
+      const near = pointer.active && Math.hypot(dx / (r.width / 2 + radius / 2), dy / (r.height / 2 + radius / 2)) < 1;
+      m.tx = near ? clamp(dx / (r.width / 2), -1, 1) * m.reach : 0;
+      m.ty = near ? clamp(dy / (r.height / 2), -1, 1) * m.reach : 0;
+      m.vx = (m.vx + (m.tx - m.x) * m.k) * m.d; m.vy = (m.vy + (m.ty - m.y) * m.k) * m.d;
+      m.x += m.vx; m.y += m.vy;
+      m.el.style.transform = "translate3d(" + m.x.toFixed(2) + "px," + m.y.toFixed(2) + "px,0)";
+      if (m.label) m.label.style.transform = "translate3d(" + (m.x * m.inner).toFixed(2) + "px," + (m.y * m.inner).toFixed(2) + "px,0)";
+      m.el.classList.toggle("is-near", near);
+      if (Math.abs(m.vx) + Math.abs(m.vy) + Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.05) moving = true;
+    }
+    magRaf = moving ? requestAnimationFrame(magTick) : 0;
+  };
+  if (mags.length) addEventListener("pointermove", () => { if (!magRaf) magRaf = requestAnimationFrame(magTick); }, { passive: true });
+
+  // Spotlight cards: --mx/--my in px, fine pointers only.
+  if (FINE) $$("[data-spot]").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true }));
+
+  // Count-ups: data-count="1284" [data-decimals] [data-prefix] [data-suffix].
+  const fmt = (v, dec) => v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  $$("[data-count]").forEach((el) => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    const pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    const set = (v) => (el.textContent = pre + fmt(v, dec) + suf);
+    if (RM) return set(to);
+    set(0);
+    whenSeen(el, () => {
+      const t0 = performance.now(), dur = +(el.dataset.duration || 1400);
+      const step = (t) => { const p = clamp((t - t0) / dur); set(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  });
+
+  // Canvas helper: DPR-aware, resizes with its box.
+  const canvas = (cv, onResize) => {
+    const ctx = cv.getContext("2d");
+    const s = { cv, ctx, w: 0, h: 0, dpr: 1 };
+    const fit = () => {
+      const r = cv.getBoundingClientRect();
+      s.dpr = Math.min(devicePixelRatio || 1, 2); s.w = Math.max(1, r.width); s.h = Math.max(1, r.height);
+      cv.width = Math.round(s.w * s.dpr); cv.height = Math.round(s.h * s.dpr);
+      ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      onResize && onResize(s);
+    };
+    new ResizeObserver(fit).observe(cv); fit();
+    return s;
+  };
+
+  // rAF loop that only runs while el is on screen. fn(timeSeconds, dtSeconds).
+  const loop = (el, fn, { always = false } = {}) => {
+    let on = false, raf = 0, last = 0;
+    const tick = (t) => { const dt = Math.min(0.05, (t - last) / 1000 || 0.016); last = t; fn(t / 1000, dt); raf = requestAnimationFrame(tick); };
+    const start = () => { if (!on) { on = true; last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const stop = () => { if (on) { on = false; cancelAnimationFrame(raf); } };
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { rootMargin: "120px 0px 120px 0px" }).observe(el);
+    if (RM && !always) requestAnimationFrame((t) => fn(t / 1000, 0));
+    return { start, stop };
+  };
+
+  // Pinned horizontal rail: [data-rail] > [data-rail-view] > [data-rail-track] > li.
+  $$("[data-rail]").forEach((run) => {
+    const view = $("[data-rail-view]", run), track = $("[data-rail-track]", run);
+    const steps = [...track.children];
+    run.style.setProperty("--steps", steps.length);
+    const wide = matchMedia("(min-width: 900px)");
+    onScroll(() => {
+      let p = 0;
+      if (wide.matches && !RM) {
+        p = progress(run);
+        const max = Math.max(0, track.scrollWidth - view.clientWidth + parseFloat(getComputedStyle(track).marginLeft || 0) * 2);
+        track.style.transform = "translate3d(" + (-p * max).toFixed(1) + "px,0,0)";
+      } else {
+        track.style.transform = "";
+        const r = run.getBoundingClientRect();
+        p = clamp((innerHeight * 0.6 - r.top) / Math.max(1, r.height));
+      }
+      run.style.setProperty("--rp", p.toFixed(4));
+      const a = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+      steps.forEach((s, i) => s.classList.toggle("is-active", i === a));
+      run.dataset.step = a;
+    });
+  });
+
+  // Scroll-spy: [data-spy] a[href^="#"] gets .is-current + aria-current while its section is centred.
+  const spy = $$("[data-spy] a[href^='#']");
+  if (spy.length) {
+    const map = new Map(spy.map((a) => [a.getAttribute("href").slice(1), a]));
+    const so = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      spy.forEach((a) => { a.classList.remove("is-current"); a.removeAttribute("aria-current"); });
+      const a = map.get(e.target.id); if (a) { a.classList.add("is-current"); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    map.forEach((_, id) => { const t = document.getElementById(id); if (t) so.observe(t); });
+  }
+
+  window.K = { RM, FINE, $, $$, clamp, lerp, smooth, pointer, onScroll, progress, whenSeen, canvas, loop, fmt };
+})();
+</script>
+<script>
+(() => {
+      const { RM, FINE, $, $$, clamp, lerp, canvas, loop, pointer } = K;
+      const G = window.G, ARROW = '<svg class="g-ar" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+
+      // —— hero: the 60-30-10 spectrum, fisheye-magnified under the pointer ——
+      const cv = $("#g-spec"), st = canvas(cv);
+      let focus = 0, target = 0, over = false, lastOver = -1e9, hot = -1;
+      const weights = (f, n) => { const pk = st.w < 600 ? 14 : 12; return Array.from({ length: n }, (_, i) => 1 + pk * Math.exp(-((i - f) ** 2) / 2)); };
+      const layout = () => { const ws = weights(focus, G.length), sum = ws.reduce((a, b) => a + b, 0); let x = 0; return ws.map((w) => { const c = [x, (w / sum) * st.w]; x += c[1]; return c; }); };
+      const pick = (px) => { const cols = layout(); for (let i = 0; i < cols.length; i++) if (px < cols[i][0] + cols[i][1]) return i; return cols.length - 1; };
+      cv.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); over = true; lastOver = performance.now(); hot = pick(e.clientX - r.left); target = hot; });
+      cv.addEventListener("pointerleave", () => { over = false; });
+      cv.addEventListener("click", (e) => { const r = cv.getBoundingClientRect(); open(pick(e.clientX - r.left)); });
+      const lum = (hex) => { const n = parseInt(hex.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0); };
+      const ratio = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+      const ink = (bg) => (ratio(bg, "#FFFFFF") >= ratio(bg, "#000000") ? "#FFFFFF" : "#000000");
+      loop(cv, (t, dt) => {
+        const { ctx, w, h } = st;
+        if (!over && !RM && performance.now() - lastOver > 2400) target = (Math.sin(t * 0.32) * 0.5 + 0.5) * (G.length - 1);
+        if (RM && !over) target = 4;
+        focus = RM ? target : lerp(focus, target, 1 - Math.exp(-dt * 6));
+        const cols = layout(), fi = Math.round(focus);
+        ctx.clearRect(0, 0, w, h);
+        cols.forEach(([x, cw], i) => {
+          const d = G[i], y1 = h * 0.6, y2 = h * 0.9;
+          ctx.fillStyle = d.p; ctx.fillRect(x, 0, cw + 0.5, y1);
+          ctx.fillStyle = d.s; ctx.fillRect(x, y1, cw + 0.5, y2 - y1);
+          ctx.fillStyle = d.a; ctx.fillRect(x, y2, cw + 0.5, h - y2);
+          ctx.fillStyle = "#0B0B0C"; ctx.fillRect(x + cw - 0.5, 0, 1, h);
+        });
+        const [x, cw] = cols[fi], d = G[fi];
+        if (cw > 70) {
+          const small = h < 260, pad = small ? 8 : Math.min(22, cw * 0.08);
+          ctx.save(); ctx.beginPath(); ctx.rect(x, 0, cw - 1, h); ctx.clip();
+          ctx.textBaseline = "top";
+          ctx.fillStyle = d.muted; ctx.font = `500 ${small ? 9 : 12}px "DM Mono", monospace`;
+          ctx.fillText(small ? `N° ${d.id}` : `N° ${d.id} · ${d.mode.toUpperCase()}`, x + pad, pad);
+          ctx.fillStyle = d.text;
+          const words = d.name.split(" ");
+          let fs = small ? 16 : clamp(cw * 0.13, 22, 44);
+          ctx.font = `500 ${fs}px "S${d.id}", serif`;
+          const widest = Math.max(...words.map((wd) => ctx.measureText(wd).width));
+          if (widest > cw - pad * 2) { fs *= (cw - pad * 2) / widest; ctx.font = `500 ${fs}px "S${d.id}", serif`; }
+          const top = pad + (small ? 14 : 24);
+          words.forEach((wd, k) => ctx.fillText(wd, x + pad, top + k * fs * 1.06));
+          if (!small) {
+            ctx.font = `400 12px "DM Mono", monospace`; ctx.fillStyle = d.muted;
+            ctx.fillText(d.heading, x + pad, top + words.length * fs * 1.06 + 10);
+            ctx.fillText(d.body, x + pad, top + words.length * fs * 1.06 + 28);
+            ctx.font = `500 11px "DM Mono", monospace`;
+            const lab = (txt, yy, bg) => { ctx.fillStyle = ink(bg); ctx.fillText(txt, x + pad, yy); };
+            lab(`60 ${d.p}`, h * 0.6 - 20, d.p);
+            lab(`30 ${d.s}`, h * 0.6 + 10, d.s);
+            lab(`10 ${d.a}`, h * 0.9 + (h * 0.1 - 11) / 2, d.a);
+          }
+          ctx.restore();
+        }
+      });
+
+      // —— wall: filter + sort with FLIP (transform-only) ——
+      const wall = $("#g-wall"), cards = $$(".g-ex", wall), shown = $("#g-shown");
+      let mode = "all", sort = "n";
+      const flip = (mutate) => {
+        const first = new Map(cards.map((c) => [c, c.getBoundingClientRect()]));
+        mutate();
+        if (RM) return;
+        cards.forEach((c) => {
+          if (c.hidden) return;
+          const a = first.get(c), b = c.getBoundingClientRect();
+          if (!a.width) { c.animate([{ opacity: 0, transform: "translateY(28px)" }, { opacity: 1, transform: "none" }], { duration: 520, easing: "cubic-bezier(.22,1,.36,1)" }); return; }
+          const dx = a.left - b.left, dy = a.top - b.top;
+          if (Math.abs(dx) + Math.abs(dy) < 1) return;
+          c.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: "none" }], { duration: 700, easing: "cubic-bezier(.22,1,.36,1)" });
+        });
+      };
+      const apply = () => flip(() => {
+        const order = [...cards].sort((a, b) => (sort === "hue" ? a.dataset.hue - b.dataset.hue : a.dataset.n - b.dataset.n));
+        order.forEach((c) => wall.appendChild(c));
+        let n = 0;
+        cards.forEach((c) => { c.hidden = !(mode === "all" || c.dataset.mode === mode); if (!c.hidden) { n++; c.classList.add("is-in"); } });
+        shown.textContent = `Showing ${n} of ${cards.length}`;
+      });
+      $$("[data-f]").forEach((b) => b.addEventListener("click", () => { mode = b.dataset.f; $$("[data-f]").forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false")); apply(); }));
+      $$("[data-s]").forEach((b) => b.addEventListener("click", () => { sort = b.dataset.s; $$("[data-s]").forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false")); apply(); }));
+
+      // —— inspector ——
+      const dlg = $("#g-dlg"), body = $("#g-di");
+      let cur = 0;
+      const visible = () => [...wall.children].filter((c) => !c.hidden).map((c) => G.findIndex((d) => "s" + d.id === c.id));
+      const fmt = (r) => r.toFixed(2) + ":1";
+      const render = (i) => {
+        const d = G[i]; cur = i;
+        const rows = [["Inspiration", d.inspiration], ["Movement", d.movement], ["Type", `${d.heading} / ${d.body}`], ...(d.blueprint ? [["Blueprint", `Specified ${d.blueprint}`]] : []), ["Hero", d.hero], ["Signature", d.sig]];
+        body.innerHTML = `
+          <div class="g-dv"><img src="${d.folder}/preview.jpg" width="720" height="450" alt="Desktop hero of ${d.id} ${d.name}"><span class="g-phone" aria-hidden="true"><img src="${d.folder}/preview-mobile.jpg" width="300" height="534" alt=""></span></div>
+          <div class="g-dt">
+            <p class="g-kick">N° ${d.id} · ${d.mode}</p>
+            <h2 id="g-dh" style="font-family:'S${d.id}'">${d.name}</h2>
+            <p class="k-muted">“${d.line}”</p>
+            <div class="g-sw3" aria-label="Colour system">
+              <div style="background:${d.p};color:${ink(d.p)}">60 · primary<br>${d.p}</div>
+              <div style="background:${d.s};color:${ink(d.s)}">30 · secondary<br>${d.s}</div>
+              <div style="background:${d.a};color:${ink(d.a)}">10<br>${d.a}</div>
+            </div>
+            <p class="g-ct"><span>Text on primary <b>${fmt(ratio(d.text, d.p))}</b> · muted on primary <b>${fmt(ratio(d.muted, d.p))}</b></span><span>Accent on primary <b>${fmt(ratio(d.a, d.p))}</b> · label on accent <b>${fmt(ratio(d.onAccent, d.a))}</b></span></p>
+            <dl class="g-dl">${rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+            <div class="g-dbar"><a class="g-open" href="${d.folder}/index.html">Open site ${ARROW}</a><button type="button" class="g-insp" data-go="-1">Previous</button><button type="button" class="g-insp" data-go="1">Next</button></div>
+          </div>`;
+      };
+      const open = (i) => { render(i); if (!dlg.open) dlg.showModal(); };
+      const go = (k) => { const v = visible(), at = v.indexOf(cur); render(v[(at + k + v.length) % v.length] ?? cur); };
+      body.addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (b) go(+b.dataset.go); });
+      dlg.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); });
+      dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+      $$(".g-insp[data-i]").forEach((b) => b.addEventListener("click", () => open(+b.dataset.i)));
+      document.fonts && G.forEach((d) => document.fonts.load(`500 24px "S${d.id}"`).catch(() => {}));
+    })();
+</script>
+</body>
+</html>

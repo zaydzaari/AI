@@ -1,6 +1,9 @@
 # Aether — Design Lab
 
-Twelve complete, working landing-page directions for **Aether** (a placeholder brand for an AI platform), plus a gallery for previewing and comparing them.
+This repository holds two sets of landing-page directions for **Aether**, a placeholder brand for an AI platform that sells model access and API tokens:
+
+1. **The Design Lab:** 12 complete, working directions in Next.js, plus a gallery for previewing and comparing them (documented below).
+2. **The Awwwards 20 Collection:** 20 standalone static sites plus a Master Exhibition Gallery, in [`awwwards-20-collection/`](awwwards-20-collection/README.md).
 
 This is a **private, local design exploration**. Nothing is deployed, and every page sets `noindex`. All product data is mock data.
 
@@ -11,12 +14,17 @@ This is a **private, local design exploration**. Nothing is deployed, and every 
 Requirements: **Node.js 20.9 or newer** (Next.js 16).
 
 ```bash
-cd landing_page
 npm install
 npm run dev
 ```
 
 Then open **http://localhost:3000**. It redirects to the gallery at **http://localhost:3000/designs**.
+
+To open the 20-site collection, run the next command and then visit **http://localhost:4320/**:
+
+```bash
+npm run collection
+```
 
 For a production build:
 

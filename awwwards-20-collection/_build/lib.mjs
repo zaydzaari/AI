@@ -239,6 +239,7 @@ export function page(site, { fontCss, preload }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <title>${esc(site.title)}</title>
 <meta name="description" content="${esc(site.description)}">
 <meta name="theme-color" content="${t.bgPrimary}">
