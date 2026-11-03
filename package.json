@@ -13,7 +13,10 @@
     "collection:build": "node awwwards-20-collection/_build/build.mjs",
     "collection:verify": "node awwwards-20-collection/_build/verify.cjs",
     "slop": "node scripts/slop-audit.cjs",
-    "lab:fonts": "node scripts/lab-fonts.mjs"
+    "lab:fonts": "node scripts/lab-fonts.mjs",
+    "kanso": "node kanso/serve.mjs",
+    "kanso:build": "node kanso/build.mjs",
+    "kanso:verify": "node kanso/verify.cjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

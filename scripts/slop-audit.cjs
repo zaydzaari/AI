@@ -7,7 +7,7 @@
 //   node scripts/slop-audit.cjs c05 c12 lab07   # just these
 //   node scripts/slop-audit.cjs --json=out.json
 //
-// Needs the collection server on :4320 (npm run collection) and the lab on :3000.
+// Needs the collection server on :4320 (npm run collection), the lab on :3000 and Kanso on :4330 (npm run kanso).
 const { chromium } = require("playwright");
 const fs = require("node:fs");
 const path = require("node:path");
@@ -20,6 +20,7 @@ const reg = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "awwwards-20-c
 let targets = [
   ...reg.map((s) => ({ id: "c" + s.id, url: `${COLL}/${s.folder}/` })),
   { id: "gallery", url: `${COLL}/` },
+  { id: "kanso", url: "http://localhost:4330/" },
   ...Array.from({ length: 12 }, (_, i) => ({ id: "lab" + String(i + 1).padStart(2, "0"), url: `${LAB}/designs/${String(i + 1).padStart(2, "0")}` })),
 ];
 const want = args.filter((a) => !a.startsWith("--"));

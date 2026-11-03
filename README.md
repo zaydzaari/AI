@@ -1,9 +1,10 @@
 # Aether — Design Lab
 
-This repository holds two sets of landing-page directions for **Aether**, a placeholder brand for an AI platform that sells model access and API tokens:
+This repository holds the landing-page work for **Aether**, a placeholder brand for an AI platform that sells model access and API tokens:
 
 1. **The Design Lab:** 12 complete, working directions in Next.js, plus a gallery for previewing and comparing them (documented below).
 2. **The Awwwards 20 Collection:** 20 standalone static sites plus a Master Exhibition Gallery, in [`awwwards-20-collection/`](awwwards-20-collection/README.md).
+3. **Kanso, the chosen direction:** a standalone site in [`kanso/`](kanso/README.md), developed separately for a big-company launch. Run `npm run kanso:build`, then `npm run kanso` (http://localhost:4330/).
 
 This is a **private, local design exploration**. Nothing is deployed, and every page sets `noindex`. All product data is mock data.
 
