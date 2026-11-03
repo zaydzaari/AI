@@ -63,12 +63,12 @@
 .r9-controls { display: grid; gap: 28px; align-content: center; }
 .r9-controls label { display: grid; gap: 8px; }
 .r9-controls label span { font-size: 0.88rem; color: var(--text-muted); }
-.r9-controls label b { font-size: clamp(2.8rem, 5vw, 4.6rem); font-weight: 700; letter-spacing: -0.045em; line-height: 0.9; }
+.r9-controls label b { font-size: clamp(2.8rem, 5vw, 4.6rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.9; }
 .r9-controls input { width: 100%; accent-color: var(--accent); height: 28px; }
 .r9-costs { display: grid; border-top: 2px solid var(--line); }
 .r9-costs li { position: relative; display: grid; grid-template-columns: 2fr 4fr 3fr; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); overflow: hidden; }
 .r9-costs .nm { font-weight: 600; font-size: 1.1rem; }
-.r9-costs .num { font-size: clamp(2.4rem, 6.2vh, 4.4rem); font-weight: 700; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; }
+.r9-costs .num { font-size: clamp(2.4rem, 6.2vh, 4.4rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
 .r9-costs .per { font-family: var(--mono); font-size: 0.76rem; color: var(--text-muted); text-align: right; }
 .r9-costs .bar { position: absolute; left: 0; bottom: -1px; height: 4px; width: 100%; background: var(--accent); transform-origin: left; transition: transform 0.25s linear; }
 @media (max-width: 900px) {
@@ -98,7 +98,7 @@
 .r9-rail-h { margin-bottom: 40px; }
 .r9-steps { padding-inline: var(--gutter); gap: 0; }
 .r9-step { width: min(560px, 50vw); display: grid; gap: 14px; align-content: start; border-left: 2px solid var(--line); }
-.r9-step .n { font-size: 7rem; font-weight: 700; line-height: 0.8; letter-spacing: -0.05em; color: #11111126; transition: color 0.4s; }
+.r9-step .n { font-size: 7rem; font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; color: #11111126; transition: color 0.4s; }
 .r9-step.is-active .n { color: var(--accent); }
 .r9-step h3 { font-size: 2rem; font-weight: 650; letter-spacing: -0.03em; line-height: 1.02; }
 .r9-step p { color: var(--text-muted); }
@@ -120,7 +120,7 @@
 .r9-plan.feat { background: var(--text-primary); color: #fff; }
 .r9-plan.feat .cad, .r9-plan.feat li { color: #D2D0CA; }
 .r9-plan h3 { font-size: 1.1rem; font-weight: 650; }
-.r9-plan .price { font-size: clamp(2.6rem, 4vw, 3.6rem); font-weight: 700; letter-spacing: -0.045em; line-height: 0.95; }
+.r9-plan .price { font-size: clamp(2.6rem, 4vw, 3.6rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; }
 .r9-plan .cad { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 10px; }
 .r9-plan ul { display: grid; gap: 6px; }
 .r9-plan .fk { margin-top: 10px; font-weight: 600; font-size: 0.9rem; }
@@ -138,5 +138,5 @@
 .r9-foot h3 { font-size: 0.8rem; font-family: var(--mono); font-weight: 400; color: var(--text-muted); }
 .r9-foot a { text-decoration: none; } .r9-foot a:hover { text-decoration: underline; }
 .r9-foot span { color: var(--text-muted); font-size: 0.8rem; }
-.r9-foot .big { font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; letter-spacing: -0.05em; line-height: 0.85; }
+.r9-foot .big { font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.85; }
 @media (max-width: 860px) { .r9-foot { grid-template-columns: 1fr 1fr; } .r9-foot .big { grid-column: 1 / -1; } }

@@ -52,18 +52,18 @@ export default {
 .k2-trust{font-size:.78rem;color:var(--text-muted);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
 .k2-trust b{font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--text-primary);letter-spacing:-.03em}
 @media (max-width:980px){
-  .k2-hero{min-height:calc(100svh - 64px);grid-template-rows:auto auto;align-content:start;gap:16px;padding-top:20px;padding-bottom:16px}
+  .k2-hero{min-height:calc(100svh - 64px);grid-template-rows:auto auto;align-content:start;gap:10px;padding-top:12px;padding-bottom:12px}
   .k2-band{grid-template-columns:1fr;border:0}
   .k2-band-copy{border:0;padding:0;gap:14px}
-  .k2-print{min-height:80px;height:80px;border:1px solid var(--text-primary);margin-top:4px}
-  .k2-slab{border:1px solid var(--text-primary);border-top:0;padding:14px;grid-auto-flow:column;align-items:center;justify-content:space-between}
+  .k2-print{min-height:64px;height:64px;border:1px solid var(--text-primary);margin-top:2px}
+  .k2-slab{border:1px solid var(--text-primary);border-top:0;padding:10px 14px;grid-auto-flow:column;align-items:center;justify-content:space-between}
   .k2-slab small{display:none}
   .k2-trust{gap:8px;font-size:.76rem}
   .k2-trust b{font-size:1.2rem}
   .k2-band-copy{gap:10px}
 }
 
-.k2-h2{font-weight:800;font-size:clamp(2.4rem,5vw,4.6rem);letter-spacing:-.045em;line-height:.92}
+.k2-h2{font-weight:800;font-size:clamp(2.4rem,5vw,4.6rem);letter-spacing:-.04em;line-height:.92}
 .k2-idx{font-size:.75rem;color:var(--text-muted);display:block;margin-bottom:24px}
 
 /* tension */
@@ -118,7 +118,7 @@ export default {
 .k2-dw{width:min(720px,62vw);border:1px solid var(--text-primary);display:grid;grid-template-rows:1fr auto;background:var(--bg-primary)}
 .k2-dw+.k2-dw{border-left:0}
 .k2-dw .body{display:grid;gap:20px;align-content:start;min-height:300px}
-.k2-dw h3{font-size:2.6rem;font-weight:800;letter-spacing:-.045em;line-height:.95}
+.k2-dw h3{font-size:2.6rem;font-weight:800;letter-spacing:-0.04em;line-height:.95}
 .k2-dw p{color:var(--text-muted);max-width:46ch}
 .k2-dw .tb{display:grid;grid-template-columns:auto 1fr auto;border-top:1px solid var(--text-primary);font-size:.75rem}
 .k2-dw .tb span{padding:12px 16px}
@@ -143,7 +143,7 @@ export default {
 .k2-fee:nth-child(2){background:var(--bg-secondary)}
 .k2-fee h3{font-size:2rem;font-weight:800;letter-spacing:-.04em}
 .k2-fee .area{font-size:.78rem;color:var(--text-muted)}
-.k2-fee .p{font-family:var(--font-display);font-size:3rem;font-weight:700;letter-spacing:-.05em;line-height:1}
+.k2-fee .p{font-family:var(--font-display);font-size:3rem;font-weight:700;letter-spacing:-0.04em;line-height:1}
 .k2-fee p{font-size:.88rem;color:var(--text-muted)}
 .k2-fee a{font-size:.85rem;font-weight:500}
 .k2-fk{margin-top:28px;display:flex;gap:40px;flex-wrap:wrap;font-size:.82rem}
