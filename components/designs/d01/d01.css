@@ -70,7 +70,7 @@
 .d1-marks li.is-in .was span { background-size: 100% 2px; }
 .d1-marks .now { font-family: var(--font-display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); line-height: 1.15; position: relative; padding-left: 26px; }
 .d1-marks .now .caret { position: absolute; left: 0; top: -0.1em; color: var(--accent); font-family: var(--font-body); font-weight: 700; }
-.d1-lead { max-width: 60ch; }
+.d1-lead { max-width: min(60ch, 34em); }
 @media (max-width: 760px) { .d1-marks li { grid-template-columns: 1fr; gap: 12px; } }
 
 /* signature: annotated thread */

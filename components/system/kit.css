@@ -46,7 +46,7 @@
 .kit :focus-visible { outline: 2px solid var(--focus, var(--text-primary)); outline-offset: 3px; }
 
 .k-wrap { width: min(100% - 2 * var(--gutter), var(--maxw)); margin-inline: auto; }
-.k-body { font-size: calc(1.05rem * var(--tw-body, 1)); line-height: 1.7; max-width: 60ch; }
+.k-body { font-size: calc(1.05rem * var(--tw-body, 1)); line-height: 1.7; max-width: min(60ch, 34em); }
 .k-muted { color: var(--text-muted); }
 .k-card { padding: var(--card-pad); }
 .k-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
