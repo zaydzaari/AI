@@ -2,11 +2,12 @@
 // dist/ is a complete static site: deploy the folder as-is, or open dist/index.html directly.
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { page } from "./src/shell.mjs";
 import { fontFaces } from "./src/fonts.mjs";
 import site from "./src/site.mjs";
 
-const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, "dist");
 fs.mkdirSync(DIST, { recursive: true });
 
