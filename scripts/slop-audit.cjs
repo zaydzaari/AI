@@ -21,6 +21,8 @@ let targets = [
   ...reg.map((s) => ({ id: "c" + s.id, url: `${COLL}/${s.folder}/` })),
   { id: "gallery", url: `${COLL}/` },
   { id: "kanso", url: "http://localhost:4330/" },
+  { id: "kanso-drawing", url: "http://localhost:4330/directions/drawing/" },
+  { id: "kanso-plates", url: "http://localhost:4330/directions/plates/" },
   ...Array.from({ length: 12 }, (_, i) => ({ id: "lab" + String(i + 1).padStart(2, "0"), url: `${LAB}/designs/${String(i + 1).padStart(2, "0")}` })),
 ];
 const want = args.filter((a) => !a.startsWith("--"));

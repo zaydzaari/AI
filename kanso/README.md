@@ -1,73 +1,74 @@
-# Kanso: the Aether landing page
+# Kanso — the selected Aether website
 
-This folder is the chosen direction, now a standalone site. It started as site 02 of the Awwwards 20 collection and is developed here on its own, so changes in this folder never affect the collection.
+The complete standalone website, with a shared architectural hero and three fully implemented body directions. **Ledger is the default.**
 
-**Aether** (a placeholder name) sells model access and API tokens:
-- five model families;
-- standard, low-refusal and abliterated variants;
-- unified chat;
-- coding agents;
-- prompt caching;
-- per-token pricing.
-
-Models, rates and testimonials are mock data and are labelled as such on the page.
-
-## Run it
+## Run
 
 From the repository root:
 
-```bash
-npm run kanso:build
+```sh
+npm run dev
 ```
 
-```bash
-npm run kanso
+Open **http://localhost:4330/**. Compare the three versions at **http://localhost:4330/directions/**:
+
+- `/directions/ledger/` — a sticky chapter index and measured editorial columns.
+- `/directions/drawing/` — open drawing sheets with a precise border rhythm.
+- `/directions/plates/` — full-width editorial spreads and larger image-led sections.
+
+Kanso can also be copied out of this repository and run on its own:
+
+```sh
+cd kanso
+npm run build
+npm start
 ```
 
-Then open http://localhost:4330/. The server only listens on `127.0.0.1`.
+Node.js 20 or newer is required. Building and serving use Node's standard library. The first build downloads Google Fonts through `curl` and caches them in `src/.cache/`. The built website makes no external font, image or API requests.
 
-`kanso/dist/` is the complete static site. You can deploy that folder as it is to any static host, or open `dist/index.html` straight from disk.
+`dist/` contains the complete deployable static website, including the comparison page. Relative asset paths work on all layout routes. Nothing in this build changes or deploys the original collection or the Next.js design lab.
 
-## Check it
+## What's finished
 
-```bash
-npm run kanso:verify
-```
+- Manrope variable typography, restrained forest-green accents, mineral surfaces and readable secondary text.
+- Responsive generated artwork: a dedicated wide desktop hero, a mobile composition, Pavilion in the platform section and Monolith in the closing section. Original images and generation prompts are retained in `hero-options/`.
+- A time-based damped pointer spring that stops when settled, offscreen or hidden. Touch devices do not depend on hover; reduced motion disables physics and pinning.
+- A shorter scroll-driven model architecture, with meaningful context heights and a working request-cost slider.
+- A model/mode selector linked to complete cURL, TypeScript and Python examples, keyboard-operable tabs and a copy button with feedback.
+- Model catalogue filters, selection from the catalogue, usage receipts and a token-cost calculator with caching and context-limit feedback.
+- Phone navigation with keyboard focus management, FAQ disclosures, real in-page navigation and no placeholder testimonials.
+- A separate three-direction review page with independent side-by-side previews. Design controls are optional: add `?tweaks` to any full-size site URL. Fonts, colors and motion defaults are already applied in source.
 
-This needs Playwright (`npm i -D playwright`, then `npx playwright install chromium`). It checks the page at 1440×900, at 375×667 and with reduced motion:
-- no console errors or failed requests;
-- no horizontal overflow;
-- all five hero parts above the fold;
-- the type, spacing and font rules;
-- WCAG AA contrast, checked with axe.
+## Edit
 
-The anti-slop audit, `npm run slop -- kanso`, applies Impeccable's rules to the page.
-
-## Files
-
-| Path | What it is |
+| File | Purpose |
 | --- | --- |
-| `src/site.mjs` | The page itself: tokens, CSS, markup and interactions. Edit this file. |
-| `src/content.mjs` | Product content and mock data: brand name, models, rates, plans, quotes. |
-| `src/shell.mjs` | Document wrapper, baseline design rules (type scale, spacing, grain, reveals) and the small runtime. |
-| `src/tweaks.js`, `src/tweaks.css` | The weighted hero load-in, the hero exit fade and the Tweaks panel. |
-| `src/fonts.mjs` | Self-hosts Google Fonts into `dist/fonts/`. |
-| `build.mjs` | Writes `dist/index.html`. |
-| `verify.cjs`, `serve.mjs` | Checks and a local server. |
+| `src/site.mjs` | Site content, markup and shared layout definition |
+| `src/design.css` | Permanent typography, color, spacing, responsive layouts and motion |
+| `src/interactions.js` | Model selection, code samples, calculator, navigation and spring physics |
+| `src/content.mjs` | Clearly illustrative model data and rates |
+| `src/shell.mjs` | Small static document wrapper and optional editor loading |
+| `src/directions.mjs` | Three-layout review and comparison page |
+| `src/assets/` | Responsive production WebP images |
+| `build.mjs` | Self-contained static output and font preparation |
+| `verify.cjs` | Browser regression suite |
 
-## What's on the page
+## Verify
 
-The page follows the project's seven-section structure:
+Only the browser checks need dependencies. From this folder:
 
-1. **Hero:** the headline, a concrete pavilion whose light follows the pointer, and the "Get your API key" slab.
-2. **Method:** the problem, then the signature. Five monoliths rise from the drawing as you scroll. Each one's height is its context window and its shadow is the cost of a request; a slider changes the request size.
-3. **Platform:** a concrete bento of the six features.
-4. **Developers:** three sheets to production, on a pinned horizontal rail.
-   - **A-01:** build a model string from a family and a temperament.
-   - **A-02:** see that string in cURL, TypeScript and Python.
-   - **A-03:** read the sample usage receipt with its live cost.
-5. **Who it's for:** four role-based sheets (placeholder quotes).
-6. **Pricing:** the plans, plus the model catalogue with context and per-token rates.
-7. **FAQ and final call to action,** then the footer.
+```sh
+npm ci
+npx playwright install chromium
+npm run verify
+```
 
-The header has a mobile menu, a quickstart link and a secondary "Get API key" button. Every page also has a **Tweaks** panel: click the pill in the bottom-right corner, or press Shift+T. It changes fonts, sizes, colours and motion live, and **Copy settings** exports your changes so they can be made permanent in `src/site.mjs`.
+Start the local server before verification. The suite covers seven viewport widths for every direction, model-mode availability, complete code examples, copy behavior, independent cost arithmetic, filtering, mobile navigation, spring behavior, reduced motion, assets and WCAG A/AA checks. Screenshots and machine-readable results are written to ignored `shots/`.
+
+The repository's design audit also covers all three directions:
+
+```sh
+npm run slop -- kanso kanso-drawing kanso-plates
+```
+
+All model identifiers, rates and plans are illustrative. The API endpoint uses the reserved `.example` domain. There is no active inference, account system, checkout or billing in this design preview.

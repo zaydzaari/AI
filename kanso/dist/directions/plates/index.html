@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Aether — One key. Every model.</title><meta name="description" content="One API for five model families. Explore the model catalogue, try the interactive quickstart and understand every token cost."><meta name="theme-color" content="#F3F4F0"><meta name="color-scheme" content="light"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'4'%20fill%3D'%23F3F4F0'%2F%3E%3Cpath%20d%3D'M7%2025V12h5v13m3%200V6h5v19m3%200V14h3v11'%20fill%3D'none'%20stroke%3D'%23245847'%20stroke-width%3D'2'%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="../../fonts/manrope-400-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Manrope";font-style:normal;font-weight:400 800;font-display:swap;src:url(../../fonts/manrope-400-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url(../../fonts/ibm-plex-mono-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url(../../fonts/ibm-plex-mono-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root{--bg-primary:#F3F4F0;--bg-secondary:#E7EAE3;--accent:#245847;--on-accent:#FFFFFF;--text-primary:#1B2923;--text-muted:#59645D;--line:rgba(27,41,35,.17);--font-display:"Manrope", sans-serif;--font-body:"Manrope", sans-serif}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+img,svg,canvas{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}button:disabled{cursor:not-allowed}
+code,kbd,pre,samp{font-family:var(--font-code,"IBM Plex Mono",monospace)}
+h1,h2,h3,h4{overflow-wrap:anywhere;hyphens:manual}
+p,li,dd,figcaption{text-wrap:pretty}
+::selection{background:var(--accent);color:var(--on-accent)}
+.k-skip{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;background:var(--text-primary);color:var(--bg-primary)}
+.k-skip:focus{top:12px}
+
+/* Kanso: mineral surfaces, forest ink, a clear typographic hierarchy. */
+:root{--font-code:"IBM Plex Mono",monospace;--gutter:clamp(22px,5vw,76px);--maxw:1440px;--ease:cubic-bezier(.2,.8,.2,1);--section-space:112px}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{font-size:16px;line-height:1.65;background:var(--bg-primary)}
+body::after{display:none}
+button,a,input,summary{-webkit-tap-highlight-color:transparent}
+button,input,summary{touch-action:manipulation}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,pre:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-.04em;text-wrap:balance}
+h2{font-size:clamp(36px,4.2vw,58px);line-height:1.12}
+h3{font-size:23px;line-height:1.3;letter-spacing:-.025em}
+p{max-width:none}
+svg{flex-shrink:0}
+a{color:inherit}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.eyebrow,.control-label,.micro,.item-number,.plan-type,.cell-label,.drawing-label,.drawing-key{font-family:var(--font-code);font-weight:400;letter-spacing:.04em;font-size:12px;line-height:1.7}
+.eyebrow{display:flex;gap:14px;align-items:center;color:var(--accent);margin-bottom:26px}
+.eyebrow>span:first-child:not(.short-rule){color:var(--text-muted)}
+.short-rule{width:26px;height:1px;background:currentColor}
+.micro{font-size:12px;color:var(--text-muted);letter-spacing:0}
+.brand{display:inline-flex;align-items:center;gap:10px;font-size:25px;font-weight:700;letter-spacing:-.04em;text-decoration:none;line-height:1}
+.brand>svg{width:28px;height:28px;color:var(--accent)}
+.brand-period,.hero-stop{color:var(--accent)}
+.site-header{height:80px;padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;background:var(--bg-primary)}
+.desktop-nav{display:flex;align-items:center;gap:30px;font-size:13px;font-weight:500}
+.desktop-nav a,.header-cta,.site-footer a{text-decoration:none}
+.desktop-nav a{position:relative;padding:13px 0;color:var(--text-muted);transition:color .18s}
+.desktop-nav a:hover{color:var(--accent)}
+.header-actions{display:flex;gap:12px;align-items:center}
+.header-cta{display:flex;align-items:center;gap:22px;min-height:44px;padding:0 16px;border:1px solid var(--line);font-size:12px;font-weight:600;transition:background .2s,border-color .2s}
+.header-cta svg,.text-link svg,.button svg{width:20px;height:20px;transition:transform .25s var(--ease)}
+.header-cta:hover{background:var(--bg-secondary);border-color:var(--accent)}
+.header-cta:hover svg,.text-link:hover svg,.button:hover svg{transform:translateX(3px)}
+.menu-button{display:none;border:1px solid var(--line);background:none;align-items:center;gap:12px;padding:0 12px;height:44px;font-size:13px}
+.menu-button svg{width:20px;height:20px}
+.mobile-menu{position:fixed;inset:80px 0 auto;padding:10px var(--gutter) 24px;max-height:calc(100svh - 80px);overflow:auto;z-index:59;background:var(--bg-primary);border-bottom:1px solid var(--line)}
+.mobile-menu a{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:16px 0;font-size:22px;text-decoration:none}
+.mobile-menu svg{width:22px;height:22px}
+.hero{max-width:1600px;margin:0 auto;padding:52px var(--gutter) 0}
+:root:not(.design-controls) .hero [data-hero-part]{animation:none!important}
+.hero-top{display:grid;grid-template-columns:1fr minmax(250px,345px);gap:40px;align-items:end;margin-bottom:42px}
+.hero-eyebrow{margin-bottom:24px}
+.hero h1{font-weight:var(--h1-weight,600);font-size:calc(clamp(64px,7.6vw,112px) * var(--tw-h1,1));line-height:.99;letter-spacing:var(--tw-h1ls,-.04em);max-width:12ch;overflow-wrap:normal;text-wrap:nowrap}
+.hero-copy{padding-bottom:5px}
+.hero-copy>p{font-size:17px;line-height:1.7;color:var(--text-muted);max-width:31ch}
+.hero-actions{margin-top:28px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.button{display:inline-flex;gap:24px;align-items:center;justify-content:center;min-height:50px;padding:0 22px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid transparent;transition:background .2s,transform .2s}
+.button.primary{background:var(--accent);color:var(--on-accent)}
+.button.primary:hover{background:#183F33}
+.button:active{transform:scale(.98)}
+.text-link{display:inline-flex;gap:12px;align-items:center;min-height:44px;font-size:12px;font-weight:600;text-decoration:none}
+.hero-art{margin:0;overflow:hidden}
+.hero-image{overflow:hidden;background:#DBDCD7;height:clamp(260px,27vw,390px);isolation:isolate}
+.hero-image picture{display:block;width:100%;height:100%}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:50% 61%;will-change:transform;transform:translate3d(var(--px,0px),var(--py,0px),0) scale(1.025)}
+.hero-art figcaption{display:flex;justify-content:space-between;gap:16px;font-family:var(--font-code);font-size:12px;color:var(--text-muted);padding:12px 0;letter-spacing:.02em}
+.art-caption{display:flex;gap:22px}
+.hero-specs{display:flex;gap:40px;align-items:center;padding:18px 0 23px;border-bottom:1px solid var(--line);font-size:12px;color:var(--text-muted)}
+.hero-specs p{display:flex;gap:12px;align-items:center}
+.hero-specs strong{font-size:16px;line-height:1;font-weight:600;color:var(--text-primary)}
+.hero-specs>a{margin-left:auto;display:flex;align-items:center;gap:30px;text-decoration:none}
+.page-layout{width:min(100% - 2*var(--gutter),1448px);margin:0 auto;display:grid;grid-template-columns:170px minmax(0,1fr);gap:68px;align-items:start}
+.chapter-nav{position:sticky;top:128px;padding-top:12px;margin-top:104px}
+.chapter-nav>.eyebrow{font-size:12px;letter-spacing:.1em;color:var(--text-muted);margin-bottom:24px}
+.chapter-nav nav{display:grid}
+.chapter-nav nav a{display:flex;gap:13px;align-items:center;font-size:12px;min-height:44px;text-decoration:none;color:var(--text-muted);border-left:1px solid var(--line);padding-left:15px;transition:color .2s,border-color .2s}
+.chapter-nav nav a span{font-family:var(--font-code);font-size:12px;color:var(--text-muted)}
+.chapter-nav nav a[aria-current="location"]{color:var(--accent);border-left:2px solid var(--accent);padding-left:14px;font-weight:600}
+.chapter-note{font-size:12px;line-height:1.7;margin-top:38px;color:var(--text-muted)}
+.body-sections{min-width:0}
+.section{padding:var(--section-space) 0;border-bottom:1px solid var(--line);scroll-margin-top:24px}
+.section-heading{margin-bottom:44px;max-width:780px}
+.section-intro{font-size:17px;line-height:1.75;color:var(--text-muted);max-width:52ch;margin-top:25px}
+.structure-scroll{height:150vh;min-height:850px}
+.structure-sticky{position:sticky;top:112px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);border:1px solid var(--line);background:var(--bg-primary);min-height:420px}
+.structure-drawing{min-width:0;display:flex;flex-direction:column;justify-content:space-between;background:var(--bg-secondary);padding:22px 22px 15px;overflow:hidden}
+.structure-drawing svg{width:100%;height:auto;flex:1;min-height:240px;max-height:420px;overflow:visible}
+.drawing-label{font-size:12px;color:var(--text-muted)}
+.drawing-key{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:9px}
+.drawing-key>span{display:inline-block;width:6px;height:14px;background:var(--accent)}
+.structure-controls{padding:30px 24px;display:flex;flex-direction:column;justify-content:center}
+.structure-controls>.eyebrow{font-size:12px;margin-bottom:16px}
+.structure-controls h3{font-size:27px;line-height:1.25}
+.structure-controls>p:not(.eyebrow):not(.micro){font-size:13px;color:var(--text-muted);line-height:1.75;margin-top:18px}
+.structure-controls label,.estimate-controls>label:not(.cache-toggle){font-size:12px;display:flex;justify-content:space-between;gap:16px;margin-top:28px;margin-bottom:8px}
+input[type="range"]{width:100%;height:30px;accent-color:var(--accent);cursor:pointer}
+.structure-readout{margin:18px 0;display:grid;gap:8px;font-size:12px}
+.structure-readout div{display:flex;gap:14px;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:9px}
+.structure-readout dt{color:var(--text-muted)}
+.structure-readout dd{font-weight:600;font-variant-numeric:tabular-nums}
+.capabilities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
+.capabilities li{display:flex;gap:18px;padding:28px 0;border-top:1px solid var(--line)}
+.item-number{font-size:12px;padding-top:4px;color:var(--accent)}
+.capabilities h3{font-size:19px;letter-spacing:-.025em;margin-bottom:12px}
+.capabilities p{font-size:14px;color:var(--text-muted);line-height:1.8;max-width:39ch}
+.use-cases{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:start;margin-top:64px}
+.use-cases figure{background:var(--bg-secondary);overflow:hidden}
+.use-cases img{width:100%;height:300px;object-fit:cover}
+.use-cases figcaption{font-family:var(--font-code);font-size:12px;padding:13px 17px;color:var(--text-muted)}
+.use-cases .eyebrow{font-size:12px;margin-bottom:20px}
+.use-cases h3{font-size:30px}
+.use-cases dl{margin-top:24px}
+.use-cases dl div{border-top:1px solid var(--line);padding:14px 0}
+.use-cases dt{font-size:12px;font-weight:600}
+.use-cases dd{font-size:12px;line-height:1.8;color:var(--text-muted);margin:5px 0 0}
+.quickstart-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;border-top:1px solid var(--line);margin-bottom:28px;padding-top:20px;font-size:12px;font-weight:500}
+.quickstart-steps span{display:block;font-family:var(--font-code);font-size:12px;color:var(--accent);margin-bottom:10px}
+.integration{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.5fr);border:1px solid var(--line)}
+.model-config{padding:28px 22px;background:#ECEEE8;min-width:0}
+.control-label{font-size:12px;letter-spacing:.09em;color:var(--text-muted);display:block;margin-bottom:14px}
+.model-choices{display:grid;gap:4px;margin-bottom:25px}
+.model-choices button{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:44px;padding:0 12px;background:transparent;border:1px solid transparent;font-size:13px;text-align:left;transition:background .18s,color .18s}
+.model-choices button>span:last-child{font-family:var(--font-code);font-size:12px;color:var(--text-muted)}
+.model-choices button[aria-pressed="true"]{background:var(--bg-primary);border-color:var(--accent);color:var(--accent);font-weight:600}
+.model-choices button:hover{background:var(--bg-primary)}
+.mode-choices{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.mode-choices button,.model-filter button{border:1px solid var(--line);background:none;min-height:44px;font-size:12px;padding:0 10px;transition:background .18s,color .18s}
+.mode-choices button[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.mode-choices button:disabled{color:var(--text-muted);background:none;opacity:.6;cursor:not-allowed;text-decoration:line-through}
+#pick-out{display:block;overflow-wrap:anywhere;font-size:12px;color:var(--accent);border-top:1px solid var(--line);padding-top:17px;margin-bottom:14px}
+.model-config .micro{font-size:12px;line-height:1.8}
+.code-workbench{min-width:0;background:#1B2923;color:#EAF0E9;display:grid;grid-template-rows:auto 1fr auto}
+.code-toolbar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #FFFFFF24;gap:5px;padding:0 10px}
+.code-toolbar [role="tablist"]{display:flex;min-width:0}
+.code-toolbar [role="tab"]{font-size:12px;min-height:50px;padding:0 11px;background:none;border:0;border-bottom:2px solid transparent;color:#B4C3B8}
+.code-toolbar [role="tab"][aria-selected="true"]{border-bottom-color:#BBDAC7;color:#fff}
+.copy-button{min-height:44px;display:flex;align-items:center;gap:6px;padding:0 9px;border:0;background:none;color:#DDE9DF;font-size:12px}
+.copy-button svg{width:14px;height:14px}
+.code-panel{font-family:var(--font-code);font-size:12px;line-height:1.85;margin:0;padding:24px 22px;overflow:auto;min-height:300px;tab-size:2}
+.code-panel code{font-family:inherit}
+.code-string{color:#C0DCC6}
+.code-workbench :focus-visible{outline-color:#CEE4D1;outline-offset:-4px}
+.receipt{padding:17px 22px 22px;border-top:1px solid #FFFFFF24}
+.receipt>div{font-family:var(--font-code);font-size:12px;letter-spacing:.05em;display:flex;gap:8px;align-items:center;color:#BCCBC0;margin-bottom:12px}
+.receipt-dot{width:4px;height:4px;background:#BBCFBC}
+.receipt dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;font-size:12px}
+.receipt dl>div{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.receipt dt{color:#BCCBC0}
+.receipt dd{font-family:var(--font-code);font-size:12px}
+.receipt-total dd{color:#DAEED9}
+.example-note{margin-top:15px;font-size:12px;max-width:100%;overflow-wrap:anywhere}
+#copy-status{color:var(--accent);font-weight:600}
+.model-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.model-filter button{padding:0 15px;min-height:44px;font-size:12px;border-color:transparent}
+.model-filter button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--bg-secondary)}
+.model-table-wrap{width:100%}
+.model-table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}
+.model-table th,.model-table td{padding:19px 9px;vertical-align:middle;border-bottom:1px solid var(--line);font-weight:400}
+.model-table thead th{font-family:var(--font-code);font-size:12px;color:var(--text-muted);padding-top:15px;padding-bottom:15px;border-top:1px solid var(--line)}
+.model-table tbody th{width:24%;padding-left:0}
+.model-table tbody tr{transition:background .18s}
+.model-table tbody tr:hover{background:var(--bg-secondary)}
+.model-table-name{display:flex;gap:12px;align-items:center;font-size:17px;font-weight:600;background:transparent;border:0;min-height:44px;padding:0;text-align:left}
+.model-table-name svg{width:15px;height:15px;opacity:0;transform:translateX(-5px);transition:opacity .2s,transform .2s}
+.model-table-name:hover svg,.model-table-name:focus-visible svg{opacity:1;transform:none}
+.model-table tbody th>span{display:block;font-size:12px;color:var(--text-muted)}
+.model-table td:not(.table-variants){font-family:var(--font-code);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.table-variants{max-width:150px;font-size:12px;color:var(--text-muted)}
+.table-variants span{display:block;line-height:1.9}
+.cell-label{display:none}
+.table-note{font-size:12px;margin-top:17px}
+.estimate{margin-top:42px;display:grid;grid-template-columns:1.2fr 1fr;border:1px solid var(--line)}
+.estimate-controls{padding:30px}
+.estimate-controls>.eyebrow{font-size:12px;margin-bottom:13px}
+.estimate-controls h3{font-size:27px}
+.estimate-model{font-size:12px;color:var(--text-muted);margin-top:18px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.estimate-model strong{color:var(--text-primary);font-weight:600}
+.estimate-model>a{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:12px;min-height:44px;text-decoration:none}
+.estimate-model svg{width:13px;height:13px}
+.estimate-controls>label:not(.cache-toggle){margin-top:14px}
+.cache-toggle{display:flex;gap:10px;align-items:center;margin-top:15px;min-height:44px;font-size:12px;cursor:pointer}
+.cache-toggle input{accent-color:var(--accent);width:17px;height:17px}
+.estimate-result{padding:30px;display:flex;flex-direction:column;justify-content:center;background:var(--accent);color:#fff}
+.estimate-result>span{font-family:var(--font-code);font-size:12px;letter-spacing:.05em;color:#DAE6DC}
+.estimate-result>output{display:block;font-size:clamp(26px,3.8vw,43px);font-weight:500;letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin-top:19px}
+.estimate-result>p{font-size:12px;line-height:1.9;color:#D6E4D8;margin-top:28px}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plans article{padding:30px 22px;display:flex;flex-direction:column;align-items:start}
+.plans article+article{border-left:1px solid var(--line)}
+.plans .featured-plan{background:var(--bg-secondary)}
+.plan-type{font-size:12px;letter-spacing:.06em;color:var(--text-muted);margin-bottom:18px}
+.plans h3{font-size:24px}
+.plan-price{font-size:30px;letter-spacing:-.04em;font-weight:600;line-height:1.3;margin:20px 0}
+.plan-price>span{display:block;font-size:12px;font-weight:400;letter-spacing:0;color:var(--text-muted);margin-top:8px}
+.plans article>p:not(.plan-price){font-size:12px;color:var(--text-muted);line-height:1.8;min-height:65px}
+.plans ul{font-size:12px;line-height:1.8;margin:26px 0;display:grid;gap:10px;flex:1}
+.plans li{display:flex;align-items:baseline;gap:8px}
+.plans li::before{content:"";width:4px;height:4px;flex:none;background:var(--accent)}
+.plans .text-link{font-size:12px;gap:7px}
+.plans .text-link svg{width:16px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{display:flex;justify-content:space-between;gap:25px;padding:22px 0;min-height:70px;align-items:center;cursor:pointer;list-style:none;font-size:15px;font-weight:500;line-height:1.5}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary>span{font-size:23px;color:var(--accent);font-weight:400;transition:transform .2s}
+.faq-list details[open] summary>span{transform:rotate(45deg)}
+.faq-list details>p{font-size:14px;line-height:1.85;color:var(--text-muted);padding:0 38px 26px 0;max-width:67ch}
+.closing{width:min(100% - 2*var(--gutter),1448px);margin:92px auto 0;background:var(--bg-secondary);display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden}
+.closing>div{padding:56px}
+.closing .eyebrow{font-size:12px}
+.closing h2{font-size:clamp(34px,4vw,58px)}
+.closing p:not(.eyebrow){color:var(--text-muted);font-size:14px;margin-top:24px;margin-bottom:27px;line-height:1.8}
+.closing figure{height:100%;min-height:410px}
+.closing img{width:100%;height:100%;object-fit:cover;object-position:48% 50%}
+.site-footer{width:min(100% - 2*var(--gutter),1448px);margin:0 auto;padding:60px 0 30px}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.footer-top>p{font-size:13px;color:var(--text-muted);margin-right:auto;margin-left:30px}
+.footer-bottom{padding-top:23px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:12px;color:var(--text-muted)}
+.footer-bottom nav{display:flex;gap:20px}
+.footer-bottom nav>a{display:inline-flex;align-items:center;min-height:44px}
+[data-reveal]{opacity:1;transform:none;transition:none}
+html.motion-ready [data-reveal]{opacity:0;transform:translate3d(0,var(--tw-rd,14px),0);transition:opacity calc(.36s * var(--tw-dur,1)) var(--tw-ease,var(--ease)),transform calc(.48s * var(--tw-dur,1)) var(--tw-ease,var(--ease))}
+html.motion-ready [data-reveal].is-in{opacity:1;transform:none}
+/* Drawing: complete sheets, a generous border rhythm, no sticky index. */
+.layout-drawing .page-layout{display:block;max-width:1260px}
+.layout-drawing .chapter-nav{display:none}
+.layout-drawing .section{padding:90px 0}
+.layout-drawing .section-heading{max-width:720px}
+.layout-drawing .structure-sticky{grid-template-columns:minmax(0,2fr) minmax(250px,1fr)}
+.layout-drawing .capabilities{border-left:1px solid var(--line);gap:0}
+.layout-drawing .capabilities li{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.layout-drawing .integration,.layout-drawing .estimate{box-shadow:none}
+.layout-drawing .plans{margin-bottom:6px}
+/* Plates: full-width architectural spreads and a larger visual cadence. */
+.layout-plates .page-layout{width:100%;max-width:none;display:block}
+.layout-plates .chapter-nav{display:none}
+.layout-plates .section{padding:110px max(var(--gutter),calc((100vw - 1250px)/2));border:0}
+.layout-plates .section:nth-child(even){background:#E7EAE3}
+.layout-plates .section-heading{max-width:880px}
+.layout-plates .section-heading h2{font-size:clamp(40px,5.6vw,78px)}
+.layout-plates .section-intro{max-width:54ch}
+.layout-plates .structure-sticky{grid-template-columns:minmax(0,2fr) minmax(260px,1fr);background:var(--bg-primary)}
+.layout-plates .capabilities{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 45px}
+.layout-plates .use-cases{grid-template-columns:1.35fr 1fr;gap:70px;margin-top:85px}
+.layout-plates .use-cases img{height:420px}
+.layout-plates .integration{grid-template-columns:minmax(250px,1fr) minmax(0,2fr)}
+.layout-plates .faq-section{display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
+.layout-plates .faq-section .section-heading h2{font-size:clamp(36px,4vw,58px)}
+@media(min-width:1700px){.hero{padding-top:70px}.hero-top{margin-bottom:55px}.hero-image{height:430px}}
+@media(max-width:1200px){.page-layout{gap:36px;grid-template-columns:145px minmax(0,1fr)}.chapter-nav nav a{font-size:12px}.hero-top{grid-template-columns:1fr 300px}.hero-actions{gap:10px}.button{padding:0 16px;gap:18px}.integration{grid-template-columns:220px minmax(0,1fr)}.structure-sticky{grid-template-columns:minmax(0,1fr);min-height:0}.structure-drawing svg{max-height:340px;min-height:240px}.structure-controls{display:grid;grid-template-columns:1fr 1fr;column-gap:30px;padding:24px}.structure-controls>h3{grid-column:1}.structure-controls>.eyebrow{grid-column:1/-1}.structure-controls>p:not(.eyebrow):not(.micro){grid-column:1;grid-row:3/6;margin-top:12px}.structure-controls label,.structure-controls input,.structure-controls dl{grid-column:2}.structure-controls label{grid-row:2;margin-top:0}.structure-controls input{grid-row:3}.structure-controls dl{grid-row:4/6;margin-top:0}.structure-controls>.micro{grid-column:1/-1;margin-top:12px}.plans article{padding:25px 15px}.plan-type{font-size:12px}.receipt dl{grid-template-columns:1fr}.layout-plates .faq-section{gap:40px}}
+@media(max-width:980px){:root{--section-space:84px}.desktop-nav{gap:22px}.page-layout{display:block}.chapter-nav{display:none}.hero-top{grid-template-columns:1fr 265px;gap:25px}.hero h1{font-size:clamp(58px,8vw,76px)}.hero-copy>p{font-size:15px}.hero-actions{margin-top:20px}.hero-copy .text-link{font-size:12px}.hero-image{height:290px}.structure-scroll{height:130vh;min-height:840px}.structure-sticky{grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr)}.structure-controls{display:flex;padding:28px 24px}.structure-controls>p:not(.eyebrow):not(.micro){margin-top:18px}.structure-controls label{margin-top:23px}.structure-controls dl{margin-top:18px}.integration{grid-template-columns:250px minmax(0,1fr)}.closing>div{padding:38px}.layout-plates .capabilities{grid-template-columns:repeat(2,minmax(0,1fr))}.layout-plates .faq-section{display:block}.layout-plates .use-cases{gap:36px}.layout-drawing .structure-sticky,.layout-plates .structure-sticky{grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr)}}
+@media(max-width:760px){:root{--gutter:24px;--section-space:72px}.site-header{height:68px}.desktop-nav,.header-cta{display:none}.menu-button{display:flex}.brand{font-size:24px}.mobile-menu{top:68px;max-height:calc(100svh - 68px)}.hero{padding-top:34px}.hero-top{display:block;margin-bottom:28px}.hero-eyebrow{font-size:12px;margin-bottom:22px}.hero h1{font-size:calc(clamp(56px,12vw,82px) * var(--tw-h1,1));letter-spacing:var(--tw-h1ls,-.04em);line-height:1.02}.hero-copy{padding-top:26px}.hero-copy>p{font-size:16px;max-width:32ch}.hero-actions{margin-top:21px;gap:23px}.hero-image{height:245px}.hero-image img{object-position:50% 65%;transform:scale(1.025)}.hero-art figcaption{font-size:12px;line-height:1.7;padding:11px 0}.art-caption{display:none}.hero-specs{gap:23px;padding:17px 0 23px;flex-wrap:wrap;font-size:12px}.hero-specs p{gap:8px}.hero-specs strong{font-size:15px}.hero-specs>a{display:none}.section-heading{margin-bottom:32px}.section-heading>.eyebrow{font-size:12px;margin-bottom:22px}.section-intro{font-size:16px;line-height:1.8;margin-top:22px}.structure-scroll{height:auto;min-height:0}.structure-sticky,.layout-drawing .structure-sticky,.layout-plates .structure-sticky{position:relative;top:auto;display:block}.structure-drawing{padding:19px 15px 15px}.structure-drawing svg{min-height:210px;max-height:300px}.drawing-label,.drawing-key{font-size:12px}.structure-controls{padding:26px 23px}.structure-controls h3{font-size:28px}.structure-controls label{font-size:12px}.structure-controls dl{font-size:12px}.capabilities{column-gap:22px}.capabilities li{display:block;padding:23px 0}.item-number{display:block;margin-bottom:12px}.capabilities h3{font-size:18px;line-height:1.35}.capabilities p{font-size:13px;line-height:1.8}.use-cases,.layout-plates .use-cases{display:block;margin-top:40px}.use-cases>div{padding-top:30px}.use-cases img,.layout-plates .use-cases img{height:280px}.use-cases dl div{padding:16px 0}.use-cases dt,.use-cases dd{font-size:13px}.quickstart-steps{gap:12px;font-size:12px}.quickstart-steps span{font-size:12px}.integration,.layout-plates .integration{grid-template-columns:minmax(0,1fr)}.model-config{padding:24px}.model-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.model-choices button{border-color:var(--line);font-size:12px;gap:10px}.model-choices button span:last-child{font-size:12px}.mode-choices{gap:8px}.mode-choices button{font-size:12px;padding:0 11px}.control-label{font-size:12px}.code-toolbar{padding:0 8px}.code-toolbar [role="tab"]{padding:0 10px;font-size:12px}.code-panel{font-size:12px;line-height:1.9;min-height:320px;padding:23px 18px}.copy-button{font-size:12px}.receipt{padding:18px}.receipt dl{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.receipt dl>div{flex-direction:column;align-items:start;gap:4px}.receipt dt{font-size:12px}.receipt dd{font-size:12px}.example-note{font-size:12px}.model-filter{gap:4px;margin-bottom:20px}.model-filter button{padding:0 11px;font-size:12px}.model-table,.model-table tbody{display:block;width:100%}.model-table thead{position:absolute;clip:rect(0,0,0,0);clip-path:inset(50%);width:1px;height:1px;overflow:hidden}.model-table tr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:18px 0;border-top:1px solid var(--line);gap:18px 10px}.model-table tbody th{grid-column:1/-1;width:auto;padding:0;border:0;display:flex;align-items:center;justify-content:space-between;gap:15px}.model-table-name{font-size:20px;min-height:44px}.model-table-name svg{opacity:1;transform:none}.model-table tbody th>span{font-size:12px;max-width:17ch;text-align:right}.model-table td{padding:0;border:0;font-size:12px!important}.cell-label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:4px}.table-variants{grid-column:1/-1;display:flex;gap:9px;font-size:12px;max-width:none;flex-wrap:wrap}.table-variants span{border:1px solid var(--line);padding:3px 8px;font-size:12px}.estimate{grid-template-columns:1fr}.estimate-controls{padding:27px 24px}.estimate-controls h3{font-size:29px}.estimate-result{padding:30px 24px}.estimate-result>output{font-size:45px}.estimate-result>p{margin-top:19px}.plans{display:block}.plans article{padding:30px 24px}.plans article+article{border-left:0;border-top:1px solid var(--line)}.plans article>p:not(.plan-price){min-height:0;font-size:14px;max-width:33ch}.plans h3{font-size:29px}.plan-type{font-size:12px}.plan-price{font-size:36px;margin:16px 0}.plan-price>span{font-size:12px}.plans ul{font-size:12px;margin:21px 0}.plans .text-link{font-size:12px}.faq-list summary{font-size:15px;line-height:1.6;padding:21px 0}.faq-list details>p{font-size:14px;padding-right:15px}.closing{display:flex;flex-direction:column;margin-top:64px;align-items:stretch}.closing>div{padding:35px 27px}.closing .eyebrow{font-size:12px}.closing h2{font-size:38px}.closing figure{height:290px;min-height:0}.closing img{height:290px;object-position:50% 60%}.site-footer{padding:43px 0 24px}.footer-top{flex-wrap:wrap;gap:16px;padding-bottom:24px}.footer-top>p{margin:0;font-size:12px;flex:1;text-align:right}.footer-top>.text-link{flex-basis:100%;font-size:12px}.footer-bottom{display:grid;gap:12px;font-size:12px}.footer-bottom nav{gap:25px}.footer-bottom>span{font-size:12px}.layout-drawing .section{padding:72px 0}.layout-drawing .capabilities li{padding:22px 17px}.layout-drawing .capabilities p{font-size:12px}.layout-plates .section{padding:75px var(--gutter)}.layout-plates .section-heading h2{font-size:41px}.layout-plates .capabilities{gap:0 24px}}
+@media(max-width:380px){:root{--gutter:20px}.hero h1{font-size:clamp(46px,14.6vw,55px)}.hero-actions{gap:16px}.hero-actions .button{font-size:12px;padding:0 15px;gap:16px}.hero-actions .text-link{font-size:12px;gap:5px}.hero-image{height:220px}.hero-specs{gap:18px}.model-choices{gap:5px}.receipt dl{gap:12px}.model-filter button{padding:0 9px}.estimate-result>output{font-size:40px}.layout-plates .section-heading h2{font-size:37px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.structure-scroll{height:auto;min-height:0}.structure-sticky{position:relative;top:auto}.hero-image img{transform:none!important;will-change:auto}html.motion-ready [data-reveal]{opacity:1;transform:none}}
+
+/* Readable labels and resilient controls at compact widths. */
+.micro{max-width:65ch}.plan-type{letter-spacing:.04em}.example-note{max-width:65ch}.model-choices button{gap:6px;padding-inline:8px}.code-toolbar{flex-wrap:wrap}.code-toolbar .copy-button{margin-left:auto}.faq-list details>p{max-width:56ch}
+@media(max-height:600px){.structure-scroll{height:auto;min-height:0}.structure-sticky{position:relative;top:auto}}
+</style></head><body class="layout-plates"><a class="k-skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <a class="brand" href="#main" aria-label="Aether home"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 23V9h6v14M11 23V4h6v19M19 23V12h6v11M1 25h26" stroke="currentColor" stroke-width="2"/></svg><span>Aether<span class="brand-period">.</span></span></a>
+  <nav class="desktop-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#developers">Developers</a><a href="#models">Models</a><a href="#pricing">Pricing</a></nav>
+  <div class="header-actions"><a class="header-cta" href="#developers">API quickstart <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu"><span>Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.5"/></svg></button></div>
+</header>
+<nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" hidden><a href="#foundation">Foundation<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><a href="#platform">Platform<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><a href="#developers">Quickstart<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><a href="#models">Models & rates<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><a href="#pricing">Plans<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><a href="#faq">Questions<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></nav>
+<main id="main">
+  <section class="hero" data-hero aria-labelledby="hero-title">
+    <div class="hero-top">
+      <div><p class="eyebrow hero-eyebrow" data-hero-part="trust"><span class="short-rule"></span>THE MODEL LAYER</p><h1 id="hero-title" data-hero-part="headline">One key.<br>Every model<span class="hero-stop">.</span></h1></div>
+      <div class="hero-copy"><p data-hero-part="sub">Your models, working together.<br>One API for chat, code and the work ahead.</p><div class="hero-actions" data-hero-part="cta"><a class="button primary" href="#developers" data-cta="primary">Explore the API <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="text-link" href="#models">Find your model <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></div></div>
+    </div>
+    <figure class="hero-art" data-hero-part="visual"><div class="hero-image" data-physical><picture><source media="(min-width:761px)" srcset="../../assets/courtyard-wide-960.webp 960w, ../../assets/courtyard-wide-1440.webp 1440w, ../../assets/courtyard-wide-1920.webp 1920w" sizes="(max-width:1440px) 90vw, 1448px"><img src="../../assets/courtyard-960.webp" srcset="../../assets/courtyard-640.webp 640w, ../../assets/courtyard-960.webp 960w, ../../assets/courtyard-1440.webp 1440w" sizes="(max-width: 1440px) 94vw, 1320px" width="1536" height="1024" alt="Five cast-concrete piers joined into one open architectural courtyard" fetchpriority="high" decoding="async"></picture></div><figcaption><span>Five families. One foundation.</span><span class="art-caption">Concrete study / 01 <span aria-hidden="true">↗</span></span></figcaption></figure>
+    <div class="hero-specs"><p><strong>05</strong> Model families</p><p><strong>01</strong> API endpoint</p><p><strong>3</strong> Model modes</p><a href="#foundation">Explore the foundation <span aria-hidden="true">↓</span></a></div>
+  </section>
+  <div class="page-layout">
+    <aside class="chapter-nav" aria-label="On this page"><p class="eyebrow">IN THIS CHAPTER</p><nav><a href="#foundation"><span>01</span>Foundation</a><a href="#platform"><span>02</span>Platform</a><a href="#developers"><span>03</span>Quickstart</a><a href="#models"><span>04</span>Models & rates</a><a href="#pricing"><span>05</span>Plans</a><a href="#faq"><span>06</span>Questions</a></nav><p class="chapter-note">Less to manage.<br>More to build.</p></aside>
+    <div class="body-sections">
+      <section id="foundation" class="section foundation" data-section>
+        <div class="section-heading"><p class="eyebrow"><span>01</span>FOUNDATION</p><h2 data-reveal>Different strengths.<br>A shared foundation.</h2><p class="section-intro" data-reveal>Choose the model that fits the request. Keep the same interface, and see the cost of the choice.</p></div>
+        <div class="structure-scroll" id="build"><div class="structure-sticky"><div class="structure-drawing"><span class="drawing-label">FIG. 01 / MODEL ARCHITECTURE</span><svg id="build-iso" viewBox="0 0 800 420" role="img" aria-label="Five monoliths whose heights represent the context windows of the model families"></svg><p class="drawing-key"><span></span>Height represents context window</p></div><div class="structure-controls"><p class="eyebrow">ONE REQUEST, IN VIEW</p><h3>Know the shape<br>of your usage.</h3><p>Change the request size. The shadows show its illustrative cost across the five families.</p><label for="sun">Request size <output id="r-time">6K tokens</output></label><input id="sun" type="range" min="0" max="1" step="0.01" value="0.35"><dl class="structure-readout"><div><dt>Lowest sample cost</dt><dd id="r-el">Swift</dd></div><div><dt>Atlas request cost</dt><dd id="r-sh">$0.00</dd></div></dl><p class="micro">Illustrative rates. 75% input, 25% output.</p></div></div></div>
+      </section>
+      <section id="platform" class="section" data-section>
+        <div class="section-heading"><p class="eyebrow"><span>02</span>PLATFORM</p><h2 data-reveal>A smaller stack.<br>A wider range.</h2><p class="section-intro" data-reveal>The parts of an AI workflow, brought into one place.</p></div>
+        <ol class="capabilities"><li data-reveal><span class="item-number">01</span><div><h3>Unified chat</h3><p>Keep conversations in one workspace. Choose a different model for the next task.</p></div></li><li data-reveal><span class="item-number">02</span><div><h3>Model modes</h3><p>Compare standard, low-refusal and abliterated options where the family supports them.</p></div></li><li data-reveal><span class="item-number">03</span><div><h3>Coding tools</h3><p>A dedicated model family for repository work, debugging and code generation.</p></div></li><li data-reveal><span class="item-number">04</span><div><h3>Long context</h3><p>Choose a larger context window for lengthy documents and multi-file tasks.</p></div></li><li data-reveal><span class="item-number">05</span><div><h3>Prompt caching</h3><p>Compare standard and cached input rates for repeated prompt prefixes.</p></div></li><li data-reveal><span class="item-number">06</span><div><h3>Model comparison</h3><p>Bring the same prompt to different families. Compare the output and token cost.</p></div></li></ol>
+        <div class="use-cases"><figure><img src="../../assets/pavilion-960.webp" srcset="../../assets/pavilion-640.webp 640w, ../../assets/pavilion-960.webp 960w, ../../assets/pavilion-1440.webp 1440w" sizes="(max-width: 760px) 90vw, 600px" width="1536" height="1024" alt="A precise concrete pavilion with a single continuous roof" loading="lazy" decoding="async"><figcaption>A considered system. Room to build.</figcaption></figure><div><p class="eyebrow">MADE FOR YOUR WORK</p><h3>One platform.<br>Different practices.</h3><dl><div><dt>Developers</dt><dd>Keep your request format. Choose the model per task.</dd></div><div><dt>Researchers & writers</dt><dd>Compare model families and available response modes.</dd></div><div><dt>Teams</dt><dd>Understand token usage and the effect of caching.</dd></div></dl></div></div>
+      </section>
+      <section id="developers" class="section" data-section>
+        <div class="section-heading"><p class="eyebrow"><span>03</span>FOR DEVELOPERS</p><h2 data-reveal>Your next request.<br>Already familiar.</h2><p class="section-intro" data-reveal>Choose a family and a mode. The example updates in the language you use.</p></div>
+        <ol class="quickstart-steps"><li><span>01</span>Choose a model</li><li><span>02</span>Copy your request</li><li><span>03</span>Read the usage</li></ol>
+        <div class="integration"><div class="model-config"><p class="control-label" id="family-label">MODEL FAMILY</p><div class="model-choices" id="pick-model" role="group" aria-labelledby="family-label"><button type="button" data-model="core" aria-pressed="true"><span>Core</span><span>128K</span></button><button type="button" data-model="unbound" aria-pressed="false"><span>Unbound</span><span>128K</span></button><button type="button" data-model="forge" aria-pressed="false"><span>Forge</span><span>256K</span></button><button type="button" data-model="atlas" aria-pressed="false"><span>Atlas</span><span>1M</span></button><button type="button" data-model="swift" aria-pressed="false"><span>Swift</span><span>32K</span></button></div><p class="control-label" id="mode-label">RESPONSE MODE</p><div class="mode-choices" id="pick-temp" role="group" aria-labelledby="mode-label"><button type="button" data-temp="Standard" aria-pressed="true">Standard</button><button type="button" data-temp="Low-refusal" aria-pressed="false">Low-refusal</button><button type="button" data-temp="Abliterated" aria-pressed="false">Abliterated</button></div><code id="pick-out" aria-live="polite">core-128k</code><p class="micro">Modes vary by model. This is an interactive example using placeholder model data.</p></div>
+        <div class="code-workbench"><div class="code-toolbar"><div role="tablist" aria-label="Code language"><button role="tab" type="button" id="tab-0" aria-controls="code-0" aria-selected="true" tabindex="0">cURL</button><button role="tab" type="button" id="tab-1" aria-controls="code-1" aria-selected="false" tabindex="-1">TypeScript</button><button role="tab" type="button" id="tab-2" aria-controls="code-2" aria-selected="false" tabindex="-1">Python</button></div><button type="button" id="copy-code" class="copy-button">Copy <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button></div><pre class="code-panel" role="tabpanel" id="code-0" aria-labelledby="tab-0" tabindex="0"><code></code></pre><pre class="code-panel" role="tabpanel" id="code-1" aria-labelledby="tab-1" tabindex="0" hidden><code></code></pre><pre class="code-panel" role="tabpanel" id="code-2" aria-labelledby="tab-2" tabindex="0" hidden><code></code></pre><div class="receipt"><div><span class="receipt-dot"></span>SAMPLE USAGE RECEIPT</div><dl><div><dt>Input tokens</dt><dd>1,820</dd></div><div><dt>Cached input</dt><dd>1,536</dd></div><div><dt>Output tokens</dt><dd>412</dd></div><div class="receipt-total"><dt>Request cost</dt><dd id="receipt-cost" aria-live="polite">$0.001389</dd></div></dl></div></div></div>
+        <p class="micro example-note">Example endpoint: https://api.aether.example/v1. Requests are shown for reference and are not sent from this page. <span id="copy-status" role="status"></span></p>
+      </section>
+      <section id="models" class="section" data-section>
+        <div class="section-heading"><p class="eyebrow"><span>04</span>MODELS & RATES</p><h2 data-reveal>Choose for the work.<br>See what it costs.</h2><p class="section-intro" data-reveal>Five families, each with a different focus. Sample prices shown per million tokens.</p></div>
+        <div class="model-filter" role="group" aria-label="Filter models"><button type="button" data-filter="all" aria-pressed="true">All models</button><button type="button" data-filter="general" aria-pressed="false">General</button><button type="button" data-filter="coding" aria-pressed="false">Coding</button><button type="button" data-filter="context" aria-pressed="false">Long context</button><button type="button" data-filter="fast" aria-pressed="false">Fast</button></div>
+        <div class="model-table-wrap"><table class="model-table"><caption class="sr-only">Illustrative model rates in US dollars per one million tokens</caption><thead><tr><th scope="col">Model</th><th scope="col">Context</th><th scope="col">Input</th><th scope="col">Cached input</th><th scope="col">Output</th><th scope="col">Available modes</th></tr></thead><tbody><tr data-model-row="core"><th scope="row"><button type="button" class="model-table-name" data-choose="core" aria-label="Use Core in quickstart">Core<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button><span>General chat & reasoning</span></th><td><span class="cell-label">Context</span>128K</td><td><span class="cell-label">Input</span>$0.60</td><td><span class="cell-label">Cached</span>$0.15</td><td><span class="cell-label">Output</span>$2.40</td><td class="table-variants"><span>Standard</span><span>Low-refusal</span></td></tr><tr data-model-row="unbound"><th scope="row"><button type="button" class="model-table-name" data-choose="unbound" aria-label="Use Unbound in quickstart">Unbound<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button><span>Alternative model behavior</span></th><td><span class="cell-label">Context</span>128K</td><td><span class="cell-label">Input</span>$0.80</td><td><span class="cell-label">Cached</span>$0.20</td><td><span class="cell-label">Output</span>$3.20</td><td class="table-variants"><span>Abliterated</span></td></tr><tr data-model-row="forge"><th scope="row"><button type="button" class="model-table-name" data-choose="forge" aria-label="Use Forge in quickstart">Forge<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button><span>Code & repository work</span></th><td><span class="cell-label">Context</span>256K</td><td><span class="cell-label">Input</span>$1.20</td><td><span class="cell-label">Cached</span>$0.30</td><td><span class="cell-label">Output</span>$4.80</td><td class="table-variants"><span>Standard</span><span>Low-refusal</span></td></tr><tr data-model-row="atlas"><th scope="row"><button type="button" class="model-table-name" data-choose="atlas" aria-label="Use Atlas in quickstart">Atlas<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button><span>Long documents & context</span></th><td><span class="cell-label">Context</span>1M</td><td><span class="cell-label">Input</span>$1.50</td><td><span class="cell-label">Cached</span>$0.25</td><td><span class="cell-label">Output</span>$6.00</td><td class="table-variants"><span>Standard</span></td></tr><tr data-model-row="swift"><th scope="row"><button type="button" class="model-table-name" data-choose="swift" aria-label="Use Swift in quickstart">Swift<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button><span>Fast, focused tasks</span></th><td><span class="cell-label">Context</span>32K</td><td><span class="cell-label">Input</span>$0.08</td><td><span class="cell-label">Cached</span>$0.02</td><td><span class="cell-label">Output</span>$0.32</td><td class="table-variants"><span>Standard</span><span>Low-refusal</span><span>Abliterated</span></td></tr></tbody></table></div>
+        <p class="micro table-note">Sample model names and rates, not a commitment to availability or final pricing.</p>
+        <div class="estimate"><div class="estimate-controls"><p class="eyebrow">BEFORE YOU BUILD</p><h3>Put a number to it.</h3><p class="estimate-model">Estimate for <strong id="estimate-model">Core</strong> <a href="#developers">Change model <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></p><label for="input-tokens">Input tokens <output id="input-value">8,000</output></label><input id="input-tokens" type="range" min="1000" max="32000" step="1000" value="8000"><label for="output-tokens">Output tokens <output id="output-value">2,000</output></label><input id="output-tokens" type="range" min="100" max="8000" step="100" value="2000"><label class="cache-toggle"><input type="checkbox" id="cache-toggle"><span>Cache half the input</span></label><p id="context-note" class="micro" role="status"></p></div><div class="estimate-result"><span>ILLUSTRATIVE REQUEST COST</span><output id="estimate-cost" aria-live="polite">$0.009600</output><p><span id="cache-saving">Turn on caching to compare.</span><br>Input + cached input + output. No hidden arithmetic.</p></div></div>
+      </section>
+      <section id="pricing" class="section" data-section>
+        <div class="section-heading"><p class="eyebrow"><span>05</span>ILLUSTRATIVE PLANS</p><h2 data-reveal>Start small.<br>Build from there.</h2><p class="section-intro" data-reveal>A proposed structure for chat and API access. These plans are examples; checkout is not available in this preview.</p></div>
+        <div class="plans"><article><h3>Explore</h3><p class="plan-price">$0<span>to start</span></p><p>A place to try the model families and find your fit.</p><ul><li>Unified chat</li><li>Daily usage allowance</li><li>Model comparison</li></ul><a class="text-link" href="#models">Explore models <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></article><article class="featured-plan"><h3>Pro</h3><p class="plan-price">$20<span>/ month · sample</span></p><p>More room for longer conversations and larger tasks.</p><ul><li>Higher chat limits</li><li>Alternative model variants</li><li>Coding tools preview</li></ul><a class="text-link" href="#platform">See the platform <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></article><article><h3>API</h3><p class="plan-price">Per token<span>pay as you go</span></p><p>Choose a model per request and track the cost.</p><ul><li>One request format</li><li>Prompt caching</li><li>Token-level usage</li></ul><a class="text-link" href="#developers">View quickstart <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></article></div>
+      </section>
+      <section id="faq" class="section faq-section" data-section>
+        <div class="section-heading"><p class="eyebrow"><span>06</span>A FEW DETAILS</p><h2 data-reveal>Clear answers.<br>Before you start.</h2></div>
+        <div class="faq-list"><details><summary>What is Aether?<span aria-hidden="true">+</span></summary><p>A platform direction for accessing several model families through one API, with unified chat, coding tools and per-token pricing. This page is a product preview: model names, availability and rates are illustrative.</p></details><details><summary>Can I use an OpenAI-compatible SDK?<span aria-hidden="true">+</span></summary><p>The proposed API follows the familiar chat-completions request format. The quickstart shows how a base URL, API key and model string fit together. The example endpoint is a placeholder and does not send live requests.</p></details><details><summary>What do the three model modes mean?<span aria-hidden="true">+</span></summary><p>Standard is the default behavior. Low-refusal and abliterated are alternative model variants intended to reduce refusal behavior. Availability and actual behavior depend on the model; each family lists the modes shown in this preview.</p></details><details><summary>How does prompt caching affect cost?<span aria-hidden="true">+</span></summary><p>In this pricing example, repeated input tokens use the cached-input rate. The estimator separates input, cached input and output so you can see the arithmetic before choosing a model.</p></details><details><summary>Can I change models without rebuilding my integration?<span aria-hidden="true">+</span></summary><p>The examples use the same request structure for every model. Choose a family and an available mode in the quickstart; the model identifier updates in cURL, TypeScript and Python.</p></details><details><summary>Are the prices and subscriptions final?<span aria-hidden="true">+</span></summary><p>No. All model prices and plan amounts here are samples for product exploration. There is no checkout or active billing on this preview.</p></details></div>
+      </section>
+    </div>
+  </div>
+  <section class="closing" aria-labelledby="closing-title"><div><p class="eyebrow">A CLEARER FOUNDATION</p><h2 id="closing-title">Less to manage.<br>More to build.</h2><p>Start with a familiar request.<br>Choose where it takes you.</p><a class="button primary" href="#developers">Open the quickstart <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></a></div><figure><img src="../../assets/monolith-960.webp" srcset="../../assets/monolith-640.webp 640w, ../../assets/monolith-960.webp 960w, ../../assets/monolith-1440.webp 1440w" sizes="(max-width: 760px) 90vw, 600px" width="1536" height="1024" alt="A tall concrete monolith joined to a low horizontal structure" loading="lazy" decoding="async"></figure></section>
+</main>
+<footer class="site-footer"><div class="footer-top"><a class="brand" href="#main"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M3 23V9h6v14M11 23V4h6v19M19 23V12h6v11M1 25h26" stroke="currentColor" stroke-width="2"/></svg>Aether.</a><p>One key. Every model.</p><a class="text-link" href="#main">Back to top <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><p>Product preview. Models, rates and plans are illustrative.</p><nav aria-label="Footer"><a href="#models">Models</a><a href="#developers">Quickstart</a><a href="#faq">FAQ</a></nav><span>© 2026 Aether</span></div></footer>
+<script>window.AE={"BRAND":{"name":"Aether","domain":"aether.example","apiBase":"https://api.aether.example/v1","envKey":"AETHER_API_KEY"},"MODELS":[{"id":"core","name":"Core","role":"General chat & reasoning","context":"128K","contextK":128,"variants":["Standard","Low-refusal"],"inPrice":0.6,"outPrice":2.4,"cached":0.15},{"id":"unbound","name":"Unbound","role":"Alternative model behavior","context":"128K","contextK":128,"variants":["Abliterated"],"inPrice":0.8,"outPrice":3.2,"cached":0.2},{"id":"forge","name":"Forge","role":"Code & repository work","context":"256K","contextK":256,"variants":["Standard","Low-refusal"],"inPrice":1.2,"outPrice":4.8,"cached":0.3},{"id":"atlas","name":"Atlas","role":"Long documents & context","context":"1M","contextK":1000,"variants":["Standard"],"inPrice":1.5,"outPrice":6,"cached":0.25},{"id":"swift","name":"Swift","role":"Fast, focused tasks","context":"32K","contextK":32,"variants":["Standard","Low-refusal","Abliterated"],"inPrice":0.08,"outPrice":0.32,"cached":0.02}],"PRICE_NOTE":"Illustrative rates in USD per one million tokens."};</script><script>(() => {
+  "use strict";
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  const clamp = (n, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, n));
+  const motion = matchMedia("(prefers-reduced-motion: reduce)");
+  const fine = matchMedia("(hover: hover) and (pointer: fine)");
+  if (!motion.matches) document.documentElement.classList.add("motion-ready");
+  const reveals = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (entry.isIntersecting) { entry.target.classList.add("is-in"); reveals.unobserve(entry.target); }
+  }), { rootMargin: "0px 0px -6% 0px" });
+  $$("[data-reveal]").forEach((node) => { if (motion.matches) node.classList.add("is-in"); else reveals.observe(node); });
+
+  // The menu is a real keyboard-accessible disclosure, including focus return.
+  const menu = $("#mobile-menu"), menuButton = $(".menu-button");
+  function setMenu(open, returnFocus = false) {
+    menu.hidden = !open;
+    menuButton.setAttribute("aria-expanded", String(open));
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    if (open) menu.querySelector("a").focus();
+    if (returnFocus) menuButton.focus();
+  }
+  menuButton.addEventListener("click", () => setMenu(menu.hidden));
+  menu.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+  addEventListener("keydown", (e) => {
+    if (menu.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); setMenu(false, true); }
+    if (e.key === "Tab") {
+      const links = [...menu.querySelectorAll("a")];
+      if (!e.shiftKey && document.activeElement === links.at(-1)) { e.preventDefault(); menuButton.focus(); }
+      else if (e.shiftKey && document.activeElement === menuButton) { e.preventDefault(); links.at(-1).focus(); }
+    }
+  });
+  matchMedia("(min-width: 761px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
+
+  // Time-based, damped image spring. It sleeps when settled or out of view.
+  const physical = $("[data-physical]"), picture = physical.querySelector("img");
+  let x = 0, y = 0, vx = 0, vy = 0, tx = 0, ty = 0, frame = 0, last = 0, visible = true;
+  function resetSpring() {
+    cancelAnimationFrame(frame); frame = 0;
+    x = y = vx = vy = tx = ty = 0;
+    picture.style.removeProperty("--px"); picture.style.removeProperty("--py");
+  }
+  function tick(now) {
+    if (!visible || motion.matches || document.hidden) return resetSpring();
+    const dt = Math.min((now - last) / 1000 || 1 / 60, .032); last = now;
+    const drag = Math.exp(-22 * dt);
+    vx = (vx + (tx - x) * 240 * dt) * drag;
+    vy = (vy + (ty - y) * 240 * dt) * drag;
+    x += vx * dt; y += vy * dt;
+    picture.style.setProperty("--px", x.toFixed(3) + "px");
+    picture.style.setProperty("--py", y.toFixed(3) + "px");
+    frame = Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(vx) + Math.abs(vy) > .04 ? requestAnimationFrame(tick) : 0;
+  }
+  function wake() { if (!frame && visible && !motion.matches) { last = performance.now(); frame = requestAnimationFrame(tick); } }
+  physical.addEventListener("pointermove", (e) => {
+    if (!fine.matches || motion.matches) return;
+    const r = physical.getBoundingClientRect();
+    tx = clamp((e.clientX - r.left) / r.width * 2 - 1, -1, 1) * 8;
+    ty = clamp((e.clientY - r.top) / r.height * 2 - 1, -1, 1) * 5;
+    wake();
+  }, { passive: true });
+  physical.addEventListener("pointerleave", () => { tx = ty = 0; wake(); });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (!visible) resetSpring(); }).observe(physical);
+  document.addEventListener("visibilitychange", () => { if (document.hidden) resetSpring(); });
+  motion.addEventListener("change", (e) => { document.documentElement.classList.toggle("motion-ready", !e.matches); if (e.matches) { resetSpring(); $$("[data-reveal]").forEach((node) => node.classList.add("is-in")); } });
+
+  // Models, code samples, receipts and estimates all share one selection.
+  const ids = { core: "core-128k", unbound: "unbound-128k", forge: "forge-256k", atlas: "atlas-1m", swift: "swift-32k" };
+  const suffix = { Standard: "", "Low-refusal": ":low-refusal", Abliterated: ":abliterated" };
+  let model = AE.MODELS[0], mode = "Standard", language = 0, samples = [];
+  const money = (n) => "$" + n.toFixed(6);
+  function estimate() {
+    const input = +$("#input-tokens").value, output = +$("#output-tokens").value;
+    const cached = $("#cache-toggle").checked ? input * .5 : 0;
+    const full = (input * model.inPrice + output * model.outPrice) / 1e6;
+    const total = ((input - cached) * model.inPrice + cached * model.cached + output * model.outPrice) / 1e6;
+    $("#input-value").textContent = input.toLocaleString("en-US");
+    $("#output-value").textContent = output.toLocaleString("en-US");
+    $("#estimate-model").textContent = model.name;
+    $("#estimate-cost").textContent = money(total);
+    $("#cache-saving").textContent = cached ? "Caching saves " + money(full - total) + " on this request." : "Turn on caching to compare.";
+    $("#context-note").textContent = input + output > model.contextK * 1000 ? "This request exceeds " + model.name + "’s sample " + model.context + " context window. Reduce the token counts." : "";
+  }
+  function renderSelection() {
+    if (!model.variants.includes(mode)) mode = model.variants[0];
+    const name = ids[model.id] + (model.id === "unbound" ? "" : suffix[mode]);
+    $$("[data-model]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.model === model.id)));
+    $$("[data-temp]").forEach((b) => { b.disabled = !model.variants.includes(b.dataset.temp); b.setAttribute("aria-pressed", String(b.dataset.temp === mode)); });
+    $("#pick-out").textContent = name;
+    const messages = [{ role: "user", content: "Explain prompt caching in one sentence." }];
+    const payload = JSON.stringify({ model: name, messages }, null, 2);
+    samples = [
+      `curl ${AE.BRAND.apiBase}/chat/completions \\\n  -H "Authorization: Bearer $${AE.BRAND.envKey}" \\\n  -H "Content-Type: application/json" \\\n  -d '${payload}'`,
+      `import OpenAI from "openai";\n\nconst client = new OpenAI({\n  baseURL: "${AE.BRAND.apiBase}",\n  apiKey: process.env.${AE.BRAND.envKey},\n});\n\nconst response = await client.chat.completions.create({\n  model: "${name}",\n  messages: [{ role: "user", content: "Hello" }],\n});\n\nconsole.log(response.choices[0].message.content);`,
+      `import os\nfrom openai import OpenAI\n\nclient = OpenAI(\n    base_url="${AE.BRAND.apiBase}",\n    api_key=os.environ["${AE.BRAND.envKey}"],\n)\n\nresponse = client.chat.completions.create(\n    model="${name}",\n    messages=[{"role": "user", "content": "Hello"}],\n)\n\nprint(response.choices[0].message.content)`,
+    ];
+    $$(".code-panel code").forEach((code, i) => { code.textContent = samples[i]; });
+    $("#receipt-cost").textContent = money(((1820 - 1536) * model.inPrice + 1536 * model.cached + 412 * model.outPrice) / 1e6);
+    estimate();
+  }
+  function choose(id) { model = AE.MODELS.find((m) => m.id === id) || model; renderSelection(); }
+  $$("[data-model]").forEach((b) => b.addEventListener("click", () => choose(b.dataset.model)));
+  $$("[data-temp]").forEach((b) => b.addEventListener("click", () => { mode = b.dataset.temp; renderSelection(); }));
+  $$("[data-choose]").forEach((b) => b.addEventListener("click", () => {
+    choose(b.dataset.choose); $("#developers").scrollIntoView({ behavior: motion.matches ? "instant" : "smooth" });
+    $("[data-model='" + model.id + "']").focus({ preventScroll: true });
+  }));
+  ["input-tokens", "output-tokens", "cache-toggle"].forEach((id) => $("#" + id).addEventListener("input", estimate));
+  renderSelection();
+  const tabs = $$('[role="tab"]'), panels = $$('[role="tabpanel"]');
+  function selectTab(index, focus = false) {
+    language = index;
+    tabs.forEach((b, i) => { b.setAttribute("aria-selected", String(i === index)); b.tabIndex = i === index ? 0 : -1; panels[i].hidden = i !== index; });
+    if (focus) tabs[index].focus();
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => selectTab(i));
+    tab.addEventListener("keydown", (e) => {
+      const next = e.key === "ArrowRight" ? (i + 1) % 3 : e.key === "ArrowLeft" ? (i + 2) % 3 : e.key === "Home" ? 0 : e.key === "End" ? 2 : -1;
+      if (next !== -1) { e.preventDefault(); selectTab(next, true); }
+    });
+  });
+  let copyTimer;
+  $("#copy-code").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(samples[language]);
+      $("#copy-status").textContent = "Copied to clipboard.";
+      clearTimeout(copyTimer); copyTimer = setTimeout(() => { $("#copy-status").textContent = ""; }, 2500);
+    } catch {
+      const range = document.createRange(); range.selectNodeContents(panels[language]);
+      const selection = getSelection(); selection.removeAllRanges(); selection.addRange(range);
+      $("#copy-status").textContent = "Code selected. Use your keyboard’s copy command.";
+    }
+  });
+  const categories = { all: AE.MODELS.map((m) => m.id), general: ["core", "unbound"], coding: ["forge"], context: ["atlas"], fast: ["swift"] };
+  $$("[data-filter]").forEach((b) => b.addEventListener("click", () => {
+    $$("[data-filter]").forEach((other) => other.setAttribute("aria-pressed", String(other === b)));
+    $$("[data-model-row]").forEach((row) => { row.hidden = !categories[b.dataset.filter].includes(row.dataset.modelRow); });
+  }));
+
+  // Concrete forms rise with natural scrolling; the slider only changes cost shadows.
+  const svg = $("#build-iso"), ns = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs) => { const node = document.createElementNS(ns, tag); Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v)); svg.appendChild(node); return node; };
+  const project = (x, y, z = 0) => [(x - y) * .866 + 110, (x + y) * .42 + 235 - z];
+  const polygon = (pts) => pts.map((p) => project(...p).map((v) => v.toFixed(2)).join(",")).join(" ");
+  const blocks = AE.MODELS.map((m, i) => {
+    const x = 35 + i * 105, y = -i * 16, w = 40, d = 40;
+    const height = 30 + Math.log(m.contextK / 32) / Math.log(1000 / 32) * 155;
+    const shadow = el("polygon", { fill: "#1B2923", opacity: ".12" });
+    const faces = ["#B8C0B3", "#A4AE9F", "#DADED3"].map((fill) => el("polygon", { fill, stroke: "#63745F", "stroke-width": ".65", "vector-effect": "non-scaling-stroke" }));
+    const pos = project(x + 22, y + 40);
+    const label = el("text", { x: pos[0] + 3, y: pos[1] + 27, fill: "#314536", "font-family": "Manrope", "font-size": "13", "text-anchor": "middle" });
+    label.textContent = m.name;
+    return { m, x, y, w, d, height, shadow, faces };
+  });
+  let elevation = motion.matches ? 1 : .15;
+  function drawStructure() {
+    const v = +$("#sun").value, tokens = Math.round(1000 + 31000 * v);
+    const costs = AE.MODELS.map((m) => tokens * (.75 * m.inPrice + .25 * m.outPrice) / 1e6), max = Math.max(...costs);
+    blocks.forEach((b, i) => {
+      const { x, y, w, d } = b, h = b.height * (.12 + .88 * elevation);
+      const top = [[x,y,h],[x+w,y,h],[x+w,y+d,h],[x,y+d,h]];
+      b.faces[0].setAttribute("points", polygon([[x+w,y,0],[x+w,y+d,0],[x+w,y+d,h],[x+w,y,h]]));
+      b.faces[1].setAttribute("points", polygon([[x,y+d,0],[x+w,y+d,0],[x+w,y+d,h],[x,y+d,h]]));
+      b.faces[2].setAttribute("points", polygon(top));
+      const len = 15 + costs[i] / max * (35 + 55 * v);
+      b.shadow.setAttribute("points", polygon([[x,y,0],[x+w,y,0],[x+w+len,y+d+len*.2,0],[x+len,y+d+len*.2,0]]));
+    });
+    $("#r-time").textContent = Math.round(tokens / 1000) + "K tokens";
+    $("#r-el").textContent = AE.MODELS[costs.indexOf(Math.min(...costs))].name;
+    $("#r-sh").textContent = money(costs[3]);
+  }
+  $("#sun").addEventListener("input", drawStructure);
+  const sections = $$(".body-sections>.section"), spy = $$(".chapter-nav nav a");
+  let scrollFrame = 0;
+  function updateScroll() {
+    scrollFrame = 0;
+    const r = $("#build").getBoundingClientRect();
+    const p = motion.matches || innerWidth <= 760 ? 1 : clamp((innerHeight * .85 - r.top) / (innerHeight * .65));
+    elevation = p * p * (3 - 2 * p); drawStructure();
+    const current = [...sections].reverse().find((s) => s.getBoundingClientRect().top <= innerHeight * .4) || sections[0];
+    spy.forEach((a) => { if (a.hash === "#" + current.id) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current"); });
+  }
+  const queueScroll = () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll); };
+  addEventListener("scroll", queueScroll, { passive: true }); addEventListener("resize", queueScroll);
+  motion.addEventListener("change", queueScroll); updateScroll();
+})();
+</script>
+<script>
+if(new URLSearchParams(location.search).has("tweaks")){
+  document.documentElement.classList.add("design-controls");
+  const base="../../";
+  const style=document.createElement("link");style.rel="stylesheet";style.href=base+"assets/tweaks.css";document.head.appendChild(style);
+  const script=document.createElement("script");script.src=base+"assets/tweaks.js";
+  script.onload=()=>AetherTweaks.init({fonts:[{"name":"Manrope","url":"../../alt/fonts/manrope-400-800-normal.woff2","style":"normal"},{"name":"Public Sans","url":"../../alt/fonts/public-sans-400-700-normal.woff2","style":"normal"},{"name":"IBM Plex Sans","url":"../../alt/fonts/ibm-plex-sans-400-normal.woff2","style":"normal"},{"name":"JetBrains Mono","url":"../../alt/fonts/jetbrains-mono-400-normal.woff2","style":"normal"},{"name":"Space Mono","url":"../../alt/fonts/space-mono-400-normal.woff2","style":"normal"},{"name":"Hanken Grotesk","url":"../../alt/fonts/hanken-grotesk-400-normal.woff2","style":"normal"}],key:"aether-tweaks:"+location.pathname});
+  document.body.appendChild(script);
+}
+</script></body></html>

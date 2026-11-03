@@ -1,0 +1,19 @@
+{
+  "name": "kanso-aether",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone Kanso landing page and three body directions",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node serve.mjs",
+    "start": "node serve.mjs",
+    "verify": "node verify.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.64.1"
+  }
+}

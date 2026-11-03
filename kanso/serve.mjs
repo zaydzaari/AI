@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "dist");
 const PORT = Number(process.argv[2] || process.env.PORT || 4330);
 const HOST = process.env.HOST || "127.0.0.1"; // local only by default; set HOST=0.0.0.0 to share on your LAN
-const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".woff2": "font/woff2", ".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml", ".js": "text/javascript", ".css": "text/css", ".mjs": "text/javascript" };
+const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".woff2": "font/woff2", ".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".svg": "image/svg+xml", ".js": "text/javascript", ".css": "text/css", ".mjs": "text/javascript" };
 
 http
   .createServer((req, res) => {

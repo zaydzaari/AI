@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node kanso/build.mjs && node kanso/serve.mjs",
+    "build": "node kanso/build.mjs",
+    "start": "node kanso/serve.mjs",
     "lint": "next lint",
     "screenshots": "node scripts/screenshots.cjs",
     "audit": "node scripts/audit.cjs",
@@ -16,7 +16,10 @@
     "lab:fonts": "node scripts/lab-fonts.mjs",
     "kanso": "node kanso/serve.mjs",
     "kanso:build": "node kanso/build.mjs",
-    "kanso:verify": "node kanso/verify.cjs"
+    "kanso:verify": "node kanso/verify.cjs",
+    "lab": "next dev",
+    "lab:build": "next build",
+    "lab:start": "next start"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

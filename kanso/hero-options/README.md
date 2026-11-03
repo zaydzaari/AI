@@ -2,7 +2,23 @@
 
 Generated on November 3, 2026 with the built-in image_gen tool.
 
-These are alternatives for the selected Kanso website. The page's existing interactive hero remains the current version while an image is selected.
+The finished Kanso website uses Courtyard in the hero, Pavilion in the platform section, and Monolith in the closing section. The wide Courtyard edit is used on desktop; the original composition is used on mobile. Optimized responsive WebP exports are in `../src/assets/`.
+
+## Final desktop hero
+
+The three original studies below were generated with the built-in image generator. The final desktop hero also uses the following edit.
+
+### Panoramic Courtyard
+
+[Open the desktop hero source](04-courtyard-wide.png)
+
+Input image: `03-courtyard.png`, used as the edit target. Mode: built-in `image_gen`, opaque background.
+
+Final edit prompt:
+
+```text
+Edit this architectural image into a very wide production website hero banner, aspect ratio 3:1 (for example 1920 by 640). Preserve the original five concrete piers, their connecting lintel and open courtyard, the exact pale mineral-concrete materials and original lighting. Expand the canvas horizontally with the same continuous quiet light grey ground and backdrop. Recompose the ENTIRE courtyard so every pier, the entire lintel and the entire base slab are visible with generous margins above and below; the architecture should occupy only the central 65 percent of the wide banner and about 75 percent of its height. Do not crop the top of any pier or the base. Keep the image refined, photorealistic, tactile and neutral, with controlled shadows and a seamless soft-grey atmosphere. This is the same architectural sculpture, just composed for a very wide hero. No text, letters, logos, diagrams, annotations, typography, people, props or website UI. One continuous finished image, not a collage. Output a genuinely panoramic 3:1 canvas.
+```
 
 ## Pavilion
 

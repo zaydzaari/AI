@@ -1,10 +1,10 @@
-# Aether — Design Lab
+# Aether — Kanso
 
 This repository holds the landing-page work for **Aether**, a placeholder brand for an AI platform that sells model access and API tokens:
 
 1. **The Design Lab:** 12 complete, working directions in Next.js, plus a gallery for previewing and comparing them (documented below).
 2. **The Awwwards 20 Collection:** 20 standalone static sites plus a Master Exhibition Gallery, in [`awwwards-20-collection/`](awwwards-20-collection/README.md).
-3. **Kanso, the chosen direction:** a standalone site in [`kanso/`](kanso/README.md), developed separately for a big-company launch. Run `npm run kanso:build`, then `npm run kanso` (http://localhost:4330/).
+3. **Kanso, the chosen website:** a standalone site in [`kanso/`](kanso/README.md). It is now the default for `npm run dev`, `npm run build` and `npm start`. Includes three complete body layouts, a comparison page, generated architectural imagery, a working model explorer and cost calculator.
 
 This is a **private, local design exploration**. Nothing is deployed, and every page sets `noindex`. All product data is mock data.
 
@@ -12,14 +12,15 @@ This is a **private, local design exploration**. Nothing is deployed, and every 
 
 ## Run it
 
-Requirements: **Node.js 20.9 or newer** (Next.js 16).
+Requirements for Kanso: **Node.js 20 or newer**. Building and serving Kanso require no npm dependencies; the first build downloads the self-hosted fonts.
 
 ```bash
-npm install
 npm run dev
 ```
 
-Then open **http://localhost:3000**. It redirects to the gallery at **http://localhost:3000/designs**.
+Open **http://localhost:4330/** for the chosen Ledger layout. Compare all three finished directions at **http://localhost:4330/directions/**.
+
+To run the original Next.js design lab, install the root dependencies and use `npm run lab`; its gallery is at **http://localhost:3000/designs**. Its build/start scripts are `npm run lab:build` and `npm run lab:start`.
 
 To open the 20-site collection, run the next command and then visit **http://localhost:4320/**:
 

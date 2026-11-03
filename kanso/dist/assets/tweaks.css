@@ -1,0 +1,48 @@
+/* Aether Tweaks: hero load-in + panel. Shared by the collection (inlined) and the lab (imported). */
+
+/* Hero load-in: parts arrive one by one (visual, headline, sub, CTA, trust) with a heavy ease.
+   Pure CSS so it plays on first paint, before any script. Zero-specificity selectors and
+   fill-mode backwards, so a site's own styles win once the entrance has played. */
+@keyframes tw-in { from { opacity: 0; translate: 0 var(--tw-load-dist, 28px); filter: blur(var(--tw-load-blur, 6px)); } }
+@keyframes tw-in2 { from { opacity: 0; translate: 0 var(--tw-load-dist, 28px); filter: blur(var(--tw-load-blur, 6px)); } }
+@keyframes tw-fade { from { opacity: 0; scale: 0.985; } }
+@keyframes tw-fade2 { from { opacity: 0; scale: 0.985; } }
+:where([data-hero-part="visual"]) { --hp: 0; }
+:where([data-hero-part="headline"]) { --hp: 1; }
+:where([data-hero-part="sub"]) { --hp: 2; }
+:where([data-hero-part="cta"]) { --hp: 3; }
+:where([data-hero-part="trust"]) { --hp: 4; }
+@media (prefers-reduced-motion: no-preference) {
+  :where([data-hero]:not(.tw-noload)) :where([data-hero-part]) {
+    animation: tw-in var(--tw-load-dur, 1s) var(--tw-ease, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+    animation-delay: calc(var(--hp, 0) * var(--tw-load-stg, 110ms) + 60ms);
+  }
+  :where([data-hero]:not(.tw-noload)) :where([data-hero-part="visual"]) { animation-name: tw-fade; }
+  :where([data-hero].tw-again:not(.tw-noload)) :where([data-hero-part]) { animation-name: tw-in2; }
+  :where([data-hero].tw-again:not(.tw-noload)) :where([data-hero-part="visual"]) { animation-name: tw-fade2; }
+}
+
+/* Panel */
+.tw-wrap { position: fixed; right: 16px; bottom: 16px; z-index: 9600; display: grid; justify-items: end; gap: 10px; font-family: var(--font-body, sans-serif); font-size: 13px; line-height: 1.4; color: #F2F2F2; }
+.tw-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #FFFFFF33; background: #121214EB; color: #F4F4F4; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 10px 30px -12px #000000AA; }
+.tw-toggle svg { width: 16px; height: 16px; }
+.tw-toggle:focus-visible, .tw-panel :focus-visible { outline: 2px solid #F4F4F4; outline-offset: 2px; }
+.tw-panel { width: min(340px, calc(100vw - 32px)); max-height: min(72vh, 640px); overflow: auto; padding: 16px 16px 12px; border-radius: 16px; border: 1px solid #FFFFFF26; background: #121214F5; box-shadow: 0 24px 60px -20px #000000CC; overscroll-behavior: contain; }
+.tw-panel[hidden] { display: none; }
+.tw-head { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid #FFFFFF1F; }
+.tw-head b { font-size: 15px; }
+.tw-head span, .tw-note { color: #B9B9BE; font-size: 12px; }
+.tw-group { border: 0; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.tw-group legend { padding: 0 0 4px; font-size: 12px; font-weight: 600; color: #D6D6DA; }
+.tw-row { display: grid; grid-template-columns: 112px 1fr 58px; align-items: center; gap: 8px; }
+.tw-row label { color: #E4E4E7; font-size: 12px; }
+.tw-row input[type="range"] { width: 100%; accent-color: #F2F2F2; }
+.tw-row input[type="color"] { width: 100%; height: 28px; padding: 0 2px; border: 1px solid #FFFFFF33; border-radius: 6px; background: transparent; }
+.tw-row input[type="checkbox"] { justify-self: start; width: 18px; height: 18px; accent-color: #F2F2F2; }
+.tw-row select { width: 100%; min-height: 30px; padding: 0 6px; border-radius: 6px; border: 1px solid #FFFFFF33; background: #1C1C20; color: #F2F2F2; font: inherit; font-size: 12px; }
+.tw-row output { font-size: 12px; color: #B9B9BE; text-align: right; font-variant-numeric: tabular-nums; }
+.tw-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tw-actions button { min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #FFFFFF33; background: #1C1C20; color: #F2F2F2; font: inherit; font-size: 12px; cursor: pointer; }
+.tw-actions button:hover { background: #26262B; }
+.tw-note { margin: 8px 0 0; min-height: 1em; white-space: pre-wrap; word-break: break-word; }
+@media print { .tw-wrap { display: none; } }

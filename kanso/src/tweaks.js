@@ -32,7 +32,7 @@
       { id: "fontDisplay", label: "Heading font", type: "select", css: "--font-display", font: true },
       { id: "fontBody", label: "Body font", type: "select", css: "--font-body", font: true },
       { id: "h1", label: "Headline size", type: "range", css: "--tw-h1", min: 0.7, max: 1.3, step: 0.01, def: 1, fmt: "x" },
-      { id: "h1ls", label: "Headline tracking", type: "range", css: "--tw-h1ls", min: -0.06, max: 0.04, step: 0.005, def: -0.03, unit: "em" },
+      { id: "h1ls", label: "Headline tracking", type: "range", css: "--tw-h1ls", min: -0.06, max: 0.04, step: 0.005, def: -0.04, unit: "em" },
       { id: "h1w", label: "Headline weight", type: "range", css: "--h1-weight", min: 200, max: 900, step: 50, def: null },
       { id: "body", label: "Body size", type: "range", css: "--tw-body", min: 0.85, max: 1.25, step: 0.01, def: 1, fmt: "x" },
     ]],
@@ -44,19 +44,16 @@
       { id: "muted", label: "Muted text", type: "color", css: "--text-muted" },
     ]],
     ["Motion", [
-      { id: "load", label: "Hero load-in", type: "toggle", def: true },
+      { id: "load", label: "Hero load-in", type: "toggle", def: false },
       { id: "ldur", label: "Load duration", type: "range", css: "--tw-load-dur", min: 0.3, max: 2.4, step: 0.05, def: 1, unit: "s" },
       { id: "lstg", label: "Load stagger", type: "range", css: "--tw-load-stg", min: 0, max: 400, step: 10, def: 110, unit: "ms" },
       { id: "ldist", label: "Load distance", type: "range", css: "--tw-load-dist", min: 0, max: 120, step: 2, def: 28, unit: "px" },
       { id: "lblur", label: "Load blur", type: "range", css: "--tw-load-blur", min: 0, max: 20, step: 1, def: 6, unit: "px" },
       { id: "ease", label: "Weight", type: "select", css: "--tw-ease", options: Object.keys(EASES), def: "Heavy" },
-      { id: "rdist", label: "Reveal distance", type: "range", css: "--tw-rd", min: 0, max: 100, step: 2, def: 26, unit: "px" },
+      { id: "rdist", label: "Reveal distance", type: "range", css: "--tw-rd", min: 0, max: 100, step: 2, def: 14, unit: "px" },
       { id: "rdur", label: "Reveal duration", type: "range", css: "--tw-dur", min: 0.3, max: 2.5, step: 0.05, def: 1, fmt: "x" },
       { id: "rstg", label: "Reveal stagger", type: "range", css: "--tw-stg", min: 0, max: 240, step: 10, def: 80, unit: "ms" },
-      { id: "exit", label: "Hero exit fade", type: "range", min: 0, max: 1, step: 0.05, def: 0.85 },
-    ]],
-    ["Texture", [
-      { id: "grain", label: "Grain", type: "range", css: "--tw-grain", min: 0, max: 0.12, step: 0.005, def: 0.035 },
+      { id: "exit", label: "Hero exit fade", type: "range", min: 0, max: 1, step: 0.05, def: 0 },
     ]],
   ];
 
