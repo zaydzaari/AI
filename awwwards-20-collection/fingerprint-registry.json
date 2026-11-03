@@ -93,7 +93,7 @@
       },
       "signature_scroll_mechanic": "Playable frequency synthesiser: Web Audio tone with bass/mid/treble isolation; scroll drives the waveform phase and sweep",
       "hero_layout_type": "Horizon line: headline above a full-width live waveform that splits the viewport, CTA below the line",
-      "built": false
+      "built": true
     },
     {
       "id": "06",
