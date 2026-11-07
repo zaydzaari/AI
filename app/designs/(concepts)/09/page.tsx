@@ -1,5 +1,4 @@
-import "@/components/designs/d09/fonts.generated.css";
-import "@/components/system/kit.css";
+import "@fontsource-variable/instrument-sans";
 import "@/components/designs/d09/d09.css";
 import Design09 from "@/components/designs/d09/Design09";
 

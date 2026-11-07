@@ -57,7 +57,7 @@ export function DesignDock() {
     <div
       data-dock
       className="fixed bottom-4 left-4 z-[9999] text-[12.5px] text-white"
-      style={{ fontFamily: "'Hanken Grotesk Variable', ui-sans-serif, sans-serif" }}
+      style={{ fontFamily: "'Geist Variable', ui-sans-serif, sans-serif" }}
     >
       <AnimatePresence initial={false} mode="wait">
         {open ? (

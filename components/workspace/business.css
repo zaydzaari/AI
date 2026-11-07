@@ -1,0 +1,97 @@
+.aw-business-page { container-type: inline-size; }
+.aw-business-page .aw-page-title h1 { font-size: clamp(1.75rem, 2.5vw, 2rem); }
+.aw-business-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--aw-line); background: transparent; font-variant-numeric: tabular-nums; }
+.aw-business-metrics > div { min-width: 0; padding: 20px 24px; }
+.aw-business-metrics > div + div { border-left: 1px solid var(--aw-line); }
+.aw-business-metrics dt { color: var(--aw-muted); font-size: .75rem; font-weight: 500; }
+.aw-business-metrics dd { margin-top: 5px; font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -.03em; line-height: 1.25; }
+.aw-business-metrics small { display: block; margin-top: 6px; color: var(--aw-muted); font-size: .7rem; }
+.aw-business-identity { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.aw-business-identity strong, .aw-business-identity small { display: block; }
+.aw-business-identity strong { font-size: .8125rem; font-weight: 500; }
+.aw-business-identity small { margin-top: 2px; color: var(--aw-muted); font-size: .72rem; overflow-wrap: anywhere; }
+.aw-business-customer-list li + li { border-top: 1px solid var(--aw-line); }
+.aw-business-customer-list a { display: flex; align-items: center; gap: 10px; min-height: 64px; padding-block: 12px; }
+.aw-business-customer-list .aw-business-identity { flex: 1; }
+.aw-business-customer-list a > strong { font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.aw-business-customer-list a:hover { color: var(--aw-blue); }
+.aw-business-goal { margin-block: 6px 13px; font-size: 1.9rem; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+.aw-business-goal span { display: block; margin-top: 3px; color: var(--aw-muted); font-size: .8125rem; font-weight: 500; letter-spacing: 0; }
+.aw-business-page meter { display: block; width: 100%; height: 9px; border: 0; border-radius: 8px; background: #dfe7f5; }
+.aw-business-page meter::-webkit-meter-bar { height: 9px; border: 0; border-radius: 8px; background: #dfe7f5; }
+.aw-business-page meter::-webkit-meter-optimum-value { border-radius: 8px; background: var(--aw-blue); }
+.aw-business-page meter::-moz-meter-bar { border-radius: 8px; background: var(--aw-blue); }
+.aw-business-page meter + p { margin-top: 10px; font-size: .8125rem; }
+.aw-business-page .aw-card > .aw-text-link { margin-top: 12px; }
+.aw-business-audit li { display: flex; align-items: start; gap: 10px; padding-block: 12px; }
+.aw-business-audit li + li { border-top: 1px solid var(--aw-line); }
+.aw-business-audit svg { margin-top: 4px; color: var(--aw-blue); }
+.aw-business-audit div { flex: 1; }
+.aw-business-audit strong { font-size: .8125rem; }
+.aw-business-audit p, .aw-business-audit small { color: var(--aw-muted); font-size: .75rem; }
+.aw-business-filters { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)); gap: 12px; padding: 16px; border: 1px solid var(--aw-line); border-radius: var(--aw-radius); background: #fff; }
+.aw-business-customers-table .aw-table { min-width: 730px; }
+.aw-business-controls { display: grid; justify-items: start; gap: 12px; }
+.aw-business-waterfall > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 1px; border-bottom: 1px solid var(--aw-line); }
+.aw-business-waterfall dt { color: var(--aw-muted); font-size: .8125rem; }
+.aw-business-waterfall dt small { display: block; margin-top: 3px; font-size: .72rem; }
+.aw-business-waterfall dd { font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.aw-business-waterfall .aw-business-subtotal dt { color: var(--aw-ink); font-weight: 500; }
+.aw-business-waterfall .aw-business-result { margin-top: 8px; padding: 13px 12px; border: 0; border-radius: 9px; background: var(--aw-pale); }
+.aw-business-result :is(dt, dd) { color: var(--aw-blue); font-weight: 500; }
+.aw-business-assumptions { display: grid; gap: 10px; color: var(--aw-muted); font-size: .8125rem; }
+.aw-customer-preview { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; padding: 12px 15px; border: 1px solid #b4c7ed; border-radius: 10px; background: var(--aw-pale); }
+.aw-customer-preview strong { font-size: .8125rem; }
+.aw-customer-preview p { color: var(--aw-muted); font-size: .75rem; }
+.aw-customer-totals { display: grid; grid-template-columns: 1.2fr .8fr 1fr; gap: 12px; padding-bottom: 24px; font-variant-numeric: tabular-nums; }
+.aw-customer-totals dt { color: var(--aw-muted); font-size: .75rem; }
+.aw-customer-totals dd { margin-top: 6px; font-size: 1.5rem; font-weight: 500; letter-spacing: -.03em; }
+.aw-customer-credit .aw-overview-credit-foot > span { color: #ccdbfa; font-size: .75rem; }
+.aw-customer-budget-readout { padding-top: 16px; border-top: 1px solid var(--aw-line); }
+.aw-customer-budget-readout > div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; margin-bottom: 10px; font-size: .8125rem; }
+.aw-customer-budget-readout > p { color: var(--aw-muted); }
+.aw-customer-budget-alert { display: flex; align-items: start; gap: 11px; padding: 13px 15px; border: 1px solid #e5d3ad; border-radius: 10px; background: #fffaf0; }
+.aw-customer-budget-alert svg { margin-top: 3px; color: #805b1d; }
+.aw-customer-budget-alert p { margin-top: 3px; color: #6b542f; font-size: .8125rem; }
+.aw-business-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.aw-business-checkbox { display: flex; align-items: start; gap: 8px; font-size: .8125rem; }
+.aw-business-checkbox input { flex-shrink: 0; margin-top: 2px; }
+.aw-business-plan-features { display: grid; gap: 7px; margin-block: 14px; padding-left: 17px; color: var(--aw-muted); font-size: .8125rem; list-style: disc; }
+.aw-business-page .aw-table-scroll { max-width: 100%; }
+.aw-business-page .aw-card > .aw-muted { font-size: .8125rem; }
+@container (max-width: 735px) {
+  .aw-business-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aw-business-metrics > div:nth-child(3) { border-left: 0; }
+  .aw-business-metrics > div:nth-child(n + 3) { border-top: 1px solid var(--aw-line); }
+}
+@media (max-width: 540px) {
+  .aw-business-filters, .aw-business-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .aw-business-metrics > div { padding: 16px; }
+  .aw-business-metrics dd { overflow-wrap: anywhere; }
+  .aw-customer-totals { grid-template-columns: 1fr 1fr; }
+  .aw-customer-totals > div:first-child { grid-column: 1 / -1; }
+  .aw-business-audit li { flex-wrap: wrap; }
+  .aw-business-audit li small { margin-left: 26px; }
+}
+
+/* Neutral chrome leaves color to Aether's usage and credit data. */
+.aw-business-page > .aw-notice:not(.aw-notice-error):not(.aw-notice-success) { padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--aw-muted); }
+.aw-business-metrics > div:first-child { padding-left: 0; }
+.aw-business-metrics > div:last-child { padding-right: 0; }
+.aw-business-metrics dd { margin-top: 8px; font-size: clamp(1.5rem, 2.2vw, 2rem); letter-spacing: -.02em; }
+.aw-business-metrics small { margin-top: 8px; font-size: .75rem; }
+.aw-business-metrics dt { font-weight: 400; }
+.aw-business-filters { padding: 20px; background: var(--aw-surface); }
+.aw-business-waterfall dd { min-width: 80px; }
+.aw-business-waterfall .aw-business-result { background: #f5f7fb; }
+.aw-business-audit svg { color: var(--aw-muted); }
+.aw-customer-credit .aw-overview-credit-foot > span { color: var(--aw-muted); }
+.aw-customer-totals dd { font-size: 1.75rem; letter-spacing: -.02em; }
+.aw-customer-totals dt { min-height: 40px; }
+.aw-customer-preview { background: var(--aw-paper); border-color: var(--aw-line); }
+.aw-business-customers-table :is(th, td):nth-child(2), .aw-business-customers-table :is(th, td):nth-child(3) { text-align: right; }
+.aw-business-page .aw-card:has([aria-label="Customer model usage"]) :is(th, td):not(:first-child), .aw-business-page .aw-card:has([aria-label="Your model spending"]) :is(th, td):not(:first-child), .aw-business-page .aw-card:has([aria-label="Candidate model routes"]) :is(th, td):nth-child(n + 3) { text-align: right; }
+@container (max-width: 735px) {
+  .aw-business-metrics > div:nth-child(odd) { padding-left: 0; }
+  .aw-business-metrics > div:nth-child(even) { padding-right: 0; padding-left: 20px; }
+}

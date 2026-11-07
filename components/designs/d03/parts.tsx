@@ -16,27 +16,7 @@ export function Glass({ children, className = "", strong = false }: { children: 
 }
 
 export function Tilt({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const sx = useSpring(rx, { stiffness: 140, damping: 18 });
-  const sy = useSpring(ry, { stiffness: 140, damping: 18 });
-  return (
-    <motion.div
-      onPointerMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        ry.set(((e.clientX - r.left) / r.width - 0.5) * 8);
-        rx.set(-((e.clientY - r.top) / r.height - 0.5) * 8);
-      }}
-      onPointerLeave={() => {
-        rx.set(0);
-        ry.set(0);
-      }}
-      style={{ rotateX: sx, rotateY: sy, transformPerspective: 1200 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 export function Chip({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -68,7 +48,7 @@ export function ChatWindow() {
             <span className="d03-holo h-6 w-6 rounded-full" />
             <span className="text-[14px] font-medium">{BRAND.name} Chat</span>
           </div>
-          <div className="relative ml-auto flex rounded-full bg-white/50 p-1 ring-1 ring-black/5">
+          <div className="relative ml-auto flex max-w-full flex-wrap rounded-full bg-white/50 p-1 ring-1 ring-black/5">
             {MODELS.map((m) => (
               <button key={m.id} onClick={() => c.pickModel(m.id)} className={`relative rounded-full px-3 py-1 text-[12.5px] transition ${c.model.id === m.id ? "text-[var(--ink)]" : "text-[var(--text-muted)] hover:text-[var(--ink)]/80"}`}>
                 {c.model.id === m.id && <motion.span layoutId="d03-model" className="d03-holo absolute inset-0 rounded-full opacity-90" transition={{ type: "spring", stiffness: 300, damping: 30 }} />}
@@ -77,7 +57,7 @@ export function ChatWindow() {
             ))}
           </div>
         </div>
-        <div className="grid md:grid-cols-[220px_1fr]">
+        <div className="d03-chat-grid grid md:grid-cols-[220px_1fr]">
           <aside className="hidden border-r border-white/60 p-4 md:block">
             <div className="text-[11px] uppercase tracking-[0.16em] text-[var(--text-muted)]">Try</div>
             <ul className="mt-3 space-y-1">

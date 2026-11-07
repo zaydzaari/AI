@@ -9,7 +9,7 @@ import { useCopy, useStream } from "@/lib/hooks";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <div className="d02-mono text-[11px] uppercase tracking-[0.2em] text-[var(--sand)]">{children}</div>;
+  return null;
 }
 
 export function Btn({ children, light = false, href = "#start" }: { children: React.ReactNode; light?: boolean; href?: string }) {

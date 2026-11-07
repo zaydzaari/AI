@@ -1,7 +1,7 @@
-import "@/components/designs/d12/fonts.generated.css";
-import "@fontsource-variable/hanken-grotesk";
-import "@fontsource-variable/jetbrains-mono";
-import "@/components/system/kit.css";
+import "@fontsource-variable/fraunces/full.css";
+import "@fontsource-variable/fraunces/full-italic.css";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
 import "@/components/designs/d12/d12.css";
 import Design12 from "@/components/designs/d12/Design12";
 

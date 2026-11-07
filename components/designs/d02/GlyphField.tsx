@@ -42,7 +42,7 @@ export function GlyphField({
       cvs.width = w * dpr;
       cvs.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.font = `500 ${cell * 0.72}px "JetBrains Mono Variable", ui-monospace, monospace`;
+      ctx.font = `500 ${cell * 0.72}px "Geist Mono Variable", ui-monospace, monospace`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
     };

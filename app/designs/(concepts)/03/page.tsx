@@ -1,5 +1,5 @@
 import "@fontsource-variable/sora";
-import "@/components/system/kit.css";
+import "@fontsource/instrument-serif/400-italic.css";
 import "@/components/designs/d03/d03.css";
 import Design03 from "@/components/designs/d03/Design03";
 

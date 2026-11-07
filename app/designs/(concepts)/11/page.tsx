@@ -1,5 +1,4 @@
 import "@fontsource-variable/manrope";
-import "@/components/system/kit.css";
 import "@/components/designs/d11/d11.css";
 import Design11 from "@/components/designs/d11/Design11";
 

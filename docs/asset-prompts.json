@@ -1,0 +1,22 @@
+{
+  "generator": "Built-in image generation",
+  "date": "2026-11-03",
+  "prompts": [
+    [
+      "quiet-horizon",
+      "Create a high quality 2K wide landscape photographic image for a restrained AI product website called Aether. No words, logos, interfaces, borders or watermark. An immense quiet ivory sky occupies the top 65 percent; a distant low ridge of jagged black volcanic mountains appears along the lower third through a sea of pale mist. A subtle dusty terracotta dawn highlight on one ridge, otherwise warm off-white, graphite and stone grey. Fine analogue photographic texture, atmospheric perspective, crisp authentic terrain, calm editorial art direction. Landscape 16:9. Keep the top and left calm for separate live webpage typography. This is a standalone image asset, not a mockup of a webpage."
+    ],
+    [
+      "ink-study",
+      "Create a high quality 2K wide monochrome print artwork image asset for a minimalist AI research website. No text, numbers, lettering, logos, interfaces or watermark. A close aerial study of dark ocean water meeting pale stone tidal channels, the natural branching channels subtly resembling paths of thought without becoming a schematic diagram. Beautiful dense black ink halftone on off-white stock, finely screened photographic dots, asymmetrical composition with the interesting branching forms on the right and an open warm paper field on the upper left. Restrained charcoal, ivory and a very small muted sage detail. Landscape 16:9, original considered editorial composition. Not a UI screenshot."
+    ],
+    [
+      "paper-depth",
+      "Create an original high quality 2K wide photographic still life for an editorial AI workspace landing page. No text, labels, logos, lettering, screens, interfaces or watermark. Several beautiful cream archival sheets form a single gently folded sequence on a matte warm limestone table, five subtle layers seen in the edges, representing one continuous conversation passing through different perspectives. Raking natural side light, tactile paper fibres, quiet shadows, one slim terracotta paper edge. Intentionally asymmetrical arrangement occupying the lower right half with ample quiet ivory negative space on the upper left. Real paper photography, not glossy 3D glass, not floating objects. Landscape 16:9."
+    ],
+    [
+      "night-atlas",
+      "Create a high quality 2K wide cinematic landscape image asset for a midnight editorial AI product website. No words, logos, lettering, constellations, glowing grids, UI, planets or watermark. A distant ancient mountain ridge at blue hour emerging above a low ocean of cloud, one extremely subtle warm amber line on the horizon. Deep ink navy upper sky with beautiful tonal separation rather than flat black. Mountains occupy the lower 40 percent, the upper 60 percent is calm negative space for live white webpage typography. Natural analogue film texture and realistic atmospheric photography. Restrained, timeless, original, landscape 16:9. No purple gradients or futuristic blobs."
+    ]
+  ]
+}

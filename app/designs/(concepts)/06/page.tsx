@@ -1,5 +1,4 @@
-import "@/components/designs/d06/fonts.generated.css";
-import "@/components/system/kit.css";
+import "@fontsource-variable/plus-jakarta-sans";
 import "@/components/designs/d06/d06.css";
 import Design06 from "@/components/designs/d06/Design06";
 

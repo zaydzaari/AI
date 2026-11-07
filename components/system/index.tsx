@@ -8,10 +8,11 @@
  */
 
 import { createElement, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { animate, motion, useInView, useMotionValue, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight, Bot, Check, Code2, Columns3, Copy, Database, MessagesSquare, ScanText, SlidersHorizontal } from "lucide-react";
 import { BENEFITS, BRAND, FACTS, FOOTER, MOCK_NOTE, PLANS, PRICE_NOTE, PROBLEM, PROOF, PROOF_NOTE, STEPS, STEP_CODE } from "@/lib/content";
 import { useCopy } from "@/lib/hooks";
+import { BrandWordmark } from "./Brand";
 
 /* ——— reveal: one shared IntersectionObserver ——— */
 let io: IntersectionObserver | null = null;
@@ -69,49 +70,13 @@ export function spot(e: React.PointerEvent<HTMLElement>) {
 }
 
 /* ——— hero trust signal (true product facts only) ——— */
-function Count({ to }: { to: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const seen = useInView(ref, { once: true });
-  const v = useMotionValue(0);
-  const [n, setN] = useState(0);
-  useEffect(() => {
-    if (!seen) return;
-    const c = animate(v, to, { duration: 1.4, ease: [0.22, 1, 0.36, 1], onUpdate: (x) => setN(Math.round(x)) });
-    return () => c.stop();
-  }, [seen, to, v]);
-  return <span ref={ref}>{n}</span>;
-}
-
 export function Trust({ variant = "facts", className = "" }: { variant?: "facts" | "compat" | "rates"; className?: string }) {
-  if (variant === "compat")
-    return (
-      <div data-hero-part="trust" className={`flex flex-wrap items-center gap-x-4 gap-y-2 ${className}`}>
-        <span className="sys-mono rounded-[8px] border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-1.5 text-[0.875rem] text-[var(--text-primary)]">baseURL: &quot;{BRAND.apiBase}&quot;</span>
-        <span className="sys-small">Works with the OpenAI SDK you already use.</span>
-      </div>
-    );
-  if (variant === "rates")
-    return (
-      <div data-hero-part="trust" className={`flex flex-wrap items-center gap-x-4 gap-y-2 ${className}`}>
-        <span className="flex items-center gap-2 text-[0.9375rem] font-semibold text-[var(--text-primary)]">
-          <Check size={16} className="text-[var(--accent)]" aria-hidden /> Per-token rates published for every model
-        </span>
-        <span className="sys-small">No credits, no multipliers.</span>
-      </div>
-    );
-  return (
-    <dl data-hero-part="trust" className={`flex flex-wrap gap-x-6 gap-y-2 md:gap-x-8 ${className}`} aria-label="Platform facts">
-      {FACTS.map((f) => (
-        <div key={f.label} className="flex items-baseline gap-2">
-          <dt className="sr-only">{f.label}</dt>
-          <dd className="font-[family-name:var(--font-display)] text-[1.75rem] font-semibold leading-none tracking-[-0.03em] text-[var(--accent-text,var(--accent))]">
-            <Count to={f.n} />
-          </dd>
-          <span aria-hidden className="text-[0.9375rem] leading-tight text-[var(--text-muted)]">{f.label}</span>
-        </div>
-      ))}
-    </dl>
-  );
+  const text = variant === "compat"
+    ? "One endpoint. Works with the OpenAI SDK."
+    : variant === "rates"
+      ? "Chat and API access. Sample pricing below."
+      : "Five model families, with chat and API access.";
+  return <p data-hero-part="trust" className={`simple-trust ${className}`}>{text}</p>;
 }
 
 /* ——— 1. Problem → solution ——— */
@@ -339,35 +304,22 @@ export function Proof({ id = "proof", variant = "grid", title = "Built for four 
 }
 
 /* ——— 6. Final CTA ——— */
-export function FinalCTA({ title, lead = "Early access opens in waves. Leave your email and we'll write when it's your turn.", cta = "Request early access", align = "center", className = "" }: { title: string; lead?: string; cta?: string; align?: "center" | "left"; className?: string }) {
+export function FinalCTA({ title, lead = "Leave your email to hear when early access opens.", cta = "Request access", className = "" }: { title: string; lead?: string; cta?: string; align?: "center" | "left"; className?: string }) {
   const [sent, setSent] = useState(false);
   return (
-    <section id="start" data-section className={`sys-section ${className}`}>
-      <div className={`sys-container flex flex-col gap-10 ${align === "center" ? "items-center text-center" : ""}`}>
-        <Reveal as="h2" className="sys-h2 !max-w-[16ch] !text-[clamp(2.5rem,5vw,4.25rem)]">
-          {title}
-        </Reveal>
-        <Reveal as="p" i={1} className="sys-body">
-          {lead}
-        </Reveal>
-        <Reveal i={2} className="w-full max-w-[520px]">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
-            className="flex flex-col gap-3 sm:flex-row"
-          >
-            <label htmlFor="sys-email" className="sr-only">
-              Email address
-            </label>
-            <input id="sys-email" type="email" required placeholder="you@company.com" className="min-h-[52px] flex-1 rounded-[var(--radius-cta)] border border-[var(--border)] bg-[var(--bg-secondary)] px-5 text-[1rem] text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--text-primary)]" />
-            <button data-cta="final" className="sys-cta">
-              {sent ? "You're on the list" : cta}
-            </button>
+    <section id="start" data-section className={`sys-section simple-signup ${className}`}>
+      <div className="sys-container">
+        <div><h2 className="sys-h2">{title}</h2><p className="sys-body">{lead}</p></div>
+        <div>
+          <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+            <div className="simple-email-field">
+              <label htmlFor="sys-email">Email address</label>
+              <input id="sys-email" type="email" required autoComplete="email" placeholder="you@company.com" />
+            </div>
+            <button data-cta="final" className="sys-cta">{cta}</button>
           </form>
-          <p className={`sys-small mt-3 ${align === "center" ? "" : ""}`}>Demo form — nothing is sent.</p>
-        </Reveal>
+          <p role="status" className="simple-form-status">{sent ? "Demo complete. No email was sent." : "Design preview — this form does not send email."}</p>
+        </div>
       </div>
     </section>
   );
@@ -376,32 +328,13 @@ export function FinalCTA({ title, lead = "Early access opens in waves. Leave you
 /* ——— Footer ——— */
 export function Footer({ mark }: { mark?: React.ReactNode }) {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg-secondary)]">
-      <div className="sys-container grid gap-12 py-16 md:grid-cols-[1.3fr_repeat(4,1fr)] md:py-20">
-        <div className="max-w-[30ch]">
-          <div className="font-[family-name:var(--font-display)] text-[1.5rem] font-semibold tracking-[-0.02em]">{mark ?? BRAND.name}</div>
-          <p className="sys-small mt-3">{BRAND.taglines[0]} Every model family in one chat, one agent runtime and one API.</p>
-        </div>
-        {FOOTER.map((c) => (
-          <nav key={c.title} aria-label={c.title}>
-            <h3 className="sys-label">{c.title}</h3>
-            <ul className="mt-4 grid gap-2.5">
-              {c.links.map((l) => (
-                <li key={l}>
-                  <a href="#" className="sys-small transition-colors hover:text-[var(--text-primary)]">
-                    {l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
-      </div>
-      <div className="border-t border-[var(--border)]">
-        <div className="sys-container flex flex-col gap-3 py-6 sys-small md:flex-row md:items-center md:justify-between">
-          <span>© {BRAND.name} — placeholder brand for design review.</span>
-          <span>{MOCK_NOTE}</span>
-        </div>
+    <footer className="simple-footer">
+      <div className="sys-container">
+        <strong><BrandWordmark>{mark ?? BRAND.name}</BrandWordmark></strong>
+        <nav aria-label="Footer">
+          <a href="#models">Models</a><a href="#pricing">Pricing</a><a href="#start">Early access</a>
+        </nav>
+        <p>© {BRAND.name} · Design concept. Model names, specifications and prices are illustrative.</p>
       </div>
     </footer>
   );
@@ -416,37 +349,20 @@ export function PrimaryCTA({ children = "Request early access", href = "#start",
 }
 
 /* ——— 5. Pricing / plans ——— */
-export function Plans({ id = "pricing", title = "Simple plans. Every rate in the open.", note }: { id?: string; title?: string; note?: string }) {
+export function Plans({ id = "pricing", title = "Choose how you use it.", note, layout = "columns" }: { id?: string; title?: string; note?: string; layout?: "columns" | "ledger" | "editorial" }) {
   return (
-    <Section id={id}>
+    <Section id={id} className={`simple-plans simple-plans-${layout}`}>
       <Head title={title} lead={note ?? PRICE_NOTE} />
-      <ul className="grid gap-5 md:grid-cols-3 lg:gap-6">
-        {PLANS.map((p, i) => (
-          <Reveal as="li" key={p.name} i={i}>
-            <article onPointerMove={spot} className={`sys-card sys-spot flex h-full flex-col ${p.featured ? "ring-1 ring-[var(--text-primary)]" : ""}`}>
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="sys-h3">{p.name}</h3>
-                {p.featured && <span className="sys-small rounded-full border border-[var(--text-primary)] px-3 py-0.5 text-[var(--text-primary)]">Recommended</span>}
-              </div>
-              <p className="mt-8 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <span className={`font-[family-name:var(--font-display)] font-semibold leading-none tracking-[-0.03em] ${p.price.length > 6 ? "text-[1.875rem]" : "text-[2.75rem]"}`}>{p.price}</span>
-                <span className="sys-small">{p.cadence}</span>
-              </p>
-              <p className="sys-body mt-5">{p.body}</p>
-              <ul className="mt-6 grid gap-3">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-[1rem]">
-                    <Check size={16} aria-hidden className="shrink-0" /> {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="#start" className={`mt-10 ${p.featured ? "sys-cta" : "sys-ghost"}`}>
-                Choose {p.name}
-              </a>
-            </article>
-          </Reveal>
+      <div className="simple-plan-grid">
+        {PLANS.map((p) => (
+          <article key={p.name} className="simple-plan">
+            <h3>{p.name}</h3>
+            <div className="simple-plan-price">{p.price}<small>{p.cadence}</small></div>
+            <p>{p.body}</p>
+            <a href="#start">{p.name === "Explore" ? "Start exploring" : `Explore ${p.name}`} <span aria-hidden>↗</span></a>
+          </article>
         ))}
-      </ul>
+      </div>
     </Section>
   );
 }

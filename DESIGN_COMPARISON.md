@@ -10,36 +10,6 @@ This document records what was taken from the two reference sites, the reasoning
 
 ---
 
-## v3 update (latest)
-
-Every concept was rebuilt to the unified rule set (see README → v3). What changed in judgement:
-
-- **Distinctness is back.** v2 had converged on shared body sections; v3 gives each concept its own sections and a signature mechanic that explains part of the business: temperaments (02), comparison (03), context (04), agents (05), caching and routing (07, 09), discovery (08), metering (01, 11), the live router (10).
-- **Top three remain Aperture (12), Lab Seven (07) and Live Wire (10)**, with Graphite (02) now a close fourth: its refusal-direction projection is the most credible explanation of abliteration in the set.
-- **Trade-offs:** Kiln (05) and Aperture (12) are the most memorable and the most expensive to maintain; Raster (09) and Lumen (06) are the clearest but the least ownable; Observatory (08) and Pearl (03) depend on their metaphor staying legible on phones.
-- **Still true:** all model names, rates and testimonials are placeholders, and nothing was tested on real GPUs, Safari or Windows.
-
-## Awwwards 20 Collection
-
-The 20 static sites in `awwwards-20-collection/` sell the same Aether product as the lab. Each has a unique heading font, accent colour, hero structure and signature mechanic, and the build enforces that. Open the exhibition gallery with `npm run collection` (http://localhost:4320/) to compare their tokens, fonts and previews side by side.
-
-**Picks from the 20 (design judgement, not measurement):**
-
-1. **20 Zenith Supersonic: the clearest product story.** The itinerary globe follows one conversation across five models, and a running fare ticks up beside it. It shows unified chat, model choice, prompt caching and per-token cost together. **Trade-offs:** the airline metaphor could read as a travel brand without the copy. The split-flap board is about 220 animated DOM cells, which is fine on desktop but worth profiling on low-end phones.
-2. **19 Atelier Kintsugi: the strongest light identity.** "Look beneath every answer": a loupe reveals the tokens and the per-line cost under a response. It makes transparency feel crafted rather than technical. **Trade-offs:** the manuscript serif is the least "developer tool" voice in the set. The inspection metaphor needs its caption to land.
-3. **18 Lumina: the best single explainer.** Buffered and streamed token lanes make streaming obvious in one scroll. **Trade-offs:** Syncopate's wide capitals are tiring in long text, so a production version would keep them to headlines.
-
-**Worth borrowing:** 02 Kanso's context monoliths with cost shadows, the calmest way to show context size against price, and 12 Forma's configurator, the most direct "build your plan" interaction.
-
-**Collection QA:** every page passes `node _build/verify.cjs` at 1440×900, at 375×667 and with reduced motion. The checks are:
-- no console errors or failed requests;
-- no horizontal overflow;
-- all five hero parts above the fold;
-- fonts, type scale, spacing and grain rules;
-- axe AA contrast.
-
-The verifier ran in headless Chromium only: no Safari, Firefox, real GPUs or touch hardware.
-
 ## 1. Reference study
 
 Both sites were loaded in a real Chromium browser (Playwright) at 1440 × 900. I scrolled through the full length of each page, captured viewport screenshots every 900 px, and read the computed fonts and colours. That covered roughly 6,400 px of tryabracadabra.com and 11,300 px of abliteration.ai. I did not test their behaviour on mobile, and I did not reverse-engineer their animation code.

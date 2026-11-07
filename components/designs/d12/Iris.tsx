@@ -8,7 +8,7 @@ import { useMotionValueEvent, type MotionValue } from "motion/react";
  * tangent to a circle of radius r. Their union leaves an N-gon aperture.
  * Uses native SVG transform attributes for exact geometry.
  */
-export function Iris({ open, blades = 9, size = 1000, color = "#E6E5E1", edge = "#0E0D0C" }: { open: MotionValue<number>; blades?: number; size?: number; color?: string; edge?: string }) {
+export function Iris({ open, blades = 9, size = 1000, color = "#ECE6DA", edge = "#0E0D0C" }: { open: MotionValue<number>; blades?: number; size?: number; color?: string; edge?: string }) {
   const R = size / 2;
   const [p, setP] = useState(open.get());
   useMotionValueEvent(open, "change", (v) => setP(v));

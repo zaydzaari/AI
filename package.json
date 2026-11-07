@@ -3,23 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node kanso/build.mjs && node kanso/serve.mjs",
-    "build": "node kanso/build.mjs",
-    "start": "node kanso/serve.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "screenshots": "node scripts/screenshots.cjs",
-    "audit": "node scripts/audit.cjs",
-    "collection": "node awwwards-20-collection/serve.mjs",
-    "collection:build": "node awwwards-20-collection/_build/build.mjs",
-    "collection:verify": "node awwwards-20-collection/_build/verify.cjs",
-    "slop": "node scripts/slop-audit.cjs",
-    "lab:fonts": "node scripts/lab-fonts.mjs",
-    "kanso": "node kanso/serve.mjs",
-    "kanso:build": "node kanso/build.mjs",
-    "kanso:verify": "node kanso/verify.cjs",
-    "lab": "next dev",
-    "lab:build": "next build",
-    "lab:start": "next start"
+    "audit": "node scripts/audit.cjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
@@ -49,6 +38,7 @@
     "next": "^16.4.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "react-markdown": "10.1.0",
     "three": "^0.187.0"
   },
   "devDependencies": {

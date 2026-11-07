@@ -4,3 +4,19 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Credentials and local development tools
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.zip
+/.agents/
+/.codex/
+/.impeccable-local/
+/.taste-skill/
+/.claude/settings.local.json

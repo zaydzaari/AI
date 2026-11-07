@@ -11,13 +11,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 /* ——— small pieces ——— */
 
 export function Eyebrow({ n, children }: { n: string; children: React.ReactNode }) {
-  return (
-    <div className="d01-mono flex items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-[var(--ink)]/60">
-      <span className="text-[var(--red)]">{n}</span>
-      <span className="h-px w-8 bg-current opacity-40" />
-      {children}
-    </div>
-  );
+  return null;
 }
 
 export function Scribble({ d, delay = 0, className = "" }: { d: string; delay?: number; className?: string }) {
@@ -67,74 +61,29 @@ export const THREAD = [
 ];
 
 export function HeroTranscript() {
-  const [hover, setHover] = useState<number | null>(null);
-  const notes: Record<number, { t: string; top: string }> = {
-    2: { t: "switched to Unbound mid-thread — context kept", top: "43%" },
-    4: { t: "handed to Forge for structured output", top: "81%" },
-  };
+  const handoff = <><div className="field-model-line"><span>Forge</span><span>Structured output</span></div><pre><code>{'{ "title": "Overdue", "format": "screenplay" }'}</code></pre></>;
   return (
-    <div className="relative xl:pr-[200px]">
-      <motion.div
-        initial={{ opacity: 0, y: 40, rotate: 0.6 }}
-        animate={{ opacity: 1, y: 0, rotate: 0 }}
-        transition={{ duration: 1.1, delay: 0.35, ease }}
-        className="relative rounded-[6px] bg-[#F4F6F8] shadow-[0_1px_0_rgba(22,19,15,.08),0_40px_80px_-40px_rgba(22,19,15,.35)] ring-1 ring-[var(--ink)]/10"
-      >
-        <div className="flex items-center justify-between border-b border-[var(--ink)]/10 px-5 py-3">
-          <div className="d01-mono flex items-center gap-2 text-[11px] text-[var(--text-muted)]">
-            <span className="h-2 w-2 rounded-full bg-[var(--pine)]" /> Thread · Overdue
-          </div>
-          <div className="d01-mono text-[11px] text-[var(--text-muted)]">3 models · 1 context</div>
-        </div>
-        <ol className="divide-y divide-[var(--ink)]/[0.07]">
-          {THREAD.map((m, i) => (
-            <motion.li
-              key={i}
-              onMouseEnter={() => setHover(i)}
-              onMouseLeave={() => setHover(null)}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7 + i * 0.18, duration: 0.6, ease }}
-              className={`grid grid-cols-[28px_64px_1fr] items-baseline gap-2 px-5 py-3 text-[14px] leading-snug transition-colors ${i >= 2 ? "max-md:hidden" : ""} ${
-                notes[i] ? "bg-[var(--sun)]/15" : ""
-              } ${hover === i ? "bg-[var(--ink)]/[0.04]" : ""}`}
-            >
-              <span className="d01-mono text-[10.5px] text-[var(--text-muted)]">{String(i + 1).padStart(2, "0")}</span>
-              <span className={`text-[12.5px] font-semibold ${m.who === "You" ? "text-[var(--text-muted)]" : "text-[var(--pine)]"}`}>
-                {m.who}
-              </span>
-              <span className="text-[var(--ink)]">
-                {m.text}
-                {m.who === "You" && i > 0 && (
-                  <span className="d01-mono ml-2 inline-block rounded-sm border border-[var(--red)]/50 px-1.5 text-[10px] text-[var(--red)]">
-                    → {m.model}
-                  </span>
-                )}
-              </span>
-            </motion.li>
-          ))}
+    <figure className="field-thread" aria-label="One conversation passed from Core to Unbound to Forge">
+      <div className="field-thread-panel">
+        <div className="field-thread-top"><span className="field-thread-title">Overdue</span><span className="field-thread-caption">A conversation, continued.</span></div>
+        <ol className="field-exchanges">
+          <li className="field-exchange">
+            <p className="field-prompt">Plan a heist story about retired librarians.</p>
+            <div className="field-model-line"><span>Core</span><span>First draft</span></div>
+            <p className="field-answer">The crew target a private archive that never returns what it borrows.</p>
+          </li>
+          <li className="field-exchange field-exchange-focus">
+            <p className="field-prompt">Darker. Make the archivist menacing.</p>
+            <div className="field-model-line"><span>Unbound</span><span>Same thread</span></div>
+            <p className="field-answer">She catalogues people like books. Nobody she shelves is ever checked out again.</p>
+            <p className="field-note"><svg width="32" height="12" viewBox="0 0 32 12" fill="none" aria-hidden="true"><path d="M31 6H2m4-4L2 6l4 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/></svg>New model.<br/>Same context.</p>
+          </li>
+          <li className="field-exchange field-desktop-handoff">{handoff}</li>
         </ol>
-        <div className="flex items-center gap-3 border-t border-[var(--ink)]/10 px-5 py-3">
-          <span className="d01-mono text-[11px] text-[var(--text-muted)]">Ask anything…</span>
-          <span className="ml-auto rounded-full bg-[var(--ink)] px-3 py-1 text-[11px] text-[var(--paper)]">Forge ▾</span>
-        </div>
-      </motion.div>
-
-      {/* marginalia — desktop only */}
-      {Object.entries(notes).map(([k, n], j) => (
-        <div key={k} className="pointer-events-none absolute right-0 hidden w-[180px] xl:block" style={{ top: n.top }}>
-          <Scribble d="M2 30 C 30 10, 60 50, 112 24" delay={1.4 + j * 0.4} className="absolute -left-[70px] -top-3 h-10 w-20 -scale-x-100" />
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.9 + j * 0.4 }}
-            className="d01-serif text-[19px] leading-[1.15] text-[var(--red)]"
-          >
-            {n.t}
-          </motion.p>
-        </div>
-      ))}
-    </div>
+        <details className="field-mobile-handoff"><summary>See the coding handoff <ArrowRight size={15} aria-hidden /></summary><div>{handoff}</div></details>
+        <figcaption className="field-thread-bottom">Core <ArrowRight size={12} aria-hidden /> Unbound <ArrowRight size={12} aria-hidden /> Forge <span>Simulated conversation</span></figcaption>
+      </div>
+    </figure>
   );
 }
 
@@ -158,7 +107,7 @@ export function Index() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="rounded-[4px] border border-[var(--ink)]/15 bg-[#F4F6F8] p-6"
+              className="rounded-[4px] border border-[var(--ink)]/15 bg-[#FBF8F1] p-6"
             >
               <div className="d01-mono text-[11px] text-[var(--red)]">Note {String(active + 1).padStart(2, "0")}</div>
               <p className="d01-serif mt-3 text-[26px] leading-[1.1]">{c.body}</p>
@@ -289,7 +238,7 @@ export function Story() {
               ))}
               <span className="d01-mono ml-auto text-[10.5px] text-[var(--text-muted)]">context preserved</span>
             </div>
-            <div className="min-h-[300px] space-y-2 rounded-[4px] bg-[#F4F6F8] p-4">
+            <div className="min-h-[300px] space-y-2 rounded-[4px] bg-[#FBF8F1] p-4">
               {STEPS.slice(0, step + 1).flatMap((st, si) =>
                 st.lines.map(([who, text], li) => (
                   <motion.div
@@ -345,7 +294,7 @@ export function Specimens() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.6 }}
-            className={`group relative bg-[var(--paper)] p-6 transition-colors hover:bg-[#F4F6F8] ${
+            className={`group relative bg-[var(--paper)] p-6 transition-colors hover:bg-[#FBF8F1] ${
               i < 2 ? "lg:col-span-3" : "lg:col-span-2"
             }`}
           >
@@ -413,7 +362,7 @@ export function Api() {
   const lines = CODE[tab].split("\n");
   const notes = NOTES[tab];
   return (
-    <section data-section id="api" className="border-y border-[var(--ink)]/15 bg-[#F4F6F8]">
+    <section data-section id="api" className="border-y border-[var(--ink)]/15 bg-[#FBF8F1]">
       <div className="mx-auto grid max-w-[1320px] gap-12 px-5 py-24 sm:px-8 md:py-32 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Eyebrow n="§4">For developers</Eyebrow>
@@ -492,27 +441,23 @@ export function Ledger() {
   const [outTok, setOut] = useState(1500);
   const [cache, setCache] = useState(0.6);
   return (
-    <section data-section id="pricing" className="mx-auto max-w-[1320px] px-5 py-24 sm:px-8 md:py-36">
-      <div className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
+    <section data-section id="pricing" className="sys-section field-ledger">
+      <div className="sys-container"><div className="field-ledger-layout">
+        <div>
           <Eyebrow n="§5">Rates</Eyebrow>
-          <h2 className="d01-display mt-6 text-[clamp(40px,5vw,68px)] leading-[0.95]">Priced per token. Shown in full.</h2>
-          <div className="mt-10 space-y-6">
+          <h2 className="sys-h2">Pricing, in the open.</h2>
+          <div className="field-ledger-plans">
             {PLANS.map((p) => (
-              <div key={p.name} className={`flex items-baseline gap-4 border-t pt-4 ${p.featured ? "border-[var(--red)]" : "border-[var(--ink)]/15"}`}>
-                <span className="d01-display w-20 shrink-0 text-[22px]">{p.name}</span>
-                <span className="flex-1 text-[14px] text-[var(--ink)]/60">{p.body}</span>
-                <span className="d01-mono w-[120px] shrink-0 text-right text-[13px]">
-                  {p.price}
-                  <span className="text-[var(--text-muted)]"> {p.cadence}</span>
-                </span>
+              <div key={p.name} className="field-ledger-plan">
+                <h3>{p.name}</h3><p className="field-ledger-rate">{p.price}<small>{p.cadence}</small></p>
+                <p className="field-ledger-description">{p.body}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="lg:col-span-6 lg:col-start-7">
-          <div className="rounded-[6px] border border-[var(--ink)]/15 bg-[#F4F6F8] p-6">
-            <div className="d01-mono text-[11px] uppercase tracking-[0.14em] text-[var(--text-muted)]">Estimate one request</div>
+        <div className="field-calculator-wrap">
+          <div className="field-calculator" data-ui>
+            <h3 className="field-calculator-title">Estimate a request</h3>
             {[
               ["Input tokens", inTok, setIn, 1000, 200000, 1000],
               ["Output tokens", outTok, setOut, 100, 20000, 100],
@@ -558,10 +503,10 @@ export function Ledger() {
                 ))}
               </tbody>
             </table>
-            <p className="d01-serif mt-4 text-[16px] italic text-[var(--red)]">{PRICE_NOTE}</p>
+            <p className="field-price-note">{PRICE_NOTE}</p>
           </div>
         </div>
-      </div>
+      </div></div>
     </section>
   );
 }

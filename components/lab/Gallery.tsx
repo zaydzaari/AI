@@ -45,7 +45,7 @@ export function Gallery() {
             Aether <span className="text-white/40">/ Design Lab</span>
           </span>
         </div>
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">Private · local only</span>
+        <nav className="flex flex-wrap justify-end gap-5 text-xs text-white/70" aria-label="Lab tools"><Link href="/designs/variations">3 compositions</Link><Link href="/designs/inspiration">Reference library</Link></nav>
       </header>
 
       <section className="mx-auto max-w-[1680px] px-5 pb-10 pt-16 sm:px-10 sm:pt-24">
@@ -59,8 +59,8 @@ export function Gallery() {
         </motion.h1>
         <div className="mt-10 grid gap-8 border-t border-white/10 pt-6 md:grid-cols-[1fr_auto] md:items-end">
           <p className="max-w-[56ch] text-[15px] leading-relaxed text-white/60">
-            Each concept is a complete, working landing page with its own type, colour, layout and motion system. Open
-            one, preview it on desktop, tablet and mobile, or pick two and compare them side by side.
+            Twelve directions. Three compositions each. Open a concept to tweak its type, colour and spacing,
+            compare the alternatives, or use the reference library to carry a direction further. Local only.
           </p>
           <div role="radiogroup" aria-label="Filter by mode" className="flex gap-1 rounded-full border border-white/10 p-1 text-[13px]">
             {(["All", "Light", "Dark", "Mixed"] as Filter[]).map((f) => (
@@ -82,6 +82,10 @@ export function Gallery() {
       </section>
 
       <main className="mx-auto max-w-[1680px] px-5 pb-40 sm:px-10">
+        <Link href="/designs/agent" className="group mb-12 flex flex-wrap items-center justify-between gap-5 rounded-xl border border-[#dbe5fb] bg-[#f1f5ff] p-6 text-[#151b2e] sm:p-8">
+          <div><h2 className="text-2xl font-semibold tracking-tight">Aether Agent</h2><p className="mt-1 text-sm text-[#4d5772]">The longer personal agent landing page, combining Pearl and Lumen.</p></div>
+          <span className="flex items-center gap-2 text-sm font-semibold text-[#1946c5] group-hover:underline">Open concept <ArrowUpRight size={16} aria-hidden /></span>
+        </Link>
         <motion.ul layout className="grid gap-x-6 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {list.map((d, i) => (
@@ -170,7 +174,7 @@ function Card({
             alt={`Screenshot of design ${d.id}`}
             loading={i < 3 ? "eager" : "lazy"}
             onError={() => setImgOk(false)}
-            className="absolute inset-x-0 top-0 w-full transition-transform duration-[3200ms] ease-[cubic-bezier(.45,0,.2,1)] group-hover:-translate-y-[75%] motion-reduce:transition-none"
+            className="absolute inset-0 h-full w-full object-cover object-top"
           />
         ) : (
           <div className="absolute inset-0 flex">
@@ -226,7 +230,7 @@ function Card({
               </Link>
             </div>
           </div>
-          <p className="mt-4 text-[12px] text-white/35">{d.type}</p>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[12px]"><p className="text-white/50">{d.type}</p><Link className="text-white/80 underline underline-offset-4" href={`/designs/variations?id=${d.id}`}>Explore 3 compositions ↗</Link></div>
         </div>
       </div>
     </motion.li>

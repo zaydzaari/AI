@@ -5,18 +5,11 @@ import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { ArrowUp, Check, Command, Copy, CornerDownLeft, Cpu, Database, Gauge, Search, Sparkles, Zap } from "lucide-react";
 import { BRAND, CAPABILITIES, MODELS, PLANS, PRICE_NOTE, MOCK_NOTE, PROMPTS, estimateCost, fmtUSD, type Model, type Variant } from "@/lib/content";
 import { useCopy, useStream } from "@/lib/hooks";
+import { suggest } from "@/lib/model-preview";
+
+export { suggest } from "@/lib/model-preview";
 
 const spring = { type: "spring", stiffness: 380, damping: 34 } as const;
-
-/** Picks a model from what the user is typing — the "contextual selector". */
-export function suggest(text: string): { id: string; why: string } {
-  const t = text.toLowerCase();
-  if (/(code|bug|refactor|test|function|repo|typescript|python)/.test(t)) return { id: "forge", why: "looks like code" };
-  if (/(pdf|files|document|contract|book|archive|long|repo-wide|all \d+)/.test(t)) return { id: "atlas", why: "large inputs" };
-  if (/(villain|dark|uncensored|no filter|graphic|red.?team|edgy)/.test(t)) return { id: "unbound", why: "fewer refusals" };
-  if (/(quick|short|tl;?dr|one line|classify|extract)/.test(t)) return { id: "swift", why: "short & fast" };
-  return { id: "core", why: "general purpose" };
-}
 
 type Msg = { role: "user" | "ai"; text: string; model: string; variant: Variant };
 
@@ -64,14 +57,14 @@ export function Console() {
   return (
     <div data-hero-part="visual" className="grid gap-3">
       <motion.div layout className={`flex flex-col overflow-hidden rounded-[22px] bg-white ring-1 transition-shadow ${focus ? "shadow-[0_30px_80px_-30px_rgba(61,90,254,.45)] ring-[var(--blue)]/40" : "shadow-[0_30px_80px_-40px_rgba(0,0,0,.25)] ring-black/10"}`}>
-        <div className="flex items-center gap-2 border-b border-black/[0.06] px-4 py-3 max-md:hidden">
+        <div className="flex items-center gap-2 border-b border-black/[0.06] px-4 py-3 d10-desktop-detail">
           <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--green)] opacity-60" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--green)]" />
           </span>
           <span className="d10-mono text-[12px] text-[var(--text-muted)]">{BRAND.name.toLowerCase()} · console</span>
           <LayoutGroup id="d10-models">
-            <div className="ml-auto flex gap-1 overflow-x-auto no-scrollbar">
+            <div className="ml-auto flex flex-wrap gap-1">
               {MODELS.map((m) => (
                 <button key={m.id} onClick={() => setManual(manual === m.id ? null : m.id)} className={`relative shrink-0 rounded-full px-3 py-1 text-[12.5px] transition ${modelId === m.id ? "text-white" : "text-[var(--text-muted)] hover:text-black"}`}>
                   {modelId === m.id && <motion.span layoutId="d10-pill" transition={spring} className="absolute inset-0 rounded-full bg-[var(--ink)]" />}
@@ -146,7 +139,7 @@ export function Console() {
                 <Zap size={11} /> {manual ? `${model.name} (pinned)` : `${model.name} — ${sug.why}`}
               </motion.span>
             </AnimatePresence>
-            <div className="ml-auto flex gap-1 max-md:hidden">
+            <div className="ml-auto flex flex-wrap gap-1">
               {model.variants.map((x) => (
                 <button key={x} type="button" onClick={() => setVariant(x)} className={`rounded-full px-2.5 py-1 ring-1 ${v === x ? "bg-[var(--ink)] text-white ring-[var(--ink)]" : "ring-black/10 hover:ring-black/30"}`}>
                   {x}

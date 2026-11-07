@@ -67,7 +67,7 @@ export function useChatDemo(initial = 0) {
   const p = PROMPTS[index];
   const [modelId, setModelId] = useState(p.model);
   const model = MODELS.find((m) => m.id === modelId) ?? MODELS[0];
-  const stream = useStream(p.response, `${index}-${modelId}-${variant}-${runId}`, 34);
+  const stream = useStream(p.response, `${index}-${modelId}-${variant}-${runId}`, 34, runId > 0);
 
   const choose = useCallback((i: number) => {
     setIndex(i);
@@ -99,6 +99,9 @@ export function useChatDemo(initial = 0) {
     pickModel,
     rerun: () => setRunId((r) => r + 1),
     ...stream,
+    // Show a complete example on arrival; stream only after an explicit action.
+    out: runId === 0 ? p.response : stream.out,
+    done: runId === 0 || stream.done,
   };
 }
 

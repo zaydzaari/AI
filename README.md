@@ -1,32 +1,50 @@
-# Aether — Kanso
+# Aether Agent — Frontend
 
-This repository holds the landing-page work for **Aether**, a placeholder brand for an AI platform that sells model access and API tokens:
+The complete Aether frontend includes the personal-agent landing page, developer documentation, customer workspace, playground, agent demo, model explorer, API key management, usage and spending, proposed plans, settings, and owner console.
 
-1. **The Design Lab:** 12 complete, working directions in Next.js, plus a gallery for previewing and comparing them (documented below).
-2. **The Awwwards 20 Collection:** 20 standalone static sites plus a Master Exhibition Gallery, in [`awwwards-20-collection/`](awwwards-20-collection/README.md).
-3. **Kanso, the chosen website:** a standalone site in [`kanso/`](kanso/README.md). It is now the default for `npm run dev`, `npm run build` and `npm start`. Includes three complete body layouts, a comparison page, generated architectural imagery, a working model explorer and cost calculator.
+All accounts, credits, API keys, AI responses, approvals, and owner controls are explicitly simulated. There is no live authentication, model gateway, database, checkout, or billing service. The owner routes are presentation-only and do not provide real access control.
 
-This is a **private, local design exploration**. Nothing is deployed, and every page sets `noindex`. All product data is mock data.
+## Collaborator quickstart
+
+Install Node.js 20.9 or newer, then run:
+
+```bash
+git clone --branch aether-complete-frontend https://github.com/zaydzaari/AI.git
+cd AI
+npm ci
+npm run dev -- --hostname 127.0.0.1 --port 3100
+```
+
+Open [the landing page](http://127.0.0.1:3100), [customer dashboard](http://127.0.0.1:3100/dashboard), [customer spending](http://127.0.0.1:3100/dashboard/spending), [owner console](http://127.0.0.1:3100/owner), or [developer documentation](http://127.0.0.1:3100/docs). The original concept gallery remains at `/designs`.
+
+Validate changes with `npm run build` and `node --test tests/studio.test.cjs`. See [FRONTEND_HANDOVER.md](FRONTEND_HANDOVER.md) for every application route, demo interaction, mock data location, and future integration point. The [Unslop review](docs/UNSLOP_DESIGN_REVIEW.md) records the current application design direction.
+
+The other design collections already in the repository are retained. The ZIP archive is an older snapshot; use the source on this branch for the complete application.
+
+## Earlier design-lab notes
+
+## Simplified direction — 3 November 2026
+
+All twelve concepts have been shortened around their product examples, model choices, pricing and access form. Repeated feature grids, placeholder testimonial sections and pinned scrolling rails have been removed. Heavy decorative effects have been replaced with quieter compositions. The gallery previews reflect this pass.
+
+See [DESIGN_RULES.md](DESIGN_RULES.md) for the reference sites, recent reading, and the rules for future edits. The v2 notes below describe the earlier exploration; the downloaded repository archive retains that version.
+
+Twelve complete, working landing-page directions for **Aether** (a placeholder brand for an AI platform), plus a gallery for previewing and comparing them.
+
+This is a **frontend design exploration**. Nothing is deployed, and every page sets `noindex`. All product data is mock data.
 
 ---
 
 ## Run it
 
-Requirements for Kanso: **Node.js 20 or newer**. Building and serving Kanso require no npm dependencies; the first build downloads the self-hosted fonts.
+Requirements: **Node.js 20.9 or newer** (Next.js 16).
 
 ```bash
-npm run dev
+npm ci
+npm run dev -- --hostname 127.0.0.1 --port 3100
 ```
 
-Open **http://localhost:4330/** for the chosen Ledger layout. Compare all three finished directions at **http://localhost:4330/directions/**.
-
-To run the original Next.js design lab, install the root dependencies and use `npm run lab`; its gallery is at **http://localhost:3000/designs**. Its build/start scripts are `npm run lab:build` and `npm run lab:start`.
-
-To open the 20-site collection, run the next command and then visit **http://localhost:4320/**:
-
-```bash
-npm run collection
-```
+Then open **http://127.0.0.1:3100**. It opens the personal-agent landing page. The gallery is at **http://127.0.0.1:3100/designs**.
 
 For a production build:
 
@@ -34,62 +52,6 @@ For a production build:
 npm run build
 npm start
 ```
-
-## v4: the "design genius" workflow pass
-
-Every page in both sets (12 lab concepts, 20 collection sites and the gallery) went through the three steps from Chase AI's video "Turn Claude Into A Design GENIUS In 3 Simple Steps".
-
-**Step 1: a taste library.** `awwwards-20-collection/inspiration/` holds all 32 directions, grouped into six design families. Each family has its vocabulary. Each card has a **Copy image prompt** button and a **Copy brief** button. The brief follows the video's four parts: aesthetic, reference, intent and guardrails. You can also drop in your own Dribbble, Pinterest or X screenshots; they stay in your browser.
-
-**Step 2: tools.**
-- **Impeccable** is installed for Claude Code in `.claude/skills/impeccable` (Apache-2.0), with its agents in `.claude/agents/`. Its auto-running design hook is *not* installed: it downloads and runs a binary on every edit, so turn it on yourself if you want it.
-- `PRODUCT.md` holds the product context that Impeccable reads.
-- `npm run slop` (`scripts/slop-audit.cjs`) is our own Playwright check against Impeccable's rule catalogue, and every page was fixed against it. Impeccable's own CLI couldn't run in the build sandbox.
-- The fixes:
-  - **Fonts:** replaced every overused face (Fraunces, Geist, Plus Jakarta Sans, Space Grotesk, Instrument Sans and Serif).
-  - **Colour:** moved nine cream backgrounds onto deliberate palettes, and removed coloured glows, radial halos, purple gradients and gradient text.
-  - **Layout:** deleted the small uppercase labels above headings, and thinned or removed thick coloured side borders.
-  - **Type:** shortened 17 headlines to six words or fewer, set an 11px floor for UI text, and fixed skipped heading levels.
-  - **Polish:** cut em-dash runs, and themed scrollbars, text selection and the text caret.
-- **Higgsfield** (hero images and video) needs your own account. Connect it and the briefs' image prompts are ready to use.
-
-**Step 3: build and iterate.** Every page now has:
-- a weighted hero load-in, with parts arriving one by one;
-- a soft fade from the hero into the body;
-- a **Tweaks** panel. Click the pill in the bottom-right corner, or press Shift+T.
-
-The Tweaks panel changes the heading and body fonts, headline size, tracking and weight, body size, the 60-30-10 colours, load-in and reveal motion, and grain, all live. Tweaks are saved per page. **Copy settings** gives you JSON to paste into a prompt so the changes can be made permanent. The shared code is in `lib/tweaks.js` and `lib/tweaks.css`.
-
-The next step in the video's workflow is yours: **pick one direction**, then ask for three body variations of it.
-
-## v3 — Unified rules, every concept rebuilt
-
-All 12 concepts were rebuilt from scratch (v2 is archived in `components/designs/_archive/v2/`). Each one now has its own composition, its own copy and one signature scroll mechanic tied to the token/API business — no shared body sections.
-
-**One rule set that satisfies every brief at once** (`components/system/kit.css`, `lib/kit.ts`):
-
-- H1 `clamp(3.25rem, 6vw, 5rem)` at `-0.03em`; body 1.05rem / 1.7 at ≤ 65ch; no Inter, Roboto, Open Sans, Lato, Arial or system fonts.
-- 60-30-10 tokens on every root (`--bg-primary`, `--bg-secondary`, `--accent`, `--text-primary`, `--text-muted`); the accent appears only on primary CTAs, active nav states and live data readouts.
-- Sections 120 px (72 px mobile), block gaps 64–80 px, card padding 36–40 px, fractal grain at 0.035.
-- 5-part hero above the fold (headline, sub, one magnetic CTA, interactive visual, concrete trust signal), then problem/solution + signature → feature/benefit bento → 3-step pinned rail → role-based proof (placeholders) → pricing + per-token rates → final CTA + footer.
-- `useKit(ref)` wires reveals, 80 ms staggers, spring-physics magnetic CTAs, spotlight cards, the pinned rail, scroll-spy and count-ups; canvas loops pause off-screen; reduced motion disables pinning and scrubbing.
-
-| # | Concept | Signature scroll mechanic |
-|---|---|---|
-| 01 | Field Notes | Annotated thread: model and temperament switch mid-conversation, live token tally |
-| 02 | Graphite | Refusal direction projected out of an activation field |
-| 03 | Pearl | One prompt refracted through a prism into five priced answers |
-| 04 | Monolith | Width is context: names stretch on Archivo's width axis |
-| 05 | Kiln | Agent loop choreography (plan → edit → test → ship) with running cost |
-| 06 | Lumen | Laptop opens, camera pushes into the app |
-| 07 | Lab Seven | Token-flow Sankey through uncached / cached / routed runs |
-| 08 | Observatory | Planisphere: constellations open ephemeris cards at the meridian |
-| 09 | Raster | Monthly estimator poster from 1M to 1B tokens |
-| 10 | Live Wire | Live router console + docking workspace panels |
-| 11 | Obsidian | Scroll-scrubbed token stream with a precise usage meter |
-| 12 | Aperture | Full-viewport iris opens into the machine; closing iris finale |
-
-`npm run audit` checks every rule above at 1440×900 and 375×667 (plus contrast via axe). All 12 pass.
 
 ## v2 — Master design system
 
@@ -228,3 +190,10 @@ node scripts/screenshots.cjs 03 07   # just some
 ```
 
 If a screenshot is missing, the gallery falls back to the palette swatches.
+
+
+## Video workflow studio
+
+All twelve local concepts now have three compositions and live design controls. Open `/designs/variations` to compare them and `/designs/inspiration` for the requested reference library, reusable briefs and four custom image directions. See [the workflow notes](docs/VIDEO_WORKFLOW.md). Settings stay in this browser or an exported JSON file; no backend is connected.
+
+Validation: `node --test tests/studio.test.cjs`, `npx tsc --noEmit`, `npm run build`.

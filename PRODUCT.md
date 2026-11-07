@@ -1,54 +1,28 @@
-# Product context
+# Aether local design exploration
 
-Impeccable reads this file before every command (it's what `/impeccable init` writes). Keep it short and true.
+## Supplied context
 
-## What it is
+The user wants twelve simpler, intentional local landing-page concepts, informed by Z.ai, Abliteration and Abracadabra. They asked to apply Chase AI's workflow from https://www.youtube.com/watch?v=7FU98O0JLHs across all concepts. Keep all work local; do not publish or change GitHub.
 
-**Aether** (a placeholder name) is an AI platform that sells model access and API tokens. The platform covers:
+## Audience and purpose
 
-- five model families:
-  - Core: general chat and reasoning;
-  - Unbound: the abliterated variant;
-  - Forge: coding agents;
-  - Atlas: long context;
-  - Swift: fast and small;
-- standard, low-refusal and abliterated variants;
-- unified chat, where you switch models mid-thread;
-- coding agents;
-- a developer API that works with the OpenAI SDK shape;
-- prompt caching;
-- transparent per-token pricing, with the cost reported on every response.
+The pages explore a fictional multi-model AI workspace for people who write, research and code. Their primary action is a clearly labelled early-access request. The form is a local demonstration and sends nothing. Product interfaces demonstrate model switching, response comparison and request building with simulated content.
 
-## Who it's for
+## What is illustrative
 
-- **Developers** who want one key and one endpoint instead of several providers.
-- **Researchers and red-teamers** who study refusal behaviour.
-- **Writers and other creative professionals** who need direct answers on difficult material.
-- **Startup teams** who need predictable costs.
+Aether, model names, capabilities, context windows, responses and rates are concept data. No real API, signup backend, customers, endorsements or performance results are supplied. Do not add fake proof. The research plot is a schematic, not measured model behaviour.
 
-## What the page must do
+## Design argument
 
-Sell API keys and per-token access. The primary action is **Get your API key**. Secondary actions are trying the chat and reading the per-token rates.
+1. A short product claim is supported by a concrete transcript, composer, request or model index.
+2. The reader can inspect a model family or try an example.
+3. Prices are shown as sample values, with calculators only where useful.
+4. An honest demo form closes the page.
 
-## Constraints
+Variant C promotes the model index above the supporting product section where both exist. Each concept has three hero compositions with distinct layout and hierarchy. The existing type and palette keep the concepts recognisable.
 
-- **Mock data only.** Models, context sizes, rates and testimonials are placeholders and are labelled as such on every page.
-- **No unsupported claims.** Nothing about performance, security or availability unless it's verified. No fake customer logos, statistics or testimonials.
-- **No clones** of tryabracadabra.com or abliteration.ai.
-- **Design rules:**
-  - The H1 is `clamp(3.25rem, 6vw, 5rem)` with −0.03em tracking.
-  - Body text is 1.05rem with a line height of 1.7, at most 65ch wide.
-  - Colour follows a 60-30-10 token system. The accent is reserved for CTAs, active nav and live data. Contrast meets WCAG AA.
-  - The hero shows five parts above the fold.
-  - Each page has seven sections, including a pinned three-step rail.
-  - Motion animates only transform, opacity, clip-path and filter. Reduced motion unpins everything.
-- **Private.** Nothing is deployed or published without the owner's permission.
+## Subject inventory
 
-## Where things are
+One continuous conversation; five model families; switch without losing context; chat and SDK request formats; fiction, code and research examples; response-style comparison; long-context data; per-token sample pricing; a model registry; an editable local design lab; no live backend; twelve existing visual identities.
 
-| What | Where |
-| --- | --- |
-| 12 Next.js concepts | `app/designs`, `components/designs` |
-| 20 static sites, gallery and taste library | `awwwards-20-collection/` |
-| Shared Tweaks layer | `lib/tweaks.js`, `lib/tweaks.css` |
-| Anti-slop audit | `scripts/slop-audit.cjs` |
+On these pages, the conversation that passes between models becomes the main visual evidence.

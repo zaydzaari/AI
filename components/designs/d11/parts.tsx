@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
-import { ArrowRight, Check, Code2, Coins, Database, GitCompare, Layers, MessagesSquare, ScanText, SlidersHorizontal } from "lucide-react";
+import { ArrowLeftRight, ArrowRight, Check, Code2, Coins, Database, GitCompare, Layers, MessagesSquare, ScanText, SlidersHorizontal } from "lucide-react";
 import { BRAND, CAPABILITIES, CODE, MODELS, PLANS, PRICE_NOTE, MOCK_NOTE } from "@/lib/content";
 import { useStream } from "@/lib/hooks";
 
@@ -11,43 +11,13 @@ export const ICONS = [MessagesSquare, SlidersHorizontal, Code2, Layers, ScanText
 
 /** Glass surface whose specular highlight follows the cursor. */
 export function Glass({ children, className = "", as: As = "div" }: { children: React.ReactNode; className?: string; as?: "div" | "article" }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const move = useCallback((e: React.PointerEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
-    el.style.setProperty("--my", `${e.clientY - r.top}px`);
-  }, []);
-  return (
-    <As ref={ref as never} onPointerMove={move} className={`d11-glass ${className}`}>
-      {children}
-    </As>
-  );
+  return <As className={`d11-glass ${className}`}>{children}</As>;
 }
 
 export function HeroSlab() {
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const sx = useSpring(rx, { stiffness: 120, damping: 20 });
-  const sy = useSpring(ry, { stiffness: 120, damping: 20 });
-  const { out } = useStream("Here are three directions for the launch film — one quiet, one kinetic, one that breaks the fourth wall. Want me to storyboard the second?", 0, 55);
+  const out = "Here are three directions for the launch film — one quiet, one kinetic, one that breaks the fourth wall. Want me to storyboard the second?";
   return (
-    <motion.div
-      onPointerMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        ry.set(((e.clientX - r.left) / r.width - 0.5) * 10);
-        rx.set(-((e.clientY - r.top) / r.height - 0.5) * 10);
-      }}
-      onPointerLeave={() => {
-        rx.set(0);
-        ry.set(0);
-      }}
-      style={{ rotateX: sx, rotateY: sy, transformPerspective: 1400 }}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.4, ease, delay: 0.2 }}
-    >
+    <div>
       <Glass className="d11-bevel rounded-[28px] p-2">
         <div className="rounded-[22px] bg-[#0c0c0f]/80 p-5">
           <div className="flex items-center justify-between">
@@ -66,7 +36,7 @@ export function HeroSlab() {
           </div>
         </div>
       </Glass>
-    </motion.div>
+    </div>
   );
 }
 
@@ -116,10 +86,10 @@ export function Wipe() {
   const B = "\"I don't make threats,\" she said, sliding the photograph across the table. \"I make appointments. Yours is Thursday.\"";
   const Side = ({ label, text, tone, right = false }: { label: string; text: string; tone: string; right?: boolean }) => (
     <div className={`absolute inset-0 flex flex-col justify-between p-7 sm:p-10 ${right ? "items-end text-right" : ""}`}>
-      <div className="d11-mono text-[11px] uppercase tracking-[0.24em]" style={{ color: tone }}>
+      <div className="text-[13px]" style={{ color: tone }}>
         {label}
       </div>
-      <p className="max-w-[min(30ch,44%)] text-[clamp(16px,2.2vw,28px)] font-medium leading-[1.25] tracking-[-0.02em] text-[var(--fg)]">{text}</p>
+      <p className="max-w-[min(30ch,44%)] text-[clamp(16px,1.6vw,22px)] font-medium leading-[1.4] tracking-[-0.02em] text-[var(--fg)]">{text}</p>
       <div className="d11-mono text-[11px] text-[var(--text-muted)]">Prompt: write the antagonist&apos;s threat, unsoftened · simulated</div>
     </div>
   );
@@ -133,13 +103,13 @@ export function Wipe() {
       onPointerMove={(e) => e.buttons === 1 && drag(e.clientX)}
       className="d11-bevel relative h-[460px] cursor-ew-resize touch-none select-none overflow-hidden rounded-[28px]"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(80%_80%_at_80%_20%,#2a2440,#0e0e12)]">
-        <Side label="Unbound · Abliterated" text={B} tone="#A99BFF" right />
+      <div className="absolute inset-0 bg-[#202127]">
+        <Side label="Unbound · Abliterated" text={B} tone="#D0D3DC" right />
       </div>
-      <div className="absolute inset-0 bg-[radial-gradient(80%_80%_at_20%_20%,#2a2d33,#0e0e12)]" style={{ clipPath: `inset(0 ${100 - x}% 0 0)` }}>
+      <div className="absolute inset-0 bg-[#14161a]" style={{ clipPath: `inset(0 ${100 - x}% 0 0)` }}>
         <Side label="Core · Standard" text={A} tone="#C8CCD4" />
       </div>
-      <div className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-white to-transparent" style={{ left: `${x}%` }}>
+      <div className="absolute inset-y-0 w-px bg-[#c8ccd4]" style={{ left: `${x}%` }}>
         <div
           role="slider"
           tabIndex={0}
@@ -147,13 +117,16 @@ export function Wipe() {
           aria-valuenow={Math.round(x)}
           aria-valuemin={0}
           aria-valuemax={100}
+          aria-valuetext={`${Math.round(x)} percent standard view`}
           onKeyDown={(e) => {
-            if (e.key === "ArrowLeft") setX((v) => Math.max(4, v - 5));
-            if (e.key === "ArrowRight") setX((v) => Math.min(96, v + 5));
+            if (e.key === "ArrowLeft") { e.preventDefault(); setX((v) => Math.max(4, v - 5)); }
+            if (e.key === "ArrowRight") { e.preventDefault(); setX((v) => Math.min(96, v + 5)); }
+            if (e.key === "Home") { e.preventDefault(); setX(4); }
+            if (e.key === "End") { e.preventDefault(); setX(96); }
           }}
           className="d11-bevel absolute top-1/2 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#141418] text-[var(--ti)]"
         >
-          ⇆
+          <ArrowLeftRight size={18} aria-hidden />
         </div>
       </div>
     </div>

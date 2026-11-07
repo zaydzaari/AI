@@ -1,14 +1,21 @@
 import "@/components/system/system.css";
-import { DesignDock } from "@/components/lab/DesignDock";
+import "@/components/system/simple.css";
+import "@/components/lab/studio.css";
+import "@/components/system/refined.css";
+import "@fontsource-variable/sora";
+import "@fontsource-variable/dm-sans";
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource/instrument-serif";
+import { StudioControls } from "@/components/lab/StudioControls";
+import { StudioProvider } from "@/components/lab/StudioProvider";
 import { MotionRoot } from "@/components/lab/MotionRoot";
-import { Tweaks } from "@/components/lab/Tweaks";
 
 export default function ConceptsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <MotionRoot>
+    <StudioProvider><MotionRoot>
       {children}
-      <DesignDock />
-      <Tweaks />
-    </MotionRoot>
+      <StudioControls />
+    </MotionRoot></StudioProvider>
   );
 }

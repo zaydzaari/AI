@@ -141,7 +141,7 @@ export function Ablation() {
           {out}
         </motion.p>
         <p className="mt-6 border-t border-[var(--line)] pt-4 text-[13px] leading-relaxed text-[var(--text-muted)]">
-          Abliteration estimates the direction in activation space associated with refusals and removes it from the weights. Capabilities stay; reflexive refusals go. Policy becomes the operator&apos;s choice.
+          This schematic illustrates removal of a refusal-associated activation direction. The points and responses are simulated, and do not measure the behaviour or capabilities of a real model.
         </p>
       </div>
     </div>

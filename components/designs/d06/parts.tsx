@@ -35,10 +35,10 @@ export function Device({ children, className = "" }: { children: React.ReactNode
 
 export function ChatScreen({ i = 0 }: { i?: number }) {
   const p = PROMPTS[i];
-  const { out } = useStream(p.response, i, 38);
+  const out = p.response;
   const m = MODELS.find((x) => x.id === p.model)!;
   return (
-    <div className="grid min-h-[300px] grid-cols-[150px_1fr] text-left sm:min-h-[420px] sm:grid-cols-[190px_1fr]">
+    <div className="d06-chat-screen grid min-h-[300px] grid-cols-[150px_1fr] text-left sm:min-h-[420px] sm:grid-cols-[190px_1fr]">
       <aside className="border-r border-black/[0.06] bg-[#fbfbfd] p-3">
         <div className="rounded-lg bg-[var(--blue)] px-3 py-2 text-[12px] font-medium text-white">New chat</div>
         <div className="mt-4 space-y-1">
